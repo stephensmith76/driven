@@ -1,0 +1,10 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.env.local
+.env.*.local
+supabase/.branches
+supabase/.temp
+__pycache__/
+.pytest_cache/
+.DS_Store

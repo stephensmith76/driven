@@ -1,0 +1,56 @@
+[
+  {
+    "name": "Bulwark", "civilian": "Dana Okafor, ex-firefighter",
+    "archetype_id": "protector", "trait_id": "mercy",
+    "stats": {"force": 3, "flow": 0, "focus": 1, "presence": 2},
+    "flair_ids": [],
+    "loadout": [
+      {"kind": "power", "id": "toughness", "ability_level": 1, "custom_text": "Source: years of hauling hoses"},
+      {"kind": "gear", "id": "med-kit"},
+      {"kind": "gear", "id": "riot-shield"}
+    ]
+  },
+  {
+    "name": "Rook", "civilian": "Tommy Reyes, washed-up boxer",
+    "archetype_id": "brawler", "trait_id": "spite",
+    "stats": {"force": 4, "flow": 2, "focus": -1, "presence": 1},
+    "flair_ids": ["hard-to-kill"],
+    "loadout": [
+      {"kind": "gear", "id": "kevlar-vest"},
+      {"kind": "gear", "id": "weighted-gloves"},
+      {"kind": "gear", "id": "med-kit"}
+    ]
+  },
+  {
+    "name": "Nightjar", "civilian": "Lena Cho, bike courier",
+    "archetype_id": "stalker", "trait_id": "vengeance",
+    "stats": {"force": 1, "flow": 4, "focus": 2, "presence": -1},
+    "flair_ids": ["opportunist"],
+    "loadout": [
+      {"kind": "power", "id": "shadow-manipulation", "ability_level": 1, "flaw": "Allergy: floodlights burn her skin"},
+      {"kind": "gear", "id": "fighting-sticks"}
+    ]
+  },
+  {
+    "name": "Patchwork", "civilian": "Desmond Hale, engineering dropout",
+    "archetype_id": "specialist", "trait_id": "thrill",
+    "stats": {"force": 0, "flow": 2, "focus": 3, "presence": 1},
+    "flair_ids": [],
+    "loadout": [
+      {"kind": "gear", "id": "night-vision-goggles"},
+      {"kind": "gear", "id": "grapple-line"},
+      {"kind": "gear", "id": "earpiece-comms"}
+    ]
+  },
+  {
+    "name": "The Ledger", "civilian": "Ruth Abernathy, retired fraud investigator",
+    "archetype_id": "detective", "trait_id": "order",
+    "stats": {"force": -1, "flow": 1, "focus": 4, "presence": 2},
+    "flair_ids": [],
+    "loadout": [
+      {"kind": "gear", "id": "concealed-sidearm"},
+      {"kind": "gear", "id": "kevlar-vest"},
+      {"kind": "gear", "id": "police-scanner"}
+    ]
+  }
+]
