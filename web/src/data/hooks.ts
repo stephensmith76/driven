@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { ensureSignedIn, supabase } from './supabase'
 import { CAMPAIGN_COLUMNS, type Campaign, type Character, type Member } from './types'
 
@@ -17,6 +17,7 @@ export function useLiveRows<T extends Row>(
   const [rows, setRows] = useState<T[]>([])
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
+  const [nonce, setNonce] = useState(0)
 
   useEffect(() => {
     if (!campaignId) return
@@ -33,26 +34,24 @@ export function useLiveRows<T extends Row>(
       setLoading(false)
     }
 
+    const upsert = (row: T) => setRows((prev) => {
+      const i = prev.findIndex((r) => r.id === row.id)
+      if (i === -1) return [...prev, row]
+      const next = prev.slice()
+      next[i] = { ...prev[i], ...row }
+      return next
+    })
+    const filter = `campaign_id=eq.${campaignId}`
     const channel = supabase
       .channel(`${table}:${campaignId}:${Math.random().toString(36).slice(2)}`)
-      .on(
-        'postgres_changes',
-        { event: '*', schema: 'public', table, filter: `campaign_id=eq.${campaignId}` },
-        (payload) => {
-          setRows((prev) => {
-            if (payload.eventType === 'DELETE') {
-              const old = payload.old as Row
-              return prev.filter((r) => r.id !== old.id)
-            }
-            const row = payload.new as T
-            const i = prev.findIndex((r) => r.id === row.id)
-            if (i === -1) return [...prev, row]
-            const next = prev.slice()
-            next[i] = { ...prev[i], ...row }
-            return next
-          })
-        },
-      )
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table, filter }, (p) => upsert(p.new as T))
+      .on('postgres_changes', { event: 'UPDATE', schema: 'public', table, filter }, (p) => upsert(p.new as T))
+      // Realtime can't filter DELETE events (they carry only the id), so listen to all
+      // and drop the row only if it's one of ours.
+      .on('postgres_changes', { event: 'DELETE', schema: 'public', table }, (p) => {
+        const old = p.old as Partial<Row>
+        if (old.id) setRows((prev) => prev.filter((r) => r.id !== old.id))
+      })
       .subscribe((status) => {
         // Reload after (re)connecting so nothing missed while offline is lost.
         if (status === 'SUBSCRIBED') void load()
@@ -63,9 +62,11 @@ export function useLiveRows<T extends Row>(
       cancelled = true
       void supabase.removeChannel(channel)
     }
-  }, [table, campaignId, columns, order?.column, order?.ascending])
+  }, [table, campaignId, columns, order?.column, order?.ascending, nonce])
 
-  return { rows, error, loading }
+  /** Load again now (for tables that aren't on Realtime). */
+  const reload = useCallback(() => setNonce((n) => n + 1), [])
+  return { rows, error, loading, reload }
 }
 
 export function useCampaign(campaignId: string | null) {

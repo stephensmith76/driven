@@ -8,6 +8,9 @@ import { Builder } from './screens/player/Builder'
 import { GmEnter } from './screens/gm/GmEnter'
 import { GmTable } from './screens/gm/GmTable'
 import { CreateCampaign } from './screens/gm/CreateCampaign'
+import { Night } from './screens/gm/Night'
+import { CaseFile } from './screens/gm/CaseFile'
+import { Admin } from './screens/gm/Admin'
 
 export default function App() {
   const path = useHashPath()
@@ -32,6 +35,9 @@ export default function App() {
   if (a === 'c' && b && c === 'sheet') return <Sheet campaignId={b} characterId={d} />
   if (a === 'c' && b && c === 'build') return <Builder campaignId={b} characterId={d} />
   if (a === 'gm' && b === 'new') return <CreateCampaign />
+  if (a === 'gm' && b && c === 'night') return <Night campaignId={b} />
+  if (a === 'gm' && b && c === 'case') return <CaseFile campaignId={b} />
+  if (a === 'gm' && b && c === 'admin') return <Admin campaignId={b} />
   if (a === 'gm' && b) return <GmTable campaignId={b} />
   if (a === 'gm') return <GmEnter />
   return <Home />

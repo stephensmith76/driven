@@ -7,6 +7,9 @@
     "build": "npm run build -w web",
     "test": "npm test -w web",
     "test:access": "tsx supabase/tests/access.test.ts",
-    "test:sync": "tsx supabase/tests/sync.test.ts"
+    "test:sync": "tsx supabase/tests/sync.test.ts",
+    "test:roundtrip": "tsx supabase/tests/roundtrip.test.ts",
+    "test:secrets": "tsx supabase/tests/secrets.test.ts",
+    "test:db": "npm run test:access && npm run test:sync && npm run test:roundtrip && npm run test:secrets"
   }
 }

@@ -14,7 +14,7 @@ export function Loadout({ hero, report, run }: {
   const picks = kitPicks(hero)
   const fs = hero.fight_state
 
-  const useItem = (id: string, name: string, perFight: number, delta: 1 | -1) => run(async () => {
+  const markUse = (id: string, name: string, perFight: number, delta: 1 | -1) => run(async () => {
     const u = usesLeft(fs, id, perFight)
     const next = Math.max(0, u.used + delta)
     await setFlag(hero.id, `uses:${id}`, next === 0 ? null : next)
@@ -54,8 +54,8 @@ export function Loadout({ hero, report, run }: {
               {u && (
                 <p className="small">
                   Uses left this fight: <strong>{u.left}/{u.perFight}</strong>{' '}
-                  <button className="mini" onClick={() => useItem(g.id, g.name, u.perFight, 1)}>Use</button>{' '}
-                  <button className="mini secondary" disabled={u.used === 0} onClick={() => useItem(g.id, g.name, u.perFight, -1)}>Undo</button>
+                  <button className="mini" onClick={() => markUse(g.id, g.name, u.perFight, 1)}>Use</button>{' '}
+                  <button className="mini secondary" disabled={u.used === 0} onClick={() => markUse(g.id, g.name, u.perFight, -1)}>Undo</button>
                 </p>
               )}
             </div>

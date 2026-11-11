@@ -309,3 +309,41 @@ describe('Sheet bookkeeping', () => {
     expect(slotsUsed(s).warnings.some((x) => /one strange power/.test(x))).toBe(true)
   })
 })
+
+import { confrontationText, crackDefense, crackResultText, crackWarnings, minCluesToCrack, nextPhase, startNightDrive, theoryCount, tickClock } from './index'
+
+describe('The Night', () => {
+  it('Crack the Case: 2d10 + clues against 10 + Complexity; need half the Complexity in clues', () => {
+    expect(crackDefense(6)).toBe(16)
+    expect(minCluesToCrack(6)).toBe(3)
+    expect(minCluesToCrack(5)).toBe(3)
+    expect(crackWarnings(2, 6)).toHaveLength(1)
+    expect(crackWarnings(3, 6)).toEqual([])
+  })
+  it('personal clues count 2; Case Sense adds 1 (Session 1: 9 clues + Case Sense = +10)', () => {
+    expect(theoryCount([{ id: 'a', personal: false }, { id: 'b', personal: true }], false)).toBe(3)
+    const nine = Array.from({ length: 8 }, (_, i) => ({ id: `c${i}`, personal: false })).concat({ id: 'p', personal: false })
+    expect(theoryCount(nine, true)).toBe(10)
+    expect(theoryCount([], true)).toBe(0)
+  })
+  it('result text comes from the rules data', () => {
+    expect(crackResultText(0)).toMatch(/Scheme clock ticks twice/)
+    expect(confrontationText(1)).toMatch(/they're ready/)
+    expect(confrontationText(3)).toMatch(/choose the ground/)
+    expect(confrontationText(0)).toMatch(/villain chooses/)
+  })
+  it('clock ticks report half and full, and never pass the size', () => {
+    expect(tickClock({ kind: 'scheme', size: 6, filled: 2 }, 1)).toMatchObject({ filled: 3, events: [expect.stringMatching(/digging/)] })
+    expect(tickClock({ kind: 'scheme', size: 6, filled: 5 }, 2)).toMatchObject({ filled: 6, events: [expect.stringMatching(/pulls it off/)] })
+    expect(tickClock({ kind: 'heat', size: 6, filled: 0 }, -1).filled).toBe(0)
+  })
+  it('phases run Patrol, Crack the Case, Confrontation, Dawn', () => {
+    expect(nextPhase('patrol')).toBe('crack')
+    expect(nextPhase('dawn')).toBeNull()
+  })
+  it('Start Night lifts Drive below 2 to 2 (4 with Already Broken) and leaves more alone', () => {
+    expect(startNightDrive(hero('Rook'), 0)).toBe(2)
+    expect(startNightDrive(hero('Rook'), 3)).toBe(3)
+    expect(startNightDrive({ ...hero('Rook'), flair_ids: ['already-broken'] }, 1)).toBe(4)
+  })
+})
