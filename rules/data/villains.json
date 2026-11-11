@@ -1,0 +1,50 @@
+{
+  "roles": [
+    { "id": "heavy", "name": "Heavy", "drive_trigger": "They deal or take Impact 2+", "trick": "Ignore one hit (2 Drive)" },
+    { "id": "mastermind", "name": "Mastermind", "drive_trigger": "One of their clocks ticks", "trick": "A mook group acts out of turn (1), tick a villain clock (2)" },
+    { "id": "nemesis", "name": "Nemesis", "drive_trigger": "They target their rival", "trick": "Cancel the rival's Drive spend (2)" },
+    { "id": "trickster", "name": "Trickster", "drive_trigger": "A hero misses them", "trick": "Swap places with a mook in sight (2), force a reroll (1)" },
+    { "id": "mooks", "name": "Mooks", "drive_trigger": "Never", "trick": "None. They act in groups of 3." }
+  ],
+  "rules": {
+    "has": "Stats and defenses (same as a hero). Harm: 5 for a lieutenant, 10 for a case's main villain (8 for a smaller one). Stress: 4 boxes, Fraying at 2, Breaking at 4. Trait: one line for Fraying and one for Breaking. Drive: starts at 2, earned from their role trigger once per round. Trick: one special move that costs Drive. Weakness: something the heroes can discover and exploit.",
+    "answer_toughness": "Every named villain should have at least one way past Toughness: fire, electricity, gas, a hazard they can trigger, or a Presence attack.",
+    "presence_attack": "Every named villain has a Presence attack (vs Poise, deals Stress). Once per round they can use it as a free extra action.",
+    "breaking": "A Breaking villain does something reckless: flees, turns on their own people, or gives something away."
+  },
+  "villains": [
+    { "id": "the-butcher", "name": "The Butcher of Fifth Street", "kind": "villain", "role": "heavy", "line": "Heavy, case boss",
+      "stats": { "force": 4, "flow": 0, "focus": 1, "presence": 2 },
+      "harm_max": 10, "toughness": 1, "stress_max": 4, "drive": 2, "weapon": "unarmed",
+      "trait": { "name": "Spite", "fraying": "Goes after whoever hurt him last, plan or no plan.", "breaking": "Wrecks everything in reach, his own men included." },
+      "drive_trigger": "Deals or takes Impact 2+",
+      "tricks": [{ "cost": 2, "text": "Human shield. Redirect a hit to a hostage in his zone." }],
+      "weakness": "Can't turn down a challenge in front of his crew.",
+      "sim": { "name": "The Butcher", "force": 4, "flow": 0, "focus": 1, "presence": 2, "harm_max": 10, "toughness_v": 1, "drive": 2, "weapon": "unarmed" } },
+    { "id": "augustine-voss", "name": "Augustine Voss, the Landlord", "kind": "villain", "role": "mastermind", "line": "Mastermind, case boss",
+      "stats": { "force": -1, "flow": 1, "focus": 4, "presence": 3 },
+      "harm_max": 5, "toughness": 0, "stress_max": 4, "drive": 2, "weapon": "unarmed",
+      "trait": { "name": "Order", "fraying": "Sticks to the plan even as it falls apart.", "breaking": "Runs, and sets the building on fire behind him." },
+      "drive_trigger": "One of his clocks ticks (Eviction, Evidence)",
+      "tricks": [
+        { "cost": 1, "text": "A mook group acts out of turn." },
+        { "cost": 2, "text": "Tick the Eviction clock." }
+      ],
+      "weakness": "His handwritten ledger. Without it, his network falls apart.",
+      "sim": { "name": "Augustine Voss", "force": -1, "flow": 1, "focus": 4, "presence": 3, "harm_max": 5, "toughness_v": 0, "drive": 2, "weapon": "unarmed" } },
+    { "id": "lieutenant", "name": "Lieutenant (template)", "kind": "lieutenant", "role": "heavy", "line": "Lieutenant template: adjust stats to fit",
+      "stats": { "force": 2, "flow": 1, "focus": 0, "presence": 1 },
+      "harm_max": 5, "toughness": 0, "stress_max": 4, "drive": 2, "weapon": "unarmed",
+      "trait": { "name": "", "fraying": "", "breaking": "" },
+      "drive_trigger": "From their role",
+      "tricks": [],
+      "weakness": "",
+      "sim": { "name": "Lieutenant", "force": 2, "flow": 1, "focus": 0, "presence": 1, "harm_max": 5, "toughness_v": 0, "drive": 2, "weapon": "unarmed" } }
+  ],
+  "mooks": [
+    { "id": "fifth-street-saints", "name": "Fifth Street Saints", "kind": "mooks", "role": "mooks",
+      "attack": 2, "guard": 13, "wits": 12, "poise": 12, "harm_each": 1, "group_size": 3, "gunner": true,
+      "text": "One attack per group per turn, with Edge if all 3 are standing. One in each group carries a pistol (+1 Harm on Impact 2+, ignores Toughness, +1 Heat). They run when half the gang is down, unless a boss is in sight.",
+      "sim": { "name": "Saints", "count": 3, "attack": 2, "guard": 13, "gunner": true } }
+  ]
+}

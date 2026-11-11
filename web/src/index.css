@@ -72,3 +72,4 @@ button.secondary { background: transparent; color: var(--text); border: 1px soli
 }
 .box.filled { background: var(--filled); border-color: var(--filled); color: var(--bg); }
 .box:disabled { opacity: 1; }
+.notice { border-color: var(--accent); }

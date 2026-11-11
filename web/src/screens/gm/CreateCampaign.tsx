@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { errorText, supabase } from '../../data/supabase'
 import { go } from '../../router'
+import { RULES_VERSION } from '../../engine'
 import demoHeroes from '../../../../supabase/seed/demo-heroes.json'
 
 export function CreateCampaign() {
@@ -15,7 +16,7 @@ export function CreateCampaign() {
     setBusy(true)
     setError(null)
     try {
-      const { data, error } = await supabase.rpc('create_campaign', { p_name: name, p_passcode: passcode })
+      const { data, error } = await supabase.rpc('create_campaign', { p_name: name, p_passcode: passcode, p_rules_version: RULES_VERSION })
       if (error) throw error
       const row = (data as { campaign_id: string; join_code: string }[])[0]
       if (demo) {

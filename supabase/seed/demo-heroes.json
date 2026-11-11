@@ -48,7 +48,7 @@
     "stats": {"force": -1, "flow": 1, "focus": 4, "presence": 2},
     "flair_ids": [],
     "loadout": [
-      {"kind": "gear", "id": "concealed-sidearm"},
+      {"kind": "gear", "id": "sidearm", "custom_text": "Concealed"},
       {"kind": "gear", "id": "kevlar-vest"},
       {"kind": "gear", "id": "police-scanner"}
     ]

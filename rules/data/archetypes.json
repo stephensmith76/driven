@@ -1,0 +1,49 @@
+[
+  {
+    "id": "protector", "name": "Protector",
+    "text": "You stand between people and harm.",
+    "drive_trigger": "An enemy attacks you (hit or miss), or you take a hit meant for someone else.",
+    "feature": null,
+    "quick_actions": [
+      { "id": "interpose", "name": "Interpose", "text": "Until your next turn, when an enemy attacks someone in your zone, you can make yourself the target instead. Once per round." }
+    ],
+    "signature": { "id": "stand-your-ground", "name": "Stand Your Ground", "text": "Until your next turn, every attack in your zone has to target you, you get +1 Toughness (max 2), and allies in your zone get Edge on their next roll." }
+  },
+  {
+    "id": "brawler", "name": "Brawler",
+    "text": "You wade in and keep swinging.",
+    "drive_trigger": "You take Harm, or you drop an enemy.",
+    "feature": { "id": "pile-through", "name": "Pile Through", "text": "When your Strike drops a mook, make a free Jab against another enemy in your zone." },
+    "quick_actions": [],
+    "signature": { "id": "haymaker", "name": "Haymaker", "text": "A Strike with Advantage and +1 Harm. On a hit, knock the target into an adjacent zone of your choice." }
+  },
+  {
+    "id": "stalker", "name": "Stalker",
+    "text": "You strike from the dark and are gone before they turn around.",
+    "drive_trigger": "You attack while Hidden, or you break away from engagement without getting hit.",
+    "feature": null,
+    "quick_actions": [
+      { "id": "vanish", "name": "Vanish", "text": "In a Dark, Cover, or Crowd zone, roll Flow against the highest Wits of anyone watching. On a hit you're Hidden: you can't be targeted, and your first attack from Hidden has Advantage (attacking ends Hidden)." }
+    ],
+    "signature": { "id": "take-down", "name": "Take Down", "text": "A Strike from Hidden. If it hits, it counts as Impact 3." }
+  },
+  {
+    "id": "specialist", "name": "Specialist",
+    "text": "Gadgets, trick shots, and a plan for everything.",
+    "drive_trigger": "You use Kit to change the fight (a new zone tag, a moved enemy, a blocked exit).",
+    "feature": { "id": "kit", "name": "Kit", "text": "Pick 3 items at the start of each Night. Using one is a Quick Action, once per item per fight. Expecting guns? Take Smoke or Armor: without them, a Specialist is usually the first one down." },
+    "quick_actions": [],
+    "kit_picks": 3,
+    "signature": { "id": "prepared", "name": "Prepared", "text": "Reveal something you set up earlier: a new exit, a trap (Impact 2 to whoever sets it off, ignoring Toughness), or backup arriving. Then take Advantage on your next roll." }
+  },
+  {
+    "id": "detective", "name": "Detective",
+    "text": "You read people and see the fight coming.",
+    "drive_trigger": "You learn something true about an enemy, you find a clue, or an ally hits using the Edge from your Read.",
+    "feature": { "id": "case-sense", "name": "Case Sense", "text": "Once per case, one clue you found counts as two in the team's theory." },
+    "quick_actions": [
+      { "id": "read", "name": "Read", "text": "In a fight, roll Focus against a target's Wits. For each Impact level, ask one: What's their weakness? What will they do next? What are they protecting? The GM answers truthfully, and your team's next roll against that target has Edge. If you asked about their weakness, a hit with that Edge also ignores Toughness." }
+    ],
+    "signature": { "id": "called-it", "name": "Called It", "text": "Name what a villain will do next. When they try it, it fails, and every ally gets a free Quick Action." }
+  }
+]

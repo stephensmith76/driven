@@ -1,0 +1,307 @@
+{
+  "rules": {
+    "push": "When your power helps a roll, take 1 Stress to roll with Advantage. Some abilities also cost Stress directly.",
+    "strange_stress": "The first time you use a strange power in a fight or scene, take 1 Stress. Pushing it costs the usual 1 Stress on top. Street powers have no use cost.",
+    "always_on": "Armored and Invulnerability are always on. Take the 1 Stress the first time the power stops a hit in a fight. They must take Allergy: while the weakness is present, their Toughness doesn't apply.",
+    "street_source": "Street powers are within peak-human reach. Write in a source.",
+    "strange_cost": "Strange powers are clearly superhuman. They cost 2 slots, and you must write in a cost and pick a flaw."
+  },
+  "flaws": [
+    { "id": "allergy", "name": "Allergy",
+      "text": "Name a weakness (iron, salt, bright light, a sound). When it's present, the power is at Disadvantage. An always-on power that never rolls simply doesn't work against it. Villains who learn it can use it against you." },
+    { "id": "unstable", "name": "Unstable",
+      "text": "On a Miss with the power, the GM makes a move and the power also misfires in a way that fits it. Most misfires should hit the scene rather than the team. When one does catch an ally, it's an Impact 1 hit on them." },
+    { "id": "marked", "name": "Marked",
+      "text": "The power shows on your body and you look like a monster. Being seen by civilians ticks Heat by 1, and Presence rolls with strangers are at Disadvantage until they get to know you." }
+  ],
+  "powers": [
+    { "id": "gadgeteer", "name": "Gadgeteer", "tier": "street", "slots": 1, "note": "Technology",
+      "abilities": [
+        { "name": "Utility belt", "text": "You get Kit: pick 2 Kit items per Night (using one is a Quick Action, once per item per fight). A Specialist, who already has Kit, picks 5 instead of 3." },
+        { "name": "Built for this", "text": "Once per Night, reveal a gadget made for exactly this. The roll it helps is an automatic Impact 2." },
+        { "name": "Tinker", "text": "When you Patch Up at Dawn, also repair one broken piece of gear." }
+      ],
+      "sim": null },
+    { "id": "resilient", "name": "Resilient", "tier": "street", "slots": 1, "note": "Tough and quick to recover; formerly Healing Factor",
+      "abilities": [
+        { "name": "Fast mender", "text": "A breather clears Bruised and Hurt." },
+        { "name": "Shake it off", "text": "Once per fight, Quick Action: clear one Harm box." },
+        { "name": "Not today", "text": "The first time you would die, you survive, out of action until the next Night. Then cross this off." }
+      ],
+      "sim": null },
+    { "id": "peak-strength", "name": "Peak Strength", "tier": "street", "slots": 1, "note": "Peak human; formerly Super-Strength",
+      "abilities": [
+        { "name": "Strong like an ox", "text": "Edge on Force rolls to lift, break, hold, or throw, and your bare hands count as light melee." },
+        { "name": "Hurl", "text": "On a Strike hit, throw the target into an adjacent zone. If they land on another enemy, both take 1 Harm." },
+        { "name": "Hold the line", "text": "When you Interpose or shield someone, you get +1 Toughness against that hit." }
+      ],
+      "effects": [{ "level": 1, "weapon": "light" }],
+      "sim": null },
+    { "id": "toughness", "name": "Toughness", "tier": "street", "slots": 1, "note": "Hard to hurt",
+      "abilities": [
+        { "name": "Tough", "text": "Add one Harm box (Battered, between Hurt and Wounded), and you have Toughness 1 against fists and blunt weapons. This doesn't stack with Toughness from Force +3." },
+        { "name": "I can take it", "text": "When you take Harm and stay on your feet, gain 1 Drive (once per round)." },
+        { "name": "Won't stay down", "text": "Once per Night, when you would go Down, stay at Wounded instead." }
+      ],
+      "effects": [{ "level": 1, "boxes_bonus": 1, "toughness": { "blunt": 1 } }],
+      "sim": { "power": "Toughness", "tough_blunt": 1, "boxes_bonus": 1 } },
+    { "id": "enhanced-senses", "name": "Enhanced Senses", "tier": "street", "slots": 1, "note": "Loud noise, bright light, or strong smells can overwhelm you",
+      "abilities": [
+        { "name": "Keen", "text": "Edge on Patrol rolls your sense helps, and Dark zones don't give you Disadvantage." },
+        { "name": "Nothing gets past you", "text": "You can't be ambushed, and Dark doesn't hide anyone from you." },
+        { "name": "On the trail", "text": "When someone gets away, roll Focus against 13. On a hit, you know where they went. On Impact 2+, also take a clue." }
+      ],
+      "sim": null },
+    { "id": "danger-sense", "name": "Danger Sense", "tier": "street", "slots": 1,
+      "abilities": [
+        { "name": "Uh oh", "text": "+1 Guard." },
+        { "name": "See it coming", "text": "When an attack hits you, take 1 Stress to make the attacker reroll." },
+        { "name": "See the future", "text": "When you miss, the GM offers two moves and you pick which happens." }
+      ],
+      "effects": [{ "level": 1, "guard": 1 }],
+      "sim": { "guard_bonus": 1 } },
+    { "id": "special-weapon", "name": "Special Weapon", "tier": "street", "slots": 1, "note": "Write in the weapon",
+      "abilities": [
+        { "name": "That ain't a knife", "text": "Your weapon follows its gear rules, and your first attack each fight with it has Edge." },
+        { "name": "How's it feel?", "text": "On a hit with it, choose one: the target takes 1 Stress, or +1 Harm on Impact 2 or better." },
+        { "name": "This is a knife", "text": "Once per fight, take 1 Stress to reroll a missed attack with it." }
+      ],
+      "sim": null },
+    { "id": "quick", "name": "Quick", "tier": "street", "slots": 1, "note": "Fast for a human; formerly Super-Speed",
+      "abilities": [
+        { "name": "Fast", "text": "Your free move covers two zones." },
+        { "name": "Watch me", "text": "Edge on Flow rolls in a fight." },
+        { "name": "Burst", "text": "Once per turn, take 1 Stress for an extra Quick Action with Advantage." }
+      ],
+      "sim": null },
+    { "id": "tendrils", "name": "Tendrils", "tier": "street", "slots": 1, "note": "Technology",
+      "abilities": [
+        { "name": "Movement", "text": "Climbing and swinging never need a roll, and your free move can reach High Ground." },
+        { "name": "Combat", "text": "When your Jab hits, you can grab the target instead of hurting them: they can't move on their next turn." },
+        { "name": "Multi-tasking", "text": "Once per turn, take 1 Stress to do two Quick Actions with one roll." }
+      ],
+      "sim": null },
+    { "id": "electrical-aptitude", "name": "Electrical Aptitude", "tier": "street", "slots": 1, "note": "Technology. You hold Charge, 0 to 3",
+      "abilities": [
+        { "name": "Spark", "text": "You start every fight with 1 Charge, and touching live power is a Quick Action to regain it (max 1). Spend 1 Charge for Edge on a roll electricity helps." },
+        { "name": "Surge", "text": "Grab high voltage: roll Force against 13. On a hit, gain 3 Charge (max 3). On a miss, take 2 Harm." },
+        { "name": "Strike", "text": "Spend up to 2 Charge on an attack: +1 Harm per Charge spent, on a hit." }
+      ],
+      "counter": { "name": "Charge", "min": 0, "max": 3 },
+      "sim": null },
+    { "id": "custom-power", "name": "Custom Power", "tier": "street", "slots": 1, "note": "Write in name, source, cost",
+      "abilities": [
+        { "name": "Start", "text": "Edge on rolls outside a fight that your power helps." },
+        { "name": "Second ability", "text": "Edge on rolls in a fight that your power helps." },
+        { "name": "Third ability", "text": "Write your own with the GM, matching the others in strength." }
+      ],
+      "sim": null },
+
+    { "id": "telepathy", "name": "Telepathy", "tier": "strange", "slots": 2, "note": "-1 to each roll for each extra person you target",
+      "abilities": [
+        { "name": "Start", "text": "Quick Action: roll Focus against a target's Wits. On a hit, you read their surface thoughts, and your next roll against them has Edge (Advantage on Impact 2+)." },
+        { "name": "Influence", "text": "Take 1 Stress, roll Focus against Poise. On a hit, they do one reasonable thing you suggest." },
+        { "name": "Control", "text": "Take 2 Stress, roll Focus against Poise. On a hit, you control one person for a scene. On Impact 1 it's only a few minutes, and they remember. Burnout: on a Miss, take 2 more Stress, Telepathy shuts off for the rest of the scene, and the target knows exactly what you tried." }
+      ],
+      "sim": null },
+    { "id": "teleportation", "name": "Teleportation", "tier": "strange", "slots": 2,
+      "abilities": [
+        { "name": "Start", "text": "Quick Action: move to any zone you can see. No roll, unless you're escaping someone engaged with you or the zone is Dark, Crowd or smoke-filled: then roll Focus vs 12. On a Miss you land somewhere bad (GM's choice)." },
+        { "name": "Combat", "text": "After you teleport, your next attack that turn has Edge." },
+        { "name": "Long distance", "text": "Take 3 Stress to go anywhere in the city you've been before." }
+      ],
+      "sim": null },
+    { "id": "elementalist", "name": "Elementalist", "tier": "strange", "slots": 2, "note": "Wind, water, earth, or fire",
+      "abilities": [
+        { "name": "Manipulate", "text": "When your element is in the zone, Edge on rolls that use it." },
+        { "name": "Surge", "text": "Full Action. Either attack with your element at Near range, with Edge, or reshape a Near zone until the end of the fight: earth adds Cover, water adds Hazard, wind adds Dark or clears smoke and Dark." },
+        { "name": "Draw", "text": "Take 1 Stress to pull your element from miles away, so the other abilities work anywhere." }
+      ],
+      "sim": null },
+    { "id": "kinesis", "name": "Kinesis", "tier": "strange", "slots": 2, "note": "Pyro or hydro; a stored-power version of Elementalist",
+      "abilities": [
+        { "name": "Start", "text": "Push, pull, or lift things your size or smaller. Edge on rolls it helps." },
+        { "name": "Desperate", "text": "After a roll, take 2 Stress to add +2." },
+        { "name": "Great feat", "text": "At 6 Drive, spend all of it: one roll your power fuels is an automatic Impact 3." }
+      ],
+      "sim": null },
+    { "id": "armored", "name": "Armored", "tier": "strange", "slots": 2, "always_on": true, "required_flaw": "allergy",
+      "abilities": [
+        { "name": "Start", "text": "Toughness 1 against everything." },
+        { "name": "Upgrade", "text": "Toughness 2 against guns and blades." },
+        { "name": "Let it take the hit", "text": "Once per fight, ignore one hit entirely. Roll a d10: on 1 to 3, the armor breaks until you Patch Up at Dawn." }
+      ],
+      "effects": [
+        { "level": 1, "toughness": { "blunt": 1, "blade": 1, "gun": 1 } },
+        { "level": 2, "toughness": { "blade": 2, "gun": 2 } }
+      ],
+      "sim": { "armor_all": 1 } },
+    { "id": "animalism", "name": "Animalism", "tier": "strange", "slots": 2, "note": "Pick a species or type",
+      "abilities": [
+        { "name": "Start", "text": "You can talk to them, and Presence works on them like people." },
+        { "name": "Call", "text": "Full Action, take 1 Stress: a group of 3 animals arrives and acts as an allied mook group for the scene. Allied mooks act on your turn and use one of your Quick Actions." },
+        { "name": "Swarm", "text": "As Call, but a group of 6." }
+      ],
+      "sim": null },
+    { "id": "shapeshifter", "name": "Shapeshifter", "tier": "strange", "slots": 2, "note": "Pick an animal", "required_flaw": "allergy",
+      "abilities": [
+        { "name": "Start", "text": "Full Action, take 1 Stress: become the animal for a scene. +1 to one stat the form helps, -1 Focus. On a miss while shifted, the animal takes over until the scene ends. Shapeshifter always takes Allergy." },
+        { "name": "Settled", "text": "You can stay shifted as long as you like, and only lose control on a miss with doubles." },
+        { "name": "Hybrid", "text": "Take 2 Stress: for one fight, Advantage on Force and intimidation. Any miss and you attack the nearest person." }
+      ],
+      "sim": null },
+    { "id": "vampirism", "name": "Vampirism", "tier": "strange", "slots": 2, "note": "You must feed on people: blood, psychic energy, or emotions. You hold Energy, 0 to 5",
+      "abilities": [
+        { "name": "Feed", "text": "Roll Presence against a victim's Poise to gain Energy: +3 on Impact 2+, +2 on Impact 1, +2 and 1 Stress on a miss. Heat from feeding: none on Impact 2+ unless someone saw you; +1 Heat on Impact 1; +1 Heat on a miss. Spend Energy for +1 per point on a roll, up to +2 per roll. At 0 Energy, take 1 Harm each Dawn until you feed." },
+        { "name": "Control", "text": "Spend 1 Energy for Advantage on a Presence roll." },
+        { "name": "Shapeshift", "text": "Spend 2 Energy to become a wolf or bat for a scene, Edge on rolls the form helps." }
+      ],
+      "counter": { "name": "Energy", "min": 0, "max": 5 },
+      "sim": null },
+    { "id": "elasticity", "name": "Elasticity", "tier": "strange", "slots": 2,
+      "abilities": [
+        { "name": "Squeeze", "text": "You fit through any gap. Edge on escapes and getting past barriers." },
+        { "name": "Stretch", "text": "Your Strikes reach Near range, and can hit two enemies in one zone with one roll." },
+        { "name": "Bounce", "text": "Toughness 1 against blunt hits and falls. Follows the always-on rule: take 1 Stress the first time it stops a hit in a fight." }
+      ],
+      "effects": [{ "level": 3, "toughness": { "blunt": 1 } }],
+      "sim": null },
+    { "id": "shadow-manipulation", "name": "Shadow Manipulation", "tier": "strange", "slots": 2,
+      "abilities": [
+        { "name": "Start", "text": "You can Vanish in any zone with shadows. While Hidden in a Dark zone, your attacks get Edge on top of Advantage." },
+        { "name": "Spread the dark", "text": "Quick Action: roll Focus against 13. On a hit your zone becomes Dark, and adjacent zones too on Impact 2+." },
+        { "name": "Reveal", "text": "Once per fight, when you drop out of Hidden for dramatic effect, gain 2 Drive." }
+      ],
+      "sim": { "power": "Shadow Manipulation", "strange": true } },
+    { "id": "illusions", "name": "Illusions", "tier": "strange", "slots": 2,
+      "abilities": [
+        { "name": "Start", "text": "Create an illusion that fools one sense. Edge on deception rolls and Vanish." },
+        { "name": "Full illusion", "text": "Take 1 Stress: an illusion that fools every sense. Once per scene, your next deception or escape roll is an automatic Impact 2." },
+        { "name": "Perfect illusion", "text": "Take 2 Stress: everyone who sees it believes it. Once per scene, your next deception or escape roll is an automatic Impact 3 (never an attack)." }
+      ],
+      "sim": null },
+    { "id": "force-fields", "name": "Force Fields", "tier": "strange", "slots": 2,
+      "abilities": [
+        { "name": "Start", "text": "Quick Action: roll Focus against 13. On a hit, Toughness 2 until your next turn (Toughness 1 on Impact 1)." },
+        { "name": "Shared", "text": "You can cover an ally in your zone instead." },
+        { "name": "Containment", "text": "Full Action: roll Focus against a target's Guard. On a hit, they're trapped while you keep focusing (you can't attack). Each of their turns, they can roll Force against your Wits to break free." }
+      ],
+      "sim": null },
+    { "id": "temporal-instability", "name": "Temporal Instability", "tier": "strange", "slots": 2, "note": "Formerly Time Travel; misfires slip you or an ally out of sync with time", "required_flaw": "unstable",
+      "abilities": [
+        { "name": "Look", "text": "Take 1 Stress to see a place's past. On a lead roll hit there, take an extra clue." },
+        { "name": "Redo", "text": "Take 2 Stress after a miss to redo the roll with Edge." },
+        { "name": "Loop", "text": "Take 3 Stress to reroll Crack the Case." }
+      ],
+      "sim": null },
+    { "id": "ice-control", "name": "Ice Control", "tier": "strange", "slots": 2,
+      "abilities": [
+        { "name": "Start", "text": "Edge when you use ice to block, climb, or slide. You can make your zone a Hazard (ice) as a Quick Action." },
+        { "name": "Chill", "text": "Ice attacks at Near range, with Edge." },
+        { "name": "Freeze", "text": "Take 3 Stress: every mook in your zone loses their next turn. Named villains there resist: roll Focus against each one's Guard, and only those you beat lose their turn." }
+      ],
+      "sim": null },
+    { "id": "weather-control", "name": "Weather Control", "tier": "strange", "slots": 2,
+      "abilities": [
+        { "name": "Start", "text": "Change the weather over a neighborhood in about ten minutes. Rain, fog, or storm can make zones Dark or Hazard." },
+        { "name": "Drastic", "text": "Change it in a round, even impossibly (snow in July, rain indoors). Each use ticks Heat by 1." },
+        { "name": "Weather as a weapon", "text": "Attacks with lightning, hail, or wind at Near or Far range, with Edge." }
+      ],
+      "extra": "Conspicuous: using any of its abilities ends Hidden, you can't Vanish that round, and anyone watching knows it's you.",
+      "sim": null },
+    { "id": "invulnerability", "name": "Invulnerability", "tier": "strange", "slots": 2, "note": "Write in a weakness", "always_on": true, "required_flaw": "allergy",
+      "abilities": [
+        { "name": "Start", "text": "When you would take Harm from a physical attack, take that much Stress instead. Work out the Harm first (weapon bonuses, then Toughness, then the 1-Harm minimum), then convert what's left. Your weakness gets through normally, and once your Stress is full (8), anything more spills into Harm. Invulnerability skips the always-on first-hit Stress cost." },
+        { "name": "Untouchable", "text": "After people see you shrug off a hit, Edge on Presence rolls to intimidate them." },
+        { "name": "Can't die", "text": "If you would die, even to your weakness, you fall into a coma for 2d10 days instead." }
+      ],
+      "sim": { "power": "Invulnerability", "strange": true } },
+    { "id": "cloning", "name": "Cloning", "tier": "strange", "slots": 2,
+      "abilities": [
+        { "name": "Start", "text": "One clone. When it Helps you, you get Advantage instead of Edge. Once per fight it can take a hit for you, then it's gone until Dawn." },
+        { "name": "Many", "text": "Your clones act as an allied mook group of 3. They act on your turn and use one of your Quick Actions." },
+        { "name": "The Prestige", "text": "One perfect clone. If you ever die, keep playing as the clone, but it comes back a little wrong: start at 4 Stress (Fraying) and tick Home by 2." }
+      ],
+      "sim": null },
+    { "id": "plant-control", "name": "Plant Control", "tier": "strange", "slots": 2,
+      "abilities": [
+        { "name": "Start", "text": "Edge on rolls where plants help (needs plants in the zone)." },
+        { "name": "Entangle", "text": "When your attack hits, the target can't move on their next turn instead of taking Harm." },
+        { "name": "Green healing", "text": "A breather among plants clears Bruised and Hurt." }
+      ],
+      "sim": null },
+    { "id": "sand-manipulation", "name": "Sand Manipulation", "tier": "strange", "slots": 2,
+      "abilities": [
+        { "name": "Start", "text": "Turn part or all of yourself to sand. Edge on escapes, squeezing, and slipping grabs." },
+        { "name": "Sand fists", "text": "Your bare hands count as heavy melee (+1 Harm on any hit) and work with Strikes, not Jabs." },
+        { "name": "Reform", "text": "Patch Up anywhere with sand clears Down too. If you would die, you scatter and reform in 2d10 days. Water is the natural Allergy for this power." }
+      ],
+      "sim": null },
+    { "id": "mighty", "name": "Mighty", "tier": "strange", "slots": 2, "note": "Beyond peak human; the strange version of Peak Strength",
+      "abilities": [
+        { "name": "Start", "text": "Lift and throw cars. Force attacks get +1 Harm on Impact 2+ and ignore Toughness, and you can throw heavy objects at Near range." },
+        { "name": "Wrecking", "text": "Full Action: smash a wall, floor or vehicle to remove Cover from a zone, open a path between zones, or make a zone Hazard." },
+        { "name": "Big leap", "text": "Your free move can cross two zones or reach High Ground." }
+      ],
+      "effects": [{ "level": 1, "mighty": true }],
+      "sim": { "power": "Mighty", "strange": true } },
+    { "id": "sorcery", "name": "Sorcery", "tier": "strange", "slots": 2, "note": "Spells, rituals, old books",
+      "abilities": [
+        { "name": "Start", "text": "At the start of each Night, prepare 3 spells. Casting one is a Quick Action, once per spell per fight (roll Focus where a roll is needed). Bolt: a Near attack that ignores Toughness. Ward: +2 Guard to an ally until your next turn. Bind: on a hit, the target can't move on their next turn. Sight: see the hidden, invisible or supernatural in your zone." },
+        { "name": "Deeper study", "text": "Prepare 4 spells." },
+        { "name": "Ritual", "text": "Out of a fight, take 3 Stress and spend a scene: scry for a clue about a person or place, or call up help for one fight." }
+      ],
+      "sim": null },
+    { "id": "luck", "name": "Luck", "tier": "strange", "slots": 2, "note": "Probability bends around you",
+      "abilities": [
+        { "name": "Start", "text": "Once per fight, reroll any roll you make and keep the new result." },
+        { "name": "Share it", "text": "You can give that reroll to an ally instead." },
+        { "name": "Lucky break", "text": "Once per Night, turn one of your Misses into Impact 1." }
+      ],
+      "extra": "If Luck takes Unstable, its misfire is bad luck spilling over: on your Miss, an ally nearby takes the GM's move instead of you.",
+      "sim": null },
+    { "id": "healing-factor", "name": "Healing Factor", "tier": "strange", "slots": 2, "note": "Wounds close as you watch; the strange version of Resilient",
+      "abilities": [
+        { "name": "Start", "text": "At the end of each of your turns in a fight, clear one Harm box (not Down). If anyone hurt you since your last turn, that heal costs 1 Stress. The first time it heals you in a fight, take the usual 1 Stress too." },
+        { "name": "Get back up", "text": "When you go Down, you're back up at Wounded at the end of your next turn, no Drive needed." },
+        { "name": "Hard to kill", "text": "When you would die, you don't. You're out until the next scene, then up at Wounded. Your Allergy can still kill you." }
+      ],
+      "sim": { "power": "Healing Factor", "strange": true } },
+    { "id": "iron-skin", "name": "Iron Skin", "tier": "strange", "slots": 2,
+      "abilities": [
+        { "name": "Start", "text": "Quick Action to turn your skin to metal, paying the usual 1 Stress for a strange power. It lasts until the end of the fight or scene. While armored: Toughness 1 against everything, including guns, but Disadvantage on Vanish and climbing, and you can't use Flow to dodge falls or swim. Your metal fists count as heavy melee (+1 Harm on any hit, Full Action Strikes)." },
+        { "name": "Steel", "text": "Once per fight while armored, take 1 Stress to reduce one hit by 1 more Impact, to a minimum of 0." },
+        { "name": "Unbreakable", "text": "Once per Night, when a hit would put you Down, take 2 Stress instead of the Harm." }
+      ],
+      "toggle": { "name": "Armored", "toughness": { "blunt": 1, "blade": 1, "gun": 1 }, "weapon": "heavy" },
+      "sim": null },
+    { "id": "fear-aura", "name": "Fear Aura", "tier": "strange", "slots": 2,
+      "abilities": [
+        { "name": "Start", "text": "Edge on Presence rolls to intimidate." },
+        { "name": "Dread", "text": "Take 1 Stress: a Presence attack against every mook group in your zone. Any group you beat runs. Fearless mooks ignore Dread." },
+        { "name": "Nightmare", "text": "Take 2 Stress: a Presence attack against one named enemy's Poise. On a hit, they take Stress equal to the Impact and can't attack you on their next turn." }
+      ],
+      "sim": null },
+    { "id": "shock-touch", "name": "Shock Touch", "tier": "strange", "slots": 2,
+      "abilities": [
+        { "name": "Start", "text": "When your Jab hits, the target loses their next Quick Action." },
+        { "name": "Blackout", "text": "A Strike that also kills the lights. Your zone becomes Dark." },
+        { "name": "Overload", "text": "Take 1 Stress: on a hit with your Strike, the target loses their whole next turn and one gun or gadget they carry is fried. (Like all electricity, Shock Touch already ignores Toughness.)" }
+      ],
+      "sim": null },
+    { "id": "levitation", "name": "Levitation", "tier": "strange", "slots": 2, "note": "A light, slow cousin of Flight",
+      "abilities": [
+        { "name": "Start", "text": "Float up or down slowly. Your free move can reach High Ground or drop from any height, and falls never hurt you. Staying airborne costs: the first round is free, then 1 Stress for each round you stay up. Outside a fight, a short hover is free, but holding it for a whole scene costs 1 Stress. This replaces the usual strange-power first-use Stress." },
+        { "name": "Drift", "text": "While airborne, enemies on the ground can only reach you with ranged attacks, and you can move one extra zone through open air." },
+        { "name": "Lift", "text": "Carry one person with you when you float. Their weight doubles the Stress cost." }
+      ],
+      "sim": null }
+  ],
+  "villain_only": [
+    { "id": "biokinesis", "name": "Biokinesis", "text": "Reshape your body, slip away as a puddle." },
+    { "id": "invisibility", "name": "Invisibility", "text": "Always Hidden unless you attack." },
+    { "id": "flight", "name": "Flight", "text": "Move to any zone, ignore High Ground." },
+    { "id": "telekinesis", "name": "Telekinesis", "text": "Throw things at any range, lift a truck for 2 Stress." },
+    { "id": "clairvoyance", "name": "Clairvoyance", "text": "Prophetic dreams; the GM can call one villain move \"foreseen\" and it can't be stopped by Called It." }
+  ]
+}

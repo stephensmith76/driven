@@ -3,9 +3,11 @@ import { errorText } from '../../data/supabase'
 import { useCampaign, useCharacters, useMembers } from '../../data/hooks'
 import { setField } from '../../data/writes'
 import { joinLink } from '../../router'
-import { Track } from '../../components/Track'
+import { HeroTrackers } from '../../components/HeroTrackers'
+import { RulesNotice } from '../../components/RulesNotice'
+import { archetype, defenses } from '../../engine'
 
-// M0 GM Table: join link, who's here, live hero trackers. Full Table is M3.
+// GM Table: join link, who's here, live hero trackers. The full Table is M3.
 export function GmTable({ campaignId }: { campaignId: string }) {
   const { campaign, error: cErr } = useCampaign(campaignId)
   const { rows: characters } = useCharacters(campaignId)
@@ -22,6 +24,7 @@ export function GmTable({ campaignId }: { campaignId: string }) {
   return (
     <main className="page wide">
       <h1>{campaign.name}</h1>
+      <RulesNotice campaign={campaign} canAcknowledge />
       <section className="card stack">
         <p>Join code <strong className="code">{campaign.join_code}</strong></p>
         <p className="small break"><a href={link}>{link}</a></p>
@@ -31,13 +34,15 @@ export function GmTable({ campaignId }: { campaignId: string }) {
       <section className="grid">
         {characters.map((h) => {
           const holders = members.filter((m) => m.character_id === h.id)
+          const d = defenses(h)
           return (
             <article key={h.id} className="card">
               <h2>{h.name}</h2>
-              <p className="muted small">{holders.length ? `${holders.length} device(s)` : 'unclaimed'}</p>
-              <Track label="Harm" value={h.harm} max={4} onChange={(v) => write(h.id, 'harm', v)} />
-              <Track label="Stress" value={h.stress} max={8} onChange={(v) => write(h.id, 'stress', v)} />
-              <Track label="Drive" value={h.drive} max={6} onChange={(v) => write(h.id, 'drive', v)} />
+              <p className="muted small">
+                {archetype(h.archetype_id)?.name ?? '—'} · Guard {d.guard.total} / Wits {d.wits.total} / Poise {d.poise.total}
+                {' · '}{holders.length ? `${holders.length} device(s)` : 'unclaimed'}
+              </p>
+              <HeroTrackers hero={h} onChange={(f, v) => write(h.id, f, v)} />
             </article>
           )
         })}

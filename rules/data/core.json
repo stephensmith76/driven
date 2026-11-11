@@ -1,0 +1,209 @@
+{
+  "rules_version": "2026-11-10",
+  "defense_base": 12,
+  "dice": { "sides": 10, "count": 2, "advantage_count": 3 },
+  "edge_bonus": 2,
+  "jab_penalty": -2,
+  "impact_bands": [
+    { "impact": 0, "min_margin": null, "max_margin": -1, "label": "Miss",
+      "fight": "The GM makes a move against you",
+      "outside": "It fails or goes wrong, GM makes a move" },
+    { "impact": 1, "min_margin": 0, "max_margin": 3, "label": "Impact 1",
+      "fight": "1 Harm",
+      "outside": "You get it, with a cost or complication" },
+    { "impact": 2, "min_margin": 4, "max_margin": 7, "label": "Impact 2",
+      "fight": "2 Harm",
+      "outside": "Clean success" },
+    { "impact": 3, "min_margin": 8, "max_margin": null, "label": "Impact 3",
+      "fight": "3 Harm",
+      "outside": "Success plus a bonus (a clue, a position, an opening)" }
+  ],
+  "impact_max": 3,
+  "stats": [
+    { "id": "force", "name": "Force", "act": "Hit hard, break things, lift, hold on", "defense": "toughness", "defends": "Reduces the Harm you take" },
+    { "id": "flow", "name": "Flow", "act": "Move, dodge, sneak, shoot, improvise", "defense": "guard", "defends": "Punches, bullets, thrown things" },
+    { "id": "focus", "name": "Focus", "act": "Investigate, hack, use gadgets, read people", "defense": "wits", "defends": "Ambushes, tricks, illusions, lies" },
+    { "id": "presence", "name": "Presence", "act": "Intimidate, inspire, persuade, taunt", "defense": "poise", "defends": "Fear, threats, manipulation" }
+  ],
+  "stat_min": -1,
+  "stat_max": 4,
+  "stat_arrays": [
+    { "id": "specialist", "name": "Specialist", "values": [4, 2, 1, -1] },
+    { "id": "balanced", "name": "Balanced", "values": [3, 2, 1, 0] }
+  ],
+  "toughness": {
+    "force_threshold": 3,
+    "max": 2,
+    "min_harm_on_hit": 1,
+    "text": "Force +3 or higher gives Toughness 1. Toughness reduces each hit's Impact by 1, but a hit always does at least 1 Harm. It doesn't work against guns unless you have armor or a power that says it does. Toughness doesn't stack: use your single highest source for that attack. Only effects that say \"+1 Toughness\" add on top. Toughness can never go above 2. Gas, fire, electricity, and other hazards ignore it unless a power or piece of armor says otherwise."
+  },
+  "attack_kinds": [
+    { "id": "blunt", "name": "Fists and blunt", "text": "Punches, kicks, bats, thrown junk" },
+    { "id": "blade", "name": "Blades", "text": "Knives and other edges" },
+    { "id": "gun", "name": "Guns", "text": "Bullets. Toughness only from armor or a power that says so" },
+    { "id": "hazard", "name": "Hazards", "text": "Gas, fire, electricity. Ignores Toughness unless something says otherwise" }
+  ],
+  "harm": {
+    "hero_boxes": ["Bruised", "Hurt", "Wounded", "Down"],
+    "extra_box": { "name": "Battered", "after": "Hurt" },
+    "box_text": {
+      "Bruised": "No effect. Clears after any short breather.",
+      "Hurt": "No effect yet, but you're one box from real trouble.",
+      "Battered": "No effect. An extra box from Hard to Kill or the Toughness power.",
+      "Wounded": "Disadvantage on Force and Flow rolls.",
+      "Down": "Out of the fight. Talk, crawl, or one desperate Quick Action per round at Disadvantage. Or spend your whole turn on Second Wind (3 Drive, no roll, once per fight)."
+    },
+    "dying_text": "If a Downed hero takes more Harm, they're Dying. A single hit stops at Down. A Dying hero dies at the end of the scene unless an ally spends a Full Action next to them to stabilize them.",
+    "mook_boxes": 1,
+    "mook_attack_cap": 2,
+    "lieutenant_boxes": 5,
+    "villain_boxes": 10,
+    "small_villain_boxes": 8
+  },
+  "weapons": [
+    { "id": "unarmed", "name": "Fists, kicks, thrown junk", "attack_kind": "blunt", "text": "No change" },
+    { "id": "light", "name": "Light melee", "attack_kind": "blunt", "text": "+1 Harm on Impact 2 or better. Works with Strikes and Jabs." },
+    { "id": "heavy", "name": "Heavy melee", "attack_kind": "blunt", "text": "+1 Harm on a hit, but it takes a Full Action" },
+    { "id": "knife", "name": "Blades", "attack_kind": "blade", "text": "+1 Harm against anyone with no Toughness" },
+    { "id": "pistol", "name": "Guns", "attack_kind": "gun", "text": "+1 Harm on Impact 2 or better and ignores Toughness. Firing one is loud: +1 Heat" }
+  ],
+  "stress": {
+    "boxes": 8,
+    "stages": [
+      { "id": "steady", "name": "Steady", "min": 0, "max": 3, "text": "Your Trait's Steady perk is on." },
+      { "id": "fraying", "name": "Fraying", "min": 4, "max": 7, "text": "Your Trait's Fraying perk replaces the Steady perk. The GM gets your Trait's hook." },
+      { "id": "breaking", "name": "Breaking", "min": 8, "max": 8, "text": "Your Trait's Breaking fallout takes over for the rest of the scene." }
+    ],
+    "after_breaking": { "stress": 4, "drive_gain": 2, "home_tick": 1 },
+    "villain_boxes": 4,
+    "villain_fraying_at": 2,
+    "villain_breaking_at": 4
+  },
+  "drive": {
+    "max": 6,
+    "start_night": 2,
+    "dawn_cap": 3,
+    "earn": [
+      { "source": "Your archetype trigger", "gain": 1, "limit": "Once per round" },
+      { "source": "Your Trait's Drive trigger", "gain": 1, "limit": "Once per scene" },
+      { "source": "Going along with the GM's hook while Fraying", "gain": 1, "limit": "Each time" },
+      { "source": "Breaking (at the end of the scene)", "gain": 2, "limit": "Each time" }
+    ],
+    "prices": [
+      { "id": "edge", "cost": 1, "name": "Edge", "text": "+2 to a roll. Before you roll." },
+      { "id": "upgrade", "cost": 2, "name": "Upgrade", "text": "Raise a hit by one Impact level (1 to 2, or 2 to 3). After any roll that hits, once per roll." },
+      { "id": "signature", "cost": 3, "name": "Signature Move", "text": "On your turn, as its own action." },
+      { "id": "second_wind", "cost": 3, "name": "Second Wind", "text": "Once per fight, no roll: clear one Harm box as a Full Action. For a Downed hero it takes the whole turn and puts them back up at Wounded." }
+    ]
+  },
+  "strain": { "stress": 1, "text": "Once per turn, take 1 Stress to get an extra Quick Action." },
+  "push": { "stress": 1, "text": "When your power helps a roll, take 1 Stress to roll with Advantage." },
+  "slots": {
+    "at_creation": 3,
+    "costs": { "gear": 1, "street": 1, "strange": 2 },
+    "max_strange_at_creation": 1,
+    "text": "Every hero gets 3 slots: gear and street powers cost 1, a strange power costs 2 and needs a flaw. At creation, at most one strange power. Specialists get their Kit on top of their slots."
+  },
+  "kit_picks": { "specialist": 3, "gadgeteer": 2, "specialist_gadgeteer": 5 },
+  "actions": {
+    "full": [
+      { "id": "strike", "name": "Strike", "text": "Attack with Force, Flow, or Presence. Normal Impact." },
+      { "id": "signature", "name": "Signature Move", "text": "Costs 3 Drive (see Archetypes)." },
+      { "id": "stabilize", "name": "Stabilize", "text": "Save a Dying ally next to you." },
+      { "id": "heavy", "name": "Swing something heavy", "text": "A heavy melee weapon attack (+1 Harm)." }
+    ],
+    "quick": [
+      { "id": "jab", "name": "Jab", "text": "A quick attack at -2. A hit is always Impact 1, so bonuses that need Impact 2 or better never apply. Once per turn." },
+      { "id": "move", "name": "Move", "text": "Go one more zone." },
+      { "id": "help", "name": "Help", "text": "Give an ally in your zone Edge on their next roll." },
+      { "id": "take_cover", "name": "Take Cover", "text": "In a Cover zone, +2 Guard until your next turn." },
+      { "id": "interact", "name": "Interact", "text": "Grab, open, throw a switch, kick a gun away." }
+    ],
+    "free_move": "One free move: to an adjacent zone, or into or out of engagement in your zone.",
+    "breaking_away": "If you leave engagement, the enemy you were engaged with can make a free Jab at you."
+  },
+  "clocks": [
+    { "kind": "scheme", "name": "Scheme", "size": 6, "scope": "team",
+      "ticks": "Every Dawn, and as a cost when following leads",
+      "half": "The villain knows someone is digging",
+      "full": "The villain pulls it off. The showdown happens on their ground, after the damage is done." },
+    { "kind": "heat", "name": "Heat", "size": 6, "scope": "team",
+      "ticks": "Guns, public fights, collateral damage, Vanity, Vengeance, sloppy feeding, a Marked hero seen by civilians",
+      "half": "Cops show up to fights on round 3",
+      "full": "Crackdown: a task force, a smear in the press, or someone gets a description. Play it out, then drop Heat to 2." },
+    { "kind": "home", "name": "Home", "size": 6, "scope": "hero",
+      "ticks": "You skip Show Up, you Break, you use a personal clue, you use Resources to buy past a problem, or a villain finds your Lair (+2)",
+      "half": "Someone close starts asking questions",
+      "full": "Home crisis: lose the job, the relationship ends, someone learns who you are, or a loved one becomes a target. Play it out, then reset to 0." },
+    { "kind": "endgame", "name": "Endgame", "size": 8, "scope": "arc",
+      "ticks": "A case's Scheme clock fills (+2); a Tool escapes or a theory names the wrong culprit (+1); the heroes miss an Unmasking roll (+1)",
+      "half": "The Mastermind makes it personal: pick one hero and hit their Home",
+      "full": "The Endgame happens. The finale becomes damage control instead of prevention." }
+  ],
+  "case": {
+    "complexity": [
+      { "value": 4, "text": "A one-Night job" },
+      { "value": 6, "text": "A normal case" },
+      { "value": 8, "text": "An arc finale" }
+    ],
+    "crack_defense_base": 10,
+    "personal_clue_worth": 2,
+    "unmasking_defense": 16,
+    "unmasking_min_arc_clues": 3,
+    "lead_results": [
+      { "impact": 0, "text": "The clue, and the GM picks a cost: tick the Scheme clock, +1 Heat, 1 Stress, or an ambush" },
+      { "impact": 1, "text": "The clue, and you pick one of those costs" },
+      { "impact": 2, "text": "The clue, clean" },
+      { "impact": 3, "text": "The clue, plus one: a second clue, Edge against the villain in the showdown, or a hint at their Weakness" }
+    ],
+    "crack_results": [
+      { "impact": 0, "text": "Wrong. The GM says which part doesn't hold up, and the Scheme clock ticks twice." },
+      { "impact": 1, "text": "Right, with a snag: they're ready for you, or it's the right place but the wrong night" },
+      { "impact": 2, "text": "Right" },
+      { "impact": 3, "text": "Right, and you also learn the villain's Weakness or gain an arc clue" }
+    ],
+    "confrontation": [
+      { "impact": "2-3", "text": "You choose the ground. Take the first move, or add one zone tag of your choice to the map." },
+      { "impact": "1", "text": "You know where, but they're ready. No ambush either way, and the villain starts with +1 Drive." },
+      { "impact": "miss", "text": "A miss you couldn't fix, or a full Scheme clock: the villain chooses the ground and gets the ambush." }
+    ]
+  },
+  "dawn": {
+    "picks": 2,
+    "options": [
+      { "id": "sleep_it_off", "name": "Sleep It Off", "text": "Clear all Stress." },
+      { "id": "patch_up", "name": "Patch Up", "text": "Clear Hurt and Wounded. Pick both this and Sleep It Off to clear Down." },
+      { "id": "show_up", "name": "Show Up", "text": "Be there for your civilian life. If you don't pick this, tick your Home clock." },
+      { "id": "lay_low", "name": "Lay Low", "text": "Clear 1 Heat." },
+      { "id": "work_the_case", "name": "Work the Case", "text": "Chase one lead off-screen and take 1 clue, no roll." }
+    ]
+  },
+  "recovery": [
+    { "id": "breather", "name": "Breather", "text": "A few quiet minutes between scenes: clear Bruised." },
+    { "id": "dawn", "name": "Dawn", "text": "Patch Up clears Hurt and Wounded." },
+    { "id": "after_fight", "name": "Down after a fight", "text": "A hero who is Down (but not Dying) gets back up at Wounded when the fight ends, at Disadvantage on Force and Flow until they heal. A stabilized Dying hero stays Down until Dawn and needs Patch Up and Sleep It Off together." }
+  ],
+  "stress_sources": [
+    { "text": "You Strain for an extra action", "stress": "1" },
+    { "text": "A Presence attack hits you", "stress": "1 per Impact" },
+    { "text": "Someone you're protecting gets hurt or dies on your watch", "stress": "1 to 2" },
+    { "text": "The GM makes a hard move on your miss", "stress": "1" },
+    { "text": "You act against your Trait", "stress": "1" },
+    { "text": "The Scheme clock ticks (the hero whose roll caused it; everyone at Dawn or on a missed Crack)", "stress": "1" },
+    { "text": "You go Down", "stress": "2" },
+    { "text": "You see an ally go Down (first time each fight)", "stress": "1" }
+  ],
+  "villain_scaling": {
+    "turns_per_heroes": 2,
+    "turns_text": "A named villain gets one turn per round for every two heroes, rounded up. A villain fighting alone, with no mooks or lieutenants, gets one turn per hero instead.",
+    "gang_text": "With no named villain, one group of 3 mooks per hero. With a named villain present, one group per two heroes (rounded down, minimum 1). Then adjust for how hard the fight should be.",
+    "mook_group_size": 3
+  },
+  "advancement": [
+    "+1 to a stat (max +4)",
+    "A new Flair",
+    "The next ability on one of your powers",
+    "A new slot (gear or a street power; a strange power needs two slots, so it takes two picks)",
+    "An Asset"
+  ]
+}

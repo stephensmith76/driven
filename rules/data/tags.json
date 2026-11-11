@@ -1,0 +1,17 @@
+{
+  "max_tags_per_zone": 2,
+  "ranges": [
+    { "id": "engaged", "name": "Engaged", "means": "Toe to toe with someone in your zone", "who": "Melee and point-blank shots" },
+    { "id": "near", "name": "Near", "means": "Same zone, not engaged", "who": "Guns, thrown things, Presence" },
+    { "id": "far", "name": "Far", "means": "An adjacent zone", "who": "Guns at Disadvantage (rifles and Specialists ignore this)" },
+    { "id": "out_of_reach", "name": "Out of reach", "means": "Two or more zones away", "who": "Nobody, unless a power says so" }
+  ],
+  "tags": [
+    { "id": "cover", "name": "Cover", "text": "Take Cover (Quick Action) gives +2 Guard until your next turn. You can Vanish here." },
+    { "id": "high-ground", "name": "High Ground", "text": "Ranged attacks from it get Edge. Melee can't reach you unless the attacker climbs up first, which is a move or, on a hard climb, a roll." },
+    { "id": "dark", "name": "Dark", "text": "Ranged attacks in or into the zone are at Disadvantage. You can Vanish here." },
+    { "id": "cramped", "name": "Cramped", "text": "Heavy melee and long guns are at Disadvantage, and no more than two people can be engaged with any one person." },
+    { "id": "hazard", "name": "Hazard", "text": "Any missed roll in this zone costs 1 Harm, heroes and villains alike. Fire, traffic, a live wire." },
+    { "id": "crowd", "name": "Crowd", "text": "You can Vanish here. Guns fired into a Crowd risk hitting bystanders (a fair GM move on any miss)." }
+  ]
+}

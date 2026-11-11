@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react'
 import { ensureSignedIn, errorText } from '../../data/supabase'
 import { useCampaign, useCharacters, useMembers } from '../../data/hooks'
 import { setField } from '../../data/writes'
-import { Track } from '../../components/Track'
+import { HeroTrackers } from '../../components/HeroTrackers'
+import { RulesNotice } from '../../components/RulesNotice'
+import { archetype, defenses, trait } from '../../engine'
 
 // M0 placeholder sheet: proves claim + live sync. The full Sheet is M2.
 export function Sheet({ campaignId }: { campaignId: string }) {
@@ -24,16 +26,19 @@ export function Sheet({ campaignId }: { campaignId: string }) {
     return <main className="page"><p>No hero picked yet.</p><a href={`#/join/${campaign.join_code}`}>Pick one</a></main>
   }
   if (!hero) return <main className="page"><p className="muted">Loading hero…</p></main>
+  const d = defenses(hero)
 
   return (
     <main className="page">
       <header className="sheet-header card">
         <h1>{hero.name}</h1>
-        <p className="muted small">{hero.civilian} · {hero.archetype_id} · {hero.trait_id}</p>
-        <Track label="Harm" value={hero.harm} max={4} onChange={(v) => write('harm', v)} />
-        <Track label="Stress" value={hero.stress} max={8} onChange={(v) => write('stress', v)} />
-        <Track label="Drive" value={hero.drive} max={6} onChange={(v) => write('drive', v)} />
+        <p className="muted small">
+          {hero.civilian} · {archetype(hero.archetype_id)?.name ?? '—'} · {trait(hero.trait_id)?.name ?? '—'}
+        </p>
+        <HeroTrackers hero={hero} onChange={write} />
       </header>
+      <RulesNotice campaign={campaign} canAcknowledge={false} />
+      <p className="small">Guard {d.guard.total} · Wits {d.wits.total} · Poise {d.poise.total}</p>
       {error && <p className="error">{error}</p>}
       <p className="muted small">
         {campaign.name} · Night {campaign.night} · {campaign.phase}. The full sheet arrives in M2.
