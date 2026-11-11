@@ -2,8 +2,10 @@ import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 
 // The project URL and publishable (anon) key are public by design (SPEC.md,
 // "Access, roles and secrets"). Row-level security is what protects data.
-const url = import.meta.env.VITE_SUPABASE_URL as string | undefined
-const key = import.meta.env.VITE_SUPABASE_KEY as string | undefined
+// import.meta.env exists only under Vite; Node scripts (supabase/tests) pass their own client.
+const env = (import.meta as { env?: Record<string, string | undefined> }).env ?? {}
+const url = env.VITE_SUPABASE_URL
+const key = env.VITE_SUPABASE_KEY
 
 export const configured = Boolean(url && key)
 

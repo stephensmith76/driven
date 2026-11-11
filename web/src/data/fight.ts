@@ -1,16 +1,18 @@
 // GM writes for the Fight screen. Enemies are GM-only; after every change to one,
 // the page rewrites scene.public_enemies with the safe summary (SPEC.md "Notes for the build").
+import type { SupabaseClient } from '@supabase/supabase-js'
 import { supabase } from './supabase'
 import { bump, setField } from './writes'
 import type { Character, Scene } from './types'
+import type { CaseScene } from './caseFile'
 import { enemyHit, heroHit, publicEnemy, standDown, type Enemy } from '../engine'
 
 /** Read every enemy and write the player-safe summary into the scene. */
-export async function syncPublicEnemies(campaignId: string) {
-  const { data, error } = await supabase.from('enemies').select('*').eq('campaign_id', campaignId)
+export async function syncPublicEnemies(campaignId: string, db: SupabaseClient = supabase) {
+  const { data, error } = await db.from('enemies').select('*').eq('campaign_id', campaignId)
   if (error) throw error
   const summary = ((data ?? []) as Enemy[]).map(publicEnemy)
-  const { error: e2 } = await supabase.from('scene').update({ public_enemies: summary }).eq('campaign_id', campaignId)
+  const { error: e2 } = await db.from('scene').update({ public_enemies: summary }).eq('campaign_id', campaignId)
   if (e2) throw e2
 }
 
@@ -64,4 +66,22 @@ export async function endFight(heroes: Character[]) {
     if (error) throw error
   }
   return stood
+}
+
+/**
+ * Set up a prepared scene on the Fight screen: title, text and zones replace the
+ * current scene, heroes come off the map, and the scene's enemies replace the current ones.
+ */
+export async function setUpScene(campaignId: string, s: CaseScene, db: SupabaseClient = supabase) {
+  const { error } = await db.from('scene')
+    .update({ title: s.title, text: s.text, zones: s.zones, positions: {}, round: 1 })
+    .eq('campaign_id', campaignId)
+  if (error) throw error
+  const { error: e2 } = await db.from('enemies').delete().eq('campaign_id', campaignId)
+  if (e2) throw e2
+  if (s.enemies?.length) {
+    const { error: e3 } = await db.from('enemies').insert(s.enemies.map((e) => ({ ...e, campaign_id: campaignId })))
+    if (e3) throw e3
+  }
+  await syncPublicEnemies(campaignId, db)
 }

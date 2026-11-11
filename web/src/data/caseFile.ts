@@ -19,6 +19,18 @@ export type CaseClue = {
   revealed?: string | null
 }
 
+/** A prepared scene: the Case file's "Set up" button copies it to the Fight screen. */
+export type CaseScene = {
+  id: string
+  title: string
+  /** Read aloud; players see it once the scene is set up. */
+  text: string
+  zones: import('./types').Zone[]
+  obstacles?: { name: string; rating: number }[]
+  extras?: { name: string; zone?: string }[]
+  enemies?: Omit<import('../engine').Enemy, 'id' | 'campaign_id'>[]
+}
+
 export type CaseFile = {
   title?: string
   mode?: 'fixed' | 'floating'
@@ -30,6 +42,11 @@ export type CaseFile = {
   clues?: CaseClue[]
   scheme_steps?: string[]
   confrontation?: string
+  /** How the first Night opens. */
+  opening?: string
+  /** Who is held, when they're taken, and where. */
+  hostage?: string
+  scenes?: CaseScene[]
   /** Written by the Night screen. */
   crack_log?: { at: string; night: number; clues: number; dice: number[]; total: number; defense: number; impact: number; upgraded?: boolean }[]
 }

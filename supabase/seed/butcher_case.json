@@ -1,0 +1,578 @@
+{
+  "format": "street-level-seed/1",
+  "rules_version": "2026-11-10",
+  "campaign": {
+    "name": "The Butcher of Fifth Street (demo)",
+    "night": 1,
+    "phase": "patrol",
+    "settings": {
+      "players_can_build": true,
+      "players_see_other_sheets": true
+    }
+  },
+  "characters": [
+    {
+      "id": "bulwark",
+      "name": "Bulwark",
+      "civilian": "Dana Okafor, ex-firefighter",
+      "archetype_id": "protector",
+      "trait_id": "mercy",
+      "stats": {
+        "force": 3,
+        "flow": 0,
+        "focus": 1,
+        "presence": 2
+      },
+      "flair_ids": [],
+      "loadout": [
+        {
+          "kind": "power",
+          "id": "toughness",
+          "tier": "street",
+          "ability_level": 1,
+          "custom_text": "Source: years of hauling hoses"
+        },
+        {
+          "kind": "gear",
+          "id": "med-kit"
+        },
+        {
+          "kind": "gear",
+          "id": "riot-shield"
+        }
+      ],
+      "harm": 0,
+      "stress": 0,
+      "drive": 2,
+      "dying": false,
+      "hidden": false,
+      "home_clock": 0,
+      "fight_state": {},
+      "notes": "Guard 13 with the riot shield. Toughness 1 from Force +3.",
+      "is_npc": false,
+      "locked": false,
+      "harm_boxes": 4
+    },
+    {
+      "id": "rook",
+      "name": "Rook",
+      "civilian": "Tommy Reyes, washed-up boxer",
+      "archetype_id": "brawler",
+      "trait_id": "spite",
+      "stats": {
+        "force": 4,
+        "flow": 2,
+        "focus": -1,
+        "presence": 1
+      },
+      "flair_ids": [
+        "hard-to-kill"
+      ],
+      "loadout": [
+        {
+          "kind": "gear",
+          "id": "kevlar-vest"
+        },
+        {
+          "kind": "gear",
+          "id": "weighted-gloves"
+        },
+        {
+          "kind": "gear",
+          "id": "med-kit"
+        }
+      ],
+      "harm": 0,
+      "stress": 0,
+      "drive": 2,
+      "dying": false,
+      "hidden": false,
+      "home_clock": 0,
+      "fight_state": {},
+      "notes": "Toughness 1 from Force +4; Kevlar does not stack with it.",
+      "is_npc": false,
+      "locked": false,
+      "harm_boxes": 5
+    },
+    {
+      "id": "nightjar",
+      "name": "Nightjar",
+      "civilian": "Lena Cho, bike courier",
+      "archetype_id": "stalker",
+      "trait_id": "vengeance",
+      "stats": {
+        "force": 1,
+        "flow": 4,
+        "focus": 2,
+        "presence": -1
+      },
+      "flair_ids": [
+        "opportunist"
+      ],
+      "loadout": [
+        {
+          "kind": "power",
+          "id": "shadow-manipulation",
+          "tier": "strange",
+          "ability_level": 1,
+          "flaw": "Allergy: floodlights burn her skin"
+        },
+        {
+          "kind": "gear",
+          "id": "fighting-sticks"
+        }
+      ],
+      "harm": 0,
+      "stress": 0,
+      "drive": 2,
+      "dying": false,
+      "hidden": false,
+      "home_clock": 0,
+      "fight_state": {},
+      "notes": "",
+      "is_npc": false,
+      "locked": false,
+      "harm_boxes": 4
+    },
+    {
+      "id": "patchwork",
+      "name": "Patchwork",
+      "civilian": "Desmond Hale, engineering dropout",
+      "archetype_id": "specialist",
+      "trait_id": "thrill",
+      "stats": {
+        "force": 0,
+        "flow": 2,
+        "focus": 3,
+        "presence": 1
+      },
+      "flair_ids": [],
+      "loadout": [
+        {
+          "kind": "gear",
+          "id": "night-vision-goggles"
+        },
+        {
+          "kind": "gear",
+          "id": "grapple-line"
+        },
+        {
+          "kind": "gear",
+          "id": "earpiece-comms"
+        }
+      ],
+      "harm": 0,
+      "stress": 0,
+      "drive": 2,
+      "dying": false,
+      "hidden": false,
+      "home_clock": 0,
+      "fight_state": {},
+      "notes": "Kit sits outside the slots. Pick 3 items each Night; take Smoke or Armor when guns are expected.",
+      "is_npc": false,
+      "locked": false,
+      "harm_boxes": 4
+    },
+    {
+      "id": "ledger",
+      "name": "The Ledger",
+      "civilian": "Ruth Abernathy, retired fraud investigator",
+      "archetype_id": "detective",
+      "trait_id": "order",
+      "stats": {
+        "force": -1,
+        "flow": 1,
+        "focus": 4,
+        "presence": 2
+      },
+      "flair_ids": [
+        "connected"
+      ],
+      "loadout": [
+        {
+          "kind": "gear",
+          "id": "sidearm"
+        },
+        {
+          "kind": "gear",
+          "id": "kevlar-vest"
+        },
+        {
+          "kind": "gear",
+          "id": "police-scanner"
+        }
+      ],
+      "harm": 0,
+      "stress": 0,
+      "drive": 2,
+      "dying": false,
+      "hidden": false,
+      "home_clock": 0,
+      "fight_state": {},
+      "notes": "The sidearm is concealed.",
+      "is_npc": false,
+      "locked": false,
+      "harm_boxes": 4
+    }
+  ],
+  "clocks": [
+    {
+      "name": "Scheme",
+      "kind": "scheme",
+      "size": 6,
+      "filled": 0,
+      "visible_to_players": true,
+      "sort": 1
+    },
+    {
+      "name": "Heat",
+      "kind": "heat",
+      "size": 6,
+      "filled": 0,
+      "visible_to_players": true,
+      "sort": 2
+    },
+    {
+      "name": "Annex collapses",
+      "kind": "goal",
+      "size": 4,
+      "filled": 0,
+      "visible_to_players": true,
+      "sort": 3
+    },
+    {
+      "name": "Hostage",
+      "kind": "goal",
+      "size": 4,
+      "filled": 0,
+      "visible_to_players": false,
+      "sort": 4
+    }
+  ],
+  "clues": [],
+  "scenes": {
+    "opening": {
+      "title": "The Calloway Annex is on fire",
+      "phase": "patrol",
+      "text": "11:40 pm, Fifth Street. The annex behind the Calloway Apartments is burning, and the fire trucks are late. A family is screaming from a third-floor window. Out back, three Saints are loading empty gas cans into a van.",
+      "zones": [
+        {
+          "id": "street",
+          "name": "Fifth Street",
+          "tags": [
+            "Crowd"
+          ],
+          "links": [
+            "stairs",
+            "alley"
+          ],
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "stairs",
+          "name": "Annex Stairwell",
+          "tags": [
+            "Hazard: smoke",
+            "Cramped"
+          ],
+          "links": [
+            "street",
+            "third"
+          ],
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "third",
+          "name": "Third Floor",
+          "tags": [
+            "Hazard: fire"
+          ],
+          "links": [
+            "stairs"
+          ],
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "alley",
+          "name": "Back Alley",
+          "tags": [
+            "Dark",
+            "Cover"
+          ],
+          "links": [
+            "street"
+          ],
+          "x": 1,
+          "y": 1
+        }
+      ],
+      "obstacles": [
+        {
+          "name": "Smoke-filled stairwell",
+          "rating": 1,
+          "defense": 13
+        },
+        {
+          "name": "Jammed third-floor door",
+          "rating": -1,
+          "defense": 11
+        }
+      ],
+      "extras": [
+        {
+          "name": "Trapped family (3)",
+          "zone": "third"
+        }
+      ]
+    },
+    "confrontation": {
+      "title": "The Tidewater Cannery",
+      "phase": "confrontation",
+      "text": "The cannery stinks of old fish and bleach. Marco is in the freezer. The Butcher is waiting on the kill floor.",
+      "zones": [
+        {
+          "id": "dock",
+          "name": "Loading Dock",
+          "tags": [
+            "Cover"
+          ],
+          "links": [
+            "killfloor"
+          ],
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "killfloor",
+          "name": "Kill Floor",
+          "tags": [
+            "Dark",
+            "Hazard: hooks and chains"
+          ],
+          "links": [
+            "dock",
+            "catwalk",
+            "freezer"
+          ],
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "catwalk",
+          "name": "Catwalk",
+          "tags": [
+            "High Ground",
+            "Cramped"
+          ],
+          "links": [
+            "killfloor"
+          ],
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "freezer",
+          "name": "Freezer",
+          "tags": [
+            "Cramped"
+          ],
+          "links": [
+            "killfloor"
+          ],
+          "x": 1,
+          "y": 1
+        }
+      ],
+      "obstacles": [
+        {
+          "name": "Padlocked freezer door",
+          "rating": 1,
+          "defense": 13
+        }
+      ],
+      "extras": [
+        {
+          "name": "Marco Delgado (hostage)",
+          "zone": "freezer"
+        }
+      ]
+    }
+  },
+  "enemies": [
+    {
+      "id": "butcher",
+      "name": "The Butcher (Vic Saldana)",
+      "kind": "villain",
+      "role": "Heavy",
+      "stats": {
+        "force": 4,
+        "flow": 0,
+        "focus": 1,
+        "presence": 2
+      },
+      "defenses": {
+        "guard": 12,
+        "wits": 13,
+        "poise": 14
+      },
+      "toughness": 1,
+      "harm": 0,
+      "harm_max": 10,
+      "stress": 0,
+      "stress_max": 4,
+      "drive": 2,
+      "zone": "killfloor",
+      "weapon": "unarmed",
+      "trait": "Spite. Fraying: he starts breaking things that can't fight back. Breaking: he goes for the hostage.",
+      "trick": "Meat hook (2 Drive): drag a hero from an adjacent zone into his.",
+      "weakness": "His old gym. Anyone who knew him then can rattle him: Edge on Presence attacks.",
+      "answer_toughness": "The hooks and chains hazard on the Kill Floor, and his Presence threats.",
+      "line": "Force +4 \u00b7 Guard 12 Wits 13 Poise 14 \u00b7 Harm 10 \u00b7 Toughness 1 \u00b7 2 turns a round vs 3 heroes, plus 1 free threat"
+    },
+    {
+      "id": "saints1",
+      "name": "Fifth Street Saints",
+      "kind": "mooks",
+      "attack": 2,
+      "defenses": {
+        "guard": 13,
+        "wits": 12,
+        "poise": 12
+      },
+      "count": 3,
+      "count_max": 3,
+      "gunner": true,
+      "zone": "dock",
+      "line": "Attack +2 \u00b7 Guard 13 Wits 12 Poise 12 \u00b7 one pistol in the group \u00b7 max 2 Harm per attack \u00b7 they run when half the gang is down"
+    }
+  ],
+  "notes": "Seed for the demo campaign. The case block goes in gm_secrets.case; nothing in it may reach a player device. Flairs for Bulwark and Patchwork are deliberately empty: pick them at the table.",
+  "case": {
+    "title": "The Butcher of Fifth Street",
+    "mode": "Fixed Culprit",
+    "complexity": 6,
+    "facets": {
+      "who": "FIXED: Delia Marsh, property manager for Harbor & Main Holdings. She hired the Butcher's crew.",
+      "what_leaning": "Empty the Calloway Apartments before Friday's city inspection. Under 10 occupied units, the city condemns it and Harbor & Main buys it for nothing. (Floating: the theory decides.)",
+      "where_leaning": "Torch Calloway Friday night; hostage Marco Delgado held at the Tidewater Cannery. (Floating: the theory decides.)"
+    },
+    "cast": [
+      {
+        "name": "The Butcher (Vic Saldana)",
+        "role": "Heavy, case boss",
+        "motive": "Paid well, likes the work, wants Fifth Street for himself",
+        "hides": "He's scared of Marsh's boss, whom he's never met"
+      },
+      {
+        "name": "Delia Marsh",
+        "role": "Culprit, property manager, Harbor & Main Holdings",
+        "motive": "Her bonus rides on the Calloway block; reports to 'A.V.'",
+        "hides": "Hired the Saints; drove to the cannery at 2am"
+      },
+      {
+        "name": "Rosa Delgado",
+        "role": "Tenant organizer at Calloway, leading a rent strike",
+        "motive": "Keep her neighbors housed",
+        "hides": "Got an anonymous $20,000 buyout offer and hasn't told anyone"
+      },
+      {
+        "name": "Officer Dale Petrakis",
+        "role": "Beat cop on Fifth Street",
+        "motive": "Debts",
+        "hides": "Takes cash from the Saints to look away"
+      },
+      {
+        "name": "Kenny 'Two Coats' Lam",
+        "role": "Pawnshop owner, fence",
+        "motive": "Business",
+        "hides": "Sold the Saints the gasoline cans; informs for Petrakis"
+      },
+      {
+        "name": "Councilman Harold Whitby",
+        "role": "Pushing east side redevelopment",
+        "motive": "Campaign money",
+        "hides": "Donations from Harbor & Main; scheduled Friday's inspection"
+      }
+    ],
+    "leads": [
+      {
+        "name": "Burned Calloway annex",
+        "rating": -1,
+        "stats": "Focus, Flow"
+      },
+      {
+        "name": "Rosa Delgado's apartment",
+        "rating": -1,
+        "stats": "Presence"
+      },
+      {
+        "name": "A Saint on the corner of Fifth and Main",
+        "rating": 1,
+        "stats": "Force, Presence"
+      },
+      {
+        "name": "Kenny Lam's pawnshop",
+        "rating": 1,
+        "stats": "Presence, Focus"
+      },
+      {
+        "name": "The precinct and Officer Petrakis",
+        "rating": 1,
+        "stats": "Presence, Focus"
+      },
+      {
+        "name": "The waterfront docks",
+        "rating": 1,
+        "stats": "Flow, Focus"
+      },
+      {
+        "name": "Harbor & Main's downtown office",
+        "rating": 3,
+        "stats": "Flow, Focus"
+      },
+      {
+        "name": "Councilman Whitby's office",
+        "rating": 3,
+        "stats": "Presence"
+      }
+    ],
+    "clues": [
+      "A gas-soaked rag at the burned annex, printed with an old Tidewater Seafood logo",
+      "Petrakis's patrol log has him off his route the night of the fire",
+      "Kenny Lam's ledger: six gas cans sold for cash to 'Saints guys' two days before the fire",
+      "Rosa has an unsigned letter offering $20,000 if her family moves out by Friday",
+      "The Saints are carrying new pistols, paid for in crisp bank-banded cash",
+      "A burner phone on a Saint: repeated calls to a number that rings at a downtown property office",
+      "City inspection of Calloway set for Friday: fewer than 10 occupied units and it's condemned",
+      "A fisherman saw a silver Lexus at the waterfront around 2am, twice this week",
+      "Marco was last seen arguing with a Saint outside a bar near the docks",
+      "Whitby's office pushed the inspection date up by a month"
+    ],
+    "personal": {
+      "bulwark": "Her old fire station got a stand-down call during the annex fire. The order came from the city, not the chief.",
+      "rook": "The Butcher trained at Rook's old gym years ago. He came by last week asking if Tommy Reyes still lives around here.",
+      "nightjar": "The Saints' van has the same fake plates as the van that ran her brother off the road.",
+      "patchwork": "The fire was started with a timer circuit he recognizes. He built that design for a paying client two years ago.",
+      "ledger": "Harbor & Main's shell structure matches a fraud case she flagged years ago that got buried."
+    },
+    "scheme": [
+      "1: A second Calloway family gets a brick through the window and a Harbor & Main notice",
+      "2: Marco Delgado is grabbed",
+      "3: Rosa's apartment is trashed as a warning",
+      "4: Petrakis's arson report goes missing",
+      "5: Calloway tenants vote to take the buyout and leave",
+      "6: Calloway burns Friday night, the Butcher's crew moves Marco"
+    ],
+    "hostage": "Marco Delgado, 19, Rosa's son. Grabbed at Scheme tick 2 if not sooner prevented; held in the Cannery freezer.",
+    "opening": "Night 1 opens on the Calloway annex fire: a family trapped on the third floor (obstacle rescue, rating +1, defense 13) and 3 Saints loading their van out back (a short tutorial fight). Rosa Delgado finds the heroes after.",
+    "confrontation": "The Tidewater Cannery. The Butcher plus 1 group of 3 Saints for 3 heroes (2 groups for 4). Hostage clock 4. Heroes win by dropping the Butcher, or by reaching the Freezer and freeing Marco with an Interact while no enemy is in that zone.",
+    "arc_clues": [
+      "Every damaged building has an eviction notice from Harbor & Main Holdings (calling card)",
+      "Delia Marsh's phone: texts to 'A.V.' saying 'Calloway on schedule'",
+      "Harbor & Main's registered agent is a law firm that represents Augustine Voss"
+    ]
+  }
+}

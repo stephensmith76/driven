@@ -9,6 +9,9 @@ import { Track } from '../../components/Track'
 import { useRunner } from '../../components/Toast'
 import { CORE, crackDefense } from '../../engine'
 import { setField } from '../../data/writes'
+import { addDemoClocks, demoArc, demoCase, demoNotes } from '../../data/demoSeed'
+import { setUpScene } from '../../data/fight'
+import type { CaseScene } from '../../data/caseFile'
 import { GmShell, type GmContext } from './GmShell'
 
 export function CaseFile({ campaignId }: { campaignId: string }) {
@@ -81,7 +84,18 @@ function CaseBody({ campaign }: GmContext) {
         <section className="card stack">
           <h2>No case loaded</h2>
           <p className="small">Paste a case file as JSON (see <code>supabase/seed/CASE_FORMAT.md</code>), or start from a blank template.</p>
-          <div className="button-row"><button onClick={() => setEditing('case')}>Load or write a case</button></div>
+          <div className="button-row">
+            <button onClick={() => run(async () => {
+              await save({
+                case: demoCase(),
+                ...(Object.keys(arc).length ? {} : { arc: demoArc() }),
+                ...(secrets.notes?.trim() ? {} : { notes: demoNotes() }),
+              })
+              await addDemoClocks(cid, clocks)
+              report('Loaded The Butcher of Fifth Street. Set up its opening scene under Scenes.')
+            })}>Load the Butcher case</button>
+            <button className="secondary" onClick={() => setEditing('case')}>Paste or write a case</button>
+          </div>
         </section>
       ) : (
         <>
@@ -126,10 +140,22 @@ function CaseBody({ campaign }: GmContext) {
               </ul>
               <h3>Scheme steps</h3>
               <ol className="small">{(c.scheme_steps ?? []).map((s, i) => <li key={i}>{s}</li>)}</ol>
+              {c.opening && <><h3>Opening</h3><p className="small">{c.opening}</p></>}
+              {c.hostage && <><h3>Hostage</h3><p className="small">{c.hostage}</p></>}
               {c.confrontation && <><h3>Confrontation</h3><p className="small">{c.confrontation}</p></>}
             </section>
           </div>
         </>
+      )}
+
+      {!editing && !empty && (c.scenes ?? []).length > 0 && (
+        <section className="card stack">
+          <h2>Scenes</h2>
+          {c.scenes!.map((sc) => <SceneRow key={sc.id} scene={sc} onSetUp={() => run(async () => {
+            await setUpScene(cid, sc)
+            report(`“${sc.title}” is set up on the Fight screen. Players now see its title, text and zones.`)
+          })} />)}
+        </section>
       )}
 
       {!editing && (
@@ -164,6 +190,31 @@ function CaseBody({ campaign }: GmContext) {
       )}
       {toast}
     </>
+  )
+}
+
+function SceneRow({ scene, onSetUp }: { scene: CaseScene; onSetUp: () => void }) {
+  const [confirm, setConfirm] = useState(false)
+  return (
+    <div className="item stack">
+      <p><strong>{scene.title}</strong></p>
+      <p className="small">{scene.text}</p>
+      <p className="small muted">
+        Zones: {scene.zones.map((z) => z.name).join(', ')}
+        {scene.obstacles?.length ? <> · Obstacles: {scene.obstacles.map((o) => `${o.name} (${o.rating >= 0 ? '+' : ''}${o.rating}, ${CORE.defense_base + o.rating})`).join(', ')}</> : null}
+        {scene.extras?.length ? <> · Also here: {scene.extras.map((x) => x.name).join(', ')}</> : null}
+        {scene.enemies?.length ? <> · Enemies: {scene.enemies.map((e) => e.kind === 'mooks' ? `${e.name} (${e.count})` : e.name).join(', ')}</> : null}
+      </p>
+      <div className="button-row">
+        {confirm ? (
+          <>
+            <span className="small warn">This replaces the Fight screen's scene, zones and enemies.</span>
+            <button onClick={() => { setConfirm(false); onSetUp() }}>Set it up</button>
+            <button className="secondary" onClick={() => setConfirm(false)}>Cancel</button>
+          </>
+        ) : <button className="secondary mini" onClick={() => setConfirm(true)}>Set up on the Fight screen</button>}
+      </div>
+    </div>
   )
 }
 

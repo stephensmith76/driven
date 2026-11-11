@@ -46,7 +46,7 @@
     "name": "The Ledger", "civilian": "Ruth Abernathy, retired fraud investigator",
     "archetype_id": "detective", "trait_id": "order",
     "stats": {"force": -1, "flow": 1, "focus": 4, "presence": 2},
-    "flair_ids": [],
+    "flair_ids": ["connected"],
     "loadout": [
       {"kind": "gear", "id": "sidearm", "custom_text": "Concealed"},
       {"kind": "gear", "id": "kevlar-vest"},

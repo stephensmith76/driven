@@ -36,6 +36,8 @@ Only the GM's device ever reads these. Players see a clue only after the GM pres
 | `clues[].id` | Required and unique within the case: the Reveal button uses it |
 | `clues[].personal_for` | A hero's name. It counts as 2 clues in a theory, and revealing it offers to tick that hero's Home clock |
 | `clues[].is_arc` | Points past this case to the Mastermind. It doesn't count toward this case's theory |
+| `opening`, `hostage` | Optional text: how Night 1 opens; who is held, when, and where |
+| `scenes` | Optional prepared scenes: `id`, `title`, `text` (players see it once set up), `zones` (`id`, `name`, `tags` as tag ids from `tags.json`, `links`), `obstacles` (`name`, `rating`), `extras` (`name`, `zone`), `enemies` (rows for the `enemies` table). The Case file's **Set up on the Fight screen** button copies one to the scene and replaces the enemies |
 | `clues[].revealed` | Set by the app. Leave it out |
 | `crack_log` | Written by the Night screen. Leave it out |
 
@@ -52,3 +54,7 @@ Arc sheet (`gm_secrets.arc`):
 ```
 
 The Endgame clock (8 segments) is an ordinary hidden clock with `kind: "endgame"`. The Case file screen can add it.
+
+## The demo case
+
+`butcher_case.json` (Stephen's seed, format `street-level-seed/1`) is the source for the demo campaign: heroes, clocks, both scenes, enemies, case and arc clues. `web/src/data/demoSeed.ts` converts it into the shapes above; it is never edited by hand into a second copy. "Create campaign" with Demo checked loads all of it, and an empty Case file has a **Load the Butcher case** button for campaigns that already exist. `npm run test:demo` checks it against the real project.
