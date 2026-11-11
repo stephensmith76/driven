@@ -1,5 +1,5 @@
 {
-  "rules_version": "2026-11-11",
+  "rules_version": "2026-11-11.2",
   "defense_base": 12,
   "dice": { "sides": 10, "count": 2, "advantage_count": 3 },
   "edge_bonus": 2,
@@ -195,6 +195,8 @@
   ],
   "villain_scaling": {
     "turns_per_heroes": 2,
+    "lieutenant_turns": 1,
+    "lieutenant_text": "A lieutenant gets one turn per round, however many heroes there are. With several named enemies, each villain takes its own turns and no villain counts as alone.",
     "turns_text": "A named villain gets one turn per round for every two heroes, rounded up. A villain fighting alone, with no mooks or lieutenants, gets one turn per hero instead.",
     "gang_text": "With no named villain, one group of 3 mooks per hero. With a named villain present, one group per two heroes (rounded down, minimum 1). Then adjust for how hard the fight should be.",
     "mook_group_size": 3

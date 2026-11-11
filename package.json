@@ -1,7 +1,9 @@
 {
   "name": "street-level-app",
   "private": true,
-  "workspaces": ["web"],
+  "workspaces": [
+    "web"
+  ],
   "scripts": {
     "dev": "npm run dev -w web",
     "build": "npm run build -w web",
@@ -12,6 +14,7 @@
     "test:roundtrip": "tsx supabase/tests/roundtrip.test.ts",
     "test:secrets": "tsx supabase/tests/secrets.test.ts",
     "test:dice": "tsx supabase/tests/dice.test.ts",
-    "test:db": "npm run test:access && npm run test:sync && npm run test:roundtrip && npm run test:secrets && npm run test:dice"
+    "test:db": "npm run test:access && npm run test:sync && npm run test:roundtrip && npm run test:secrets && npm run test:dice",
+    "test:sim": "python -m pytest sim/tests -q && tsx scripts/sim-check.ts"
   }
 }

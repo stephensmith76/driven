@@ -154,3 +154,9 @@ button.token { min-height: 32px; background: transparent; color: var(--text); }
 button.token.enemy { color: var(--accent); }
 button.token.on { background: var(--filled); color: var(--bg); border-color: var(--filled); }
 .enemy-card input { flex: 1 1 10rem; }
+
+/* Encounter lab */
+.sim-label { font-size: 1.6rem; margin: 0; }
+.sim-bar-row { display: grid; grid-template-columns: minmax(5rem, 9rem) 1fr 3.5rem; gap: .5rem; align-items: center; }
+.sim-bar { display: block; height: .7rem; background: var(--line); border-radius: 4px; overflow: hidden; }
+.sim-bar > span { display: block; height: 100%; background: var(--accent); }

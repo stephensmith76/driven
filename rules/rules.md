@@ -848,6 +848,7 @@ A villain fits in a short stat block. They use the same stats, defenses, and Dri
 **Scaling to the party:**
 
 - **Villain turns:** a named villain gets one turn per round for every two heroes, rounded up. One turn against 1 or 2 heroes, two against 3 or 4. Spread the turns through the round. A villain fighting alone, with no mooks or lieutenants, gets one turn per hero instead.
+- **Lieutenants and several named enemies:** a lieutenant gets one turn per round, however many heroes there are, even fighting alone. When a fight has more than one named enemy, each villain takes its own turns by the rule above and each lieutenant takes one; no villain counts as alone while another named enemy is in the fight. Spread all their turns through the round.
 - **Gang size:** in a fight with no named villain, start with one group of 3 mooks per hero. With a named villain present, one group per two heroes (rounded down, minimum 1). Then adjust for how hard the fight should be.
 
 ### Roles
@@ -1052,6 +1053,7 @@ After one or two runs, adjust the numbers that felt off: Harm boxes, villain Har
 - **Tested and rejected:** wider Impact bands (no effect), Mighty with +1 Harm on any hit (armor ate it), starting with 3 Drive (too comfortable), Healing Factor that only works when nobody hurt you (it never worked), and Stress on a miss (never adopted).
 - **Method:** Gemini invents dice and simulator tables unless it is handed a numbered dice bank, and every log needs an audit. Use the simulator for numbers and a live session for feel.
 - **Open-questions pass (Nov 10, simulator):** Specialist Kit (Taser, Flashbang, Smoke) and Prepared are now simulated. Changes: Protector and Detective Drive triggers widened, Prepared's trap and a Read weakness ignore Toughness, case villains 10 Harm, Already Broken starts at 4 Drive, the Order perk reworked, and GM advice for hard-to-hit enemies and killing blows. Result across all 56 three-hero parties: the Cannery 90.6% wins in 4.7 rounds (weakest party 38%), the gun lieutenant 92.5% in 3.9 rounds, and every hero averages about one Signature a fight. Kit with Edge was tested and rejected (too small to be worth a rule).
+- **Several named enemies (Nov 11, Stephen):** a fight can have more than one villain or lieutenant. Villains keep the usual turns; a lieutenant always gets one turn per round. The simulator and the Encounter lab model this; a single villain's fight is unchanged.
 
 ## Playtest log: Session 1
 

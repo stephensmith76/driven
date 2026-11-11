@@ -1,0 +1,108 @@
+{
+  "runs": 2000,
+  "seed": 7,
+  "heroes": [
+    {
+      "key": "rook",
+      "name": "Rook",
+      "arch": "Brawler",
+      "trait": "Spite",
+      "force": 4,
+      "flow": 2,
+      "focus": -1,
+      "presence": 1,
+      "boxes": 5,
+      "weapon": "light",
+      "armor_guns": 1,
+      "armor_all": 0,
+      "medkit": 1,
+      "flairs": [
+        "hard_to_kill"
+      ],
+      "power": "",
+      "strange": false,
+      "guard_bonus": 0,
+      "tough_blunt": 0,
+      "harm": 0,
+      "stress": 0,
+      "drive": 2,
+      "kit": [],
+      "not_simulated": []
+    },
+    {
+      "key": "nightjar",
+      "name": "Nightjar",
+      "arch": "Stalker",
+      "trait": "Vengeance",
+      "force": 1,
+      "flow": 4,
+      "focus": 2,
+      "presence": -1,
+      "boxes": 4,
+      "weapon": "light",
+      "armor_guns": 0,
+      "armor_all": 0,
+      "medkit": 0,
+      "flairs": [
+        "opportunist"
+      ],
+      "power": "Shadow Manipulation",
+      "strange": true,
+      "guard_bonus": 0,
+      "tough_blunt": 0,
+      "harm": 0,
+      "stress": 0,
+      "drive": 2,
+      "kit": [],
+      "not_simulated": []
+    },
+    {
+      "key": "ledger",
+      "name": "The Ledger",
+      "arch": "Detective",
+      "trait": "Order",
+      "force": -1,
+      "flow": 1,
+      "focus": 4,
+      "presence": 2,
+      "boxes": 4,
+      "weapon": "pistol",
+      "armor_guns": 1,
+      "armor_all": 0,
+      "medkit": 0,
+      "flairs": [],
+      "power": "",
+      "strange": false,
+      "guard_bonus": 0,
+      "tough_blunt": 0,
+      "harm": 0,
+      "stress": 0,
+      "drive": 2,
+      "kit": [],
+      "not_simulated": []
+    }
+  ],
+  "villain": {
+    "name": "The Butcher",
+    "force": 4,
+    "flow": 0,
+    "focus": 1,
+    "presence": 2,
+    "harm_max": 10,
+    "toughness_v": 1,
+    "drive": 2,
+    "weapon": "unarmed"
+  },
+  "mook_groups": [
+    {
+      "name": "Saints",
+      "count": 3,
+      "attack": 2,
+      "guard": 13,
+      "gunner": true
+    }
+  ],
+  "rules": {
+    "dark": false
+  }
+}

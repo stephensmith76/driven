@@ -14,7 +14,7 @@ A web app for running Street Level at one table. Each player opens a link on a p
 | GM (Stephen) | Everything players have for every character, plus the Night tracker, case file, fight tracker, encounter simulator, rules helper, and export and import |
 | Claude | Changes rules and balance data through the GitHub repo. Updates a campaign after a voice session through an import file |
 
-**Not in version 1:** remote play (voice, video, maps), accounts with passwords, rules the app enforces against the GM's wishes, simulated fights with more than one named villain, and native phone apps.
+**Not in version 1:** remote play (voice, video, maps), accounts with passwords, rules the app enforces against the GM's wishes, and native phone apps. (Simulated fights with several named enemies were added in M5 at Stephen's request, Nov 11.)
 
 This spec is written for Claude Code to build from, one milestone at a time. The rules themselves live in `rules/rules.md`, and the spec never restates them: where a screen needs a rule, it points to the rules file.
 
@@ -282,7 +282,7 @@ The GM builds an encounter, presses Run, and gets a difficulty label for the cam
 **Changes to the simulator file.** Today the file has five hardcoded sample heroes (`make_heroes`) and four named scenarios, and it is driven by command-line flags. It needs one new entry point and nothing else about its fight logic should change:
 
 - Add `run_encounter(config: dict) -> dict`. It builds heroes and enemies from the config, runs the fights, and returns a plain dict. No printing and no `argparse` inside it.
-- Heroes come from `config["heroes"]`, each a record with the `Hero` fields. Enemies come from `config["villain"]` (optional, the `Boss` fields) and `config["mook_groups"]` (a list with the `Mooks` fields).
+- Heroes come from `config["heroes"]`, each a record with the `Hero` fields. Enemies come from `config["villains"]` (a list of `Boss` fields, each with `role` `villain` or `lieutenant`; the older single `config["villain"]` still works) and `config["mook_groups"]` (a list with the `Mooks` fields).
 - Each hero may carry starting `harm`, `stress` and `drive`, so a fight can be run with the party as they are right now.
 - `config["rules"]` overrides fields of the `Rules` dataclass. Missing fields keep their defaults.
 - Keep the command line working: the existing flags, plus `--config encounter.json`.
@@ -323,7 +323,7 @@ The GM builds an encounter, presses Run, and gets a difficulty label for the cam
 **The Encounter lab screen**
 
 - **Party:** all player characters by default, with checkboxes. A switch chooses "fresh" or "as they are now" (current Harm, Stress and Drive).
-- **Enemies:** at most one named villain or lieutenant, from the library or custom, plus any number of mook groups. The form suggests the gang size from the scaling rule for the party size.
+- **Enemies:** any number of named villains and lieutenants (each marked Villain or Lieutenant, which sets its turns; see `rules.md` "Scaling to the party"), from the library, the Fight screen or custom, plus any number of mook groups. The form suggests the gang size from the scaling rule for the party size.
 - **Options:** dark zone, number of runs (default 1,000).
 - **Result:** a label, the four headline numbers, a bar per hero for their chance of going Down, and the "Not simulated" list.
 - Encounters can be saved, renamed and rerun.
@@ -341,7 +341,7 @@ Add the flag "Someone probably goes Down" when `any_down_pct` is 50 or more. Und
 
 **How it runs.** A Web Worker loads Pyodide and the published simulator file the first time the Encounter lab opens, then keeps them in memory. The page shows progress while it loads and while fights run.
 
-**Known limits to show on the screen:** one named enemy per fight, no zones or goal clocks, fixed tactics, five powers modeled (Toughness, Shadow Manipulation, Mighty, Invulnerability, Healing Factor) and four Kit items (Taser, Flashbang, Smoke, Armor).
+**Known limits to show on the screen:** hero tactics focus the first named enemy standing, no zones or goal clocks, fixed tactics, five powers modeled (Toughness, Shadow Manipulation, Mighty, Invulnerability, Healing Factor) and four Kit items (Taser, Flashbang, Smoke, Armor).
 
 **Checks**
 

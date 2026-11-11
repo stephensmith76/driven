@@ -28,4 +28,4 @@ jobs:
       - run: pip install pytest
       - name: simulator runs from the command line
         run: python sim/street_level_sim.py --help
-      - run: pytest sim/tests -q || [ $? -eq 5 ]  # exit 5 = no tests collected yet (tests arrive in M5)
+      - run: pytest sim/tests -q

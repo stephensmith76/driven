@@ -1,0 +1,45 @@
+{
+  "win_pct": 97.5,
+  "rounds": 3.84,
+  "any_down_pct": 22.4,
+  "dying_pct": 0.0,
+  "heroes": {
+    "rook": {
+      "down_pct": 7.0,
+      "harm": 2.17,
+      "hit_pct": 72.6,
+      "stress": 0.4,
+      "fraying_pct": 2.0,
+      "break_pct": 0.1,
+      "sigs": 1.22,
+      "drive_earned": 3.72,
+      "drive_spent": 3.83
+    },
+    "nightjar": {
+      "down_pct": 13.8,
+      "harm": 1.61,
+      "hit_pct": 71.5,
+      "stress": 5.16,
+      "fraying_pct": 76.1,
+      "break_pct": 20.1,
+      "sigs": 0.84,
+      "drive_earned": 2.24,
+      "drive_spent": 2.99
+    },
+    "ledger": {
+      "down_pct": 10.0,
+      "harm": 1.34,
+      "hit_pct": 52.9,
+      "stress": 0.46,
+      "fraying_pct": 4.6,
+      "break_pct": 0.0,
+      "sigs": 1.0,
+      "drive_earned": 2.29,
+      "drive_spent": 3.09
+    }
+  },
+  "not_simulated": [],
+  "runs": 2000,
+  "seed": 7,
+  "sim_version": "2026-11-11.2"
+}

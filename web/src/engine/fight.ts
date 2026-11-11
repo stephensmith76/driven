@@ -56,6 +56,20 @@ export function villainTurns(heroes: number, alone: boolean): number {
   return alone ? heroes : Math.ceil(heroes / CORE.villain_scaling.turns_per_heroes)
 }
 
+/**
+ * Turns each named enemy gets this round (rules.md "Lieutenants and several named enemies"):
+ * a lieutenant gets one; a villain the usual count, one per hero only if it is the
+ * only enemy in the fight.
+ */
+export function namedTurns(enemies: Pick<Enemy, 'kind' | 'name'>[], heroes: number): { name: string; kind: EnemyKind; turns: number }[] {
+  const named = enemies.filter((e) => e.kind !== 'mooks')
+  const alone = named.length === 1 && enemies.length === 1
+  return named.map((e) => ({
+    name: e.name, kind: e.kind,
+    turns: heroes <= 0 ? 0 : e.kind === 'lieutenant' ? CORE.villain_scaling.lieutenant_turns : villainTurns(heroes, alone),
+  }))
+}
+
 /** How many mook groups of 3 to start with (rules.md "Villain scaling"). */
 export function gangGroups(heroes: number, hasNamedVillain: boolean): number {
   if (heroes <= 0) return 0

@@ -4,7 +4,7 @@
 import { describe, expect, it } from 'vitest'
 import {
   CSV_COLUMNS, diceNeeded, enemyHit, enemyState, evaluate, gangGroups, harm, heroHit, mooksDropped,
-  obstacleDefense, publicEnemy, rollRow, rollsCsv, setupAdv, standDown, villainTurns,
+  obstacleDefense, publicEnemy, rollRow, rollsCsv, setupAdv, standDown, villainTurns, namedTurns,
   type Enemy, type RollSetup,
 } from './index'
 
@@ -155,6 +155,11 @@ describe('Enemies', () => {
   it('villain turns and gang size follow rules.md', () => {
     expect([1, 2, 3, 4, 5].map((n) => villainTurns(n, false))).toEqual([1, 1, 2, 2, 3])
     expect(villainTurns(3, true)).toBe(3)
+    const v = (name: string, kind: 'villain' | 'lieutenant' | 'mooks') => ({ name, kind })
+    expect(namedTurns([v('Butcher', 'villain')], 4)).toEqual([{ name: 'Butcher', kind: 'villain', turns: 4 }])
+    expect(namedTurns([v('Butcher', 'villain'), v('Saints', 'mooks')], 4)[0].turns).toBe(2)
+    expect(namedTurns([v('Lt', 'lieutenant')], 4)[0].turns).toBe(1)
+    expect(namedTurns([v('Butcher', 'villain'), v('Lt', 'lieutenant')], 4).map((t) => t.turns)).toEqual([2, 1])
     expect(gangGroups(4, false)).toBe(4)
     expect([1, 2, 3, 4].map((n) => gangGroups(n, true))).toEqual([1, 1, 1, 2])
   })

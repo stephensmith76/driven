@@ -33,10 +33,13 @@ Rule switches (defaults match the current rules doc):
   --fixed-gang         always 2 mook groups instead of one per hero
   --no-down-stress / --no-villain-presence / --no-strange-stress / --no-invuln-overflow
                        turn off the post-Session-1 Stress rules one at a time
+  --config FILE        run an encounter in the app's JSON format, print the result as JSON
   Extra test heroes with strange powers: jessica (Mighty), luke (Invulnerability), logan (Healing Factor)
 """
-import argparse, itertools, random, statistics, sys
-from dataclasses import dataclass, field
+import argparse, itertools, json, random, statistics, sys
+from dataclasses import dataclass, field, fields
+
+SIM_VERSION = "2026-11-11.2"   # bump when fight logic or run_encounter's output changes
 
 # ---------------------------------------------------------------- dice
 DEF_BASE = 12   # defenses are DEF_BASE + stat (was 10 before the Nov 9 balance pass)
@@ -165,6 +168,7 @@ class Boss:
     force: int = 4; flow: int = 0; focus: int = 1; presence: int = 2
     harm_max: int = 10; toughness_v: int = 1; drive: int = 2   # case villain: 10 Harm (Nov 10)
     weapon: str = "unarmed"
+    role: str = "villain"          # villain: one turn per two heroes (per hero if alone) | lieutenant: one turn a round
     harm: int = 0; read_edge: bool = False; called: bool = False
     last_hurt_by: object = None
     defbonus: int = 0
@@ -261,7 +265,7 @@ class Fight:
     def __init__(self, party, scenario, rules, dice, log=False):
         self.rules, self.d = rules, dice
         self.heroes = party
-        self.groups, self.boss = [], None
+        self.groups, self.bosses = [], []
         self.verbose = log
         if scenario in ("gang", "cannery"):
             if rules.groups: n = rules.groups
@@ -291,9 +295,18 @@ class Fight:
         if self.verbose: print(s)
 
     # -- state
+    # Named enemies live in self.bosses. self.boss is the first one still standing
+    # (None if none are), which is all the single-villain tactics ever look at.
+    @property
+    def boss(self):
+        return next((b for b in self.bosses if not b.out), None)
+    @boss.setter
+    def boss(self, b):
+        self.bosses = [b] if b else []
+    def live_bosses(self): return [b for b in self.bosses if not b.out]
     def foes(self):
         f = [g for g in self.groups if not g.out]
-        if self.boss and not self.boss.out: f.append(self.boss)
+        f.extend(self.live_bosses())
         return f
     def up(self): return [h for h in self.heroes if not h.down]
     def done(self): return not self.foes() or not self.up()
@@ -357,8 +370,8 @@ class Fight:
         self.morale()
         return drops
 
-    def hit_boss(self, h, impact, weapon):
-        b = self.boss
+    def hit_boss(self, h, impact, weapon, b=None):
+        b = b or self.boss
         if impact <= 0 or b.out: return 0
         tough = 0 if (weapon in ("pistol", "taser") or h.power == "Mighty" or getattr(b, "pierce_next", False)) else b.toughness_v
         b.pierce_next = False  # Mighty ignores Toughness
@@ -462,7 +475,7 @@ class Fight:
             if self.specialist_turn(h, t, sig): return
         # Stalker out of hiding: Vanish (Quick) + Jab (Quick), if the zone allows it
         if h.arch == "Stalker" and not h.hidden and (h.power == "Shadow Manipulation" or self.rules.dark):
-            watch = max([DEF_BASE + 1] + ([self.boss.wits] if self.boss and not self.boss.out else []))
+            watch = max([DEF_BASE + 1] + [b.wits for b in self.live_bosses()])
             if h.power == "Shadow Manipulation": self.use_strange(h)
             if self.hroll(h, "flow", watch):
                 h.hidden = True; self.log(f"   {h.name} vanishes")
@@ -490,7 +503,7 @@ class Fight:
             h.adv_next = True
             return True
         quick = 2; used_any = False
-        gunners = [g for g in self.groups if not g.out and g.gunner] or ([self.boss] if boss_up and self.boss.weapon == "pistol" else [])
+        gunners = [g for g in self.groups if not g.out and g.gunner] or [b for b in self.live_bosses() if b.weapon == "pistol"]
         for item in ("flashbang", "smoke", "taser"):
             if quick == 0 or item not in items: continue
             if item == "flashbang" and len(self.foes()) >= 1:
@@ -539,7 +552,7 @@ class Fight:
                 nxt = next((g for g in self.groups if not g.out), None) or (self.boss if self.boss and not self.boss.out else None)
                 if nxt: self.log("   Pile Through"); self.jab(h, nxt)
         else:
-            self.hit_boss(h, imp, h.weapon)
+            self.hit_boss(h, imp, h.weapon, t)
             h.engaged_with = t if h.weapon != "pistol" else None
 
     # -- enemy turns
@@ -566,8 +579,8 @@ class Fight:
         else:
             self.on_missed(t)
 
-    def boss_turn(self):
-        b = self.boss
+    def boss_turn(self, b=None):
+        b = b or self.boss
         targets = self.up()
         if not targets: return
         if b.called:
@@ -635,11 +648,26 @@ class Fight:
             self.log(f"--- Round {self.round}")
             heroes = list(self.heroes)
             foes = self.foes()
-            k = self.rules.boss_actions or (len(self.heroes) if not self.groups else -(-len(self.heroes) // 2))  # alone: one turn per hero
-            if self.boss in foes and k > 1:
-                foes = [f for f in foes if f is not self.boss]
-                # spread the boss's turns through the round
-                for n in range(k): foes.insert(min(len(foes), n * 2), self.boss)
+            live = self.live_bosses()
+            alone = not self.groups and len(self.bosses) == 1
+            def turns(b):
+                if b.role == "lieutenant": return 1
+                return self.rules.boss_actions or (len(self.heroes) if alone else -(-len(self.heroes) // 2))  # alone: one turn per hero
+            if len(live) == 1:
+                b = live[0]; k = turns(b)
+                if k > 1:
+                    foes = [f for f in foes if f is not b]
+                    # spread the boss's turns through the round
+                    for n in range(k): foes.insert(min(len(foes), n * 2), b)
+            elif live:
+                # several named enemies: take their turns in rotation, spread through the round
+                left = {id(b): turns(b) for b in live}
+                order = []
+                while any(left.values()):
+                    for b in live:
+                        if left[id(b)]: order.append(b); left[id(b)] -= 1
+                foes = [f for f in foes if not isinstance(f, Boss)]
+                for n, b in enumerate(order): foes.insert(min(len(foes), n * 2), b)
             i = j = 0
             while i < len(heroes) or j < len(foes):
                 if i < len(heroes):
@@ -649,7 +677,7 @@ class Fight:
                     f = foes[j]; j += 1
                     if getattr(f, "out", False): continue
                     if isinstance(f, Mooks): self.mook_turn(f)
-                    else: self.boss_turn()
+                    else: self.boss_turn(f)
                     if self.done(): break
         win = bool(self.up()) and not self.foes()
         return {"win": win, "rounds": self.round,
@@ -698,6 +726,121 @@ def print_result(o, detail=True):
         for k, p in o["per"].items():
             print(f"   {k:<10}{p['harm']:6.2f}{p['down%']:7.1f}{p['hit%']:6.0f}{p['earned']:8.2f}"
                   f"{p['spent']:8.2f}{p['sigs']:6.2f}{p['stress']:8.2f}{p['fraying%']:7.1f}{p['break%']:6.1f}")
+
+# ---------------------------------------------------------------- run_encounter (app entry point)
+# Builds heroes and enemies from a plain dict, runs the fights and returns a plain
+# dict. Used by the app's Encounter lab (Pyodide) and by --config. It only builds
+# combatants; the fight itself is the same Fight class the command line uses.
+_HERO_STATE = {"harm", "stress", "drive"}
+_HERO_FIELDS = {f.name for f in fields(Hero)} - {"stats"}
+_HERO_EXTRA = {"kit", "not_simulated"}
+_BOSS_FIELDS = {"name", "force", "flow", "focus", "presence", "harm_max", "toughness_v", "drive", "weapon", "role"}
+_MOOK_FIELDS = {"name", "count", "attack", "guard", "gunner"}
+_WEAPONS = {"unarmed", "light", "heavy", "pistol", "knife"}
+
+def _check_keys(what, d, allowed):
+    extra = set(d) - allowed
+    if extra: raise ValueError(f"{what}: unknown field(s) {', '.join(sorted(extra))}")
+
+def _hero_from(rec):
+    _check_keys(f"hero {rec.get('key', '?')}", rec, _HERO_FIELDS | _HERO_EXTRA)
+    kw = {k: v for k, v in rec.items() if k in _HERO_FIELDS}
+    kw["flairs"] = tuple(kw.get("flairs", ()))
+    if kw.get("weapon", "unarmed") not in _WEAPONS: raise ValueError(f"hero {rec['key']}: weapon {kw['weapon']!r}")
+    # Kit Armor is "Toughness 1 against guns for the Night" (rules.md): the same as
+    # armor_guns, since nothing in the simulator attacks heroes with blades.
+    if "armor" in rec.get("kit", ()): kw["armor_guns"] = max(kw.get("armor_guns", 0), 1)
+    return Hero(**kw)
+
+def _boss_from(rec, rules):
+    _check_keys("villain", rec, _BOSS_FIELDS)
+    if rec.get("weapon", "unarmed") not in _WEAPONS: raise ValueError(f"villain weapon {rec['weapon']!r}")
+    if rec.get("role", "villain") not in ("villain", "lieutenant"): raise ValueError(f"villain role {rec['role']!r}")
+    b = Boss(**rec)
+    if rules.boss_harm: b.harm_max = rules.boss_harm
+    b.defbonus = rules.boss_def
+    return b
+
+def _mooks_from(rec, rules):
+    _check_keys(f"mook group {rec.get('name', '?')}", rec, _MOOK_FIELDS)
+    kw = dict(rec); kw.setdefault("guard", rules.mook_guard)
+    g = Mooks(**kw); g.start = g.count
+    return g
+
+def _rules_from_dict(over):
+    r = Rules()
+    known = {f.name for f in fields(Rules)}
+    _check_keys("rules", over, known)
+    for k, v in over.items(): setattr(r, k, v)
+    return r
+
+def run_encounter(config: dict, on_progress=None) -> dict:
+    """Run one encounter many times. See SPEC.md "Encounter simulator" for the shapes.
+    on_progress(done, runs), if given, is called about 20 times (the app's progress bar)."""
+    _check_keys("config", config, {"runs", "seed", "heroes", "villain", "villains", "mook_groups", "rules"})
+    rules = _rules_from_dict(config.get("rules") or {})
+    runs = int(config.get("runs", 1000)); seed = config.get("seed")
+    recs = config.get("heroes") or []
+    if not recs: raise ValueError("config has no heroes")
+    keys = [r["key"] for r in recs]
+    if len(set(keys)) != len(keys): raise ValueError("hero keys must be unique")
+    # Named enemies: "villains" (a list, each with a role) and/or the older single "villain".
+    villains = ([config["villain"]] if config.get("villain") else []) + list(config.get("villains") or [])
+    mooks = config.get("mook_groups") or []
+    if not villains and not mooks: raise ValueError("config has no enemies")
+    # Specialist Kit picks are a Rules field in the simulator (one list for the party).
+    spec_kit = next((r.get("kit") for r in recs if r.get("arch") == "Specialist" and r.get("kit")), None)
+    if spec_kit and "kit_items" not in (config.get("rules") or {}):
+        rules.kit_items = ",".join(k for k in spec_kit if k != "armor")
+    for r in recs: _hero_from(r)   # validate once up front
+    for v in villains: _boss_from(v, rules)
+    for m in mooks: _mooks_from(m, rules)
+
+    dice = Dice(seed)
+    res = []
+    step = max(1, runs // 20)
+    for i in range(runs):
+        if on_progress and i % step == 0: on_progress(i, runs)
+        party = [_hero_from(r) for r in recs]
+        f = Fight(party, "custom", rules, dice)   # "custom": Fight adds no enemies of its own
+        f.groups = [_mooks_from(m, rules) for m in mooks]
+        f.bosses = [_boss_from(v, rules) for v in villains]
+        res.append(f.run())
+
+    n = len(res)
+    r1 = lambda x: round(x, 1); r2 = lambda x: round(x, 2)
+    heroes = {}
+    for k in keys:
+        hs = [r["heroes"][k] for r in res]
+        heroes[k] = {
+            "down_pct": r1(100 * sum(1 for x in hs if x["downs"]) / n),
+            "harm": r2(statistics.mean(x["harm_taken"] for x in hs)),
+            "hit_pct": r1(100 * (1 - sum(x["misses"] for x in hs) / max(1, sum(x["rolls"] for x in hs)))),
+            "stress": r2(statistics.mean(x["max_stress"] for x in hs)),
+            "fraying_pct": r1(100 * sum(1 for x in hs if x["max_stress"] >= 4) / n),
+            "break_pct": r1(100 * sum(1 for x in hs if x["breaks"]) / n),
+            "sigs": r2(statistics.mean(x["sigs"] for x in hs)),
+            "drive_earned": r2(statistics.mean(x["drive_earned"] for x in hs)),
+            "drive_spent": r2(statistics.mean(x["drive_spent"] for x in hs)),
+        }
+    not_sim = []
+    for r in recs:
+        for line in r.get("not_simulated", []):
+            if line not in not_sim: not_sim.append(line)
+        if r.get("arch") != "Specialist":
+            for item in r.get("kit", []):
+                if item != "armor":
+                    line = f"{r.get('name', r['key'])}: {item} (only a Specialist's Kit is simulated)"
+                    if line not in not_sim: not_sim.append(line)
+    return {
+        "win_pct": r1(100 * sum(r["win"] for r in res) / n),
+        "rounds": r2(statistics.mean(r["rounds"] for r in res)),
+        "any_down_pct": r1(100 * sum(r["any_down"] for r in res) / n),
+        "dying_pct": r1(100 * sum(r["any_dying"] for r in res) / n),
+        "heroes": heroes,
+        "not_simulated": not_sim,
+        "runs": n, "seed": seed, "sim_version": SIM_VERSION,
+    }
 
 def rules_from(args, extra=None):
     r = Rules(sig_cost=args.sig_cost, stress_on_miss=args.stress_on_miss, graze=not args.no_graze,
@@ -753,9 +896,16 @@ def main():
     ap.add_argument("--no-strange-stress", action="store_true")
     ap.add_argument("--no-invuln-overflow", action="store_true")
     ap.add_argument("--fixed-gang", action="store_true", help="always 2 mook groups instead of one per hero")
+    ap.add_argument("--config", default=None,
+                    help="run an encounter from a JSON file (the app's format) and print the result as JSON; "
+                         "the file's runs and seed are used, other flags are ignored")
     ap.add_argument("--compare", action="append", default=[],
                     help="rerun with one rule changed, e.g. sig-cost=2, stress-on-miss, no-gear")
     args = ap.parse_args()
+    if args.config:
+        with open(args.config, encoding="utf-8") as f:
+            print(json.dumps(run_encounter(json.load(f)), indent=2))
+        return
     party = args.party.split(",")
     if args.log:
         dice = Dice(args.seed)
@@ -785,5 +935,7 @@ if __name__ == "__main__":
 # - Kit is modeled for the Specialist (Taser, Flashbang, Smoke, Armor) with simple
 #   priorities; Grapple, Tracker and Long gun are not. Powers beyond Toughness, Shadow
 #   Manipulation, Mighty, Invulnerability and Healing Factor, and most Flairs, are not.
+# - Several named enemies: villains get the usual villain turns, lieutenants one a round.
+#   Hero tactics still focus the first one standing.
 # - Already Broken is test-only (--broken rule field), not a sample hero.
 # - No hostage clock or win-by-objective; fights end when one side is out.

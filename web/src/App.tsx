@@ -13,6 +13,7 @@ import { Night } from './screens/gm/Night'
 import { CaseFile } from './screens/gm/CaseFile'
 import { Admin } from './screens/gm/Admin'
 import { Fight } from './screens/gm/Fight'
+import { EncounterLab } from './screens/gm/EncounterLab'
 
 export default function App() {
   const path = useHashPath()
@@ -40,6 +41,7 @@ export default function App() {
   if (a === 'gm' && b === 'new') return <CreateCampaign />
   if (a === 'gm' && b && c === 'night') return <Night campaignId={b} />
   if (a === 'gm' && b && c === 'fight') return <Fight campaignId={b} />
+  if (a === 'gm' && b && c === 'lab') return <EncounterLab campaignId={b} />
   if (a === 'gm' && b && c === 'case') return <CaseFile campaignId={b} />
   if (a === 'gm' && b && c === 'admin') return <Admin campaignId={b} />
   if (a === 'gm' && b) return <GmTable campaignId={b} />

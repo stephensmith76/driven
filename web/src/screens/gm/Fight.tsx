@@ -10,7 +10,7 @@ import { Roller, type Report, type Run } from '../../components/Roller'
 import { Track } from '../../components/Track'
 import { useRunner } from '../../components/Toast'
 import {
-  CORE, TAGS, customEnemy, enemyFromLibrary, enemyState, gangGroups, libraryEntries, tickClock, villainTurns,
+  CORE, TAGS, customEnemy, enemyFromLibrary, enemyState, gangGroups, libraryEntries, namedTurns, tickClock,
   type Enemy, type EnemyKind,
 } from '../../engine'
 import { GmShell, type GmContext } from './GmShell'
@@ -39,7 +39,7 @@ function FightBody({ campaignId }: GmContext & { campaignId: string }) {
   if (!scene) return <p className="muted">Loading the scene…</p>
 
   const named = enemies.some((e) => e.kind !== 'mooks')
-  const alone = enemies.length > 0 && enemies.every((e) => e.kind === 'villain')
+  const alone = enemies.length === 1 && enemies[0].kind === 'villain'
   const goalClocks = clocks.filter((c) => c.kind === 'goal')
 
   const endRound = () => run(async () => {
@@ -77,7 +77,9 @@ function FightBody({ campaignId }: GmContext & { campaignId: string }) {
         </div>
         <p className="small muted">
           {heroes.length} hero{heroes.length === 1 ? '' : 'es'} in the party.{' '}
-          {named && <>A named villain gets <strong>{villainTurns(heroes.length, alone)}</strong> turn{villainTurns(heroes.length, alone) === 1 ? '' : 's'} a round{alone ? ' (alone: one per hero)' : ''}. </>}
+          {named && <>Turns a round: {namedTurns(enemies, heroes.length).map((t, i) => (
+            <span key={i}>{i ? ', ' : ''}{t.name} <strong>{t.turns}</strong>{t.kind === 'lieutenant' ? ' (lieutenant)' : alone ? ' (alone: one per hero)' : ''}</span>
+          ))}. </>}
           Gang size to start: <strong>{gangGroups(heroes.length, named)}</strong> group{gangGroups(heroes.length, named) === 1 ? '' : 's'} of {CORE.villain_scaling.mook_group_size} mooks{named ? ' (a named villain is present)' : ''}. Then adjust for how hard it should be.
         </p>
         <p className="small muted">End of round ticks goal clocks last. End fight stands Down heroes who aren't Dying back up at Wounded and clears per-fight flags.</p>
