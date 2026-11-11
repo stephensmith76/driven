@@ -245,7 +245,7 @@ The GM has seven screens. The rules helper box is docked on all of them.
 | **Library** | Read-only views of gear, powers, Flairs and villains from the rules data, plus the campaign's own custom villains |
 | **Admin** | Create a campaign and set its passcode. Unclaim or lock characters. Toggle whether players can build characters and see each other's sheets. Export, import, and the session report |
 
-**Later, not in the first pass:** a read-only Table display for a TV or spare tablet that shows the zone board, public clocks and the roll log.
+**Table display (built in M7, optional):** `#/c/<campaign id>/display` is a read-only screen for a TV or spare tablet. It shows the zone board, public clocks and the roll log, and opens on any device that has joined the campaign. The GM Table links to it.
 
 On every screen the GM can edit any number directly. Buttons like "Tick Scheme" and "End fight" are shortcuts for bookkeeping the GM could do by hand.
 
@@ -268,7 +268,7 @@ Every roll goes through one form, whether the app rolls the dice or the player t
 - Advantage and Disadvantage cancel. Only one Edge applies. Edge and Advantage stack.
 - Impact tops out at 3. Weapon and power bonuses add Harm, never Impact.
 - A Jab that hits is always Impact 1, so bonuses that need Impact 2 never apply to it.
-- Guns add 1 Harm on Impact 2 or better and ignore Toughness. Mighty ignores Toughness.
+- Guns add 1 Harm on Impact 2 or better and ignore natural Toughness (Force +3) but not armor. Mighty ignores Toughness.
 - A hit always does at least 1 Harm. Mook attacks cap at 2 Harm, applied last.
 
 **The log.** Rolls appear for everyone within a couple of seconds, newest first, with typed rolls marked "manual". The GM can delete a roll. An export button writes the log as CSV in the column order of the playtest logs (`actor, action, stat, bonus, adv, defense, dice, kept, total, margin, result, note`), so Claude can audit a session.
@@ -341,7 +341,7 @@ Add the flag "Someone probably goes Down" when `any_down_pct` is 50 or more. Und
 
 **How it runs.** A Web Worker loads Pyodide and the published simulator file the first time the Encounter lab opens, then keeps them in memory. The page shows progress while it loads and while fights run.
 
-**Known limits to show on the screen:** hero tactics focus the first named enemy standing, no zones or goal clocks, fixed tactics, five powers modeled (Toughness, Shadow Manipulation, Mighty, Invulnerability, Healing Factor) and four Kit items (Taser, Flashbang, Smoke, Armor).
+**Known limits to show on the screen:** hero tactics focus the first named enemy standing, no zones or goal clocks, fixed tactics, five powers modeled (Resilience, Shadow Manipulation, Mighty, Invulnerability, Healing Factor) and four Kit items (Taser, Flashbang, Smoke, Armor).
 
 **Checks**
 
@@ -469,3 +469,15 @@ Eight milestones, built in order. Each ends with a deploy and a check Stephen ca
 | Gemini gives a wrong ruling | Answers must name their roll and number so they are easy to check. The GM decides |
 | A free Supabase project may pause after a period with no use | Open the app the day before a session |
 | Someone outside the table finds the join link | They can only join as a player and see what players see. The GM can remove members and change the join code |
+
+## As built: where the app differs from this spec
+
+Written Nov 11 after M7. Where this section and an earlier one disagree, this one is current.
+
+- **Passcode hash** lives in `private.campaign_keys`, not `campaigns.gm_code_hash`, so it can never reach a player (M0).
+- **Rules helper (M6).** The function authorizes the caller itself (`verify_jwt = false`), by reading the caller's own `members` row through row-level security, and refuses anyone who is not the campaign's GM. Default model `gemini-3.5-flash-lite`, overridable with the `GEMINI_MODEL` secret. The daily cap is `HELPER_DAILY_CAP` (default 60), counted over the last 24 hours, not a calendar day. `npm run test:helper` is the check and spends real Gemini questions.
+- **Offline (M7).** Player-sheet trackers and flags, dice rolls and the GM's tracker edits are queued on the device while offline, shown at once, and replayed in order when the connection returns (`web/src/data/offline.ts`). Case file, Fight screen and Admin edits are not queued and need a connection.
+- **Session report (M7).** A JSON file from Admin: this Night's rolls, helper questions and GM notes, the end-of-Night state, and the start-of-Night state from `night_snapshots`, a GM-only table written by Start Night.
+- **Join QR code (M7)** is drawn locally as SVG on the GM Table.
+- **Several named enemies** are supported in the simulator and Encounter lab (see "Encounter simulator").
+- **Resilience** is the display name of the street power whose id is still `toughness`.

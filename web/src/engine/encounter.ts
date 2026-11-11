@@ -143,6 +143,6 @@ export const SIM_LIMITS = [
   'Several named enemies work, but hero tactics focus the first one standing.',
   'No zones or goal clocks.',
   'Fixed tactics.',
-  'Five powers modeled: Toughness, Shadow Manipulation, Mighty, Invulnerability, Healing Factor.',
+  'Five powers modeled: Resilience, Shadow Manipulation, Mighty, Invulnerability, Healing Factor.',
   'Four Kit items modeled: Taser, Flashbang, Smoke, Armor.',
 ]

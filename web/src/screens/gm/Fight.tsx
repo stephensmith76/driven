@@ -340,7 +340,7 @@ function EnemyPanel({ campaignId, enemies, scene, run }: { campaignId: string; e
         )}
         {!custom && picked && <p className="muted small">{'text' in picked ? picked.text : picked.line}</p>}
         <div><button onClick={add}>Add to the fight</button></div>
-        <p className="muted small">At most one named villain or lieutenant per simulated fight; the table can have as many as the story needs.</p>
+        <p className="muted small">Any number of named enemies work in the simulator too. A lieutenant takes one turn a round; a villain takes the usual turns.</p>
       </div>
     </div>
   )
