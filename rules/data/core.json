@@ -123,8 +123,7 @@
     "breaking_away": "If you leave engagement, the enemy you were engaged with can make a free Jab at you."
   },
   "clocks": [
-    { "kind": "scheme", "name": "Scheme", "size": 8, "scope": "team",
-      "note": "Set to 8 by Stephen on Nov 11; rules.md still says 6.",
+    { "kind": "scheme", "name": "Scheme", "size": 6, "scope": "team",
       "ticks": "Every Dawn, and as a cost when following leads",
       "half": "The villain knows someone is digging",
       "full": "The villain pulls it off. The showdown happens on their ground, after the damage is done." },

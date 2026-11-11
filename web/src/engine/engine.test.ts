@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import demo from '../../../supabase/seed/demo-heroes.json'
 import {
-  FLAIRS, GEAR, KIT, POWERS, ARCHETYPES, TRAITS,
+  CORE, FLAIRS, GEAR, KIT, POWERS, ARCHETYPES, TRAITS,
   defenses, harm, harmBoxes, netAdv, resolveRoll, simHero, slotsUsed, stressStage, toughness, upgrade,
   type Sheet,
 } from './index'
@@ -230,6 +230,15 @@ describe('Rules data stays in step with rules.md', () => {
       const ids = (list as { id?: string }[]).map((x) => x.id)
       expect(new Set(ids).size).toBe(ids.length)
     }
+  })
+  it('clock sizes match the clocks table in rules.md', () => {
+    // | **Scheme** (team) | 6 | ...   (the Endgame clock lives in the Arcs chapter: "Endgame clock: 8 segments")
+    const fromTable = (name: string) => Number(md.match(new RegExp(`\\|\\s*\\*\\*${name}\\*\\*[^|]*\\|\\s*(\\d+)\\s*\\|`, 'i'))?.[1])
+    for (const [kind, name] of [['scheme', 'scheme'], ['heat', 'heat'], ['home', 'home']] as const) {
+      const clock = CORE.clocks.find((c) => c.kind === kind)!
+      expect(clock.size, `${clock.name} clock`).toBe(fromTable(name))
+    }
+    expect(CORE.clocks.find((c) => c.kind === 'endgame')!.size).toBe(Number(md.match(/endgame clock:\*\*\s*(\d+) segments/)?.[1]))
   })
   it('every demo hero loadout id exists in the data', () => {
     for (const h of heroes) expect(slotsUsed(h).warnings.filter((w) => /isn't in the rules data/.test(w))).toEqual([])

@@ -66,6 +66,16 @@ async function main() {
     if (hErr) throw new Error(`insert characters: ${hErr.message}`)
     const [heroA, heroB] = heroes!.map((h) => h.id as string)
 
+    // New campaigns start with the clock sizes in rules/data/core.json (which match rules.md).
+    const core = JSON.parse(readFileSync(resolve(here, '../../rules/data/core.json'), 'utf8')) as
+      { clocks: { kind: string; size: number }[] }
+    const startClocks = (await gm.from('clocks').select('kind, size').eq('campaign_id', cid)).data ?? []
+    for (const kind of ['scheme', 'heat']) {
+      check(`new campaign's ${kind} clock matches the rules data`,
+        startClocks.find((c) => c.kind === kind)?.size === core.clocks.find((c) => c.kind === kind)?.size,
+        JSON.stringify(startClocks))
+    }
+
     check('GM writes gm_secrets', !(await gm.from('gm_secrets')
       .update({ case: { culprit: 'The Butcher' } }).eq('campaign_id', cid)).error)
     for (const [t, row] of [
