@@ -14,8 +14,14 @@ import { CaseFile } from './screens/gm/CaseFile'
 import { Admin } from './screens/gm/Admin'
 import { Fight } from './screens/gm/Fight'
 import { EncounterLab } from './screens/gm/EncounterLab'
+import { Display } from './screens/Display'
+import { ConnectionBadge } from './components/ConnectionBadge'
 
 export default function App() {
+  return <><Routes /><ConnectionBadge /></>
+}
+
+function Routes() {
   const path = useHashPath()
   const [ready, setReady] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -36,6 +42,7 @@ export default function App() {
   const [a, b, c, d, e] = path
   if (a === 'join' && b) return <Join code={b} />
   if (a === 'c' && b && c === 'sheet') return <Sheet campaignId={b} characterId={d} />
+  if (a === 'c' && b && c === 'display') return <Display campaignId={b} />
   if (a === 'c' && b && c === 'rolls') return <Rolls campaignId={b} characterId={d} stat={e} />
   if (a === 'c' && b && c === 'build') return <Builder campaignId={b} characterId={d} />
   if (a === 'gm' && b === 'new') return <CreateCampaign />

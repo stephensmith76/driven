@@ -6,11 +6,12 @@ const time = (iso: string) => new Date(iso).toLocaleTimeString([], { hour: '2-di
 const sign = (n: number | null) => (n == null ? '' : n >= 0 ? `+${n}` : String(n))
 
 /** The table's roll log: everyone sees it within a couple of seconds, newest first. The GM can delete a roll. */
-export function RollLog({ campaignId, isGm, run, limit = 40 }: {
+export function RollLog({ campaignId, isGm, run, limit = 40, showExport = true }: {
   campaignId: string
   isGm: boolean
   run: Run
   limit?: number
+  showExport?: boolean
 }) {
   const { rows, error } = useRolls(campaignId)
 
@@ -27,7 +28,7 @@ export function RollLog({ campaignId, isGm, run, limit = 40 }: {
     <div className="stack">
       <div className="button-row">
         <span className="muted small">{rows.length} roll{rows.length === 1 ? '' : 's'}</span>
-        <button className="mini secondary" disabled={rows.length === 0} onClick={exportCsv}>Export CSV</button>
+        {showExport && <button className="mini secondary" disabled={rows.length === 0} onClick={exportCsv}>Export CSV</button>}
       </div>
       {error && <p className="error small">{error}</p>}
       {rows.length === 0 && <p className="muted small">No rolls yet.</p>}

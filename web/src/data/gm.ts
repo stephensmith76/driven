@@ -54,6 +54,7 @@ export async function startNight(campaignId: string, night: number, heroes: Char
   }
   const { error } = await supabase.from('campaigns').update({ night: night + 1, phase: 'patrol' }).eq('id', campaignId)
   if (error) throw error
+  await saveNightSnapshot(campaignId, night + 1)
   return raised
 }
 
@@ -72,4 +73,17 @@ export async function revealClue(campaignId: string, clue: { text: string; is_ar
 export async function deleteRow(table: string, id: string) {
   const { error } = await supabase.from(table).delete().eq('id', id)
   if (error) throw error
+}
+
+/** Remember how the table stood when a Night began, for the session report. Never blocks Start Night. */
+export async function saveNightSnapshot(campaignId: string, night: number) {
+  try {
+    const [{ data: characters }, { data: clocks }] = await Promise.all([
+      supabase.from('characters').select('name, harm, stress, drive, dying, home_clock').eq('campaign_id', campaignId).eq('is_npc', false),
+      supabase.from('clocks').select('name, kind, size, filled').eq('campaign_id', campaignId),
+    ])
+    await supabase.from('night_snapshots').upsert(
+      { campaign_id: campaignId, night, at: new Date().toISOString(), state: { characters, clocks } },
+      { onConflict: 'campaign_id,night' })
+  } catch (e) { console.warn('Could not save the Night snapshot', e) }
 }

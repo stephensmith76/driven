@@ -4,6 +4,7 @@ import { useCharacters, useLiveRows } from '../../data/hooks'
 import { setField } from '../../data/writes'
 import { deleteRow } from '../../data/gm'
 import { applyPatch, exportCampaign, resolvePatch, show, undoImport, type Resolution } from '../../data/campaignIO'
+import { sessionReport } from '../../data/sessionReport'
 import { joinLink } from '../../router'
 import { useRunner } from '../../components/Toast'
 import { GmShell, type GmContext } from './GmShell'
@@ -157,8 +158,14 @@ function ExportImport({ campaignId, campaignName, run, report }: {
           download(`${campaignName.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}-${day}.json`, JSON.stringify(data, null, 2))
           report('Exported every table, hidden ones included. Keep the file private: it has the case file.')
         })}>Export campaign</button>
-        <span className="muted small">For Claude after a session: attach the file, get back a patch, import it here.</span>
+        <button className="secondary" onClick={() => run(async () => {
+          const r = await sessionReport(supabase, campaignId)
+          download(`session-report-night-${r.campaign.night}-${new Date().toISOString().slice(0, 10)}.json`, JSON.stringify(r, null, 2))
+          report(`Session report for Night ${r.campaign.night}: ${r.rolls.length} rolls, ${r.helper_questions.length} helper questions.`,
+            r.start_of_night ? [] : ['No start-of-Night snapshot for this Night, so the report holds every roll and has no start state.'])
+        })}>Session report</button>
       </div>
+      <p className="muted small">For Claude after a session: attach the export, get back a patch, import it here. The session report is the evidence for balance work (it includes your GM notes).</p>
 
       <h3>Import a patch</h3>
       <div className="button-row">

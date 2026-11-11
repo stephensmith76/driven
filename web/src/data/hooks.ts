@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { ensureSignedIn, supabase } from './supabase'
+import { overlay, useOfflineVersion } from './offline'
 import { CAMPAIGN_COLUMNS, type Campaign, type Character, type Member } from './types'
 
 type Row = { id: string }
@@ -18,6 +19,7 @@ export function useLiveRows<T extends Row>(
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
   const [nonce, setNonce] = useState(0)
+  useOfflineVersion()
 
   useEffect(() => {
     if (!campaignId) return
@@ -66,7 +68,7 @@ export function useLiveRows<T extends Row>(
 
   /** Load again now (for tables that aren't on Realtime). */
   const reload = useCallback(() => setNonce((n) => n + 1), [])
-  return { rows, error, loading, reload }
+  return { rows: overlay(table, rows), error, loading, reload }
 }
 
 export function useCampaign(campaignId: string | null) {

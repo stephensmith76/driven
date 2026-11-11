@@ -166,3 +166,10 @@ button.token.on { background: var(--filled); color: var(--bg); border-color: var
 .helper-body { width: 100%; max-width: 560px; max-height: 70vh; overflow: auto; box-shadow: 0 4px 16px rgb(0 0 0 / .25); border-color: var(--text); }
 .helper-body textarea { width: 100%; }
 .helper-answer { white-space: pre-wrap; }
+
+/* M7: connection badge */
+.conn-badge { position: fixed; top: 8px; right: 8px; z-index: 6; display: flex; gap: 8px; align-items: center;
+  background: var(--accent); color: var(--accent-text); border-radius: 99px; padding: 4px 6px 4px 12px; font-size: .85rem; }
+.conn-badge button { min-height: 28px; }
+.display { font-size: 1.25rem; }
+.display h1 { font-size: 2rem; }

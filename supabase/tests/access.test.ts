@@ -45,7 +45,7 @@ async function count(c: SupabaseClient, table: string, cid: string) {
   return error ? -1 : (data?.length ?? 0)
 }
 
-const GM_ONLY = ['gm_secrets', 'enemies', 'encounters', 'imports', 'helper_log']
+const GM_ONLY = ['gm_secrets', 'enemies', 'encounters', 'imports', 'helper_log', 'night_snapshots']
 const SHARED = ['clues', 'scene', 'rolls', 'characters', 'clocks']
 
 async function main() {
@@ -83,6 +83,7 @@ async function main() {
       ['encounters', { campaign_id: cid, name: 'Pier' }],
       ['imports', { campaign_id: cid, patch: {} }],
       ['helper_log', { campaign_id: cid, question: 'q' }],
+      ['night_snapshots', { campaign_id: cid, night: 2, state: {} }],
       ['clues', { campaign_id: cid, text: 'A rag' }],
       ['clocks', { campaign_id: cid, name: 'Hidden', visible_to_players: false }],
       ['rolls', { campaign_id: cid, label: 'GM roll' }],

@@ -3,6 +3,7 @@ import { bump, setField } from '../../data/writes'
 import { heroesOf } from '../../data/gm'
 import type { Clock, Clue } from '../../data/types'
 import { joinLink } from '../../router'
+import { QrCode } from '../../components/QrCode'
 import { HeroTrackers } from '../../components/HeroTrackers'
 import { RollLog } from '../../components/RollLog'
 import { RulesNotice } from '../../components/RulesNotice'
@@ -42,6 +43,11 @@ function TableBody({ campaignId, campaign, members }: GmContext & { campaignId: 
         <a href={`#/gm/${campaignId}/night`}>Run the Night →</a>
         <span className="muted small">Join code <strong className="code">{campaign.join_code}</strong></span>
         <button className="mini secondary" onClick={() => { void navigator.clipboard?.writeText(link); report('Join link copied.') }}>Copy join link</button>
+        <a href={`#/c/${campaignId}/display`} target="_blank" rel="noreferrer">Table display ↗</a>
+        <details>
+          <summary className="small">Join QR code</summary>
+          <QrCode text={link} />
+        </details>
       </section>
 
       <div className="gm-grid">
