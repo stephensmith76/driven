@@ -65,7 +65,7 @@ Every stat is used both to act and to defend, so no build is left wide open.
 | Force +3 or higher | 1 | 1 | 0 | 0 |
 | Kevlar vest | 0 | 1 | 1 | 0 |
 | Tactical armor, Armored power | 1 | 1 | 1 | 0 |
-| Toughness (street power) | 1 | 0 | 0 | 0 |
+| Resilience (street power) | 1 | 0 | 0 | 0 |
 
 Take the single highest row that applies to the attack, never two added together. A hero with Force +4 and a Kevlar vest has Toughness 1 against a punch and Toughness 1 against a bullet, never 2.
 
@@ -408,6 +408,8 @@ You can never do everything. That's the point.
 | **Heat** (team) | 6 | Guns (and being seen with a long gun), public fights, collateral damage, Vanity, Vengeance, sloppy feeding (Vampirism on Impact 1 or a miss), a Marked hero seen by civilians | Cops show up to fights on round 3 | Crackdown: a task force, a smear in the press, or someone gets a description. Play it out, then drop Heat to 2. |
 | **Home** (each hero) | 6 | You skip Show Up, you Break, you use a personal clue, you use Resources to buy past a problem, or a villain finds your Lair (+2) | Someone close starts asking questions | Home crisis: lose the job, the relationship ends, someone learns who you are, or a loved one becomes a target. Play it out, then reset to 0. |
 
+**Heroes with no civilian life.** A pure vigilante has no day job or alter ego. Their civilian life, and so Show Up and the Home clock, just stands for whatever anchors them to their humanity, even if it's only feeding a goldfish. Name it when you build the hero. When Home ticks, that anchor is what's slipping, and a Home crisis is that anchor being lost, found or threatened.
+
 ## Archetypes
 
 Your archetype is how you fight and how you earn Drive. Each one has a **Drive trigger** (once per round), a **feature**, and a **Signature Move** (3 Drive, Full Action).
@@ -599,9 +601,9 @@ Powers are adapted from the Supersworn: Street Level cards. Each power has three
 - *Hurl:* on a Strike hit, throw the target into an adjacent zone. If they land on another enemy, both take 1 Harm.
 - *Hold the line:* when you Interpose or shield someone, you get +1 Toughness against that hit.
 
-**Toughness** (street power; hard to hurt)
+**Resilience** (street power; hard to hurt)
 
-- *Start:* Tough. Add one Harm box (Battered, between Hurt and Wounded), and you have Toughness 1 against fists and blunt weapons. This doesn't stack with Toughness from Force +3.
+- *Start:* Tough. Add one Harm box (Battered, between Hurt and Wounded), and you have Toughness 1 against fists and blunt weapons. This doesn't stack with Toughness from Force +3 or from any other source: use your single highest.
 - *I can take it:* when you take Harm and stay on your feet, gain 1 Drive (once per round).
 - *Won't stay down:* once per Night, when you would go Down, stay at Wounded instead.
 
@@ -823,7 +825,7 @@ Too big for street-level heroes, but fine for a Nemesis: **Biokinesis** (reshape
 
 | Hero | Slots | Loadout |
 | --- | --- | --- |
-| Bulwark | Street power (1) + 2 gear | Toughness (source: years of hauling hoses), med kit, riot shield |
+| Bulwark | Street power (1) + 2 gear | Resilience (source: years of hauling hoses), med kit, riot shield |
 | Rook | 3 gear | Kevlar vest, weighted gloves, med kit |
 | Nightjar | Strange power (2) + gear (1) | Shadow Manipulation (Allergy: floodlights burn her skin), fighting sticks |
 | Patchwork | 3 gear | Night-vision goggles, grapple line, earpiece comms (plus Kit) |
@@ -1032,7 +1034,7 @@ After one or two runs, adjust the numbers that felt off: Harm boxes, villain Har
 ### Not yet tested at a table
 
 - The Resources, Acrobat and Already Broken Flairs, the "More gear" list, and Assets.
-- Most powers. Only Shadow Manipulation, Toughness, Invulnerability, Mighty and Healing Factor have seen play or the simulator.
+- Most powers. Only Shadow Manipulation, Resilience, Invulnerability, Mighty and Healing Factor have seen play or the simulator.
 - Floating mysteries (one rough Gemini run), Arcs, Old Habits, and Dawn choices across several Nights.
 
 ### GM practice (from the voice session)

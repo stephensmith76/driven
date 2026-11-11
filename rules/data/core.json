@@ -1,5 +1,5 @@
 {
-  "rules_version": "2026-11-11.2",
+  "rules_version": "2026-11-11.3",
   "defense_base": 12,
   "dice": { "sides": 10, "count": 2, "advantage_count": 3 },
   "edge_bonus": 2,
@@ -49,7 +49,7 @@
     "box_text": {
       "Bruised": "No effect. Clears after any short breather.",
       "Hurt": "No effect yet, but you're one box from real trouble.",
-      "Battered": "No effect. An extra box from Hard to Kill or the Toughness power.",
+      "Battered": "No effect. An extra box from Hard to Kill or the Resilience power.",
       "Wounded": "Disadvantage on Force and Flow rolls.",
       "Down": "Out of the fight. Talk, crawl, or one desperate Quick Action per round at Disadvantage. Or spend your whole turn on Second Wind (3 Drive, no roll, once per fight)."
     },

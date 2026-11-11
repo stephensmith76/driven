@@ -12,7 +12,7 @@ const REFS = {
   'Force +3 or higher': [{ kind: 'force' }],
   'Kevlar vest': [{ kind: 'gear', id: 'kevlar-vest' }],
   'Tactical armor, Armored power': [{ kind: 'gear', id: 'tactical-armor' }, { kind: 'power', id: 'armored' }],
-  'Toughness (street power)': [{ kind: 'power', id: 'toughness' }],
+  'Resilience (street power)': [{ kind: 'power', id: 'toughness' }],
 }
 const COLUMNS = ['blunt', 'blade', 'gun', 'hazard']
 const HEADER = ['Where your Toughness comes from', 'Blunt', 'Blades', 'Guns', 'Electricity, gas, fire']

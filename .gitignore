@@ -8,3 +8,9 @@ supabase/.temp
 __pycache__/
 .pytest_cache/
 .DS_Store
+
+# Old copies of the rules, kept by hand
+rules/older/
+
+# Private errata list for the printed rules
+errata.md
