@@ -23,6 +23,8 @@ export type Sheet = {
   harm?: number
   stress?: number
   drive?: number
+  /** Slots gained through Advancement, on top of the 3 at creation. */
+  extra_slots?: number
   fight_state?: Record<string, unknown>
 }
 
@@ -131,7 +133,9 @@ export function harmBoxes(sheet: Sheet): string[] {
 export type SlotReport = { used: number; max: number; strange: number; warnings: string[] }
 
 /** Slots used out of the max (3 at creation). Breaking a rule is a warning, never a block. */
-export function slotsUsed(sheet: Sheet, max: number = CORE.slots.at_creation): SlotReport {
+export function slotsUsed(sheet: Sheet, opts: { creation?: boolean } = {}): SlotReport {
+  const creation = opts.creation ?? true
+  const max = CORE.slots.at_creation + (sheet.extra_slots ?? 0)
   const costs = CORE.slots.costs
   let used = 0
   let strange = 0
@@ -153,7 +157,7 @@ export function slotsUsed(sheet: Sheet, max: number = CORE.slots.at_creation): S
     // Kit sits outside the slots.
   }
   if (used > max) warnings.unshift(`Uses ${used} slots; the limit is ${max}.`)
-  if (strange > CORE.slots.max_strange_at_creation) warnings.push('Only one strange power is allowed at creation.')
+  if (creation && strange > CORE.slots.max_strange_at_creation) warnings.push('Only one strange power is allowed at creation.')
   const isSpecialist = sheet.archetype_id === 'specialist'
   const kitCount = (sheet.loadout ?? []).filter((i) => i.kind === 'kit').length
   const kitMax = kitPicks(sheet)

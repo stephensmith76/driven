@@ -6,6 +6,7 @@
     "dev": "npm run dev -w web",
     "build": "npm run build -w web",
     "test": "npm test -w web",
-    "test:access": "tsx supabase/tests/access.test.ts"
+    "test:access": "tsx supabase/tests/access.test.ts",
+    "test:sync": "tsx supabase/tests/sync.test.ts"
   }
 }

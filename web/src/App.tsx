@@ -4,6 +4,7 @@ import { useHashPath } from './router'
 import { Home } from './screens/Home'
 import { Join } from './screens/player/Join'
 import { Sheet } from './screens/player/Sheet'
+import { Builder } from './screens/player/Builder'
 import { GmEnter } from './screens/gm/GmEnter'
 import { GmTable } from './screens/gm/GmTable'
 import { CreateCampaign } from './screens/gm/CreateCampaign'
@@ -26,9 +27,10 @@ export default function App() {
   if (error) return <main className="page"><p className="error">Couldn't sign in: {error}</p></main>
   if (!ready) return <main className="page"><p className="muted">Connecting…</p></main>
 
-  const [a, b, c] = path
+  const [a, b, c, d] = path
   if (a === 'join' && b) return <Join code={b} />
-  if (a === 'c' && b && c === 'sheet') return <Sheet campaignId={b} />
+  if (a === 'c' && b && c === 'sheet') return <Sheet campaignId={b} characterId={d} />
+  if (a === 'c' && b && c === 'build') return <Builder campaignId={b} characterId={d} />
   if (a === 'gm' && b === 'new') return <CreateCampaign />
   if (a === 'gm' && b) return <GmTable campaignId={b} />
   if (a === 'gm') return <GmEnter />

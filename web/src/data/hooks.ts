@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { supabase } from './supabase'
+import { ensureSignedIn, supabase } from './supabase'
 import { CAMPAIGN_COLUMNS, type Campaign, type Character, type Member } from './types'
 
 type Row = { id: string }
@@ -120,4 +120,13 @@ export function useMembers(cid: string | null) {
     }
   }, [cid])
   return rows
+}
+
+/** This device's user id and, once loaded, its membership (role, claimed hero) in the campaign. */
+export function useMe(cid: string | null) {
+  const [uid, setUid] = useState<string | null>(null)
+  useEffect(() => { void ensureSignedIn().then(setUid) }, [])
+  const members = useMembers(cid)
+  const member = members.find((m) => m.user_id === uid) ?? null
+  return { uid, member, role: member?.role ?? null, members }
 }

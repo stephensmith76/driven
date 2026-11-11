@@ -118,6 +118,58 @@ async function main() {
     const lock = await player.from('characters').update({ locked: true }).eq('id', heroA)
     check('player cannot lock/unlock own hero', !!lock.error)
 
+    // ---- M2: sheet functions and the GM's lock
+    const heroRow = async (c: SupabaseClient, id: string) =>
+      (await c.from('characters').select('*').eq('id', id).single()).data as Record<string, any> | null
+
+    const hi = await player.rpc('bump_character', { p_character_id: heroA, p_field: 'stress', p_delta: 20 })
+    check('bump_character clamps Stress at 8', !hi.error && hi.data === 8, hi.error?.message)
+    const lo = await player.rpc('bump_character', { p_character_id: heroA, p_field: 'stress', p_delta: -99 })
+    check('bump_character clamps Stress at 0', !lo.error && lo.data === 0)
+    const otherBump = await player.rpc('bump_character', { p_character_id: heroB, p_field: 'drive', p_delta: 1 })
+    check('player cannot bump another hero', !!otherBump.error || otherBump.data === null)
+    const badField = await player.rpc('bump_character', { p_character_id: heroA, p_field: 'locked', p_delta: 1 })
+    check('bump_character rejects unknown trackers', !!badField.error)
+
+    await player.rpc('set_fight_flag', { p_character_id: heroA, p_key: 'uses:taser', p_value: 1 })
+    await player.rpc('set_fight_flag', { p_character_id: heroA, p_key: 'second_wind_used', p_value: true })
+    await player.rpc('set_fight_flag', { p_character_id: heroA, p_key: 'dawn', p_value: { night: 1 } })
+    let fs = (await heroRow(player, heroA))?.fight_state ?? {}
+    check('set_fight_flag sets keys', fs['uses:taser'] === 1 && fs.second_wind_used === true, JSON.stringify(fs))
+    await player.rpc('new_fight', { p_character_id: heroA })
+    fs = (await heroRow(player, heroA))?.fight_state ?? {}
+    check('new_fight clears per-fight flags but keeps the Dawn record',
+      !('uses:taser' in fs) && !('second_wind_used' in fs) && fs.dawn?.night === 1, JSON.stringify(fs))
+    await player.rpc('set_fight_flag', { p_character_id: heroB, p_key: 'second_wind_used', p_value: true })
+    check('player cannot set flags on another hero',
+      !('second_wind_used' in ((await heroRow(gm, heroB))?.fight_state ?? {})))
+
+    await player.from('characters').update({ loadout: [{ kind: 'gear', id: 'knife' }] }).eq('id', heroA)
+    await player.rpc('set_kit', { p_character_id: heroA, p_ids: ['smoke', 'taser'] })
+    const kitLoadout = (await heroRow(player, heroA))?.loadout ?? []
+    check('set_kit replaces Kit picks and keeps gear',
+      kitLoadout.length === 3 && kitLoadout[0].id === 'knife' && kitLoadout[1].kind === 'kit' && kitLoadout[2].id === 'taser',
+      JSON.stringify(kitLoadout))
+
+    await gm.from('characters').update({ locked: true }).eq('id', heroA)
+    const lockedStats = await player.from('characters')
+      .update({ stats: { force: 4, flow: 4, focus: 4, presence: 4 } }).eq('id', heroA)
+    check('locked: player cannot change stats', !!lockedStats.error)
+    const lockedGear = await player.from('characters')
+      .update({ loadout: [{ kind: 'gear', id: 'tactical-armor' }] }).eq('id', heroA)
+    check('locked: player cannot change gear', !!lockedGear.error)
+    const lockedName = await player.from('characters').update({ name: 'Renamed' }).eq('id', heroA)
+    check('locked: player cannot rename', !!lockedName.error)
+    const lockedBump = await player.rpc('bump_character', { p_character_id: heroA, p_field: 'harm', p_delta: 1 })
+    check('locked: trackers still work', !lockedBump.error && lockedBump.data !== null, lockedBump.error?.message)
+    const lockedNotes = await player.from('characters').update({ notes: 'still playing' }).eq('id', heroA)
+    check('locked: notes still work', !lockedNotes.error)
+    const lockedKit = await player.rpc('set_kit', { p_character_id: heroA, p_ids: ['armor'] })
+    check('locked: Kit picks still work', !lockedKit.error)
+    const gmEdit = await gm.from('characters').update({ name: 'GM renamed' }).eq('id', heroA)
+    check('locked: the GM can still edit', !gmEdit.error)
+    await gm.from('characters').update({ locked: false, name: 'Hero A', harm: 2 }).eq('id', heroA)
+
     const r1 = await player.from('rolls').insert({ campaign_id: cid, character_id: heroA, label: 'mine' })
     check('player adds a roll for own hero', !r1.error, r1.error?.message)
     const r2 = await player.from('rolls').insert({ campaign_id: cid, character_id: heroB, label: 'not mine' })

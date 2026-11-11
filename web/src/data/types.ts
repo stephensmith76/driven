@@ -43,6 +43,7 @@ export type Character = {
   dying: boolean
   hidden: boolean
   home_clock: number
+  extra_slots: number
   fight_state: Record<string, unknown>
   notes: string
   is_npc: boolean
@@ -50,3 +51,14 @@ export type Character = {
 }
 
 export const CAMPAIGN_COLUMNS = 'id, name, join_code, rules_version, night, phase, settings'
+
+export type Clock = {
+  id: string; campaign_id: string; name: string
+  kind: 'scheme' | 'heat' | 'goal' | 'endgame' | 'custom'
+  size: number; filled: number; visible_to_players: boolean; sort: number
+}
+
+export type Clue = {
+  id: string; campaign_id: string; text: string
+  found_by: string | null; personal_for: string | null; is_arc: boolean; night: number | null
+}

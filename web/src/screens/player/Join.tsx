@@ -58,7 +58,7 @@ export function Join({ code }: { code: string }) {
         </ul>
       )}
       {campaign.settings.players_can_build && (
-        <button className="secondary" disabled title="Arrives in M2">Make a new character (coming soon)</button>
+        <button className="secondary" onClick={() => go(`/c/${campaignId}/build`)}>Make a new character</button>
       )}
     </main>
   )

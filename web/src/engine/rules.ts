@@ -44,6 +44,8 @@ export type PowerEntry = {
   id: string; name: string; tier: 'street' | 'strange'; slots: number; note?: string
   abilities: { name: string; text: string }[]
   always_on?: boolean; required_flaw?: string
+  /** false: no first-use Stress (Invulnerability, Levitation have their own cost). */
+  first_use_stress?: boolean
   effects?: PowerEffect[]
   toggle?: { name: string; toughness?: ToughnessMap; weapon?: WeaponId }
   counter?: { name: string; min: number; max: number }

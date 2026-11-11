@@ -43,10 +43,16 @@ export function GmTable({ campaignId }: { campaignId: string }) {
                 {' · '}{holders.length ? `${holders.length} device(s)` : 'unclaimed'}
               </p>
               <HeroTrackers hero={h} onChange={(f, v) => write(h.id, f, v)} />
+              <p className="small">
+                <a href={`#/c/${campaignId}/sheet/${h.id}`}>Open sheet</a>{' · '}
+                <a href={`#/c/${campaignId}/build/${h.id}`}>Edit build</a>{' · '}
+                <button className="link" onClick={() => write(h.id, 'locked', !h.locked)}>{h.locked ? 'Unlock build' : 'Lock build'}</button>
+              </p>
             </article>
           )
         })}
       </section>
+      <p><a href={`#/c/${campaignId}/build`}>Add a hero</a></p>
       <p className="muted small">{members.filter((m) => m.role === 'player').length} player device(s) joined.</p>
     </main>
   )

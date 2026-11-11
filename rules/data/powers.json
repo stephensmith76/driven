@@ -209,7 +209,7 @@
       ],
       "extra": "Conspicuous: using any of its abilities ends Hidden, you can't Vanish that round, and anyone watching knows it's you.",
       "sim": null },
-    { "id": "invulnerability", "name": "Invulnerability", "tier": "strange", "slots": 2, "note": "Write in a weakness", "always_on": true, "required_flaw": "allergy",
+    { "id": "invulnerability", "first_use_stress": false, "name": "Invulnerability", "tier": "strange", "slots": 2, "note": "Write in a weakness", "always_on": true, "required_flaw": "allergy",
       "abilities": [
         { "name": "Start", "text": "When you would take Harm from a physical attack, take that much Stress instead. Work out the Harm first (weapon bonuses, then Toughness, then the 1-Harm minimum), then convert what's left. Your weakness gets through normally, and once your Stress is full (8), anything more spills into Harm. Invulnerability skips the always-on first-hit Stress cost." },
         { "name": "Untouchable", "text": "After people see you shrug off a hit, Edge on Presence rolls to intimidate them." },
@@ -289,7 +289,7 @@
         { "name": "Overload", "text": "Take 1 Stress: on a hit with your Strike, the target loses their whole next turn and one gun or gadget they carry is fried. (Like all electricity, Shock Touch already ignores Toughness.)" }
       ],
       "sim": null },
-    { "id": "levitation", "name": "Levitation", "tier": "strange", "slots": 2, "note": "A light, slow cousin of Flight",
+    { "id": "levitation", "first_use_stress": false, "name": "Levitation", "tier": "strange", "slots": 2, "note": "A light, slow cousin of Flight",
       "abilities": [
         { "name": "Start", "text": "Float up or down slowly. Your free move can reach High Ground or drop from any height, and falls never hurt you. Staying airborne costs: the first round is free, then 1 Stress for each round you stay up. Outside a fight, a short hover is free, but holding it for a whole scene costs 1 Stress. This replaces the usual strange-power first-use Stress." },
         { "name": "Drift", "text": "While airborne, enemies on the ground can only reach you with ranged attacks, and you can move one extra zone through open air." },

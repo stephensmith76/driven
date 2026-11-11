@@ -235,3 +235,68 @@ describe('Rules data stays in step with rules.md', () => {
     for (const h of heroes) expect(slotsUsed(h).warnings.filter((w) => /isn't in the rules data/.test(w))).toEqual([])
   })
 })
+
+import { buildWarnings, dawn, priceOf, secondWind, startingDrive, stressFloor, usesLeft } from './index'
+
+describe('Sheet bookkeeping', () => {
+  const t = (o: Partial<{ harm: number; stress: number; drive: number; home_clock: number; dying: boolean }> = {}) =>
+    ({ harm: 0, stress: 0, drive: 2, home_clock: 0, ...o })
+
+  it('prices come from the rules data', () => {
+    expect([priceOf('edge'), priceOf('upgrade'), priceOf('signature'), priceOf('second_wind')]).toEqual([1, 2, 3, 3])
+  })
+  it('Dawn: Sleep It Off clears Stress; Patch Up leaves at most a Bruise; Show Up spares Home', () => {
+    const r = dawn(hero('Rook'), t({ harm: 3, stress: 6, home_clock: 2 }), ['sleep_it_off', 'patch_up'])
+    expect(r.patch).toMatchObject({ stress: 0, harm: 1, home_clock: 3 }) // didn't Show Up -> Home +1
+    const s = dawn(hero('Rook'), t({ harm: 3, stress: 6, home_clock: 2 }), ['patch_up', 'show_up'])
+    expect(s.patch.home_clock).toBeUndefined()
+    expect(s.patch.stress).toBeUndefined()
+  })
+  it('Dawn: Down needs Patch Up and Sleep It Off together', () => {
+    const down = t({ harm: 5 }) // Rook has 5 boxes
+    expect(dawn(hero('Rook'), down, ['patch_up', 'show_up']).patch.harm).toBeUndefined()
+    expect(dawn(hero('Rook'), { ...down, dying: true }, ['patch_up', 'sleep_it_off']).patch).toMatchObject({ harm: 1, dying: false })
+  })
+  it('Dawn: Lay Low and Work the Case are for the GM; Drive above 3 drops to 3', () => {
+    const r = dawn(hero('Rook'), t({ drive: 5 }), ['lay_low', 'work_the_case'])
+    expect(r.gmTasks).toHaveLength(2)
+    expect(r.patch.drive).toBe(3)
+    expect(dawn(hero('Rook'), t({ drive: 3 }), ['show_up', 'lay_low']).patch.drive).toBeUndefined()
+  })
+  it('Home never goes past 6', () => {
+    expect(dawn(hero('Rook'), t({ home_clock: 6 }), ['sleep_it_off', 'lay_low']).patch.home_clock).toBe(6)
+  })
+  it('Already Broken: Stress floor 4 and 4 Drive at the start of a Night', () => {
+    const ab = { ...hero('Rook'), flair_ids: ['already-broken'] }
+    expect(stressFloor(ab)).toBe(4)
+    expect(startingDrive(ab)).toBe(4)
+    expect(startingDrive(hero('Rook'))).toBe(2)
+    expect(dawn(ab, t({ stress: 8 }), ['sleep_it_off', 'show_up']).patch.stress).toBe(4)
+  })
+  it('Second Wind clears one Harm box (a Down hero comes back up at Wounded) and warns, never blocks', () => {
+    expect(secondWind({ harm: 5, drive: 3 }, false)).toMatchObject({ cost: 3, harmDelta: -1, warnings: [] })
+    expect(secondWind({ harm: 0, drive: 1 }, true).warnings).toHaveLength(3)
+  })
+  it('item uses per fight', () => {
+    expect(usesLeft({ 'uses:taser': 1 }, 'taser', 2)).toEqual({ used: 1, perFight: 2, left: 1 })
+    expect(usesLeft(undefined, 'taser', 2).left).toBe(2)
+  })
+  it('Builder warnings: sample heroes are clean; a rule break warns', () => {
+    // rules.md gives Rook and Nightjar a Flair in the simulator, but not Bulwark, Patchwork or the Ledger,
+    // so the only warning a sample hero may have is the one-Flair reminder.
+    for (const h of heroes) {
+      const w = buildWarnings(h, { creation: true }).filter((x) => !/one Flair/.test(x))
+      expect(w, h.name).toEqual([])
+    }
+    const bad = { ...hero('Rook'), stats: { force: 4, flow: 4, focus: 4, presence: 4 }, flair_ids: [] }
+    const w = buildWarnings(bad, { creation: true })
+    expect(w.some((x) => /starting array/.test(x))).toBe(true)
+    expect(w.some((x) => /one Flair/.test(x))).toBe(true)
+  })
+  it('Advancement: extra slots raise the limit, and a second strange power is fine after creation', () => {
+    const s: Sheet = { ...hero('Nightjar'), extra_slots: 3,
+      loadout: [...hero('Nightjar').loadout!, { kind: 'power', id: 'mighty', flaw: 'marked' }, { kind: 'gear', id: 'knife' }] }
+    expect(slotsUsed(s, { creation: false })).toMatchObject({ used: 6, max: 6, warnings: [] })
+    expect(slotsUsed(s).warnings.some((x) => /one strange power/.test(x))).toBe(true)
+  })
+})
