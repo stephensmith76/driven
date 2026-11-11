@@ -23,7 +23,9 @@ export default function App() {
     <>
       <Routes />
       <footer className="site-links small muted">
-        <a href="./rules/rules.md" target="_blank" rel="noreferrer">Rules</a> · <a href="#/errata">Errata</a>
+        <a href="./rules/rules.md" target="_blank" rel="noreferrer">Rules</a> ·{' '}
+        <a href={`./rules/${encodeURIComponent('Driven - Street Level Heroic RPG.pdf')}`} target="_blank" rel="noreferrer">Rules (PDF)</a> ·{' '}
+        <a href="#/errata">Errata</a>
       </footer>
       <ConnectionBadge />
     </>

@@ -40,7 +40,8 @@ export function Errata() {
   return (
     <main className="page wide errata">
       <p className="small">
-        <a href="#/">← Back</a> · <a href="./rules/rules.md" target="_blank" rel="noreferrer">Read the current rules</a>
+        <a href="#/">← Back</a> · <a href="./rules/rules.md" target="_blank" rel="noreferrer">Read the current rules</a> ·{' '}
+        <a href={`./rules/${encodeURIComponent('Driven - Street Level Heroic RPG.pdf')}`} target="_blank" rel="noreferrer">Rules (PDF)</a>
       </p>
       {error && <p className="error">Couldn't load the errata. Try again when you have a connection.</p>}
       {!blocks && !error && <p className="muted">Loading…</p>}
