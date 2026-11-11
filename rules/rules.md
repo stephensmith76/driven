@@ -65,6 +65,7 @@ Every stat is used both to act and to defend, so no build is left wide open.
 | Force +3 or higher | 1 | 1 | 0 | 0 |
 | Kevlar vest | 0 | 1 | 1 | 0 |
 | Tactical armor, Armored power | 1 | 1 | 1 | 0 |
+| Powered armor | 2 | 2 | 2 | 0 |
 | Resilience (street power) | 1 | 0 | 0 | 0 |
 
 Take the single highest row that applies to the attack, never two added together. A hero with Force +4 and a Kevlar vest has Toughness 1 against a punch and Toughness 1 against a bullet, never 2.
@@ -515,6 +516,7 @@ Gear can be lost. Disarming you, smashing your gear, or catching you without it 
 | --- | --- |
 | Kevlar vest | Toughness 1 against guns and blades. Doesn't stack with other Toughness. |
 | Tactical armor | Toughness 1 against everything, but Disadvantage on Vanish and climbing. |
+| Powered armor (takes 2 slots) | Toughness 2 against blunt, blades and guns. Unreliable: when you roll a Miss while wearing it, the GM can cut it out (out of power, a jammed joint, a short circuit, whatever fits the scene). While it is offline it gives no Toughness. Spend a Quick Action to get it running again, or it is repaired at Dawn. Doesn't stack with other Toughness. |
 | Sidearm | A gun (Flow to shoot). Far range is at Disadvantage. |
 | Long gun | A gun with no Far penalty. Being seen carrying one is +1 Heat. |
 | Light melee (baton, fighting sticks, weighted gloves) | +1 Harm on Impact 2 or better. Works with Strikes and Jabs. |
@@ -603,7 +605,7 @@ Powers are adapted from the Supersworn: Street Level cards. Each power has three
 
 **Resilience** (street power; hard to hurt)
 
-- *Start:* Tough. Add one Harm box (Battered, between Hurt and Wounded), and you have Toughness 1 against fists and blunt weapons. This doesn't stack with Toughness from Force +3 or from any other source: use your single highest.
+- *Start:* Tough. Add one Harm box (Battered, between Hurt and Wounded), and you have Toughness 1 against fists and blunt weapons (not blades or bullets: it is grit, not magic). This doesn't stack with Toughness from Force +3 or from any other source: use your single highest.
 - *I can take it:* when you take Harm and stay on your feet, gain 1 Drive (once per round).
 - *Won't stay down:* once per Night, when you would go Down, stay at Wounded instead.
 

@@ -9,6 +9,8 @@ export type SimHero = {
   boxes: number
   weapon: string
   armor_guns: number; armor_all: number; tough_blunt: number
+  /** Only present when true (powered armor). */
+  armor_flaky?: boolean
   guard_bonus: number; medkit: number
   flairs: string[]
   power: string; strange: boolean
@@ -41,6 +43,7 @@ export function simHero(sheet: Sheet, key?: string): SimHero {
     if (sim.weapon && h.weapon === 'unarmed') h.weapon = sim.weapon
     if (sim.armor_guns) h.armor_guns = Math.max(h.armor_guns, sim.armor_guns)
     if (sim.armor_all) h.armor_all = Math.max(h.armor_all, sim.armor_all)
+    if (sim.armor_flaky) h.armor_flaky = true
     if (sim.tough_blunt) h.tough_blunt = Math.max(h.tough_blunt, sim.tough_blunt)
     if (sim.guard_bonus) h.guard_bonus += sim.guard_bonus
     if (sim.boxes_bonus) h.boxes += sim.boxes_bonus

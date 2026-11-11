@@ -143,6 +143,7 @@ export const SIM_LIMITS = [
   'Several named enemies work, but hero tactics focus the first one standing.',
   'No zones or goal clocks.',
   'Fixed tactics.',
+  'Powered armor cuts out on a Miss and is back on at the wearer’s next turn; the Quick Action that costs is not counted.',
   'Five powers modeled: Resilience, Shadow Manipulation, Mighty, Invulnerability, Healing Factor.',
   'Four Kit items modeled: Taser, Flashbang, Smoke, Armor.',
 ]

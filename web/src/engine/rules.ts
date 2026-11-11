@@ -20,6 +20,7 @@ export type SimFields = {
   weapon?: WeaponId
   armor_guns?: number
   armor_all?: number
+  armor_flaky?: boolean
   tough_blunt?: number
   guard_bonus?: number
   boxes_bonus?: number
@@ -34,6 +35,8 @@ export type GearEntry = {
   id: string; name: string; slots: number; text: string
   group?: string; trial?: boolean
   weapon?: WeaponId; toughness?: ToughnessMap; guard?: number; uses_per_fight?: number
+  /** Powered armor: a Miss can cut it out. The sheet tracks that with the flag `offline:<id>`. */
+  unreliable?: boolean
   sim: SimFields
 }
 export type KitEntry = { id: string; name: string; text: string; toughness?: ToughnessMap; sim: SimFields }

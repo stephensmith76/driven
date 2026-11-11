@@ -46,6 +46,25 @@ describe('Toughness', () => {
     expect(toughness(r, 'blade').value).toBe(1)
     expect(toughness(r, 'blunt').value).toBe(1)
   })
+  it('Powered armor is Toughness 2 against blunt, blades and guns, costs 2 slots, and cuts out', () => {
+    const suit: Sheet = { stats: { force: 0, flow: 0, focus: 0, presence: 0 }, loadout: [{ kind: 'gear', id: 'powered-armor' }] }
+    for (const k of ['blunt', 'blade', 'gun'] as const) expect(toughness(suit, k)).toMatchObject({ value: 2, source: 'Powered armor' })
+    expect(toughness(suit, 'hazard').value).toBe(0)
+    expect(slotsUsed(suit).used).toBe(2)
+    const off: Sheet = { ...suit, fight_state: { 'offline:powered-armor': true } }
+    for (const k of ['blunt', 'blade', 'gun'] as const) expect(toughness(off, k).value).toBe(0)
+    // Force +3 still gives its own 1 against blunt and blades while the suit is out; it never stacks past the best source.
+    const strong: Sheet = { stats: { force: 3, flow: 0, focus: 0, presence: 0 }, loadout: [{ kind: 'gear', id: 'powered-armor' }] }
+    expect(toughness(strong, 'blunt').value).toBe(2)
+    expect(toughness({ ...strong, fight_state: { 'offline:powered-armor': true } }, 'blunt').value).toBe(1)
+    expect(simHero(suit)).toMatchObject({ armor_all: 2, armor_flaky: true })
+  })
+  it('Resilience covers blunt only: blades and bullets still go through', () => {
+    const r: Sheet = { stats: { force: 0, flow: 0, focus: 0, presence: 0 }, loadout: [{ kind: 'power', id: 'toughness' }] }
+    expect(toughness(r, 'blunt').value).toBe(1)
+    expect(toughness(r, 'blade').value).toBe(0)
+    expect(toughness(r, 'gun').value).toBe(0)
+  })
   it('Hazards ignore Toughness', () => {
     expect(toughness(hero('Rook'), 'hazard').value).toBe(0)
   })

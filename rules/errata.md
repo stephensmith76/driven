@@ -57,4 +57,18 @@ Renamed so it can't be confused with the Toughness you get from Force +3. Nothin
 - **Design notes, list of powers that have seen play:** "Shadow Manipulation, Toughness, Invulnerability..." is now "Shadow Manipulation, Resilience, Invulnerability...".
 - **Resilience, "Tough" ability.**
   - Was: "...you have Toughness 1 against fists and blunt weapons. This doesn't stack with Toughness from Force +3."
-  - Now: "...you have Toughness 1 against fists and blunt weapons. This doesn't stack with Toughness from Force +3 or from any other source: use your single highest."
+  - Now: "...you have Toughness 1 against fists and blunt weapons (not blades or bullets: it is grit, not magic). This doesn't stack with Toughness from Force +3 or from any other source: use your single highest."
+
+## 5. Powered armor (Nov 11)
+
+A new piece of gear for heroes in advanced armor, such as a power suit. Add this row to the Toughness table in the Stats and defenses chapter, after "Tactical armor, Armored power":
+
+| Where your Toughness comes from | Blunt | Blades | Guns | Electricity, gas, fire |
+| --- | --- | --- | --- | --- |
+| Powered armor | 2 | 2 | 2 | 0 |
+
+And add this row to the Gear table, after "Tactical armor":
+
+- **Powered armor (takes 2 slots).** Toughness 2 against blunt, blades and guns. Unreliable: when you roll a Miss while wearing it, the GM can cut it out (out of power, a jammed joint, a short circuit, whatever fits the scene). While it is offline it gives no Toughness. Spend a Quick Action to get it running again, or it is repaired at Dawn. Doesn't stack with other Toughness.
+
+Toughness still never goes above 2. The Armored power (strange) is unchanged.

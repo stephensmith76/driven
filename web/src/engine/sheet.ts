@@ -99,7 +99,11 @@ export function toughness(
   if (attackKind !== 'hazard') {
     if (sheet.stats.force >= t.force_threshold) add(`Force +${sheet.stats.force}`, tableToughness('force'))
     for (const r of resolveLoadout(sheet)) {
-      if (r.kind === 'gear') add(r.entry.name, tableToughness('gear', r.item.id) ?? r.entry.toughness)
+      if (r.kind === 'gear') {
+        // Powered armor that has been cut out gives nothing until it is switched back on.
+        if (r.entry.unreliable && sheet.fight_state?.[`offline:${r.item.id}`]) continue
+        add(r.entry.name, tableToughness('gear', r.item.id) ?? r.entry.toughness)
+      }
       if (r.kind === 'kit') add(`Kit: ${r.entry.name}`, r.entry.toughness)
       if (r.kind === 'power') {
         add(r.entry.name, tableToughness('power', r.item.id))

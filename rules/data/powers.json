@@ -39,7 +39,7 @@
       "sim": null },
     { "id": "toughness", "name": "Resilience", "tier": "street", "slots": 1, "note": "Hard to hurt",
       "abilities": [
-        { "name": "Tough", "text": "Add one Harm box (Battered, between Hurt and Wounded), and you have Toughness 1 against fists and blunt weapons. This doesn't stack with Toughness from Force +3 or from any other source: use your single highest." },
+        { "name": "Tough", "text": "Add one Harm box (Battered, between Hurt and Wounded), and you have Toughness 1 against fists and blunt weapons (not blades or bullets: it is grit, not magic). This doesn't stack with Toughness from Force +3 or from any other source: use your single highest." },
         { "name": "I can take it", "text": "When you take Harm and stay on your feet, gain 1 Drive (once per round)." },
         { "name": "Won't stay down", "text": "Once per Night, when you would go Down, stay at Wounded instead." }
       ],

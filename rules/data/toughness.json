@@ -44,6 +44,19 @@
       ]
     },
     {
+      "source": "Powered armor",
+      "blunt": 2,
+      "blade": 2,
+      "gun": 2,
+      "hazard": 0,
+      "refs": [
+        {
+          "kind": "gear",
+          "id": "powered-armor"
+        }
+      ]
+    },
+    {
       "source": "Resilience (street power)",
       "blunt": 1,
       "blade": 0,

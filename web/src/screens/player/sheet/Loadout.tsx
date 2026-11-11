@@ -35,6 +35,11 @@ export function Loadout({ hero, report, run }: {
 
   const toggleKit = (id: string) => run(() => setKit(hero.id, kitIds.includes(id) ? kitIds.filter((k) => k !== id) : [...kitIds, id]))
   const toggleKitUsed = (id: string) => run(() => setFlag(hero.id, `kit:${id}`, fs[`kit:${id}`] ? null : true))
+  const toggleOffline = (id: string, name: string) => run(async () => {
+    const off = Boolean(fs[`offline:${id}`])
+    await setFlag(hero.id, `offline:${id}`, off ? null : true)
+    report(off ? `${name} is back online.` : `${name} cut out: no Toughness from it until you switch it back on.`)
+  })
   const toggleActive = (id: string) => run(() => setFlag(hero.id, `active:${id}`, fs[`active:${id}`] ? null : true))
 
   return (
@@ -51,6 +56,15 @@ export function Loadout({ hero, report, run }: {
             <div key={i} className="item">
               <p><strong>{g.name}</strong>{r.item.custom_text && <span className="muted"> · {r.item.custom_text}</span>}</p>
               <p className="small">{g.text}</p>
+              {g.unreliable && (
+                <p className="small">
+                  Status: <strong>{fs[`offline:${g.id}`] ? 'OFFLINE' : 'online'}</strong>{' '}
+                  <button className={`mini ${fs[`offline:${g.id}`] ? '' : 'secondary'}`} aria-pressed={Boolean(fs[`offline:${g.id}`])}
+                    onClick={() => toggleOffline(g.id, g.name)}>
+                    {fs[`offline:${g.id}`] ? 'Switch back on (Quick Action)' : 'Cut out'}
+                  </button>
+                </p>
+              )}
               {u && (
                 <p className="small">
                   Uses left this fight: <strong>{u.left}/{u.perFight}</strong>{' '}

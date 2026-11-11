@@ -39,7 +39,7 @@ Rule switches (defaults match the current rules doc):
 import argparse, itertools, json, random, statistics, sys
 from dataclasses import dataclass, field, fields
 
-SIM_VERSION = "2026-11-11.2"   # bump when fight logic or run_encounter's output changes
+SIM_VERSION = "2026-11-11.3"   # bump when fight logic or run_encounter's output changes
 
 # ---------------------------------------------------------------- dice
 DEF_BASE = 12   # defenses are DEF_BASE + stat (was 10 before the Nov 9 balance pass)
@@ -117,8 +117,10 @@ class Hero:
     power: str = ""
     strange: bool = False          # power is strange tier (costs 2 slots, first-use Stress)
     guard_bonus: int = 0           # riot shield etc.
-    tough_blunt: int = 0           # Toughness power: Toughness 1 vs fists and blunt
+    tough_blunt: int = 0           # Resilience power: Toughness 1 vs fists and blunt
+    armor_flaky: bool = False      # powered armor: a Miss on the wearer's roll cuts it out until their next turn
     # state
+    armor_off: bool = False
     harm: int = 0; stress: int = 0; drive: int = 2   # start each Night with 2 (was 1)
     hidden: bool = False; dying: bool = False
     engaged_with: object = None
@@ -145,7 +147,7 @@ class Hero:
     def wounded(self): return (not self.down) and self.harm >= self.boxes - 1
     def toughness(self, gun, blade):
         base = 1 if (self.force >= 3 or self.tough_blunt) and not gun and not blade else (1 if self.force >= 3 and blade else 0)
-        vs = self.armor_all
+        vs = 0 if self.armor_off else self.armor_all
         if (gun or blade) and self.armor_guns: vs = max(vs, self.armor_guns)
         t = max(base, vs)
         if self.stand_ground: t = min(2, t + 1)
@@ -327,6 +329,7 @@ class Fight:
             self.arch_drive(payoff, "Detective: Read paid off")
         if imp == 0:
             h.stats["misses"] += 1
+            if h.armor_flaky and h.armor_all: h.armor_off = True   # the GM cuts the armor out on a Miss
             if self.rules.stress_on_miss: add_stress(h, 1)
         self.log(f"   {h.name} {stat} {getattr(h,stat):+d}{' Edge' if edge else ''}"
                  f"{' Adv' if a>0 else ' Dis' if a<0 else ''} {dice} = {tot} vs {defense}: "
@@ -432,6 +435,7 @@ class Fight:
                 h.stats["second_winds"] += 1; self.log(f" {h.name}: Second Wind, back up at Wounded")
             return
         h.stand_ground = False
+        h.armor_off = False   # powered armor comes back on this turn (really a Quick Action; the sim lets it happen free)
         # med kit on a Downed ally
         downed = [x for x in self.heroes if x.down and x is not h]
         if h.medkit and downed:
@@ -539,6 +543,7 @@ class Fight:
         h.stats["rolls"] += 1
         if imp == 0:
             h.stats["misses"] += 1
+            if h.armor_flaky and h.armor_all: h.armor_off = True
             if self.rules.stress_on_miss: add_stress(h, 1)
         self.log(f"   {h.name} Jab {dice} = {tot} vs {t.guard}: {'MISS' if imp==0 else 'hit'}")
         if imp: self.resolve(h, t, 1, stat, jab=True)

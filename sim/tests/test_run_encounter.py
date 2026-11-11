@@ -211,3 +211,19 @@ def test_bad_role():
     c = cfg(); c["villains"] = [dict(LT, role="boss")]
     with pytest.raises(ValueError, match="role"):
         S.run_encounter(c)
+
+
+def _ledger_with(**fields):
+    c = cfg(runs=3000)
+    for h in c["heroes"]:
+        if h["key"] == "ledger":
+            h.update({"armor_guns": 0, "armor_all": 0, **fields})
+    return S.run_encounter(c)["heroes"]["ledger"]["down_pct"]
+
+
+def test_powered_armor_helps_but_less_when_it_cuts_out():
+    """Toughness 2 armor protects the wearer; a Miss cutting it out gives some of that back, not all."""
+    bare = _ledger_with()
+    reliable = _ledger_with(armor_all=2)
+    flaky = _ledger_with(armor_all=2, armor_flaky=True)
+    assert reliable < flaky < bare, (reliable, flaky, bare)
