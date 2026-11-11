@@ -5,6 +5,9 @@ import { bump, newFight, setField } from '../../data/writes'
 import type { Clock, Clue } from '../../data/types'
 import { HeroTrackers } from '../../components/HeroTrackers'
 import { Track } from '../../components/Track'
+import { ScenePanel } from '../../components/ScenePanel'
+import { RollLog } from '../../components/RollLog'
+import type { Scene } from '../../data/types'
 import { RulesNotice } from '../../components/RulesNotice'
 import { CORE, archetype, defenses, slotsUsed, toughness, trait, type AttackKind } from '../../engine'
 import { Actions } from './sheet/Actions'
@@ -23,6 +26,7 @@ export function Sheet({ campaignId, characterId }: { campaignId: string; charact
   const { rows: characters } = useCharacters(campaignId)
   const { rows: clocks } = useLiveRows<Clock>('clocks', campaignId, '*', { column: 'sort' })
   const { rows: clues } = useLiveRows<Clue>('clues', campaignId, '*', { column: 'night' })
+  const { rows: scenes } = useLiveRows<Scene>('scene', campaignId)
   const { member, role } = useMe(campaignId)
 
   const [status, setStatus] = useState<{ message: string; warnings: string[] } | null>(null)
@@ -89,7 +93,7 @@ export function Sheet({ campaignId, characterId }: { campaignId: string; charact
             <div key={s} className="stat">
               <span className="muted small">{CORE.stats.find((x) => x.id === s)!.name}</span>
               <strong>{hero.stats[s] > 0 ? `+${hero.stats[s]}` : hero.stats[s]}</strong>
-              <button className="mini secondary" disabled title="The dice roller arrives in M4">Roll</button>
+              <a className="button secondary mini-link" href={`#/c/${campaignId}/rolls/${hero.id}/${s}`}>Roll</a>
             </div>
           ))}
         </div>
@@ -135,6 +139,17 @@ export function Sheet({ campaignId, characterId }: { campaignId: string; charact
             ))}
           </ul>
         )}
+      </section>
+
+      <section className="card stack">
+        <h2>Scene</h2>
+        <ScenePanel scene={scenes[0]} characters={characters} />
+        <p className="small"><a href={`#/c/${campaignId}/rolls/${hero.id}`}>Open the dice roller and full roll log →</a></p>
+      </section>
+
+      <section className="card stack">
+        <h2>Recent rolls</h2>
+        <RollLog campaignId={campaignId} isGm={isGm} run={run} limit={5} />
       </section>
 
       <section className="card stack">

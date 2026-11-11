@@ -1,6 +1,6 @@
 // Derived numbers for a character sheet. Pure functions, no network.
 import {
-  CORE, archetype, flair, gearItem, kitItem, power,
+  CORE, archetype, flair, gearItem, kitItem, power, tableToughness,
   type AttackKind, type GearEntry, type KitEntry, type PowerEffect, type PowerEntry, type ToughnessMap,
 } from './rules'
 
@@ -97,13 +97,12 @@ export function toughness(
     if (v) sources.push({ source, value: v })
   }
   if (attackKind !== 'hazard') {
-    if (sheet.stats.force >= t.force_threshold && (attackKind === 'blunt' || attackKind === 'blade')) {
-      sources.push({ source: `Force +${sheet.stats.force}`, value: 1 })
-    }
+    if (sheet.stats.force >= t.force_threshold) add(`Force +${sheet.stats.force}`, tableToughness('force'))
     for (const r of resolveLoadout(sheet)) {
-      if (r.kind === 'gear') add(r.entry.name, r.entry.toughness)
+      if (r.kind === 'gear') add(r.entry.name, tableToughness('gear', r.item.id) ?? r.entry.toughness)
       if (r.kind === 'kit') add(`Kit: ${r.entry.name}`, r.entry.toughness)
       if (r.kind === 'power') {
+        add(r.entry.name, tableToughness('power', r.item.id))
         for (const e of powerEffects(r.entry, r.item)) add(r.entry.name, e.toughness)
         if (r.entry.toggle && opts.active?.includes(r.entry.id)) add(`${r.entry.name} (${r.entry.toggle.name})`, r.entry.toggle.toughness)
       }

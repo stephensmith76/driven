@@ -62,3 +62,21 @@ export type Clue = {
   id: string; campaign_id: string; text: string
   found_by: string | null; personal_for: string | null; is_arc: boolean; night: number | null
 }
+
+export type RollRow = {
+  id: string; campaign_id: string; at: string
+  actor_name: string; character_id: string | null; label: string; stat: string | null
+  bonus: number; edge: boolean; adv: number; defense: number | null
+  dice: number[]; kept: number[]; total: number | null; margin: number | null; impact: number | null
+  mode: 'app' | 'manual'; note: string; rules_version: string | null
+}
+
+export type Zone = { id: string; name: string; tags: string[]; links: string[] }
+
+export type Scene = {
+  id: string; campaign_id: string; title: string; text: string; round: number
+  zones: Zone[]
+  /** Hero id -> zone id. Enemies keep their zone on the enemies row. */
+  positions: Record<string, string>
+  public_enemies: import('../engine').PublicEnemy[]
+}

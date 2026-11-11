@@ -9,6 +9,7 @@ import kit from '../../../rules/data/kit.json'
 import powersFile from '../../../rules/data/powers.json'
 import villainsFile from '../../../rules/data/villains.json'
 import tagsFile from '../../../rules/data/tags.json'
+import toughnessFile from '../../../rules/data/toughness.json'
 
 export type AttackKind = 'blunt' | 'blade' | 'gun' | 'hazard'
 export type WeaponId = 'unarmed' | 'light' | 'heavy' | 'pistol' | 'knife'
@@ -72,6 +73,14 @@ export const POWER_RULES = powersFile.rules
 export const POWER_FLAWS = powersFile.flaws
 export const VILLAINS = villainsFile
 export const TAGS = tagsFile
+
+/** The Toughness table from rules.md (generated: `npm run gen:toughness`). The authority for what each source covers. */
+type ToughnessRef = { kind: 'force' } | { kind: 'gear' | 'power'; id: string }
+export const TOUGHNESS_ROWS = toughnessFile.rows as (ToughnessMap & { source: string; refs: ToughnessRef[] })[]
+export function tableToughness(kind: 'force' | 'gear' | 'power', id?: string): ToughnessMap | undefined {
+  const row = TOUGHNESS_ROWS.find((r) => r.refs.some((x) => x.kind === kind && (kind === 'force' || (x as { id: string }).id === id)))
+  return row && { blunt: row.blunt, blade: row.blade, gun: row.gun, hazard: row.hazard }
+}
 
 const index = <T extends { id: string }>(xs: T[]) => new Map(xs.map((x) => [x.id, x]))
 const byId = {

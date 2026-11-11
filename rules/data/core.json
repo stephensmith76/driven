@@ -1,5 +1,5 @@
 {
-  "rules_version": "2026-11-10",
+  "rules_version": "2026-11-11",
   "defense_base": 12,
   "dice": { "sides": 10, "count": 2, "advantage_count": 3 },
   "edge_bonus": 2,

@@ -128,3 +128,29 @@ table.data th { font-weight: 600; color: var(--muted); }
 .preview { padding-left: 1.2rem; display: flex; flex-direction: column; gap: 6px; }
 code { font-family: ui-monospace, monospace; font-size: .85em; }
 @media (max-width: 520px) { .gm-grid { grid-template-columns: 1fr; } }
+
+/* M4: dice and fights */
+.grow { flex: 1 1 12rem; }
+.dice-line { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.die {
+  display: inline-flex; align-items: center; justify-content: center; min-width: 2rem; height: 2rem; padding: 0 6px;
+  border-radius: 6px; border: 2px solid var(--text); font-weight: 700; font-variant-numeric: tabular-nums;
+}
+.die.small { min-width: 1.5rem; height: 1.5rem; font-size: .8rem; border-width: 1px; }
+.die.dropped { opacity: .4; border-style: dashed; text-decoration: line-through; }
+.result { border-color: var(--text); }
+.harm-steps { margin: 0; padding-left: 1.2rem; }
+.roll-entry { border-top: 1px solid var(--line); padding-top: 6px; }
+.roll-entry:first-child { border-top: 0; padding-top: 0; }
+a.mini-link { min-height: 36px; padding: 4px 10px; font-size: .875rem; }
+.zones { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 8px; }
+.zone { display: flex; flex-direction: column; gap: 6px; padding: 10px; }
+.zone.target { border-style: dashed; border-color: var(--accent); }
+.tokens { display: flex; flex-wrap: wrap; gap: 6px; }
+.token { display: inline-block; font-size: .8rem; border-radius: 99px; padding: 2px 10px; border: 1px solid var(--line); margin: 0 4px 4px 0; }
+button.token { min-height: 32px; background: transparent; color: var(--text); }
+.token.hero { border-color: var(--text); }
+.token.enemy { border-color: var(--accent); color: var(--accent); }
+button.token.enemy { color: var(--accent); }
+button.token.on { background: var(--filled); color: var(--bg); border-color: var(--filled); }
+.enemy-card input { flex: 1 1 10rem; }

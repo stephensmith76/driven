@@ -158,10 +158,10 @@ describe('Harm', () => {
     expect(harm({ impact: 3, weapon: 'light', targetToughness: 0, jab: true }).harm).toBe(1)
     expect(harm({ impact: 2, weapon: 'pistol', targetToughness: 0, jab: true }).harm).toBe(1)
   })
-  it('Guns add 1 on Impact 2+ and ignore Toughness', () => {
+  it('Guns add 1 on Impact 2+; only armor Toughness (passed in) reduces them', () => {
     expect(harm({ impact: 1, weapon: 'pistol', targetToughness: 1 }).harm).toBe(1)
-    expect(harm({ impact: 2, weapon: 'pistol', targetToughness: 1 }).harm).toBe(3)
-    expect(harm({ impact: 2, gun: true, targetToughness: 2 }).harm).toBe(3)
+    expect(harm({ impact: 2, weapon: 'pistol', targetToughness: 1 }).harm).toBe(2)
+    expect(harm({ impact: 2, gun: true, targetToughness: 2 }).harm).toBe(1)
   })
   it('Mighty adds 1 on Impact 2+ and ignores Toughness', () => {
     expect(harm({ impact: 2, mighty: true, targetToughness: 1 }).harm).toBe(3)
@@ -345,5 +345,28 @@ describe('The Night', () => {
     expect(startNightDrive(hero('Rook'), 0)).toBe(2)
     expect(startNightDrive(hero('Rook'), 3)).toBe(3)
     expect(startNightDrive({ ...hero('Rook'), flair_ids: ['already-broken'] }, 1)).toBe(4)
+  })
+})
+
+describe('Armor vs guns (Stephen, Nov 11): harm() subtracts the Toughness it is handed', () => {
+  const vs = (sheet: Sheet, impact: number, o: { weapon?: 'pistol' | 'unarmed'; mook?: boolean } = {}) => {
+    const weapon = o.weapon ?? 'pistol'
+    const kind = weapon === 'pistol' ? 'gun' : 'blunt'
+    return harm({ impact, weapon, targetToughness: toughness(sheet, kind).value, fromMook: o.mook }).harm
+  }
+  const bulwarkWithPower: Sheet = { stats: { force: 3, flow: 0, focus: 1, presence: 2 }, loadout: [{ kind: 'power', id: 'toughness' }] }
+  it('Impact 2 pistol vs Rook (Force +4, Kevlar) = 2', () => expect(vs(hero('Rook'), 2)).toBe(2))
+  it('Impact 2 pistol vs Nightjar (Force +1, no armor) = 3', () => expect(vs(hero('Nightjar'), 2)).toBe(3))
+  it('Impact 2 pistol vs Bulwark (Force +3, Toughness power, no vest) = 3', () => expect(vs(bulwarkWithPower, 2)).toBe(3))
+  it('Impact 1 pistol vs Rook = 1 (the minimum)', () => expect(vs(hero('Rook'), 1)).toBe(1))
+  it('Impact 2 punch vs Rook = 1', () => expect(vs(hero('Rook'), 2, { weapon: 'unarmed' })).toBe(1))
+  it('Impact 2 mook pistol vs Nightjar = 2 (mook cap, applied last)', () => expect(vs(hero('Nightjar'), 2, { mook: true })).toBe(2))
+  it('toughness table: Force, Kevlar, Tactical armor, Toughness power; hazards always 0', () => {
+    const t = (loadout: Sheet['loadout'], force: number) => (['blunt', 'blade', 'gun', 'hazard'] as const)
+      .map((k) => toughness({ stats: { force, flow: 0, focus: 0, presence: 0 }, loadout }, k).value)
+    expect(t([], 3)).toEqual([1, 1, 0, 0])
+    expect(t([{ kind: 'gear', id: 'kevlar-vest' }], 0)).toEqual([0, 1, 1, 0])
+    expect(t([{ kind: 'gear', id: 'tactical-armor' }], 0)).toEqual([1, 1, 1, 0])
+    expect(t([{ kind: 'power', id: 'toughness' }], 0)).toEqual([1, 0, 0, 0])
   })
 })

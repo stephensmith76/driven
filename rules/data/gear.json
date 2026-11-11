@@ -1,11 +1,9 @@
 [
   { "id": "kevlar-vest", "name": "Kevlar vest", "slots": 1,
     "text": "Toughness 1 against guns and blades. Doesn't stack with other Toughness.",
-    "toughness": { "gun": 1, "blade": 1 },
     "sim": { "armor_guns": 1 } },
   { "id": "tactical-armor", "name": "Tactical armor", "slots": 1,
     "text": "Toughness 1 against everything, but Disadvantage on Vanish and climbing.",
-    "toughness": { "blunt": 1, "blade": 1, "gun": 1 },
     "sim": { "armor_all": 1 } },
   { "id": "sidearm", "name": "Sidearm", "slots": 1,
     "text": "A gun (Flow to shoot). Far range is at Disadvantage.",

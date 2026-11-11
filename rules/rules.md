@@ -60,6 +60,15 @@ Every stat is used both to act and to defend, so no build is left wide open.
 
 **Toughness:** Force +3 or higher gives Toughness 1. Toughness reduces each hit's Impact by 1, but a hit always does at least 1 Harm: an Impact 1 hit against Toughness 1 still deals 1 Harm. It doesn't work against guns unless you have armor or a power that says it does. Toughness doesn't stack: use your single highest source for that attack. Only effects that say "+1 Toughness" (Stand Your Ground, Hold the line) add on top. Toughness can never go above 2. Toughness covers physical blows, blades, and (with armor) bullets. Gas, fire, electricity, and other hazards ignore it unless a power or piece of armor says otherwise.
 
+| Where your Toughness comes from | Blunt | Blades | Guns | Electricity, gas, fire |
+| --- | --- | --- | --- | --- |
+| Force +3 or higher | 1 | 1 | 0 | 0 |
+| Kevlar vest | 0 | 1 | 1 | 0 |
+| Tactical armor, Armored power | 1 | 1 | 1 | 0 |
+| Toughness (street power) | 1 | 0 | 0 | 0 |
+
+Take the single highest row that applies to the attack, never two added together. A hero with Force +4 and a Kevlar vest has Toughness 1 against a punch and Toughness 1 against a bullet, never 2.
+
 **Presence attacks deal Stress, not Harm.** A villain who rattles you with a threat rolls Presence vs your Poise.
 
 ### Starting stats
@@ -113,7 +122,7 @@ Lieutenants have 5. A case's main villain has 10, or 8 for a smaller one. Villai
 | Fists, kicks, thrown junk | No change |
 | Heavy melee (bat, pipe, crowbar) | +1 Harm on a hit, but it takes a Full Action |
 | Blades | +1 Harm against anyone with no Toughness |
-| Guns | +1 Harm on Impact 2 or better (a graze is just a graze) and ignores Toughness. Firing one is loud: +1 Heat |
+| Guns | +1 Harm on Impact 2 or better (a graze is just a graze) and ignores natural Toughness, though armor still works. Firing one is loud: +1 Heat |
 
 **Armor** (a vest, a reinforced suit) gives Toughness as listed under Gear and Powers. A hero with Force +3 and armor still has Toughness 1, not 2.
 
@@ -540,7 +549,7 @@ Gear can be lost. Disarming you, smashing your gear, or catching you without it 
 
 **Martial arts training** (takes a gear slot): your bare hands count as light melee (+1 Harm on Impact 2 or better, works with Strikes and Jabs). It can't be taken away, lost or left at home.
 
-**Gun rules (all guns):** +1 Harm on Impact 2 or better, ignores Toughness, Disadvantage when you're engaged in melee, and +1 Heat for each fight where you fire one.
+**Gun rules (all guns):** +1 Harm on Impact 2 or better, ignores natural Toughness (Force +3) but not armor, Disadvantage when you're engaged in melee, and +1 Heat for each fight where you fire one.
 
 ### Assets
 
@@ -880,7 +889,7 @@ Weakness: his handwritten ledger. Without it, his network falls apart.
 FIFTH STREET SAINTS (Mooks, groups of 3)
 Attack +2   Guard 13  Wits 12  Poise 12   Harm 1 each
 One attack per group per turn, with Edge if all 3 are standing.
-One in each group carries a pistol (+1 Harm on Impact 2+, ignores Toughness, +1 Heat).
+One in each group carries a pistol (+1 Harm on Impact 2+, ignores natural Toughness but not armor, +1 Heat).
 They run when half the gang is down, unless a boss is in sight.
 ```
 

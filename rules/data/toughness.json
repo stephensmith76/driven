@@ -1,0 +1,60 @@
+{
+  "generated_from": "rules/rules.md, Toughness table. Do not edit by hand: run `npm run gen:toughness`.",
+  "rows": [
+    {
+      "source": "Force +3 or higher",
+      "blunt": 1,
+      "blade": 1,
+      "gun": 0,
+      "hazard": 0,
+      "refs": [
+        {
+          "kind": "force"
+        }
+      ]
+    },
+    {
+      "source": "Kevlar vest",
+      "blunt": 0,
+      "blade": 1,
+      "gun": 1,
+      "hazard": 0,
+      "refs": [
+        {
+          "kind": "gear",
+          "id": "kevlar-vest"
+        }
+      ]
+    },
+    {
+      "source": "Tactical armor, Armored power",
+      "blunt": 1,
+      "blade": 1,
+      "gun": 1,
+      "hazard": 0,
+      "refs": [
+        {
+          "kind": "gear",
+          "id": "tactical-armor"
+        },
+        {
+          "kind": "power",
+          "id": "armored"
+        }
+      ]
+    },
+    {
+      "source": "Toughness (street power)",
+      "blunt": 1,
+      "blade": 0,
+      "gun": 0,
+      "hazard": 0,
+      "refs": [
+        {
+          "kind": "power",
+          "id": "toughness"
+        }
+      ]
+    }
+  ]
+}

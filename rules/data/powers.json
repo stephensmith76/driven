@@ -43,7 +43,7 @@
         { "name": "I can take it", "text": "When you take Harm and stay on your feet, gain 1 Drive (once per round)." },
         { "name": "Won't stay down", "text": "Once per Night, when you would go Down, stay at Wounded instead." }
       ],
-      "effects": [{ "level": 1, "boxes_bonus": 1, "toughness": { "blunt": 1 } }],
+      "effects": [{ "level": 1, "boxes_bonus": 1 }],
       "sim": { "power": "Toughness", "tough_blunt": 1, "boxes_bonus": 1 } },
     { "id": "enhanced-senses", "name": "Enhanced Senses", "tier": "street", "slots": 1, "note": "Loud noise, bright light, or strong smells can overwhelm you",
       "abilities": [
@@ -132,7 +132,6 @@
         { "name": "Let it take the hit", "text": "Once per fight, ignore one hit entirely. Roll a d10: on 1 to 3, the armor breaks until you Patch Up at Dawn." }
       ],
       "effects": [
-        { "level": 1, "toughness": { "blunt": 1, "blade": 1, "gun": 1 } },
         { "level": 2, "toughness": { "blade": 2, "gun": 2 } }
       ],
       "sim": { "armor_all": 1 } },

@@ -73,7 +73,7 @@ export type HarmInput = {
   impact: number
   weapon?: WeaponId
   targetToughness: number
-  /** The attack is a gun (also implied by weapon 'pistol'). */
+  /** The attack is a gun (also implied by weapon 'pistol'). Guns ignore innate Toughness (Force, powers) but not armor, so pass the target's Toughness against guns. */
   gun?: boolean
   fromMook?: boolean
   jab?: boolean
@@ -115,7 +115,7 @@ export function harm(input: HarmInput): HarmResult {
   if (input.mighty && impact >= 2) bump('Mighty (+1 on Impact 2+)', 1)
   for (const e of input.extra ?? []) if (e.value) bump(e.source, e.value)
 
-  const ignores = gun ? 'guns ignore Toughness' : input.mighty ? 'Mighty ignores Toughness' : input.pierce ? 'ignores Toughness' : null
+  const ignores = input.mighty ? 'Mighty ignores Toughness' : input.pierce ? 'ignores Toughness' : null
   if (input.targetToughness > 0) {
     if (ignores) steps.push({ label: `Toughness ${input.targetToughness}: ${ignores}`, change: 0, running: h })
     else bump(`Toughness ${input.targetToughness}`, -input.targetToughness)

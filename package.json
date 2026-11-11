@@ -6,10 +6,12 @@
     "dev": "npm run dev -w web",
     "build": "npm run build -w web",
     "test": "npm test -w web",
+    "gen:toughness": "node scripts/gen-toughness.mjs",
     "test:access": "tsx supabase/tests/access.test.ts",
     "test:sync": "tsx supabase/tests/sync.test.ts",
     "test:roundtrip": "tsx supabase/tests/roundtrip.test.ts",
     "test:secrets": "tsx supabase/tests/secrets.test.ts",
-    "test:db": "npm run test:access && npm run test:sync && npm run test:roundtrip && npm run test:secrets"
+    "test:dice": "tsx supabase/tests/dice.test.ts",
+    "test:db": "npm run test:access && npm run test:sync && npm run test:roundtrip && npm run test:secrets && npm run test:dice"
   }
 }

@@ -4,6 +4,7 @@ import { heroesOf } from '../../data/gm'
 import type { Clock, Clue } from '../../data/types'
 import { joinLink } from '../../router'
 import { HeroTrackers } from '../../components/HeroTrackers'
+import { RollLog } from '../../components/RollLog'
 import { RulesNotice } from '../../components/RulesNotice'
 import { ClocksPanel } from '../../components/gm/ClocksPanel'
 import { CluesPanel } from '../../components/gm/CluesPanel'
@@ -54,6 +55,11 @@ function TableBody({ campaignId, campaign, members }: GmContext & { campaignId: 
           <CluesPanel campaignId={campaignId} clues={clues} heroes={heroes} night={campaign.night} run={run} />
         </section>
       </div>
+
+      <section className="card stack">
+        <h2>Roll log</h2>
+        <RollLog campaignId={campaignId} isGm run={run} limit={15} />
+      </section>
 
       <section className="grid">
         {characters.map((h) => {

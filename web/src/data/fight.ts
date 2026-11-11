@@ -1,0 +1,67 @@
+// GM writes for the Fight screen. Enemies are GM-only; after every change to one,
+// the page rewrites scene.public_enemies with the safe summary (SPEC.md "Notes for the build").
+import { supabase } from './supabase'
+import { bump, setField } from './writes'
+import type { Character, Scene } from './types'
+import { enemyHit, heroHit, publicEnemy, standDown, type Enemy } from '../engine'
+
+/** Read every enemy and write the player-safe summary into the scene. */
+export async function syncPublicEnemies(campaignId: string) {
+  const { data, error } = await supabase.from('enemies').select('*').eq('campaign_id', campaignId)
+  if (error) throw error
+  const summary = ((data ?? []) as Enemy[]).map(publicEnemy)
+  const { error: e2 } = await supabase.from('scene').update({ public_enemies: summary }).eq('campaign_id', campaignId)
+  if (e2) throw e2
+}
+
+export async function setEnemyField(campaignId: string, id: string, field: string, value: unknown) {
+  await setField('enemies', id, field, value)
+  await syncPublicEnemies(campaignId)
+}
+
+export async function addEnemy(campaignId: string, draft: Omit<Enemy, 'id' | 'campaign_id'>) {
+  const { error } = await supabase.from('enemies').insert({ campaign_id: campaignId, ...draft })
+  if (error) throw error
+  await syncPublicEnemies(campaignId)
+}
+
+export async function removeEnemy(campaignId: string, id: string) {
+  const { error } = await supabase.from('enemies').delete().eq('id', id)
+  if (error) throw error
+  await syncPublicEnemies(campaignId)
+}
+
+/** Apply a hit to an enemy: Harm for a named enemy, bodies for a mook group. Returns a line for the toast. */
+export async function hitEnemy(campaignId: string, e: Enemy, impact: number, harm: number) {
+  const { patch, note } = enemyHit(e, impact, harm)
+  for (const [k, v] of Object.entries(patch)) await setField('enemies', e.id, k, v)
+  await syncPublicEnemies(campaignId)
+  return `${e.name}: ${note}`
+}
+
+/** Apply Harm to a hero (stops at Down; a later hit makes them Dying). Returns lines for the toast. */
+export async function hitHero(h: Character, harm: number) {
+  const r = heroHit(h, harm)
+  if (r.harmDelta) await bump(h.id, 'harm', r.harmDelta)
+  if (r.dying && !h.dying) await setField('characters', h.id, 'dying', true)
+  return [`${h.name}: ${harm > 0 ? `${r.harmDelta} Harm` : 'no Harm'}.`, ...r.notes]
+}
+
+export async function setScene(sceneId: string, field: keyof Scene, value: unknown) {
+  await setField('scene', sceneId, field, value)
+}
+
+/** End fight: Down heroes who aren't Dying stand up at Wounded, and per-fight flags clear. */
+export async function endFight(heroes: Character[]) {
+  const stood: string[] = []
+  for (const h of heroes) {
+    const to = standDown(h)
+    if (to != null) {
+      await bump(h.id, 'harm', to - h.harm)
+      stood.push(h.name)
+    }
+    const { error } = await supabase.rpc('new_fight', { p_character_id: h.id })
+    if (error) throw error
+  }
+  return stood
+}

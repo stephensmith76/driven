@@ -13,6 +13,7 @@ Machine-readable rules. The sheets, the builder, the dice roller and the simulat
 | `powers.json` | Street and strange powers, flaws, villain-only powers |
 | `villains.json` | Roles, the Butcher, Voss, a lieutenant template, the Saints |
 | `tags.json` | Ranges and zone tags |
+| `toughness.json` | The Toughness table, generated from rules.md by `npm run gen:toughness` (never hand-edited) |
 
 ## Entry fields
 
