@@ -1,6 +1,6 @@
-# Driven: a Street Level RPG companion app
+# Driven - Street Level Heroic RPG: companion app
 
-A table companion for the Street Level RPG. The spec is [SPEC.md](SPEC.md), and the rules are [rules/rules.md](rules/rules.md).
+A table companion for Driven, the Street Level Heroic RPG. The spec is [SPEC.md](SPEC.md), and the rules are [rules/rules.md](rules/rules.md).
 
 - Live site: https://stephensmith76.github.io/driven/
 - Players: open the join link the GM shares (`#/join/<code>`).

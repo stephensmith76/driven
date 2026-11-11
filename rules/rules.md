@@ -1,10 +1,10 @@
-# Street Level: Superhero RPG v2
+# Driven - Street Level Heroic RPG v2
 
 Nov 9, 2026 · @Stephen
 
 ## Overview
 
-Street Level is a tactical superhero RPG about vigilantes who get worn down by the city, and whose flaws break before their bodies do. Fights are quick and played on a simple zone map. Everything around the fights (cases, civilian life, the cops, the press) runs on clocks and Traits.
+Driven is a tactical street-level heroic RPG about vigilantes who get worn down by the city, and whose flaws break before their bodies do. Fights are quick and played on a simple zone map. Everything around the fights (cases, civilian life, the cops, the press) runs on clocks and Traits.
 
 **Core idea:** your Trait is your strength and your weak spot. Pressure (Stress) makes it stronger, then makes it dangerous, then breaks you.
 

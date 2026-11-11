@@ -55,7 +55,7 @@ export function partySummary(heroes: Hero[], d: RulesData): string {
   }).join('\n')
 }
 
-export const SYSTEM_INSTRUCTION = `You are the rules helper for the tabletop game Street Level. The GM asks how to run something. Answer from the RULES text and the PARTY (and SCENE or CASE FILE when supplied) below.
+export const SYSTEM_INSTRUCTION = `You are the rules helper for the tabletop game Driven (Street Level Heroic RPG). The GM asks how to run something. Answer from the RULES text and the PARTY (and SCENE or CASE FILE when supplied) below.
 
 Rules for every answer:
 - Use only the supplied rules. If the rules don't cover it, say so, then offer one suggestion labeled "Ruling".

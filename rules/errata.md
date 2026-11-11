@@ -72,3 +72,14 @@ And add this row to the Gear table, after "Tactical armor":
 - **Powered armor (takes 2 slots).** Toughness 2 against blunt, blades and guns. Unreliable: when you roll a Miss while wearing it, the GM can cut it out (out of power, a jammed joint, a short circuit, whatever fits the scene). While it is offline it gives no Toughness. Spend a Quick Action to get it running again, or it is repaired at Dawn. Doesn't stack with other Toughness.
 
 Toughness still never goes above 2. The Armored power (strange) is unchanged.
+
+## 6. The game is now called Driven (Nov 11)
+
+Only the name changed. On the first page:
+
+- **Title.**
+  - Was: "Street Level: Superhero RPG v2"
+  - Now: "Driven - Street Level Heroic RPG v2"
+- **Overview, first sentence.**
+  - Was: "Street Level is a tactical superhero RPG about vigilantes..."
+  - Now: "Driven is a tactical street-level heroic RPG about vigilantes..."

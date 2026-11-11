@@ -5,7 +5,8 @@ export function Home() {
   const [code, setCode] = useState('')
   return (
     <main className="page">
-      <h1>Street Level</h1>
+      <h1>Driven</h1>
+      <p className="muted small">Street Level Heroic RPG</p>
       <form
         className="card stack"
         onSubmit={(e) => {

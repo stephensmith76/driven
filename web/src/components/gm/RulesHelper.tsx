@@ -48,7 +48,7 @@ export function RulesHelper({ campaignId }: { campaignId: string }) {
   const copy = async () => {
     const party = partySummary(characters.filter((c) => !c.is_npc) as unknown as Hero[], RULES_DATA)
     const rules = new URL('rules/rules.md', window.location.href.split('#')[0]).href
-    const text = `Street Level rules question: ${question.trim()}\n\nParty:\n${party}\n\nRules: ${rules}\n\n` +
+    const text = `Driven rules question: ${question.trim()}\n\nParty:\n${party}\n\nRules: ${rules}\n\n` +
       'Answer from the rules only. Name the roll (who, which stat, defense as a number), what a Miss and each Impact level mean, and two costs for Impact 1.'
     try { await navigator.clipboard.writeText(text); setCopied(true); setTimeout(() => setCopied(false), 2000) }
     catch { setError('Could not copy. Select and copy from the box instead.') }
