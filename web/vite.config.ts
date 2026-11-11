@@ -1,5 +1,5 @@
 import react from '@vitejs/plugin-react'
-import { cpSync, mkdirSync, readFileSync } from 'node:fs'
+import { cpSync, existsSync, mkdirSync, readFileSync, statSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { defineConfig } from 'vitest/config'
 import type { Plugin } from 'vite'
@@ -27,6 +27,14 @@ function serveSimInDev(): Plugin {
     name: 'serve-sim-in-dev',
     apply: 'serve',
     configureServer(server) {
+      // The rules files (rules.md, errata.md, data/) are published at ./rules/ in the build; serve them in dev too.
+      server.middlewares.use('/rules', (req, res, next) => {
+        const root = resolve(repo, 'rules')
+        const file = resolve(root, decodeURIComponent((req.url ?? '/').split('?')[0]).replace(/^\//, ''))
+        if (!file.startsWith(root) || !existsSync(file) || statSync(file).isDirectory()) return next()
+        res.setHeader('Cache-Control', 'no-cache')
+        res.end(readFileSync(file))
+      })
       server.middlewares.use('/sim/street_level_sim.py', (_req, res) => {
         res.setHeader('Content-Type', 'text/x-python; charset=utf-8')
         res.setHeader('Cache-Control', 'no-cache')

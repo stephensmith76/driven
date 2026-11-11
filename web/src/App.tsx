@@ -15,10 +15,19 @@ import { Admin } from './screens/gm/Admin'
 import { Fight } from './screens/gm/Fight'
 import { EncounterLab } from './screens/gm/EncounterLab'
 import { Display } from './screens/Display'
+import { Errata } from './screens/Errata'
 import { ConnectionBadge } from './components/ConnectionBadge'
 
 export default function App() {
-  return <><Routes /><ConnectionBadge /></>
+  return (
+    <>
+      <Routes />
+      <footer className="site-links small muted">
+        <a href="./rules/rules.md" target="_blank" rel="noreferrer">Rules</a> · <a href="#/errata">Errata</a>
+      </footer>
+      <ConnectionBadge />
+    </>
+  )
 }
 
 function Routes() {
@@ -40,6 +49,7 @@ function Routes() {
   if (!ready) return <main className="page"><p className="muted">Connecting…</p></main>
 
   const [a, b, c, d, e] = path
+  if (a === 'errata') return <Errata />
   if (a === 'join' && b) return <Join code={b} />
   if (a === 'c' && b && c === 'sheet') return <Sheet campaignId={b} characterId={d} />
   if (a === 'c' && b && c === 'display') return <Display campaignId={b} />

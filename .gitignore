@@ -11,6 +11,3 @@ __pycache__/
 
 # Old copies of the rules, kept by hand
 rules/older/
-
-# Private errata list for the printed rules
-errata.md

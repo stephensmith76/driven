@@ -173,3 +173,12 @@ button.token.on { background: var(--filled); color: var(--bg); border-color: var
 .conn-badge button { min-height: 28px; }
 .display { font-size: 1.25rem; }
 .display h1 { font-size: 2rem; }
+
+/* Errata page and footer links */
+.site-links { text-align: center; padding: 24px 16px 96px; }
+.errata h1 { font-size: 1.5rem; }
+.errata h2 { font-size: 1.1rem; margin-top: 1.5rem; }
+.errata-list { padding-left: 1.25rem; }
+.errata-table { overflow-x: auto; }
+.errata-table table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+.errata-table th, .errata-table td { border: 1px solid var(--line); padding: 4px 8px; text-align: left; }
