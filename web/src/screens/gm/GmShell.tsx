@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { useCampaign, useMe } from '../../data/hooks'
 import type { Campaign, Member } from '../../data/types'
+import { RulesHelper } from '../../components/gm/RulesHelper'
 
 export type GmContext = { campaign: Campaign; members: Member[]; uid: string | null }
 
@@ -43,6 +44,7 @@ export function GmShell({ campaignId, tab, children }: {
         <span className="muted small">Night {campaign.night}</span>
       </nav>
       {children({ campaign, members, uid })}
+      <RulesHelper campaignId={campaignId} />
     </main>
   )
 }

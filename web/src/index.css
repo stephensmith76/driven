@@ -160,3 +160,9 @@ button.token.on { background: var(--filled); color: var(--bg); border-color: var
 .sim-bar-row { display: grid; grid-template-columns: minmax(5rem, 9rem) 1fr 3.5rem; gap: .5rem; align-items: center; }
 .sim-bar { display: block; height: .7rem; background: var(--line); border-radius: 4px; overflow: hidden; }
 .sim-bar > span { display: block; height: 100%; background: var(--accent); }
+
+/* M6: rules helper dock */
+.helper-dock { position: sticky; bottom: 8px; margin-top: 16px; z-index: 4; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+.helper-body { width: 100%; max-width: 560px; max-height: 70vh; overflow: auto; box-shadow: 0 4px 16px rgb(0 0 0 / .25); border-color: var(--text); }
+.helper-body textarea { width: 100%; }
+.helper-answer { white-space: pre-wrap; }

@@ -14,7 +14,9 @@
     "test:roundtrip": "tsx supabase/tests/roundtrip.test.ts",
     "test:secrets": "tsx supabase/tests/secrets.test.ts",
     "test:dice": "tsx supabase/tests/dice.test.ts",
-    "test:db": "npm run test:access && npm run test:sync && npm run test:roundtrip && npm run test:secrets && npm run test:dice",
-    "test:sim": "python -m pytest sim/tests -q && tsx scripts/sim-check.ts"
+    "test:db": "npm run test:access && npm run test:sync && npm run test:roundtrip && npm run test:secrets && npm run test:dice && npm run test:demo && npm run test:helper",
+    "test:sim": "python -m pytest sim/tests -q && tsx scripts/sim-check.ts",
+    "test:demo": "tsx supabase/tests/demo.test.ts",
+    "test:helper": "tsx supabase/tests/helper.test.ts"
   }
 }
