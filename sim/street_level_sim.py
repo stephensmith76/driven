@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Street Level fight simulator (v2 rules, post Session 1).
+Driven fight simulator (rules version 2026-11-12.21).
 
 Plays out fights by the rules thousands of times and reports balance numbers:
 win rate, rounds, Harm taken, heroes Down or Dying, Drive earned and spent,
@@ -34,12 +34,18 @@ Rule switches (defaults match the current rules doc):
   --no-down-stress / --no-villain-presence / --no-strange-stress / --no-invuln-overflow
                        turn off the post-Session-1 Stress rules one at a time
   --config FILE        run an encounter in the app's JSON format, print the result as JSON
+  --objective N        the fight has an Objective of N steps (3 = the Cannery's Free the hostage);
+                       non-fighters work it, and finishing it wins the fight
+  --hostage N          a clock of N that ticks each round; when it fills every hero takes 2 Stress
+  --no-grit / --no-light-jab / --no-villain-stress / --old-weapons
+                       turn off the Nov 11 and 12 rule changes one at a time
+  Leader test hero: marshal (Presence +4, Rally, Carry the weight, On My Signal)
   Extra test heroes with strange powers: jessica (Mighty), luke (Invulnerability), logan (Healing Factor)
 """
 import argparse, itertools, json, random, statistics, sys
 from dataclasses import dataclass, field, fields
 
-SIM_VERSION = "2026-11-11.3"   # bump when fight logic or run_encounter's output changes
+SIM_VERSION = "2026-11-12.1"   # bump when fight logic or run_encounter's output changes
 
 # ---------------------------------------------------------------- dice
 DEF_BASE = 12   # defenses are DEF_BASE + stat (was 10 before the Nov 9 balance pass)
@@ -102,6 +108,16 @@ class Rules:
     broken_drive: int = 3          # its starting Drive
     kit_items: str = "taser,flashbang,smoke"   # Patchwork's 3 Kit picks for the Night
     heal_hurt_cost: bool = True    # current rule: a heal after being hurt since your last turn costs 1 Stress  # one group of 3 mooks per hero (False = always 2 groups)
+    # Nov 11 and 12 rules
+    objective: int = 0             # Objective steps (0 = none). 3 = the Cannery's Free the hostage
+    obj_per_round: int = 0         # at most this many Objective steps finished per round (0 = no limit)
+    hostage: int = 0               # a clock that ticks each round; full = 2 Stress to every hero (0 = none)
+    grit: bool = True              # Grit your teeth: 1 Stress to ignore Wounded for a turn
+    light_jab: bool = True         # a Jab with light melee has no -2
+    new_weapons: bool = True       # knife +1 only on Impact 2+; heavy melee never on a Jab
+    villain_stress: bool = True    # named enemies have a Stress track; Breaking gives every attack on them Edge
+    spite_fraying: bool = True     # a Fraying Spite hero: the attacker takes 1 Stress, once per round
+    taser_named: bool = True       # a taser gives a named enemy Disadvantage on their next roll (not a lost Quick Action)
 
 # ---------------------------------------------------------------- combatants
 @dataclass
@@ -131,6 +147,9 @@ class Hero:
     broke: bool = False
     kit_used: tuple = ()
     adv_next: bool = False
+    grit_on: bool = False          # Grit your teeth is on this turn
+    rally_edge: bool = False       # a Leader's Rally: Edge on the next roll
+    carry_used: bool = False       # Leader: Carry the weight, once per scene
     stats: dict = field(default_factory=lambda: {"harm_taken": 0, "drive_earned": 0, "drive_spent": 0,
                                                   "sigs": 0, "max_stress": 0, "downs": 0, "misses": 0,
                                                   "rolls": 0, "second_winds": 0, "breaks": 0,
@@ -153,7 +172,7 @@ class Hero:
         if self.stand_ground: t = min(2, t + 1)
         return t
     def phys_adv(self, stat):
-        return -1 if self.wounded and stat in ("force", "flow") else 0
+        return -1 if self.wounded and not self.grit_on and stat in ("force", "flow") else 0
 
 @dataclass
 class Mooks:
@@ -163,6 +182,8 @@ class Mooks:
     dis_next: bool = False
     @property
     def out(self): return self.count <= 0 or self.fled
+    @property
+    def poise(self): return DEF_BASE
 
 @dataclass
 class Boss:
@@ -175,6 +196,13 @@ class Boss:
     last_hurt_by: object = None
     defbonus: int = 0
     dis_next: bool = False; tased: bool = False
+    stress: int = 0                # named enemies have a Stress track (Nov 11)
+    @property
+    def poise(self): return DEF_BASE + self.presence
+    @property
+    def stress_max(self): return 4 if self.role == "lieutenant" else 6
+    @property
+    def breaking(self): return self.stress >= self.stress_max
     @property
     def guard(self): return DEF_BASE + self.flow + self.defbonus
     @property
@@ -206,16 +234,19 @@ def make_heroes(rules):
                    power="Invulnerability", strange=True),
       "logan": Hero("logan", "Logan", "Brawler", "Vengeance", 3, 2, 1, 0,
                     weapon="light", power="Healing Factor", strange=True),
+      # Leader test hero (Nov 12): Presence +4, a sidearm and a vest
+      "marshal": Hero("marshal", "Marshal", "Leader", "Duty", -1, 2, 1, 4,
+                      weapon="pistol" if g else "unarmed", armor_guns=1 if g else 0),
     }
     return H
 
 # ---------------------------------------------------------------- damage
-def weapon_bonus(weapon, impact, rules, target_tough):
+def weapon_bonus(weapon, impact, rules, target_tough, jab=False):
     if impact <= 0: return 0
-    if weapon == "heavy": return 1
+    if weapon == "heavy": return 0 if (jab and rules.new_weapons) else 1
     if weapon == "light": return 1 if impact >= 2 else 0
     if weapon == "pistol": return 1 if (impact >= 2 or not rules.graze) else 0
-    if weapon == "knife": return 1 if target_tough == 0 else 0
+    if weapon == "knife": return 1 if target_tough == 0 and (impact >= 2 or not rules.new_weapons) else 0
     return 0
 
 def harm_to_hero(h, impact, rules, gun=False, blade=False, from_mook=False):
@@ -276,7 +307,7 @@ class Fight:
             else: n = len(party)
             self.groups = [Mooks(name=f"Saints {chr(65+i)}", guard=rules.mook_guard) for i in range(n)]
         if scenario in ("boss", "cannery"):
-            self.boss = Boss()
+            self.boss = Boss()   # the Butcher: 10 Harm (the "2 fewer for Toughness" trial rule was dropped on Nov 12)
             if rules.boss_harm: self.boss.harm_max = rules.boss_harm
         if self.boss: self.boss.defbonus = rules.boss_def
         if scenario == "gunboss":
@@ -286,6 +317,12 @@ class Fight:
             self.boss.defbonus = rules.boss_def
         self.round = 0
         self.smoke_until = -1
+        # Objective (Nov 11 and 12): steps left, each (rating, stats that fit). 3 steps = the Cannery.
+        cannery_steps = [(-1, ("force", "focus")), (1, ("flow", "focus")), (1, ("flow", "presence"))]
+        any_stat = ("force", "flow", "focus", "presence")
+        self.steps = list(cannery_steps) if rules.objective == 3 else [(1, any_stat)] * rules.objective
+        self.obj_total = len(self.steps); self.obj_won = False; self.obj_edge = False; self.obj_worker = None
+        self.clock = 0; self.clock_skip = -1; self.clock_stopped = False
         for h in self.heroes:
             if h.key == rules.broken: h.stress = 4; h.drive = rules.broken_drive
         # Stalker with a shadow power, or in the dark, starts Hidden (heroes chose the ground)
@@ -311,7 +348,7 @@ class Fight:
         f.extend(self.live_bosses())
         return f
     def up(self): return [h for h in self.heroes if not h.down]
-    def done(self): return not self.foes() or not self.up()
+    def done(self): return not self.foes() or not self.up() or self.obj_won
 
     # -- hero roll wrapper
     def hroll(self, h, stat, defense, adv=0, edge=False, target=None):
@@ -321,10 +358,17 @@ class Fight:
             target.pierce_next = self.rules.read_pierce
         if h.adv_next: adv = net_adv(adv, 1) if adv >= 0 else 0; h.adv_next = False
         a = net_adv(adv, h.phys_adv(stat))
+        if not edge and isinstance(target, Boss) and target.breaking and self.rules.villain_stress:
+            edge = True   # a Breaking villain: every attack against them has Edge
+        rallied = None
+        if not edge and h.rally_edge:
+            edge = True; h.rally_edge = False; rallied = getattr(h, "rally_by", None)
         if not edge and h.drive >= 2 and h.drive - 1 >= self.reserve(h):
             spend(h, 1); edge = True
         imp, m, dice, tot = self.d.roll(getattr(h, stat), defense, a, edge)
         h.stats["rolls"] += 1
+        if imp and rallied is not None and not rallied.down:
+            self.arch_drive(rallied, "Leader: Rally paid off")
         if imp and payoff is not None and payoff is not h and self.rules.det_payoff and not payoff.down:
             self.arch_drive(payoff, "Detective: Read paid off")
         if imp == 0:
@@ -373,12 +417,20 @@ class Fight:
         self.morale()
         return drops
 
-    def hit_boss(self, h, impact, weapon, b=None):
+    def stress_boss(self, h, b, n):
+        """A hero's Presence attack on a named enemy: Stress equal to the Impact."""
+        if n <= 0 or b.out or not self.rules.villain_stress: return
+        was = b.breaking
+        b.stress = min(b.stress_max, b.stress + n)
+        self.log(f"   {b.name} takes {n} Stress ({b.stress}/{b.stress_max})")
+        if b.breaking and not was: self.log(f"   {b.name} is BREAKING: every attack against them has Edge")
+
+    def hit_boss(self, h, impact, weapon, b=None, jab=False):
         b = b or self.boss
         if impact <= 0 or b.out: return 0
         tough = 0 if (weapon in ("pistol", "taser") or h.power == "Mighty" or getattr(b, "pierce_next", False)) else b.toughness_v
         b.pierce_next = False  # Mighty ignores Toughness
-        harm = impact + weapon_bonus(weapon, impact, self.rules, tough)
+        harm = impact + weapon_bonus(weapon, impact, self.rules, tough, jab)
         if h.power == "Mighty" and impact >= 2:
             harm += 1; self.use_strange(h)
         harm = max(1, harm - tough)
@@ -436,15 +488,25 @@ class Fight:
             return
         h.stand_ground = False
         h.armor_off = False   # powered armor comes back on this turn (really a Quick Action; the sim lets it happen free)
+        # Grit your teeth: a Wounded hero takes 1 Stress to ignore the penalty this turn (not if it risks Breaking)
+        h.grit_on = False
+        if R.grit and h.wounded and h.stress <= 5 and h.arch != "Leader":
+            h.grit_on = True; add_stress(h, 1); self.log(f" {h.name} grits their teeth (1 Stress, {h.stress}/8)")
         # med kit on a Downed ally
         downed = [x for x in self.heroes if x.down and x is not h]
         if h.medkit and downed:
             x = downed[0]; h.medkit -= 1; x.harm = x.boxes - 1; x.dying = False
             self.log(f" {h.name}: med kit on {x.name} (back up at Wounded)"); return
+        sig = h.drive >= R.sig_cost
+        # Objective: non-fighters work it unless a Signature Move is ready
+        capped = self.rules.obj_per_round and getattr(self, "obj_round", (0, 0)) == (self.round, self.rules.obj_per_round)
+        if self.steps and h.arch in ("Detective", "Specialist", "Leader") and not sig and not capped:
+            self.work_objective(h); return
         t = self.target_for(h)
         if t is None: return
         self.log(f" {h.name} ({h.arch}) -> {t.name}")
-        sig = h.drive >= R.sig_cost
+        if h.arch == "Leader":
+            self.leader_turn(h, t, sig); return
         if h.arch == "Detective" and isinstance(t, Boss):
             if sig and not t.called:
                 spend(h, R.sig_cost); h.stats["sigs"] += 1; t.called = True
@@ -493,6 +555,62 @@ class Fight:
             h.hidden = False; self.arch_drive(h, "Stalker: from hiding")
         self.resolve(h, t, imp, stat)
 
+    def leader_turn(self, h, t, sig):
+        """Leader: On My Signal with 3 Drive; otherwise Rally an ally and a Presence Jab."""
+        R = self.rules
+        allies = [a for a in self.up() if a is not h]
+        best = max(allies, key=lambda a: max(a.force, a.flow)) if allies else None
+        if sig and best:
+            spend(h, R.sig_cost); h.stats["sigs"] += 1
+            self.log(f"   On My Signal: {best.name} takes a full turn now, Advantage on the first roll")
+            best.adv_next = True
+            self._hero_turn(best)
+            return
+        # Presence shakes a villain until they Break; after that (or against Toughness-free mooks) it still drops mooks
+        shaken = isinstance(t, Boss) and (t.breaking or not R.villain_stress)
+        stat = ("flow" if h.flow >= h.force else "force") if shaken else "presence"
+        # With a real fighter beside them, Rally and Jab. Otherwise a full Presence Strike does more.
+        if best and max(best.force, best.flow) >= 3:
+            best.rally_edge = True; best.rally_by = h
+            self.log(f"   Rally: {best.name} has Edge on their next roll")
+            self.jab(h, t, stat=stat)
+            return
+        defense = t.poise if stat == "presence" else t.guard
+        imp = self.hroll(h, stat, defense, target=t)
+        self.resolve(h, t, imp, stat)
+
+    def work_objective(self, h):
+        """A Full Action on the next Objective step. You can't work a step while engaged: break away first."""
+        foe = h.engaged_with
+        if foe is not None and not foe.out:
+            atk = foe.attack if isinstance(foe, Mooks) else foe.force
+            imp, m, dice, tot = self.d.roll(atk - 2, h.guard, 0, False)
+            self.log(f" {h.name} breaks away from {foe.name}: free Jab {dice} = {tot} vs {h.guard}: {'MISS' if imp==0 else 'hit'}")
+            if imp: self.hurt(h, harm_to_hero(h, 1, self.rules, from_mook=isinstance(foe, Mooks)))
+            h.engaged_with = None
+            if h.down: return
+        rating, stats = self.steps[0]
+        stat = max(stats, key=lambda s: getattr(h, s))
+        n = self.obj_total - len(self.steps) + 1
+        self.log(f" {h.name} ({h.arch}) works Objective step {n} of {self.obj_total}")
+        edge = self.obj_edge; self.obj_edge = False
+        imp = self.hroll(h, stat, DEF_BASE + rating, edge=edge)
+        self.obj_worker = h
+        if imp == 0: return
+        if imp == 1:   # a cost: Stress while Steady, otherwise Harm
+            if h.stress < 3: add_stress(h, 1); self.log(f"   cost: 1 Stress ({h.stress}/8)")
+            else: self.hurt(h, 1, physical=False)
+        if imp == 3: self.obj_edge = True
+        self.steps.pop(0)
+        r, k = getattr(self, "obj_round", (0, 0))
+        self.obj_round = (self.round, k + 1 if r == self.round else 1)
+        self.arch_drive(h, "Objective step")
+        # every step pays (the Cannery): step 1 holds the clock this round, step 2 stops it
+        if n == 1: self.clock_skip = self.round
+        if n == 2: self.clock_stopped = True
+        if not self.steps:
+            self.obj_won = True; self.log("   The Objective is done: the heroes win")
+
     def specialist_turn(self, h, t, sig):
         """Prepared, or up to two Kit items as Quick Actions. Returns True if the turn was used."""
         R = self.rules
@@ -530,22 +648,26 @@ class Fight:
                 self.log(f"   {h.name} Taser {dice} = {tot} vs {self.boss.guard}: {'MISS' if imp==0 else 'hit'}")
                 if imp == 0: h.stats["misses"] += 1
                 else:
-                    self.boss.tased = True
+                    if R.taser_named: self.boss.dis_next = True
+                    else: self.boss.tased = True
                     self.hit_boss(h, 1, "taser")
         if not used_any: return False
         if quick: self.jab(h, t)
         return True
 
-    def jab(self, h, t):
+    def jab(self, h, t, stat=None):
         if t is None or getattr(t, "out", True): return
-        stat = "flow" if (h.weapon == "pistol" or h.flow > h.force) else "force"
-        imp, m, dice, tot = self.d.roll(getattr(h, stat) - 2, t.guard, net_adv(h.phys_adv(stat)))
+        stat = stat or ("flow" if (h.weapon == "pistol" or h.flow > h.force) else "force")
+        pen = 0 if (h.weapon == "light" and self.rules.light_jab and stat != "presence") else 2
+        defense = t.poise if stat == "presence" else t.guard
+        edge = isinstance(t, Boss) and t.breaking and self.rules.villain_stress
+        imp, m, dice, tot = self.d.roll(getattr(h, stat) - pen, defense, net_adv(h.phys_adv(stat)), edge)
         h.stats["rolls"] += 1
         if imp == 0:
             h.stats["misses"] += 1
             if h.armor_flaky and h.armor_all: h.armor_off = True
             if self.rules.stress_on_miss: add_stress(h, 1)
-        self.log(f"   {h.name} Jab {dice} = {tot} vs {t.guard}: {'MISS' if imp==0 else 'hit'}")
+        self.log(f"   {h.name} Jab ({stat}) {dice} = {tot} vs {defense}: {'MISS' if imp==0 else 'hit'}")
         if imp: self.resolve(h, t, 1, stat, jab=True)
 
     def resolve(self, h, t, imp, stat, jab=False):
@@ -556,8 +678,11 @@ class Fight:
             if h.arch == "Brawler" and dropped and not jab:
                 nxt = next((g for g in self.groups if not g.out), None) or (self.boss if self.boss and not self.boss.out else None)
                 if nxt: self.log("   Pile Through"); self.jab(h, nxt)
+        elif stat == "presence":
+            self.stress_boss(h, t, imp)
+            if h.arch == "Leader": self.arch_drive(h, "Leader: Presence attack hit")
         else:
-            self.hit_boss(h, imp, h.weapon, t)
+            self.hit_boss(h, imp, h.weapon, t, jab=jab)
             h.engaged_with = t if h.weapon != "pistol" else None
 
     # -- enemy turns
@@ -599,13 +724,21 @@ class Fight:
             b.dis_next = False
             self.log(f" {b.name} threatens {t.name} (Presence) {dice} = {tot} vs {t.poise}: "
                      f"{'MISS' if imp==0 else str(imp)+' Stress'}")
-            if imp: add_stress(t, imp)
+            if imp:
+                lead = next((l for l in self.up() if l.arch == "Leader" and l is not t
+                             and not l.carry_used and l.stress + imp <= 3), None)
+                if lead:
+                    lead.carry_used = True; self.log(f"   {lead.name} carries the weight: takes it instead")
+                    add_stress(lead, imp)
+                else: add_stress(t, imp)
             if not self.rules.presence_free: return
             targets = self.up()
             if not targets: return
+        worker = self.obj_worker if (self.steps and self.obj_worker and not self.obj_worker.down) else None
         t = b.last_hurt_by if (b.last_hurt_by and not b.last_hurt_by.down) else \
-            next((h for h in targets if h.engaged_with is b), None) or self.d.r.choice(targets)
+            worker or next((h for h in targets if h.engaged_with is b), None) or self.d.r.choice(targets)
         t = self.redirect(t)
+        if self.obj_total and b.weapon != "pistol": t.engaged_with = b   # he closes in on them
         edge = False
         if b.drive >= 1: b.drive -= 1; edge = True
         gun = b.weapon == "pistol"
@@ -622,6 +755,9 @@ class Fight:
         if imp:
             self.hurt(t, harm_to_hero(t, imp, self.rules, gun=gun))
             self.on_hurt(t, b)
+            if (self.rules.spite_fraying and self.rules.villain_stress and t.trait == "Spite" and t.stress >= 4
+                    and getattr(b, "spite_round", 0) != self.round):
+                b.spite_round = self.round; self.stress_boss(t, b, 1)
         else:
             self.on_missed(t)
 
@@ -684,8 +820,15 @@ class Fight:
                     if isinstance(f, Mooks): self.mook_turn(f)
                     else: self.boss_turn(f)
                     if self.done(): break
-        win = bool(self.up()) and not self.foes()
-        return {"win": win, "rounds": self.round,
+            # clocks tick last
+            if (self.rules.hostage and not self.done() and not self.clock_stopped
+                    and self.clock_skip != self.round and self.clock < self.rules.hostage):
+                self.clock += 1; self.log(f" Hostage clock {self.clock} of {self.rules.hostage}")
+                if self.clock == self.rules.hostage:
+                    self.log(" The clock fills: every hero takes 2 Stress")
+                    for h in self.up(): add_stress(h, 2)
+        win = bool(self.up()) and (not self.foes() or self.obj_won)
+        return {"win": win, "rounds": self.round, "by_objective": self.obj_won, "clock_full": bool(self.rules.hostage) and self.clock >= self.rules.hostage,
                 "any_down": any(h.stats["downs"] for h in self.heroes),
                 "any_dying": any(h.dying for h in self.heroes),
                 "heroes": {h.key: dict(h.stats) for h in self.heroes}}
@@ -705,6 +848,8 @@ def batch(party_keys, scenario, rules, runs, seed):
         "rounds": statistics.mean(r["rounds"] for r in res),
         "anyDown%": 100 * sum(r["any_down"] for r in res) / n,
         "dying%": 100 * sum(r["any_dying"] for r in res) / n,
+        "objective%": 100 * sum(r["by_objective"] for r in res) / n,
+        "clockFull%": 100 * sum(r["clock_full"] for r in res) / n,
     }
     per = {}
     for k in party_keys:
@@ -725,7 +870,8 @@ def batch(party_keys, scenario, rules, runs, seed):
 
 def print_result(o, detail=True):
     print(f"{o['party']:<28} {o['scenario']:<8} win {o['win%']:5.1f}%  rounds {o['rounds']:4.1f}  "
-          f"any hero Down {o['anyDown%']:5.1f}%  Dying {o['dying%']:4.1f}%")
+          f"any hero Down {o['anyDown%']:5.1f}%  Dying {o['dying%']:4.1f}%"
+          + (f"  by Objective {o['objective%']:5.1f}%" if o.get('objective%') else ""))
     if detail:
         print(f"   {'hero':<10}{'Harm':>6}{'Down%':>7}{'hit%':>6}{'Drive+':>8}{'Drive-':>8}{'Sigs':>6}{'Stress':>8}{'Fray%':>7}{'Brk%':>6}")
         for k, p in o["per"].items():
@@ -845,6 +991,7 @@ def run_encounter(config: dict, on_progress=None) -> dict:
         "heroes": heroes,
         "not_simulated": not_sim,
         "runs": n, "seed": seed, "sim_version": SIM_VERSION,
+        **({"objective_pct": r1(100 * sum(r["by_objective"] for r in res) / n)} if rules.objective else {}),
     }
 
 def rules_from(args, extra=None):
@@ -855,7 +1002,9 @@ def rules_from(args, extra=None):
               gang_per_hero=not args.fixed_gang, groups=args.groups,
               down_stress=not args.no_down_stress, villain_presence=not args.no_villain_presence,
               strange_stress=not args.no_strange_stress, invuln_overflow=not args.no_invuln_overflow,
-              presence_free=not args.threat_replaces_attack, heal_cost=args.heal_cost, heal_calm=args.heal_calm_only)
+              presence_free=not args.threat_replaces_attack, heal_cost=args.heal_cost, heal_calm=args.heal_calm_only,
+              objective=args.objective, obj_per_round=args.obj_per_round, hostage=args.hostage, grit=not args.no_grit, light_jab=not args.no_light_jab,
+              villain_stress=not args.no_villain_stress, new_weapons=not args.old_weapons)
     if extra:
         k, _, v = extra.partition("=")
         k = k.replace("-", "_")
@@ -876,7 +1025,7 @@ def main():
     ap.add_argument("--scenario", default="cannery", choices=["gang", "boss", "cannery", "gunboss"])
     ap.add_argument("--all-combos", action="store_true", help="every 3-hero party from the 5 samples")
     ap.add_argument("--heroes", default="bulwark,rook,nightjar,patchwork,ledger",
-                    help="pool for --all-combos (add jessica, luke, logan for strange-power tests)")
+                    help="pool for --all-combos (add jessica, luke, logan for strange-power tests, marshal for the Leader)")
     ap.add_argument("--runs", type=int, default=2000)
     ap.add_argument("--seed", type=int, default=None)
     ap.add_argument("--log", type=int, default=0, help="print N fights roll by roll instead of stats")
@@ -901,6 +1050,13 @@ def main():
     ap.add_argument("--no-strange-stress", action="store_true")
     ap.add_argument("--no-invuln-overflow", action="store_true")
     ap.add_argument("--fixed-gang", action="store_true", help="always 2 mook groups instead of one per hero")
+    ap.add_argument("--objective", type=int, default=0, help="Objective steps (3 = the Cannery's Free the hostage)")
+    ap.add_argument("--obj-per-round", type=int, default=0, help="at most N Objective steps finished per round (0 = no limit)")
+    ap.add_argument("--hostage", type=int, default=0, help="a clock that ticks each round; full = 2 Stress to every hero")
+    ap.add_argument("--no-grit", action="store_true")
+    ap.add_argument("--no-light-jab", action="store_true")
+    ap.add_argument("--no-villain-stress", action="store_true")
+    ap.add_argument("--old-weapons", action="store_true")
     ap.add_argument("--config", default=None,
                     help="run an encounter from a JSON file (the app's format) and print the result as JSON; "
                          "the file's runs and seed are used, other flags are ignored")
@@ -943,4 +1099,9 @@ if __name__ == "__main__":
 # - Several named enemies: villains get the usual villain turns, lieutenants one a round.
 #   Hero tactics still focus the first one standing.
 # - Already Broken is test-only (--broken rule field), not a sample hero.
-# - No hostage clock or win-by-objective; fights end when one side is out.
+# - Objectives (--objective N) are simple: non-fighters work the steps, the villain goes after
+#   whoever is working them, and a hero has to break away before working a step. Zones are still
+#   abstract, so "no step while an enemy is in that zone" is only the engagement rule.
+# - Leader: Rally goes to the best fighter, On My Signal gives them a turn, Carry the weight takes
+#   one villain threat. Trait perks other than Spite's Fraying Stress are not modeled.
+# - GM moves on a Miss, Scheme and Dawn Stress, and anything outside one fight are not modeled.

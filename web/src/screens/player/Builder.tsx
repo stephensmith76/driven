@@ -306,10 +306,10 @@ function BuilderForm({ campaignId, existing, isGm, canBuild }: {
             <select aria-label="Add power" value={powerPick} onChange={(e) => setPowerPick(e.target.value)}>
               <option value="">Add power…</option>
               <optgroup label="Street powers (1 slot)">
-                {POWERS.filter((p) => p.tier === 'street').map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
+                {POWERS.filter((p) => p.tier === 'street').sort((x, y) => Number(Boolean(x.trial)) - Number(Boolean(y.trial))).map((p) => <option key={p.id} value={p.id}>{p.name}{p.trial ? ' (trial)' : ''}</option>)}
               </optgroup>
               <optgroup label="Strange powers (2 slots)">
-                {POWERS.filter((p) => p.tier === 'strange').map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
+                {POWERS.filter((p) => p.tier === 'strange').sort((x, y) => Number(Boolean(x.trial)) - Number(Boolean(y.trial))).map((p) => <option key={p.id} value={p.id}>{p.name}{p.trial ? ' (trial)' : ''}</option>)}
               </optgroup>
             </select>
             <button type="button" className="secondary" disabled={!powerPick} onClick={addPower}>Add</button>

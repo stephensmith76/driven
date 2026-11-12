@@ -4,7 +4,7 @@ import { resolve } from 'node:path'
 import demo from '../../../supabase/seed/demo-heroes.json'
 import {
   CORE, FLAIRS, GEAR, POWERS, ARCHETYPES, TRAITS,
-  defenses, harm, harmBoxes, netAdv, resolveRoll, simHero, slotsUsed, stressStage, toughness, upgrade, weaponOf, resolveLoadout, beltSlots,
+  defenses, harm, harmBoxes, netAdv, resolveRoll, simHero, slotsUsed, stressStage, toughness, upgrade, weaponOf, resolveLoadout, beltSlots, villainStress,
   type Sheet,
 } from './index'
 
@@ -207,6 +207,16 @@ describe('Harm', () => {
   it('A Jab never gets Impact 2 bonuses', () => {
     expect(harm({ impact: 3, weapon: 'light', targetToughness: 0, jab: true }).harm).toBe(1)
     expect(harm({ impact: 2, weapon: 'pistol', targetToughness: 0, jab: true }).harm).toBe(1)
+    expect(harm({ impact: 1, weapon: 'heavy', targetToughness: 0, jab: true }).harm).toBe(1) // heavy melee only on a Strike
+  })
+  it('A Jab with light melee has no -2 penalty', () => {
+    expect(resolveRoll({ dice: [5, 5], bonus: 2, defense: 12, jab: true }).total).toBe(10)
+    expect(resolveRoll({ dice: [5, 5], bonus: 2, defense: 12, jab: true, lightJab: true })).toMatchObject({ total: 12, impact: 1 })
+    expect(resolveRoll({ dice: [10, 10], bonus: 4, defense: 12, jab: true, lightJab: true }).impact).toBe(1)
+  })
+  it('Villain Stress: 4 boxes for a lieutenant, 6 for a case villain', () => {
+    expect(villainStress('lieutenant')).toEqual({ max: 4, fraying: 2, breaking: 4 })
+    expect(villainStress('villain')).toEqual({ max: 6, fraying: 3, breaking: 6 })
   })
   it('Guns add 1 on Impact 2+; only armor Toughness (passed in) reduces them', () => {
     expect(harm({ impact: 1, weapon: 'pistol', targetToughness: 1 }).harm).toBe(1)
@@ -221,9 +231,10 @@ describe('Harm', () => {
     expect(harm({ impact: 2, targetToughness: 1 }).harm).toBe(1)
     expect(harm({ impact: 3, targetToughness: 2 }).harm).toBe(1)
   })
-  it('Blades add 1 only against no Toughness', () => {
-    expect(harm({ impact: 1, weapon: 'knife', targetToughness: 0 }).harm).toBe(2)
-    expect(harm({ impact: 1, weapon: 'knife', targetToughness: 1 }).harm).toBe(1)
+  it('Blades add 1 on Impact 2 or better, and only against no Toughness', () => {
+    expect(harm({ impact: 1, weapon: 'knife', targetToughness: 0 }).harm).toBe(1)
+    expect(harm({ impact: 2, weapon: 'knife', targetToughness: 0 }).harm).toBe(3)
+    expect(harm({ impact: 2, weapon: 'knife', targetToughness: 1 }).harm).toBe(1)
   })
   it('Mook attacks cap at 2, applied last', () => {
     const r = harm({ impact: 3, gun: true, targetToughness: 0, fromMook: true })
@@ -304,12 +315,15 @@ describe('Sheet bookkeeping', () => {
   it('prices come from the rules data', () => {
     expect([priceOf('edge'), priceOf('upgrade'), priceOf('signature'), priceOf('second_wind')]).toEqual([1, 2, 3, 3])
   })
-  it('Dawn: Sleep It Off clears Stress; Patch Up leaves at most a Bruise; Show Up spares Home', () => {
+  it('Dawn: Sleep It Off clears 3 Stress and Show Up clears 1; Patch Up leaves at most a Bruise; Show Up spares Home', () => {
     const r = dawn(hero('Rook'), t({ harm: 3, stress: 6, home_clock: 2 }), ['sleep_it_off', 'patch_up'])
-    expect(r.patch).toMatchObject({ stress: 0, harm: 1, home_clock: 3 }) // didn't Show Up -> Home +1
+    expect(r.patch).toMatchObject({ stress: 3, harm: 1, home_clock: 3 }) // didn't Show Up -> Home +1
     const s = dawn(hero('Rook'), t({ harm: 3, stress: 6, home_clock: 2 }), ['patch_up', 'show_up'])
     expect(s.patch.home_clock).toBeUndefined()
-    expect(s.patch.stress).toBeUndefined()
+    expect(s.patch.stress).toBe(5)
+    expect(dawn(hero('Rook'), t({ stress: 6 }), ['sleep_it_off', 'show_up']).patch.stress).toBe(2)
+    expect(dawn(hero('Rook'), t({ stress: 2 }), ['sleep_it_off', 'show_up']).patch.stress).toBe(0)
+    expect(dawn(hero('Rook'), t({ stress: 0 }), ['sleep_it_off', 'show_up']).patch.stress).toBeUndefined()
   })
   it('Dawn: Down needs Patch Up and Sleep It Off together', () => {
     const down = t({ harm: 5 }) // Rook has 5 boxes
@@ -360,7 +374,7 @@ describe('Sheet bookkeeping', () => {
   })
 })
 
-import { confrontationText, crackDefense, crackResultText, crackWarnings, minCluesToCrack, nextPhase, startNightDrive, theoryCount, tickClock } from './index'
+import { MISSED_CRACK_TICKS, TRAP_TICKS, caseComplexity, complexityOptions, confrontationText, crackDefense, crackResultText, crackWarnings, minCluesToCrack, nextPhase, prepClues, startNightDrive, theoryCount, tickClock } from './index'
 
 describe('The Night', () => {
   it('Crack the Case: 2d10 + clues against 10 + Complexity; need half the Complexity in clues', () => {
@@ -369,6 +383,17 @@ describe('The Night', () => {
     expect(minCluesToCrack(5)).toBe(3)
     expect(crackWarnings(2, 6)).toHaveLength(1)
     expect(crackWarnings(3, 6)).toEqual([])
+  })
+  it('Complexity scales with the team: one-Night 4; normal 2 + twice the heroes, never under 6; finale 2 more', () => {
+    expect([1, 2, 3, 4, 5].map((n) => caseComplexity('normal', n))).toEqual([6, 6, 8, 10, 12])
+    expect(caseComplexity('finale', 3)).toBe(10)
+    expect(caseComplexity('one_night', 5)).toBe(4)
+    expect(complexityOptions(3).map((o) => o.value)).toEqual([4, 8, 10])
+    expect(prepClues(8)).toBe(12)
+    expect(crackDefense(caseComplexity('normal', 3))).toBe(18)
+  })
+  it('a missed theory: Regroup ticks the Scheme twice, going in anyway ticks it once', () => {
+    expect([MISSED_CRACK_TICKS, TRAP_TICKS]).toEqual([2, 1])
   })
   it('personal clues count 2; Case Sense adds 1 (Session 1: 9 clues + Case Sense = +10)', () => {
     expect(theoryCount([{ id: 'a', personal: false }, { id: 'b', personal: true }], false)).toBe(3)
@@ -383,7 +408,7 @@ describe('The Night', () => {
     expect(confrontationText(0)).toMatch(/villain chooses/)
   })
   it('clock ticks report half and full, and never pass the size', () => {
-    expect(tickClock({ kind: 'scheme', size: 6, filled: 2 }, 1)).toMatchObject({ filled: 3, events: [expect.stringMatching(/digging/)] })
+    expect(tickClock({ kind: 'scheme', size: 6, filled: 2 }, 1)).toMatchObject({ filled: 3, events: [expect.stringMatching(/Beats at 2, 4 and 6/)] })
     expect(tickClock({ kind: 'scheme', size: 6, filled: 5 }, 2)).toMatchObject({ filled: 6, events: [expect.stringMatching(/pulls it off/)] })
     expect(tickClock({ kind: 'heat', size: 6, filled: 0 }, -1).filled).toBe(0)
   })

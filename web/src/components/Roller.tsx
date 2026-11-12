@@ -5,7 +5,7 @@ import { logRoll } from '../data/rolls'
 import type { Character } from '../data/types'
 import {
   CORE, OBSTACLE_RATINGS, defenses, diceNeeded, evaluate, harm, impactBand, obstacleDefense, parseDice,
-  rollDice, rollRow, setupAdv, simHero, toughness, upgrade,
+  rollDice, rollRow, setupAdv, simHero, toughness, upgrade, villainStress,
   type Enemy, type RollRowData, type RollSetup, type WeaponId,
 } from '../engine'
 
@@ -126,14 +126,15 @@ export function Roller({ campaignId, heroes, enemies = [], myHeroId, isGm, initi
     againstText = `obstacle ${signed(rating)} (12 ${signed(rating)})`
   }
 
-  const setup: RollSetup = { bonus, edge: edgeMode !== 'none', advantage, disadvantage, jab, defense }
-  const need = diceNeeded(setup)
-  const adv = setupAdv(setup)
-
   const defaultWeapon: WeaponId = actor.hero ? (simHero(actor.hero).weapon as WeaponId) : 'unarmed'
   const weaponId = (weapon || defaultWeapon) as WeaponId
   const weaponDef = CORE.weapons.find((w) => w.id === weaponId)
   const attackKind = (weaponDef?.attack_kind ?? 'blunt') as 'blunt' | 'blade' | 'gun' | 'hazard'
+  // A Jab with light melee has no -2 (rules.md, Your turn).
+  const lightJab = jab && attack && attackType === 'harm' && weaponId === 'light'
+  const setup: RollSetup = { bonus, edge: edgeMode !== 'none', advantage, disadvantage, jab, lightJab, defense }
+  const need = diceNeeded(setup)
+  const adv = setupAdv(setup)
   const targetEnemy = kind === 'enemy' ? enemy : undefined
   const targetHeroForHit = kind === 'hero' ? targetHero : undefined
   const autoToughness = targetHeroForHit
@@ -219,7 +220,7 @@ export function Roller({ campaignId, heroes, enemies = [], myHeroId, isGm, initi
           )}
           <button type="button" className={`chip ${advantage ? 'on' : ''}`} aria-pressed={advantage} onClick={() => setAdvantage(!advantage)}>Advantage</button>
           <button type="button" className={`chip ${disadvantage ? 'on' : ''}`} aria-pressed={disadvantage} onClick={() => setDisadvantage(!disadvantage)}>Disadvantage</button>
-          <button type="button" className={`chip ${jab ? 'on' : ''}`} aria-pressed={jab} onClick={() => setJab(!jab)}>Jab (-2)</button>
+          <button type="button" className={`chip ${jab ? 'on' : ''}`} aria-pressed={jab} onClick={() => setJab(!jab)}>{lightJab ? 'Jab (light melee, no penalty)' : 'Jab (-2)'}</button>
         </div>
         {advantage && disadvantage && <p className="small muted">Advantage and Disadvantage cancel: two dice, neither applies.</p>}
         {adv !== 0 && <p className="small muted">{adv > 0 ? 'Advantage' : 'Disadvantage'}: roll three dice and keep the {adv > 0 ? 'best' : 'worst'} two.</p>}
@@ -352,9 +353,10 @@ function ResultCard({ done, setDone, campaignId, heroes, enemies, isGm, run, rep
     if (target.kind === 'enemy') {
       const e = enemies.find((x) => x.id === target.id)
       if (e && stress) {
-        const to = Math.min(CORE.stress.villain_boxes, e.stress + stress)
+        const max = villainStress(e.kind).max
+        const to = Math.min(max, e.stress + stress)
         await setEnemyField(campaignId, e.id, 'stress', to)
-        lines.push(`${e.name}: +${stress} Stress (${to} of ${CORE.stress.villain_boxes}).`)
+        lines.push(`${e.name}: +${stress} Stress (${to} of ${max}).`)
       } else if (e) lines.push(await hitEnemy(campaignId, e, done.impact, harmRes?.harm ?? 0))
     } else {
       const h = heroes.find((x) => x.id === target.id)

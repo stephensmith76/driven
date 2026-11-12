@@ -47,7 +47,7 @@
     "text": "Once per fight, ignore one Stress you would gain, or clear 1 Stress when you roll Impact 3.",
     "sim": null },
   { "id": "rooftop-runner", "name": "Rooftop Runner", "trial": true,
-    "text": "Your free move can cross one extra zone, and you can leave a fight without a roll.",
+    "text": "Your free move can cross one extra zone, and leaving a fight costs you no turn.",
     "sim": null },
   { "id": "smarmy", "name": "Smarmy", "trial": true,
     "text": "Once per Night, a Presence roll to talk someone down or past a door counts as one Impact higher (still capped at 3).",

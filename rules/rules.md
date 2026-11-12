@@ -1,6 +1,6 @@
-# Driven - Street Level Heroic RPG v2
+# Driven - Street Level Heroic RPG
 
-Nov 9, 2026 · @Stephen
+Rules version 2026-11-12.22 · Nov 12, 2026 · @Stephen
 
 ## Overview
 
@@ -27,7 +27,7 @@ Every roll is **2d10 + a stat against a defense**. The amount you beat it by set
 | 4 to 7 | Impact 2 | 2 Harm | Clean success |
 | 8+ | Impact 3 | 3 Harm | Success plus a bonus (a clue, a position, an opening) |
 
-The defense is always **12 + a stat**, either the target's or an obstacle's rating (see Stats and Defenses). Every roll in the game uses this one table. When an Impact 1 comes with a cost, the GM offers two that fit the scene and you pick one.
+The defense is always **12 + a stat**, either the target's or an obstacle's rating (see Stats and Defenses). Every roll in the game uses this one table. When an Impact 1 comes with a cost, the GM offers two that fit the scene and you pick one (see GM moves, Costs).
 
 **Impact tops out at 3.** Bonuses from weapons, powers and Signatures add **Harm**, not Impact, so a hit can deal 4 or more Harm, but the roll's Impact stays what the dice made it. An Impact 2 with a crowbar deals 3 Harm and is still an Impact 2: it drops one mook, not two. Anything that triggers on Impact 3 (a second mook dropping, the Impact 3 bonus) needs a real Impact 3 from the roll, or a Drive upgrade.
 
@@ -58,7 +58,7 @@ Every stat is used both to act and to defend, so no build is left wide open.
 | Focus | Investigate, hack, use gadgets, read people | **Wits** = 12 + Focus | Ambushes, tricks, illusions, lies |
 | Presence | Intimidate, inspire, persuade, taunt | **Poise** = 12 + Presence | Fear, threats, manipulation |
 
-**Toughness:** Force +3 or higher gives Toughness 1. Toughness reduces each hit's Impact by 1, but a hit always does at least 1 Harm: an Impact 1 hit against Toughness 1 still deals 1 Harm. It doesn't work against guns unless you have armor or a power that says it does. Toughness doesn't stack: use your single highest source for that attack. Only effects that say "+1 Toughness" (Stand Your Ground, Hold the line) add on top. Toughness can never go above 2. Toughness covers physical blows, blades, and (with armor) bullets. Gas, fire, electricity, and other hazards ignore it unless a power or piece of armor says otherwise.
+**Toughness:** Force +3 or higher gives Toughness 1. Toughness reduces the Harm of each hit by 1, after weapon bonuses, but a hit always does at least 1 Harm: an Impact 1 hit against Toughness 1 still deals 1 Harm. The roll's Impact is unchanged. It doesn't work against guns unless you have armor or a power that says it does. Toughness doesn't stack: use your single highest source for that attack. Only effects that say "+1 Toughness" (Stand Your Ground, Hold the line) add on top. Toughness can never go above 2. Toughness covers physical blows, blades, and (with armor) bullets. Gas, fire, electricity, and other hazards ignore it unless a power or piece of armor says otherwise.
 
 | Where your Toughness comes from | Blunt | Blades | Guns | Electricity, gas, fire |
 | --- | --- | --- | --- | --- |
@@ -106,7 +106,13 @@ Harm is damage to your body. Each point of Impact fills one Harm box, top to bot
 | Wounded | Disadvantage on Force and Flow rolls. |
 | Down | You're out of the fight. You can talk, crawl, or make one desperate Quick Action per round at Disadvantage. Or spend your whole turn on Second Wind (3 Drive, no roll, once per fight). |
 
-**Past Down:** if a Downed hero takes more Harm, they're **Dying**. A single hit stops at Down, however big it is: only a later hit makes you Dying. A Dying hero dies at the end of the scene unless an ally spends a Full Action next to them to stabilize them. Street level means people can actually die, so the GM should make this a clear choice, never a surprise. In practice, death only comes when an enemy hits someone already Down. That's the hardest move the GM has: use it when the villain is a killer or the fiction demands it, and say it out loud first ("He's going to finish you") so the team can act.
+**Past Down:** if a Downed hero takes more Harm, they're **Dying**. A single hit stops at Down, however big it is: only a later hit makes you Dying. An ally can spend a Full Action next to a Dying hero to stabilize them.
+
+**Death is decided at the table (trial).** Comic heroes rarely die and stay dead, and no hero here dies to a dice roll. If a Dying hero hasn't been stabilized by the end of the scene, their player decides. They can say this is where the hero's story ends. Otherwise the hero is **left for dead**: they survive, stay Down until Dawn like any stabilized hero, and tick their Home clock twice, because you're too fucked up to manage your life at all. A power that works "when you would die" works when you would be left for dead, and spares you that cost. Going after a Downed hero is still the hardest move the GM has: use it when the villain is a killer or the fiction demands it, and say it out loud first ("He's going to finish you") so the team can act.
+
+**Enemies too.** An enemy who drops is out of the fight, not dead. Whether anyone actually dies is the table's call: the hero who dropped them says what they meant to do, and the table agrees what that means for the story.
+
+**Grit your teeth (trial).** At the start of your turn, a Wounded hero can take 1 Stress to ignore the Wounded Disadvantage until their next turn.
 
 ### Mooks: 1 box
 
@@ -123,8 +129,9 @@ Everyone carries a knife and one free weapon (see Weapons you carry).
 | Weapon | Effect |
 | --- | --- |
 | Fists, kicks, thrown junk | No change |
-| Heavy melee (bat, pipe, crowbar) | +1 Harm on a hit, but it takes a Full Action |
-| Blades | +1 Harm against anyone with no Toughness |
+| Light melee (baton, fighting sticks, weighted gloves) | +1 Harm on a Strike at Impact 2 or better. Jabs with it have no -2 penalty |
+| Heavy melee (bat, pipe, crowbar) | +1 Harm on any hit, but only on a Strike (never a Jab) |
+| Blades | +1 Harm on Impact 2 or better against anyone with no Toughness |
 | Guns | +1 Harm on Impact 2 or better (a graze is just a graze) and ignores natural Toughness, though armor still works. Firing one is loud: +1 Heat |
 
 **Armor** (a vest, a reinforced suit) gives Toughness as listed under Gear and Powers. A hero with Force +3 and armor still has Toughness 1, not 2.
@@ -152,7 +159,7 @@ Harm is your body. Stress is your nerves, your temper, your life falling apart. 
 - you Strain for an extra action (1)
 - a Presence attack hits you (1 Stress per Impact)
 - someone you're protecting gets hurt or dies on your watch (1 to 2)
-- the GM makes a hard move on your miss (1)
+- the GM makes a hard move against you (1, on top of what the move costs)
 - you act against your Trait (1)
 
 **How Stress builds** (it should climb steadily across a Night):
@@ -192,14 +199,14 @@ Pick one. Each Trait lists how it earns Drive, its two perks, its hook, and how 
 
 - *Drive:* when you risk yourself to save someone, even an enemy.
 - *Steady:* when you Help an ally, they get Advantage instead of Edge.
-- *Fraying:* clear 1 Stress whenever you pull someone out of danger. *Hook:* you can't leave anyone in danger, enemies included.
+- *Fraying:* once per scene, clear 1 Stress when you pull someone out of danger. *Hook:* you can't leave anyone in danger, enemies included.
 - *Breaking:* you automatically take every hit aimed at anyone in your zone until the scene ends.
 
 **Spite**
 
 - *Drive:* when you get even.
 - *Steady:* when someone hurts you, your next attack on them has Edge.
-- *Fraying:* whenever you take Harm, your attacker takes 1 Stress. *Hook:* you can't back down from an insult or a challenge.
+- *Fraying:* whenever you take Harm, your attacker takes 1 Stress, once per round. *Hook:* you can't back down from an insult or a challenge.
 - *Breaking:* you attack whoever is closest, friend or foe.
 
 **Order**
@@ -213,7 +220,7 @@ Pick one. Each Trait lists how it earns Drive, its two perks, its hook, and how 
 
 - *Drive:* when you show off in front of witnesses.
 - *Steady:* Edge on Presence rolls when people are watching.
-- *Fraying:* +1 Impact on flashy moves. *Hook:* take +1 Heat any time you act in public.
+- *Fraying:* +1 Harm on a hit made in front of witnesses, once per round. *Hook:* take +1 Heat any time you act in public.
 - *Breaking:* you grandstand. Each turn you do the most impressive thing available, even if it leaves your team exposed.
 
 **Guilt**
@@ -227,34 +234,34 @@ Pick one. Each Trait lists how it earns Drive, its two perks, its hook, and how 
 
 - *Drive:* when you pick the riskier option.
 - *Steady:* once per fight, Strain costs no Stress.
-- *Fraying:* Advantage on Flow rolls. *Hook:* you won't take cover or retreat.
+- *Fraying:* Advantage on a Flow roll, once per round. *Hook:* you won't take cover or retreat.
 - *Breaking:* you do the most dangerous thing in reach and drag someone into it with you.
 
 **Loyalty**
 
 - *Drive:* when you take a risk for a connection or a teammate.
-- *Steady:* Edge on rolls made to protect, help or avenge one of your connections or a teammate.
+- *Steady:* once per scene, name one roll you make to protect, help or avenge one of your connections or a teammate. That roll has Edge.
 - *Fraying:* that Edge becomes Advantage. *Hook:* you won't leave anyone behind or sell anyone out.
 - *Breaking:* you shield them from the truth or the law, even when they're wrong: you lie, hide evidence, or step between them and justice. Take +1 Heat.
 
 **Obsession**
 
 - *Drive:* when you chase your target past what's sensible.
-- *Steady:* At the start of each Night, name one person or case as your target. Edge on rolls that move it forward.
-- *Fraying:* +1 Harm on hits against your target. *Hook:* you ignore anything that isn't about the target.
+- *Steady:* at the start of each Night, name one person or case as your target. Once per scene, name one roll that moves it forward. That roll has Edge.
+- *Fraying:* that Edge becomes Advantage. *Hook:* you ignore anything that isn't about the target.
 - *Breaking:* you abandon the team or a civilian to chase the lead. The GM picks which.
 
 **Fear**
 
 - *Drive:* when you act despite being scared.
 - *Steady:* Edge on the first roll you make in each fight.
-- *Fraying:* Clear 1 Stress whenever an attack against you Misses. *Hook:* you overprepare and won't go in blind.
+- *Fraying:* once per scene, clear 1 Stress when an attack against you Misses. *Hook:* you overprepare and won't go in blind.
 - *Breaking:* you run, or you strike first and hardest at the thing you're afraid of. The GM picks which.
 
 **Duty**
 
 - *Drive:* when you keep your word or follow your code at a cost.
-- *Steady:* Edge on rolls to keep an oath, a promise or your code.
+- *Steady:* once per scene, name one roll you make to keep an oath, a promise or your code. That roll has Edge.
 - *Fraying:* that Edge becomes Advantage. *Hook:* you won't break your code, even when it's tactically dumb.
 - *Breaking:* you follow the code into disaster, whoever it costs.
 
@@ -309,26 +316,27 @@ Give each zone 0 to 2 tags: **Cover**, **High Ground**, **Dark**, **Cramped**, *
 - **High Ground:** ranged attacks from it get Edge. Melee can't reach you unless the attacker climbs up first, which is a move or, on a hard climb, a roll.
 - **Cramped:** heavy melee and long guns are at Disadvantage, and no more than two people can be engaged with any one person. A good spot for one hero to hold off a gang.
 
+**Hidden (trial).** Hidden ends when you attack, when you leave the zone tags that allow it (or they go away), or when an enemy spends a Quick Action to search and beats your Flow-based roll: they roll Focus against 12 + your Flow. Mooks search with their attack bonus.
+
 ### Turn order
 
-Heroes go first unless they were ambushed. Then sides alternate: one hero, then one villain or mook group, then another hero, and so on. The players pick which hero goes next. If one side runs out of turns, the other side finishes theirs.
+Heroes go first unless they were ambushed, in which case the villains go first. The ambushing side has Edge on its first roll (trial). After that, sides alternate: one hero, then one villain or mook group, then another hero, and so on. The players pick which hero goes next. If one side runs out of turns, the other side finishes theirs.
 
 At the **end of each round**, tick any clocks in play (a hostage, a fuse, sirens getting closer).
 
 ### Your turn
 
-You get **one free move** (to an adjacent zone, or into or out of engagement in your zone), plus **one Full Action or two Quick Actions**.
+You get **one free move** (to an adjacent zone, where you can also engage one enemy there (trial), or into or out of engagement in your zone), plus **one Full Action or two Quick Actions**.
 
 **Full Actions**
 
-- **Strike:** attack with Force, Flow, or Presence. Normal Impact.
+- **Strike:** attack with Force, Flow, or Presence. Normal Impact. A heavy melee attack is a Strike.
 - **Signature Move:** costs 3 Drive (see Archetypes).
 - **Stabilize:** save a Dying ally next to you.
-- **Swing something heavy:** a heavy melee weapon attack (+1 Harm).
 
 **Quick Actions**
 
-- **Jab:** a quick attack at -2. A hit is always Impact 1, so bonuses that need Impact 2 or better (light weapons, guns) never apply to a Jab. Once per turn.
+- **Jab:** a quick attack at -2 (no penalty with light melee). A hit is always Impact 1, so bonuses that need Impact 2 or better (the light melee bonus, guns) never apply to a Jab. Once per turn.
 - **Move:** go one more zone.
 - **Help:** give an ally in your zone Edge on their next roll.
 - **Take Cover:** in a Cover zone, +2 Guard until your next turn.
@@ -336,6 +344,10 @@ You get **one free move** (to an adjacent zone, or into or out of engagement in 
 - **Archetype Quick Actions:** listed under each archetype.
 
 **Breaking away:** if you leave engagement, the enemy you were engaged with can make a free Jab at you.
+
+**Leaving a fight (trial):** from a zone with an exit, when you aren't engaged, spend your turn to leave. If you're engaged, break away first as usual, then spend your turn. Rooftop Runner skips the turn cost.
+
+**Chases (trial).** When someone runs and someone follows, each round the chasers pick one hero to roll Flow against the quarry's Guard (a car or a rooftop route uses a rating instead). Three hits catch them, and an Impact 3 counts as two. Three Misses and they're gone. When the heroes are the ones running, they roll the same way against the pursuers' Wits: three hits and they're clear.
 
 ### Strain
 
@@ -347,9 +359,23 @@ Villains and mooks roll 2d10 + their stat against your defense, the same way you
 
 **Hard-to-hit enemies:** a defense of 15 or more (a dodgy gunman at Flow +3) means a +3 hero misses about half the time. That's the point: those enemies are out-thought, not out-punched. Use one per fight at most, and make sure the fight offers a way to get Edge or Advantage: Read, Help, Hidden, a Flashbang, High Ground.
 
-### Give the fight a goal
+### Give the fight a goal (trial)
 
-Most fights need a goal other than beating everyone: a hostage clock, a getaway van, evidence burning, cops on the way. If both sides can just slug it out, the fight runs long and the zones stop mattering. Goals are also where non-fighters earn their spot: grabbing the evidence, holding a door, talking a hostage-taker down, or disarming a device should end a fight as decisively as a knockout.
+Every Confrontation has an **Objective** of 2 to 4 steps, written in case prep. It is the goal the fight's clock is counting down against: a hostage, a getaway van, evidence burning, cops on the way. If both sides can just slug it out, the fight runs long and the zones stop mattering.
+
+- **A step** is a Full Action and a roll, with whatever stat fits how you go about it, against a rating (see Obstacles: -1, +1 or +3). Say where it has to happen: a padlocked door, a console on the Catwalk.
+- **Results:** use the core roll. Impact 2 or 3 finishes the step clean, and Impact 3 also gives an opening (Edge on the next step). Impact 1 finishes it with a cost: the GM offers two and you pick one. A Miss leaves the step undone, and the GM makes a soft move (see GM moves).
+- **Any hero can take any step,** in any order, unless the GM says they come in sequence.
+- **Every step pays.** When the GM writes a step, they also write what finishing it changes right away: the clock stops for a round, a zone gains or loses a tag, a mook group loses heart and runs. A half-finished Objective should still have been worth it.
+- **Steps earn Drive.** Finishing a step counts as your archetype's Drive trigger for that round (1 Drive, once per round as usual).
+- **You can't work a step while engaged,** unless the step is about that enemy (talking them down, taking something off them). Someone has to hold them off.
+- **Finishing the Objective** ends the fight in the heroes' favour as surely as dropping the villain.
+
+Objectives are where non-fighters earn their spot: grabbing the evidence, holding a door, talking a hostage-taker down, or disarming a device ends a fight as decisively as a knockout.
+
+### Defeat (trial)
+
+When every hero is Down or has fled, the heroes have lost the fight. The villain gets what they came for, the Scheme clock ticks twice, and each hero ticks Home or Heat (their choice). Nobody dies from defeat alone: a Dying hero is stabilized by a bystander, or because the villain walks away. They stay Down until Dawn, as usual.
 
 ## The Night
 
@@ -367,10 +393,11 @@ Investigation never stalls. If your approach fits a lead, you get the clue. The 
 
 - **Three facets:** Who's behind it? What do they want? Where will they strike?
 - **The cast:** 4 to 6 suspects, factions, or players, each with a motive and something to hide.
-- **8 to 12 clues:** concrete facts (a burned ledger page, a van with fake plates, a dockworker who quit the same week). Each one should fit more than one suspect.
+- **Clues:** Complexity plus 4 of them. Concrete facts (a burned ledger page, a van with fake plates, a dockworker who quit the same week). Each one should fit more than one suspect.
 - **3 to 5 leads:** places and people the heroes can go lean on.
-- **Complexity:** 4 for a one-Night job, 6 for a normal case, 8 for an arc finale.
+- **Complexity (trial):** 4 for a one-Night job. A normal case is 2 plus twice the number of heroes: 6 for two heroes (or one), 8 for three, 10 for four. An arc finale is 2 more than a normal case. More heroes find more clues each Night, so a bigger team needs more of them.
 - **A Scheme clock:** 6 segments (see below).
+- **Scheme beats (trial):** three, at 2, 4 and 6 on the clock. Each is an event the heroes can see in the fiction: a witness disappears, a building burns.
 
 **Two ways to run a case.** The GM picks for each case:
 
@@ -388,9 +415,11 @@ A campaign can start Floating and move to Fixed Culprit once recurring villains 
 | Impact 2 | The clue, clean |
 | Impact 3 | The clue, plus one: a second clue, Edge against the villain in the showdown, or a hint at their Weakness |
 
-Plan on 1 or 2 lead scenes per hero per Night.
+**Patrol budget (trial).** Each hero gets 2 Patrol actions per Night. Following a lead costs one.
 
-**The Scheme clock** is the villain's plan moving forward. It ticks at every Dawn and whenever a cost says so. If it fills before you crack the case, the villain pulls it off. You still get a showdown, but on their ground, after the damage is done.
+**One free clue per Night (trial).** A hero can take at most one no-roll clue per Night, from all sources combined: Work the Case, Plugs, Network, a forensic kit, a hacking rig, a tracker and the like.
+
+**The Scheme clock** is the villain's plan moving forward. It ticks at every Dawn and whenever a cost says so. When it reaches 2, 4 or 6, that beat happens. If it fills before you crack the case, the villain pulls it off. You still get a showdown, but on their ground, after the damage is done.
 
 **Personal clues.** Put 1 or 2 clues in each case that hit close to home. Early on, pull them from backstories: the victim is Rook's old sparring partner. Once the campaign is moving, pull them from **earlier issues**: a villain who got away, a witness you saved, a promise you broke, a Breaking scene that came back around. A personal clue counts as **2 clues** in a theory, but using it ticks that hero's Home clock. The case followed you home.
 
@@ -404,28 +433,38 @@ When the team holds clues equal to at least half the Complexity and agrees on a 
 
 | Result | Meaning |
 | --- | --- |
-| Miss | Wrong. The GM says which part doesn't hold up, and the Scheme clock ticks twice. Try again once you have at least one new clue. |
+| Miss | Wrong. The GM says which facet doesn't hold up. The team picks one: **Regroup** (the Scheme clock ticks twice; try again once you have at least one new clue) or **Go in anyway** (the Scheme clock ticks once, and you walk into a trap). |
 | Impact 1 | Right, with a snag: they're ready for you, or it's the right place but the wrong night |
 | Impact 2 | Right |
 | Impact 3 | Right, and you also learn the villain's Weakness or gain an arc clue |
 
 With clues equal to the Complexity, the theory is right 64% of the time. Two extra clues raises that to 79%. Going in with half drops it to 36%.
 
+**The trap (trial).** Going in on a wrong theory is a Confrontation on the villain's ground, and their side ambushes. The case villain isn't there unless the Scheme clock is full: the trap is a lieutenant or a gang. The GM shapes it around the facet that was wrong:
+
+- **Wrong Who:** you corner a patsy as a clean-up crew arrives to silence them. The Objective is keeping the patsy alive.
+- **Wrong What:** you walk into a live job. Take +1 Heat, and the cops arrive on round 2.
+- **Wrong Where:** a decoy. One zone is a Hazard, and a clock of 4 counts down to something the heroes have to get clear of.
+
+Win the fight or finish its Objective and the team takes 1 clue, and the GM gives the true answer to the facet that was wrong. Lose it and Defeat applies as usual.
+
 **Fixed Culprit and the wrong name:** if the theory hits but names the wrong person, the plan and the place are still right. The person you named was working for the real culprit, who gets away clean and becomes a lead for a later case.
 
 ### Confrontation: whose ground?
 
-- **Impact 2 or 3:** you choose the ground. Take the first move, or add one zone tag of your choice to the map.
+- **Impact 2 or 3:** you choose the ground. Ambush the villain (your side has Edge on its first roll, trial), or add one zone tag of your choice to the map.
 - **Impact 1:** you know where, but they're ready. No ambush either way, and the villain starts with +1 Drive.
-- **A miss you couldn't fix, or a full Scheme clock:** the villain chooses the ground and gets the ambush.
+- **A trap, or a full Scheme clock:** the villain chooses the ground and gets the ambush.
 
 ### Dawn: the cost of the mask
 
+At the start of Dawn, the Scheme clock ticks and its Stress lands, before heroes make their picks.
+
 Each hero picks **two**:
 
-- **Sleep It Off:** clear all Stress.
+- **Sleep It Off:** clear 3 Stress.
 - **Patch Up:** clear Hurt and Wounded. Pick both this and Sleep It Off to clear Down.
-- **Show Up:** be there for your civilian life. If you don't pick this, tick your Home clock.
+- **Show Up:** be there for your civilian life. Play a short scene with one of your connections, then clear 1 Stress. If you don't pick this, tick your Home clock.
 - **Lay Low:** clear 1 Heat.
 - **Work the Case:** chase one lead off-screen and take 1 clue, no roll.
 
@@ -435,13 +474,106 @@ You can never do everything. That's the point.
 
 | Clock | Size | Ticks when | At half | When it fills |
 | --- | --- | --- | --- | --- |
-| **Scheme** (team) | 6 | Every Dawn, and as a cost when following leads | The villain knows someone is digging | The villain pulls it off. The showdown happens on their ground, after the damage is done. |
-| **Heat** (team) | 6 | Guns (and being seen with a long gun), public fights, collateral damage, Vanity, Vengeance, sloppy feeding (Vampirism on Impact 1 or a miss), a Marked hero seen by civilians | Cops show up to fights on round 3 | Crackdown: a task force, a smear in the press, or someone gets a description. Play it out, then drop Heat to 2. |
+| **Scheme** (team) | 6 | Every Dawn, and as a cost when following leads | Beats at 2, 4 and 6: three events the heroes can see, written in case prep (a witness disappears, a building burns) | The villain pulls it off. The showdown happens on their ground, after the damage is done. |
+| **Heat** (team) | 6 | Guns (and being seen with a long gun), public fights, collateral damage, Vanity, Vengeance, sloppy feeding (Vampirism on Impact 1 or a miss), a Marked hero seen by civilians | Cops show up to fights on round 3 and try to arrest everyone, heroes included (see Cops) | Crackdown: a task force, a smear in the press, or someone gets a description. Play it out, then drop Heat to 2. |
 | **Home** (each hero) | 6 | You skip Show Up, you Break, you use a personal clue, you use Resources to buy past a problem, or a villain finds your Lair (+2) | Someone close starts asking questions | Home crisis: lose the job, the relationship ends, someone learns who you are, or a loved one becomes a target. Play it out, then reset to 0. |
 
 **Heroes with no civilian life.** A pure vigilante has no day job or alter ego. Their civilian life, and so Show Up and the Home clock, just stands for whatever anchors them to their humanity, even if it's only feeding a goldfish. Name it when you build the hero. When Home ticks, that anchor is what's slipping, and a Home crisis is that anchor being lost, found or threatened.
 
+## GM moves (trial)
+
+A move is something the GM adds to the scene that the heroes now have to deal with. Make one when a roll Misses, when a clock hits a beat or fills, and when the players hand you an opening: they split up, they ignore a threat you named, or they look at you to see what happens.
+
+Three habits:
+
+- **Start from the fiction.** Pick the move the scene is already pointing at. A chain put on tonight isn't rusted.
+- **Say the threat first.** A soft move tells the players what is about to happen and leaves them a turn to stop it.
+- **Then follow through.** If they don't stop it, it happens. That is a hard move, and they were warned.
+
+A **soft move** makes things worse with no Harm, no Stress and no clock tick. A **hard move** costs something real, and the hero it lands on also takes 1 Stress.
+
+### Costs
+
+When an Impact 1 comes with a cost, offer two of these and let the player pick:
+
+- 1 Harm.
+- 1 Stress.
+- A clock ticks (the fight's clock, the Scheme, Heat).
+- You lose your spot: you end up engaged, in the open, or cut off from the team.
+- You lose a thing: a weapon skitters away, a tool breaks, a charge is used up.
+- One of your connections gets pulled in.
+
+### In a fight
+
+A Miss earns a soft move, because the enemy still gets its own turn. A hard move needs one of these reasons: the hero was warned (the GM said out loud what would happen), the roll had Disadvantage, or it is that hero's second Miss in a row. A Miss in a Hazard zone already costs 1 Harm, so it is not a reason on its own.
+
+Soft fight moves:
+
+- **Reposition.** An enemy takes Cover, climbs to High Ground, or cuts off an exit.
+- **Close in.** An enemy engages a hero who wanted to stay clear, or pins one in a Cramped zone.
+- **Backup.** A mook group arrives next round. Say where from.
+- **Move the stake.** The hostage is dragged a zone away, the evidence is picked up, the van starts.
+- **Change the ground.** The lights go out, a fire spreads, a crowd pours in. A zone gains a tag.
+- **Name the next hit.** Say who the villain is going for and how. If nobody stops it, the villain's attack on their next turn has Edge.
+
+Hard fight moves:
+
+- **Hurt.** An enemy gets a free Jab at the hero (armor and Toughness apply).
+- **Tick.** A clock in play ticks.
+- **Strip.** The hero is disarmed, or one piece of their gear is smashed until Dawn.
+- **Separate.** A door slams, a floor gives way, smoke rolls in. The hero needs a Quick Action to get back to the team.
+- **Take.** The villain gets something they came for: a step of their own plan, a hostage in hand, an exit.
+- **Finish them.** An enemy goes for a hero who is Down. This is the hardest move in the game. Only a killer does it, and the GM always says it out loud first. It leaves the hero Dying. Whether they die is still their player's call (see Harm, Death is decided at the table).
+
+Hard moves follow the hero's Trait when they can. A Fraying hero's hook is always a fair soft move.
+
+### On Patrol
+
+A missed lead keeps the costs in its own table. Use these for a Miss on any other Patrol roll, and when a Scheme beat lands.
+
+Soft Patrol moves:
+
+- **Clam up.** A witness goes quiet, or a contact wants a favor first.
+- **Eyes on you.** A tail, a camera, a parked car with the engine running.
+- **Beaten to it.** The person has moved on, the place has been picked over.
+- **Two ways.** The clue fits two suspects, and it takes one more fact to choose.
+- **A knock at the door.** Someone from a hero's connections shows up at the worst time.
+- **Show the villain's hand.** The heroes see the next Scheme beat coming and can spend a Patrol action to get in its way.
+
+Hard Patrol moves:
+
+- **Tick.** The Scheme clock ticks.
+- **Heat.** +1 Heat: a description, a phone video, a cop who remembers a face.
+- **Ambush.** A fight starts on their ground.
+- **Burn a source.** A contact, a lead or a tool is gone for the rest of the case.
+- **Lean on a connection.** Someone with leverage over the hero makes a call. Tick that hero's Home clock.
+- **Make it personal.** The trouble lands on someone the hero protects. They are where the next beat happens.
+
+### At Dawn
+
+Dawn has no rolls, so it has no Misses. Use these when a hero skips Show Up, when a Home clock passes half, and when Heat passes half.
+
+- **Someone noticed.** A bruise, a missed shift, a lie that didn't hold. A connection asks a straight question.
+- **The bill comes due.** Whoever has leverage over the hero wants something by tomorrow night.
+- **The city talks.** A headline, a rumor, a sketch on the news. Say what people now believe about the heroes.
+- **Empty chair.** Something happened in the hero's civilian life while they were out, and they weren't there for it.
+
 ## Archetypes
+
+### Character creation checklist
+
+Follow these steps in order. Each one points to the section that has the rules.
+
+1. **Stat array.** Pick Specialist or Balanced and assign it to Force, Flow, Focus and Presence (Stats and defenses, Starting stats).
+2. **Trait.** Pick one (Stress and Traits, Traits).
+3. **Archetype.** Pick one (Archetypes, below).
+4. **Flair.** Pick one (Archetypes, Flairs).
+5. **Four Connections.** Write one line each, and link at least one to another hero (Archetypes, Connections).
+6. **Free weapon.** Pick one. You also carry a knife (Gear and Powers, Weapons you carry).
+7. **Three slots.** Spend them on gear, a street power or a strange power (Gear and Powers). Specialists and Gadgeteers also fill a utility belt.
+8. **Anchor for Home.** Name your civilian life: a job, a family, an alter ego. A hero with no civilian life names whatever anchors them to their humanity (The Night, The clocks, Heroes with no civilian life).
+
+### The six archetypes
 
 Your archetype is how you fight and how you earn Drive. Each one has a **Drive trigger** (once per round), a **feature**, and a **Signature Move** (3 Drive, Full Action).
 
@@ -486,6 +618,15 @@ You read people and see the fight coming.
 - **Read** (Quick, in a fight): roll Focus against a target's Wits. For each Impact level, ask one: *What's their weakness? What will they do next? What are they protecting?* The GM answers truthfully, and your team's next roll against that target has Edge. If you asked about their weakness, a hit with that Edge also ignores Toughness: you showed them where to strike.
 - **Signature: Called It.** Name what a villain will do next. When they try it, it fails, and every ally gets a free Quick Action.
 
+### Leader (trial)
+
+You make everyone around you better, and you carry what it costs them. Presence is your stat: a Presence Strike takes a mook out like any other hit, and deals Stress to a named enemy.
+
+- **Drive trigger:** an ally hits with Edge you gave them (Rally or Help), or your Presence attack hits a named enemy.
+- **Carry the weight:** once per scene, when an ally who can hear you would take Stress, you take it instead.
+- **Rally** (Quick): pick one ally who can hear you, in any zone. They get Edge on their next roll, or they make a free move right now. Once per round.
+- **Signature: On My Signal.** Pick one ally who can hear you. They take a full turn right now (a free move, plus one Full Action or two Quick Actions), with Advantage on their first roll. It doesn't use up their own turn this round.
+
 ### Sample heroes
 
 | Hero | Archetype | Trait | Force | Flow | Focus | Presence | Guard / Wits / Poise | Toughness |
@@ -527,7 +668,7 @@ Pick one at character creation.
 
 **Chill** (trial Flair): once per fight, ignore one Stress you would gain, or clear 1 Stress when you roll Impact 3.
 
-**Rooftop Runner** (trial Flair): your free move can cross one extra zone, and you can leave a fight without a roll.
+**Rooftop Runner** (trial Flair): your free move can cross one extra zone, and leaving a fight costs you no turn.
 
 **Smarmy** (trial Flair): once per Night, a Presence roll to talk someone down or past a door counts as one Impact higher (still capped at 3).
 
@@ -554,7 +695,7 @@ A hero with no civilian life still has connections. Their "someone you protect" 
 
 ### Advancement
 
-When a case closes, each hero picks one: +1 to a stat (max +4), a new Flair, the next ability on one of their powers, a new slot (spend it on gear or a street power; a strange power needs two slots, so it takes two picks), or an Asset.
+When a case closes, each hero picks one: +1 to a stat (max +4, and never two cases in a row), a new Flair, the next ability on one of their powers, a new slot (spend it on gear or a street power; a strange power needs two slots, so it takes two picks), or an Asset.
 
 ## Gear and Powers
 
@@ -574,12 +715,12 @@ Everyone carries a **knife**, and every hero also gets **one free weapon** of th
 
 | Weapon | Effect |
 | --- | --- |
-| Knife (everyone has one) | +1 Harm against anyone without Toughness. Can be thrown at Near range. It is a backup: each attack uses one weapon, never two weapon bonuses. |
+| Knife (everyone has one) | +1 Harm on Impact 2 or better against anyone without Toughness. Can be thrown at Near range. It is a backup: each attack uses one weapon, never two weapon bonuses. |
 | Sidearm (free pick) | A gun (Flow to shoot). Far range is at Disadvantage. |
 | Long gun (free pick) | A gun with no Far penalty. Being seen carrying one is +1 Heat. |
-| Bow (free pick) | Flow to shoot, no Far penalty, +1 Harm on Impact 2 or better. Silent: unlike a gun, it adds no Heat on its own. Not a gun, so Toughness applies. |
-| Light melee (free pick: baton, fighting sticks, weighted gloves) | +1 Harm on Impact 2 or better. Works with Strikes and Jabs. |
-| Heavy melee (free pick: bat, pipe, crowbar) | +1 Harm on any hit, but only as a Full Action. |
+| Bow (free pick) | Flow to shoot, no Far penalty, +1 Harm on Impact 2 or better. Silent: unlike a gun, it adds no Heat on its own. Not a gun, so Toughness applies. Like a gun, it is at Disadvantage when you're engaged in melee. |
+| Light melee (free pick: baton, fighting sticks, weighted gloves) | +1 Harm on a Strike at Impact 2 or better. Jabs with it have no -2 penalty. |
+| Heavy melee (free pick: bat, pipe, crowbar) | +1 Harm on any hit, but only on a Strike (never a Jab). |
 
 A stranger weapon, like a mono-edge blade, shock gauntlets or a rail rifle, is the **Special Weapon** street power. Fighting with bare hands is the **Martial Artist** street power.
 
@@ -609,35 +750,35 @@ Gear is armor and tools. Gear can be lost: smashing your gear, or catching you w
 
 | Tool | Effect |
 | --- | --- |
-| Taser | A Jab. On a hit, the target loses their next Quick Action. Electricity, so it ignores Toughness. Two uses per fight. |
+| Taser | A Jab. On a hit, the target loses their next Quick Action (a named enemy has Disadvantage on their next roll instead: see Named enemies resist being shut down). Electricity, so it ignores Toughness. Two uses per fight. |
 | Tracker | Tag someone. If they get away, take 1 clue about where they went. |
 | Pepper spray | Quick Action, Engaged. On a hit, the target has Disadvantage on attacks until the end of their next turn. |
 | Smoke grenades | Quick Action: a zone becomes Dark until the end of next round. Two per fight. |
-| Flashbangs | Quick Action: roll Flow against the Guard of everyone in a zone; everyone you beat has Disadvantage on their next roll. One per fight. |
+| Flashbangs | Quick Action: roll Flow against the Guard of everyone in a zone; everyone you beat has Disadvantage on their next roll. One per fight. Named enemies: see Named enemies resist being shut down. |
 | Bolas or net launcher | Ranged, Near. On a hit, the target can't take their free move until they spend a Quick Action to get free. |
 | Riot shield | +1 Guard. Take Cover works anywhere. Disadvantage on Vanish, and you can't use a long gun. |
-| Mask and voice changer | Edge on rolls to scare or bluff someone who doesn't know you. Being unmasked costs 2 Stress instead of 1 Heat. |
-| Lockpicks and bypass kit | Edge on getting through locked doors, alarms and safes. On Patrol, a lead through a locked place costs nothing extra. |
-| Burner phones | Once per Night, contact an informant or ally without ticking Heat. |
-| Bike or car | Out of fights: move between leads with no time cost once per Night. In a chase, Edge on Flow. |
-| Drone | Quick Action: see into any zone within Far range. Allies attacking a target you've spotted get Edge, once per round. Breaks on any hit. |
+| Mask and voice changer | Edge on rolls to scare or bluff someone who doesn't know you. |
+| Lockpicks and bypass kit | Edge on getting through locked doors, alarms and safes. |
+| Burner phones | Once per Night, use a contact-based ability (Plugs, Network, or calling in a contact with Drive) one extra time. Any clue it gives still counts toward your one no-roll clue per Night. |
+| Bike or car | One extra Patrol action per Night. In a chase, Edge on Flow. |
+| Drone | Quick Action: see into any zone within Far range. The spot lasts until the start of your next turn. Allies attacking a target you've spotted get Edge, once per round. Breaks on any hit. |
 | Climbing gear and gloves | Hard climbs to High Ground need no roll. No Hazard cost for falls of one story. |
-| Tossies | Ranged, Near. Flow to throw. A hit deals 1 Harm (Toughness applies). On Impact 2 or better the target drops what they're holding, so their weapon bonus is off until they spend a Quick Action to recover it. If they hold nothing, they lose their next Quick Action instead. Three per fight. |
+| Tossies | Ranged, Near. Flow to throw. A hit deals 1 Harm (Toughness applies). On Impact 2 or better the target drops what they're holding, so their weapon bonus is off until they spend a Quick Action to recover it. If they hold nothing, they lose their next Quick Action instead (a named enemy has Disadvantage on their next roll: see Named enemies resist being shut down). Three per fight. |
 | Forensic kit | Once per case, spend a scene working a crime scene or an object and take 1 clue, no roll. |
 | Hacking rig | Edge on Focus rolls against systems, cameras and records. Once per Night, take 1 clue from them with no roll. If it comes from police or city records, take +1 Heat. |
-| Weighted lash | A light melee weapon on a cable. +1 Harm on Impact 2 or better, and it works with Strikes and Jabs. Quick Action, Near range: pull an enemy to Engaged with you, or swing yourself to High Ground in your zone or the next one. |
+| Weighted lash | A light melee weapon on a cable: +1 Harm on a Strike at Impact 2 or better, and Jabs with it have no -2 penalty. Quick Action, Near range: pull an enemy to Engaged with you, or swing yourself to High Ground in your zone or the next one. |
 | Trip mines | Quick Action: set a trap in your zone. The next enemy to move into it takes Impact 2, ignoring Toughness, and stops there. Two per fight. |
 | Scoped rifle | A long gun with a scope. Edge on attacks at Far range if you haven't moved this turn. Being seen carrying one is +1 Heat. |
 | Rebreather | Gas and fumes don't affect you, and you ignore stun grenades and flashbangs (built-in ear and eye protection). |
 | Caltrops | Quick Action: scatter them in a zone you're leaving. Until the end of next round, any enemy who moves in stops there. In a chase, anyone behind you has Disadvantage on Flow rolls. Two per fight. |
-| Tranquilizer darts | Ranged, Near. On a hit, a mook goes down. A named enemy has Disadvantage on all rolls until the end of their next turn, and a second hit in the same fight puts them out. Two per fight. |
-| Restraints | Full Action: bind an enemy who is Down, surrendering or willing. They can't act until freed or the scene ends. A bound prisoner is a Tool you can interrogate. |
+| Tranquilizer darts | Ranged, Near. On a hit, a mook goes down. A named enemy has Disadvantage on all rolls until the end of their next turn, and a second hit in the same fight costs them one turn (see Named enemies resist being shut down). Two per fight. |
+| Restraints | Full Action: bind an enemy who is Down, surrendering or willing. They can't act until freed or the scene ends. A bound prisoner can be interrogated. |
 | Disguise kit | Take on a new identity for a scene. Once per Night, pass as someone else with no roll. If you're seen through, take +1 Heat. |
 | Glider cape | Falls of any height cost you nothing, and you can drop into any zone below you as a free move. |
 
-**Stun grenade** (heavier flashbang): Quick Action, Near zone. Everyone there without ear and eye protection rolls Focus vs 12 or loses their next turn; mooks just lose it. Allies in the zone are caught too. One per fight.
+**Stun grenade** (heavier flashbang): Quick Action, Near zone. Everyone there without ear and eye protection rolls Focus vs 12 or loses their next turn; mooks just lose it. Allies in the zone are caught too. Named enemies: see Named enemies resist being shut down. One per fight.
 
-**Taser gun** (dart taser): Near range. On a hit, instead of Harm, the target loses their next Quick Action and a mook drops. Electricity, so it ignores Toughness. Two shots per fight, and reloading between them takes a Quick Action.
+**Taser gun** (dart taser): Near range. On a hit, instead of Harm, the target loses their next Quick Action (a named enemy has Disadvantage on their next roll instead: see Named enemies resist being shut down) and a mook drops. Electricity, so it ignores Toughness. Two shots per fight, and reloading between them takes a Quick Action.
 
 **Gun rules (all guns):** +1 Harm on Impact 2 or better, ignores natural Toughness (Force +3) but not armor, Disadvantage when you're engaged in melee, and +1 Heat for each fight where you fire one.
 
@@ -645,13 +786,15 @@ Gear is armor and tools. Gear can be lost: smashing your gear, or catching you w
 
 Assets are bigger than gear: things you can't carry into a fight, that work between scenes or across a Night. They come only from Advancement (one Asset per pick), never from Resources.
 
-- **Vehicle** (an armored car, a custom bike): travel between leads costs no time, Edge in chases, and once per Night it can crash into a fight as an entrance (move your whole group into any zone, and one mook group drops). Wrecking it costs a Dawn to fix.
+- **Vehicle** (an armored car, a custom bike): one extra Patrol action per Night (it doesn't stack with a bike or car), Edge in chases, and once per Night it can crash into a fight as an entrance (move your whole group into any zone, and one mook group drops). Wrecking it costs a Dawn to fix.
 - **Lair** (a cave, a rooftop safehouse, a back room): at Dawn there, Sleep It Off clears 1 more Stress and Patch Up clears 1 more Harm. If a villain finds it, Home ticks by 2.
 - **Network** (informants, a cop who trusts you, a reporter): once per Night, take a free lead with no cost. Ignore them too long and they start asking for favors.
 
 ### Powers
 
 Powers are adapted from the Supersworn: Street Level cards. Each power has three abilities. You start with the first. Unlocking the other two is an Advancement option.
+
+**Core powers and more powers.** Twelve powers are **core**: six street and six strange. They are the ones the game is built and tested around. Every other power is on a "More powers" list and is a trial rule: it works the same way, but it has seen less play, so pick one with your GM's agreement.
 
 - **Street powers** are within peak-human reach: training, technology, or a small gift. Write in a **source**.
 - **Strange powers** are clearly superhuman. They cost 2 slots, and you must write in a **cost**: a weakness, a side effect, a price. The GM can use it as a hook.
@@ -671,29 +814,25 @@ Powers are adapted from the Supersworn: Street Level cards. Each power has three
 
 ### Street powers
 
+These six are the core street powers: the ones the game is built and tested around.
+
 **Gadgeteer** (Technology)
 
 - *Start:* Utility belt. You get 2 belt slots: each Night, fill them with tools or light armor (any one-slot gear that isn't a weapon). A Specialist, who already has a belt, gets 5 belt slots instead of 3.
 - *Built for this:* once per Night, reveal a gadget made for exactly this. The roll it helps is an automatic Impact 2.
 - *Tinker:* when you Patch Up at Dawn, also repair one broken piece of gear.
 
-**Resilient** (tough and quick to recover; formerly Healing Factor)
+**Resilience** (street power; hard to hurt)
 
-- *Start:* Fast mender. A breather clears Bruised and Hurt.
-- *Shake it off:* once per fight, Quick Action: clear one Harm box.
-- *Not today:* the first time you would die, you survive, out of action until the next Night. Then cross this off.
+- *Start:* Tough. Add one Harm box (Battered, between Hurt and Wounded), and you have Toughness 1 against fists and blunt weapons (not blades or bullets: it is grit, not magic). This doesn't stack with Toughness from Force +3 or from any other source: use your single highest.
+- *I can take it:* when you take Harm and stay on your feet, gain 1 Drive (once per round).
+- *Won't stay down:* once per Night, when you would go Down, stay at Wounded instead.
 
 **Peak Strength** (peak human; formerly Super-Strength)
 
 - *Start:* Strong like an ox. Edge on Force rolls to lift, break, hold, or throw, and your bare hands count as light melee.
 - *Hurl:* on a Strike hit, throw the target into an adjacent zone. If they land on another enemy, both take 1 Harm.
 - *Hold the line:* when you Interpose or shield someone, you get +1 Toughness against that hit.
-
-**Resilience** (street power; hard to hurt)
-
-- *Start:* Tough. Add one Harm box (Battered, between Hurt and Wounded), and you have Toughness 1 against fists and blunt weapons (not blades or bullets: it is grit, not magic). This doesn't stack with Toughness from Force +3 or from any other source: use your single highest.
-- *I can take it:* when you take Harm and stay on your feet, gain 1 Drive (once per round).
-- *Won't stay down:* once per Night, when you would go Down, stay at Wounded instead.
 
 **Enhanced Senses** (loud noise, bright light, or strong smells can overwhelm you)
 
@@ -707,17 +846,33 @@ Powers are adapted from the Supersworn: Street Level cards. Each power has three
 - *See it coming:* when an attack hits you, take 1 Stress to make the attacker reroll.
 - *See the future:* when you miss, the GM offers two moves and you pick which happens.
 
+**Martial Artist** (training)
+
+- *Start:* Trained hands. Your bare hands count as light melee (+1 Harm on a Strike at Impact 2 or better, and Jabs have no -2 penalty). You can't be disarmed, and you have Edge on rolls to grab or disarm.
+- *Turn it back:* once per round, when an enemy you're engaged with misses you, make a free Jab against them.
+- *Pressure point:* on a Strike hit at Impact 2 or better, choose one: the target loses their free move, or has Disadvantage on their next attack.
+
+**Custom Power** (write in name, source, cost)
+
+- *Start:* Edge on rolls outside a fight that your power helps.
+- *Second ability:* Edge on rolls in a fight that your power helps.
+- *Third ability:* write your own with the GM, matching the others in strength.
+
+### More street powers (trial)
+
+Not yet tested as much as the core six. Pick one if your GM agrees.
+
+**Fast Healer** (tough and quick to recover; formerly Healing Factor)
+
+- *Start:* Fast mender. A breather clears Bruised and Hurt.
+- *Shake it off:* once per fight, Quick Action: clear one Harm box.
+- *Not today:* the first time you would die, you survive, out of action until the next Night. Then cross this off.
+
 **Special Weapon** (write in the weapon)
 
 - *Start:* That ain't a knife. Your weapon works like the closest ordinary weapon (light, heavy or gun) and replaces your free weapon. Your first attack each fight with it has Edge.
 - *How's it feel?:* on a hit with it, choose one: the target takes 1 Stress, or +1 Harm on Impact 2 or better.
 - *This is a knife:* once per fight, take 1 Stress to reroll a missed attack with it.
-
-**Martial Artist** (training)
-
-- *Start:* Trained hands. Your bare hands count as light melee (+1 Harm on Impact 2 or better, works with Strikes and Jabs). You can't be disarmed.
-- *Turn it back:* once per round, when an enemy you're engaged with misses you, make a free Jab against them.
-- *Pressure point:* on a Strike hit at Impact 2 or better, choose one: the target loses their free move, or has Disadvantage on their next attack.
 
 **Quick** (fast for a human; formerly Super-Speed)
 
@@ -735,21 +890,51 @@ Powers are adapted from the Supersworn: Street Level cards. Each power has three
 
 - *Start:* Spark. You start every fight with 1 Charge, and touching live power is a Quick Action to regain it (max 1). Spend 1 Charge for Edge on a roll electricity helps.
 - *Surge:* grab high voltage: roll Force against 13. On a hit, gain 3 Charge (max 3). On a miss, take 2 Harm.
-- *Strike:* spend up to 2 Charge on an attack: +1 Harm per Charge spent, on a hit.
-
-**Custom Power** (write in name, source, cost)
-
-- *Start:* Edge on rolls outside a fight that your power helps.
-- *Second ability:* Edge on rolls in a fight that your power helps.
-- *Third ability:* write your own with the GM, matching the others in strength.
+- *Discharge:* spend up to 2 Charge on an attack: +1 Harm per Charge spent, on a hit.
 
 ### Strange powers
+
+These six are the core strange powers.
+
+**Shadow Manipulation**
+
+- *Start:* You can Vanish in any zone with shadows. While Hidden in a Dark zone, your attacks get Edge on top of Advantage.
+- *Spread the dark:* Quick Action: roll Focus against 13. On a hit your zone becomes Dark, and adjacent zones too on Impact 2+.
+- *Reveal:* once per fight, when you drop out of Hidden for dramatic effect, gain 2 Drive.
+
+**Invulnerability** (write in a weakness)
+
+- *Start:* when you would take Harm from a physical attack, take that much Stress instead. Work out the Harm first (weapon bonuses, then Toughness, then the 1-Harm minimum), then convert what's left. Your weakness gets through normally, and once your Stress is full (8), anything more spills into Harm. Since every hit already costs Stress, Invulnerability skips the always-on first-hit Stress cost.
+- *Untouchable:* after people see you shrug off a hit, Edge on Presence rolls to intimidate them.
+- *Can't die:* if you would die, even to your weakness, you fall into a coma for 2d10 days instead.
+
+**Mighty** (beyond peak human; the strange version of Peak Strength)
+
+- *Start:* lift and throw cars. Force attacks get +1 Harm on Impact 2+ and ignore Toughness, and you can throw heavy objects at Near range.
+- *Wrecking:* Full Action: smash a wall, floor or vehicle to remove Cover from a zone, open a path between zones, or make a zone Hazard.
+- *Big leap:* your free move can cross two zones or reach High Ground.
+
+**Healing Factor** (wounds close as you watch; the strange version of Fast Healer)
+
+- *Start:* at the end of each of your turns in a fight, clear one Harm box (not Down). If anyone hurt you since your last turn, that heal costs 1 Stress. The first time it heals you in a fight, take the usual 1 Stress too.
+- *Get back up:* when you go Down, you're back up at Wounded at the end of your next turn, no Drive needed.
+- *Won't die:* when you would die, you don't. You're out until the next scene, then up at Wounded. Your Allergy (a rare alloy, fire, a beheading blade) can still kill you.
 
 **Telepathy** (-1 to each roll for each extra person you target)
 
 - *Start:* Quick Action: roll Focus against a target's Wits. On a hit, you read their surface thoughts, and your next roll against them has Edge (Advantage on Impact 2+).
 - *Influence:* take 1 Stress, roll Focus against Poise. On a hit, they do one reasonable thing you suggest.
-- *Control:* take 2 Stress, roll Focus against Poise. On a hit, you control one person for a scene. On Impact 1 it's only a few minutes, and they remember. Burnout: on a Miss, take 2 more Stress, Telepathy shuts off for the rest of the scene, and the target knows exactly what you tried.
+- *Control:* take 2 Stress, roll Focus against Poise. On a hit, you control one person for a scene. On Impact 1 it's only a few minutes, and they remember. You can't take over a named enemy during a fight: against one, Control works as Influence. Burnout: on a Miss, take 2 more Stress, Telepathy shuts off for the rest of the scene, and the target knows exactly what you tried.
+
+**Fear Aura**
+
+- *Start:* Edge on Presence rolls to intimidate.
+- *Dread:* take 1 Stress: a Presence attack against every mook group in your zone. Any group you beat runs. Fearless mooks (fanatics, cultists, the mind-controlled) ignore Dread.
+- *Nightmare:* take 2 Stress: a Presence attack against one named enemy's Poise. On a hit, they take Stress equal to the Impact and can't attack you on their next turn (see Named enemies resist being shut down).
+
+### More strange powers (trial)
+
+Not yet tested as much as the core six. Pick one if your GM agrees.
 
 **Teleportation**
 
@@ -760,10 +945,10 @@ Powers are adapted from the Supersworn: Street Level cards. Each power has three
 **Elementalist** (wind, water, earth, or fire)
 
 - *Start:* Manipulate. When your element is in the zone, Edge on rolls that use it.
-- *Surge:* Full Action. Either attack with your element at Near range, with Edge, or reshape a Near zone until the end of the fight: earth adds Cover, water adds Hazard, wind adds Dark or clears smoke and Dark.
+- *Unleash:* Full Action. Either attack with your element at Near range, with Edge, or reshape a Near zone until the end of the fight: earth adds Cover, water adds Hazard, wind adds Dark or clears smoke and Dark.
 - *Draw:* take 1 Stress to pull your element from miles away, so the other abilities work anywhere.
 
-**Kinesis** (pyro or hydro; a stored-power version of Elementalist)
+**Kinesis** (move things with your mind; the street-scale version of Telekinesis)
 
 - *Start:* Push, pull, or lift things your size or smaller. Edge on rolls it helps.
 - *Desperate:* after a roll, take 2 Stress to add +2.
@@ -790,7 +975,7 @@ Powers are adapted from the Supersworn: Street Level cards. Each power has three
 **Vampirism** (you must feed on people: blood, psychic energy, or emotions). You hold **Energy**, 0 to 5.
 
 - *Start:* Feed. Roll Presence against a victim's Poise to gain Energy: +3 on Impact 2+, +2 on Impact 1, +2 and 1 Stress on a miss. Heat from feeding: none on Impact 2+ unless someone saw you; +1 Heat on Impact 1 (a witness, or a body that gets found); +1 Heat on a miss. Spend Energy for +1 per point on a roll, up to +2 per roll. At 0 Energy, take 1 Harm each Dawn until you feed.
-- *Control:* spend 1 Energy for Advantage on a Presence roll.
+- *Glamour:* spend 1 Energy for Advantage on a Presence roll.
 - *Shapeshift:* spend 2 Energy to become a wolf or bat for a scene, Edge on rolls the form helps.
 
 **Elasticity**
@@ -798,12 +983,6 @@ Powers are adapted from the Supersworn: Street Level cards. Each power has three
 - *Start:* Squeeze. You fit through any gap. Edge on escapes and getting past barriers.
 - *Stretch:* your Strikes reach Near range, and can hit two enemies in one zone with one roll.
 - *Bounce:* Toughness 1 against blunt hits and falls. Follows the always-on rule: take 1 Stress the first time it stops a hit in a fight.
-
-**Shadow Manipulation**
-
-- *Start:* You can Vanish in any zone with shadows. While Hidden in a Dark zone, your attacks get Edge on top of Advantage.
-- *Spread the dark:* Quick Action: roll Focus against 13. On a hit your zone becomes Dark, and adjacent zones too on Impact 2+.
-- *Reveal:* once per fight, when you drop out of Hidden for dramatic effect, gain 2 Drive.
 
 **Illusions**
 
@@ -815,7 +994,7 @@ Powers are adapted from the Supersworn: Street Level cards. Each power has three
 
 - *Start:* Quick Action: roll Focus against 13. On a hit, Toughness 2 until your next turn (Toughness 1 on Impact 1).
 - *Shared:* you can cover an ally in your zone instead.
-- *Containment:* Full Action: roll Focus against a target's Guard. On a hit, they're trapped while you keep focusing (you can't attack). Each of their turns, they can roll Force against your Wits to break free.
+- *Containment:* Full Action: roll Focus against a target's Guard. On a hit, they're trapped while you keep focusing (you can't attack). Each of their turns, they can roll Force against your Wits to break free. A named enemy rolls with Edge, and the hold ends after they have been held for one full round. It counts as their one lost turn: see Named enemies resist being shut down.
 
 **Temporal Instability** (formerly Time Travel; always takes Unstable: misfires slip you or an ally out of sync with time)
 
@@ -826,8 +1005,8 @@ Powers are adapted from the Supersworn: Street Level cards. Each power has three
 **Ice Control**
 
 - *Start:* Edge when you use ice to block, climb, or slide. You can make your zone a Hazard (ice) as a Quick Action.
-- *Chill:* ice attacks at Near range, with Edge.
-- *Freeze:* take 3 Stress: every mook in your zone loses their next turn. Named villains there resist: roll Focus against each one's Guard, and only those you beat lose their turn.
+- *Frost:* ice attacks at Near range, with Edge.
+- *Freeze:* take 3 Stress: every mook in your zone loses their next turn. Named villains there resist: roll Focus against each one's Guard, and only those you beat lose their turn (see Named enemies resist being shut down).
 
 **Weather Control**
 
@@ -836,12 +1015,6 @@ Powers are adapted from the Supersworn: Street Level cards. Each power has three
 - *Weather as a weapon:* attacks with lightning, hail, or wind at Near or Far range, with Edge.
 
 *Conspicuous:* there's no subtle way to use Weather Control. Your eyes glow, the wind circles you, the clouds center on you. Using any of its abilities ends Hidden, you can't Vanish that round, and anyone watching knows it's you.
-
-**Invulnerability** (write in a weakness)
-
-- *Start:* when you would take Harm from a physical attack, take that much Stress instead. Work out the Harm first (weapon bonuses, then Toughness, then the 1-Harm minimum), then convert what's left. Your weakness gets through normally, and once your Stress is full (8), anything more spills into Harm. Since every hit already costs Stress, Invulnerability skips the always-on first-hit Stress cost.
-- *Untouchable:* after people see you shrug off a hit, Edge on Presence rolls to intimidate them.
-- *Can't die:* if you would die, even to your weakness, you fall into a coma for 2d10 days instead.
 
 **Cloning**
 
@@ -861,12 +1034,6 @@ Powers are adapted from the Supersworn: Street Level cards. Each power has three
 - *Sand fists:* your bare hands count as heavy melee (+1 Harm on any hit) and work with Strikes, not Jabs.
 - *Reform:* Patch Up anywhere with sand clears Down too. If you would die, you scatter and reform in 2d10 days. Water is the natural Allergy for this power.
 
-**Mighty** (beyond peak human; the strange version of Peak Strength)
-
-- *Start:* lift and throw cars. Force attacks get +1 Harm on Impact 2+ and ignore Toughness, and you can throw heavy objects at Near range.
-- *Wrecking:* Full Action: smash a wall, floor or vehicle to remove Cover from a zone, open a path between zones, or make a zone Hazard.
-- *Big leap:* your free move can cross two zones or reach High Ground.
-
 **Sorcery** (spells, rituals, old books)
 
 - *Start:* at the start of each Night, prepare 3 spells. Casting one is a Quick Action, once per spell per fight (roll Focus where a roll is needed). Bolt: a Near attack that ignores Toughness. Ward: +2 Guard to an ally until your next turn. Bind: on a hit, the target can't move on their next turn. Sight: see the hidden, invisible or supernatural in your zone.
@@ -881,35 +1048,23 @@ Powers are adapted from the Supersworn: Street Level cards. Each power has three
 
 If Luck takes Unstable, its misfire is bad luck spilling over: on your Miss, an ally nearby takes the GM's move instead of you.
 
-**Healing Factor** (wounds close as you watch; the strange version of Resilient)
-
-- *Start:* at the end of each of your turns in a fight, clear one Harm box (not Down). If anyone hurt you since your last turn, that heal costs 1 Stress. The first time it heals you in a fight, take the usual 1 Stress too.
-- *Get back up:* when you go Down, you're back up at Wounded at the end of your next turn, no Drive needed.
-- *Hard to kill:* when you would die, you don't. You're out until the next scene, then up at Wounded. Your Allergy (adamantium, fire, a beheading blade) can still kill you.
-
 **Iron Skin**
 
 - *Start:* Quick Action to turn your skin to metal, paying the usual 1 Stress for a strange power. It lasts until the end of the fight or scene. While armored: Toughness 1 against everything, including guns, but you're heavy and slow, with Disadvantage on Vanish and climbing, and you can't use Flow to dodge falls or swim. Your metal fists count as heavy melee (+1 Harm on any hit, Full Action Strikes).
-- *Steel:* once per fight while armored, take 1 Stress to reduce one hit by 1 more Impact, to a minimum of 0.
+- *Steel:* once per fight while armored, take 1 Stress to reduce the Harm of one hit by 1 more, to a minimum of 0.
 - *Unbreakable:* once per Night, when a hit would put you Down, take 2 Stress instead of the Harm.
-
-**Fear Aura**
-
-- *Start:* Edge on Presence rolls to intimidate.
-- *Dread:* take 1 Stress: a Presence attack against every mook group in your zone. Any group you beat runs. Fearless mooks (fanatics, cultists, the mind-controlled) ignore Dread.
-- *Nightmare:* take 2 Stress: a Presence attack against one named enemy's Poise. On a hit, they take Stress equal to the Impact and can't attack you on their next turn.
 
 **Shock Touch**
 
-- *Start:* when your Jab hits, the target loses their next Quick Action.
+- *Start:* when your Jab hits, the target loses their next Quick Action (a named enemy has Disadvantage on their next roll instead: see Named enemies resist being shut down).
 - *Blackout:* a Strike that also kills the lights. Your zone becomes Dark.
-- *Overload:* take 1 Stress: on a hit with your Strike, the target loses their whole next turn and one gun or gadget they carry is fried. (Like all electricity, Shock Touch already ignores Toughness.)
+- *Overload:* take 1 Stress: on a hit with your Strike, the target loses their whole next turn (see Named enemies resist being shut down) and one gun or gadget they carry is fried. (Like all electricity, Shock Touch already ignores Toughness.)
 
 **Levitation** (a light, slow cousin of Flight)
 
-- *Start:* Float up or down slowly. Your free move can reach High Ground or drop from any height, and falls never hurt you. Staying airborne costs: the first round is free, then 1 Stress for each round you stay up. Outside a fight, a short hover is free, but holding it for a whole scene costs 1 Stress. This per-round cost replaces the usual strange-power first-use Stress.
-- *Drift:* while airborne, enemies on the ground can only reach you with ranged attacks, and you can move one extra zone through open air.
-- *Lift:* carry one person with you when you float. Their weight doubles the Stress cost.
+- *Start:* Float. You pay the usual 1 Stress the first time you use it in a fight or scene. After that, hovering is free. Your free move can reach High Ground or drop from any height, and falls never hurt you.
+- *Drift:* Quick Action: rise out of reach. Until the start of your next turn, enemies on the ground can only reach you with ranged attacks, and your free move can cross one extra zone through open air. The first round is free. Each round after that costs 1 Stress.
+- *Lift:* carry one person your size when you float. The first time each scene, that costs 1 Stress.
 
 ### Villain-only powers
 
@@ -933,11 +1088,13 @@ A villain fits in a short stat block. They use the same stats, defenses, and Dri
 
 - **Stats and defenses**, same as a hero.
 - **Harm:** 5 for a lieutenant, 10 for a case's main villain (8 for a smaller one).
-- **Stress: 4 boxes.** Fraying at 2, Breaking at 4. Presence attacks and Stress Flairs fill it. A Breaking villain does something reckless: flees, turns on their own people, or gives something away.
+- **Stress:** a lieutenant has 4 boxes (Fraying at 2, Breaking at 4). A case villain has 6 (Fraying at 3, Breaking at 6). Presence attacks and Stress Flairs fill it. A Breaking villain does something reckless: flees, turns on their own people, or gives something away.
 - **Trait:** one line for Fraying and one for Breaking.
 - **Drive:** starts at 2, earned from their role trigger once per round. Same spend prices as heroes.
 - **Trick:** one special move that costs Drive.
 - **Weakness:** something the heroes can discover (a Detective's Read, an Impact 3 on Patrol) and exploit.
+
+**A villain who Breaks (trial)** doesn't leave the fight. Their Breaking line takes over for the rest of the scene, and every attack against them has Edge. If the Breaking line says they flee, the heroes get one round to stop them.
 
 **Answer Toughness:** every named villain should have at least one way past Toughness: fire, electricity, gas, a hazard they can trigger, or a Presence attack. Otherwise an armored hero can't be hurt.
 
@@ -947,14 +1104,19 @@ A villain fits in a short stat block. They use the same stats, defenses, and Dri
 - **Lieutenants and several named enemies:** a lieutenant gets one turn per round, however many heroes there are, even fighting alone. When a fight has more than one named enemy, each villain takes its own turns by the rule above and each lieutenant takes one; no villain counts as alone while another named enemy is in the fight. Spread all their turns through the round.
 - **Gang size:** in a fight with no named villain, start with one group of 3 mooks per hero. With a named villain present, one group per two heroes (rounded down, minimum 1). Then adjust for how hard the fight should be.
 
+### Named enemies resist being shut down (trial)
+
+A named enemy (a villain or a lieutenant) can lose at most one turn per fight, from all sources combined. After that, any effect that would cost them a turn gives them Disadvantage on their next roll instead. "Loses their next Quick Action" against a named enemy always means Disadvantage on their next roll. Mooks lose turns as written.
+
 ### Roles
 
 | Role | Earns Drive when | Typical Trick |
 | --- | --- | --- |
-| Heavy | They deal or take Impact 2+ | Ignore one hit (2 Drive) |
-| Mastermind | One of their clocks ticks | A mook group acts out of turn (1), tick a villain clock (2) |
-| Nemesis | They target their rival | Cancel the rival's Drive spend (2) |
+| Heavy | They deal or take Impact 2+ | Rampage (2 Drive): right after taking a hit, make a free Strike at whoever dealt it, if they can reach them |
+| Schemer | One of their clocks ticks | A mook group acts out of turn (1), tick a villain clock (2) |
+| Nemesis | They target their rival | Knows your moves (2 Drive): when the rival spends Drive, the Nemesis has Edge against them until the end of the round |
 | Trickster | A hero misses them | Swap places with a mook in sight (2), force a reroll (1) |
+| Insidious (trial) | A hero takes Stress from them, or goes along with a hook | Whisper (1 Drive): their Presence attack this round goes against every hero who can hear them. Lever (2 Drive): name one of a hero's connections; that hero takes 1 Stress, or has Disadvantage until the end of their next turn |
 | Mooks | Never | None. They act in groups of 3. |
 
 ### Sample villains
@@ -962,21 +1124,25 @@ A villain fits in a short stat block. They use the same stats, defenses, and Dri
 ```
 THE BUTCHER OF FIFTH STREET (Heavy, case boss)
 Force +4  Flow 0  Focus +1  Presence +2
-Guard 12  Wits 13  Poise 14   Harm 10  Toughness 1  Stress 4
+Guard 12  Wits 13  Poise 14   Harm 10  Toughness 1  Stress 6 (Fraying 3, Breaking 6)
 Trait: Spite. Fraying: goes after whoever hurt him last, plan or no plan.
        Breaking: wrecks everything in reach, his own men included.
 Drive: deals or takes Impact 2+
+Presence attack (free, once per round): +2 vs Poise, 1 Stress per Impact.
+       "I know where you sleep."
 Trick (2 Drive): Human shield. Redirect a hit to a hostage in his zone.
 Weakness: can't turn down a challenge in front of his crew.
 ```
 
 ```
-AUGUSTINE VOSS, THE LANDLORD (Mastermind, case boss)
+AUGUSTINE VOSS, THE LANDLORD (Schemer, case boss)
 Force -1  Flow +1  Focus +4  Presence +3
-Guard 13  Wits 16  Poise 15   Harm 5  Stress 4
+Guard 13  Wits 16  Poise 15   Harm 5  Stress 6 (Fraying 3, Breaking 6)
 Trait: Order. Fraying: sticks to the plan even as it falls apart.
        Breaking: runs, and sets the building on fire behind him.
 Drive: one of his clocks ticks (Eviction, Evidence)
+Presence attack (free, once per round): +3 vs Poise, 1 Stress per Impact.
+       "I own everything you love."
 Trick (1 Drive): a mook group acts out of turn.
       (2 Drive): tick the Eviction clock.
 Weakness: his handwritten ledger. Without it, his network falls apart.
@@ -988,6 +1154,12 @@ Attack +2   Guard 13  Wits 12  Poise 12   Harm 1 each
 One attack per group per turn, with Edge if all 3 are standing.
 One in each group carries a pistol (+1 Harm on Impact 2+, ignores natural Toughness but not armor, +1 Heat).
 They run when half the gang is down, unless a boss is in sight.
+```
+
+```
+COPS (Mooks, groups of 3) (trial)
+Attack +1   Guard 12  Wits 12  Poise 12   Harm 1 each
+They try to arrest everyone, heroes included.
 ```
 
 ## Old Habits: changing your Trait
@@ -1018,13 +1190,13 @@ This should be rare, maybe once in a long campaign. Take the new Trait and lose 
 
 An arc is 3 to 5 cases tied together by someone working behind the scenes, the **Mastermind**. Each case stands on its own, but each one leaves fingerprints that point at the same person.
 
-*To design later:* the threat behind an arc won't always be a person. It could be a volcano, or an astral alignment that opens a rift on its own unless someone counters it. Those arcs need their own version of Tools, calling cards and Unmasking.
+*To design later:* the threat behind an arc won't always be a person. It could be a volcano, or an astral alignment that opens a rift on its own unless someone counters it. Those arcs need their own version of Pawns, calling cards and Unmasking.
 
 ### The arc sheet (GM)
 
 - **Mastermind:** who's really behind it. This can start blank (see Promotion).
 - **Endgame:** what happens to the city if they win.
-- **Tools:** the villains of each case. Each one works for the Mastermind, knowingly or not, and each knows one thing about them.
+- **Pawns:** the villains of each case. Each one works for the Mastermind, knowingly or not, and each knows one thing about them.
 - **Calling card:** one detail that turns up in every case: a shell company's name, a chalk mark, a matchbook. Players should spot it by the second case.
 - **Endgame clock:** 8 segments.
 - **Arc clues:** a running list, separate from case clues.
@@ -1034,7 +1206,7 @@ An arc is 3 to 5 cases tied together by someone working behind the scenes, the *
 | It ticks when | Ticks |
 | --- | --- |
 | A case's Scheme clock fills | +2 |
-| A Tool escapes, or a theory names the wrong culprit | +1 |
+| A Pawn escapes, or a theory names the wrong culprit | +1 |
 | The heroes miss an Unmasking roll | +1 |
 
 - **At 4:** the Mastermind makes it personal. Pick one hero and hit their Home: a loved one is threatened, a landlord calls, someone starts asking about their nights.
@@ -1045,7 +1217,7 @@ An arc is 3 to 5 cases tied together by someone working behind the scenes, the *
 - Impact 3 on Crack the Case (already in the rules).
 - Impact 3 on a lead: take an arc clue as your bonus instead.
 - Finding the calling card in a case, the first time each case.
-- Taking a Tool alive and breaking them in an interrogation scene (Presence against their Poise).
+- Taking a Pawn alive and breaking them in an interrogation scene (Presence against their Poise).
 
 ### Promotion: when the GM hasn't decided yet
 
@@ -1053,27 +1225,28 @@ An arc can start **Floating**, the same way a case can. The arc sheet just says 
 
 ### Unmasking
 
-With at least 3 arc clues, the team can theorize the arc: who the Mastermind is and what their Endgame is. Roll **2d10 + arc clues against 16** (Complexity 6). With 4 arc clues that's right 55% of the time, and 6 arc clues gets you to 64%.
+With at least 3 arc clues, the team can theorize the arc: who the Mastermind is and what their Endgame is. Roll **2d10 + arc clues against 16** (Complexity 6). With 4 arc clues that's right 45% of the time, 5 arc clues gets you to 55%, and 6 arc clues to 64%.
 
 | Result | Meaning |
 | --- | --- |
 | Miss | Wrong, and the Mastermind knows you're onto them. Endgame clock +1. |
 | Impact 1 | Right, but they're a step ahead. The finale happens on their terms. |
 | Impact 2 | Right. You choose when and where the finale happens. |
-| Impact 3 | Right, plus their Weakness, and one of their Tools turns on them |
+| Impact 3 | Right, plus their Weakness, and one of their Pawns turns on them |
 
 If the roll hits but names the wrong person, you've found the Mastermind's right hand, as with cases.
 
 ### The finale
 
-The finale is a Complexity 8 case against the Mastermind. Afterwards, each hero can change their Trait (Old Habits). A beaten Mastermind can come back in a later arc as a Tool, or as someone's Nemesis.
+The finale is a case against the Mastermind at finale Complexity (2 more than a normal case for your team). Afterwards, each hero can change their Trait (Old Habits). A beaten Mastermind can come back in a later arc as a Pawn, or as someone's Nemesis.
 
 ### Example arc: The Landlord
 
 - **Mastermind:** Augustine Voss, a landlord quietly buying up the east side.
 - **Endgame:** empty the neighborhood, burn what's left, and rebuild it as his.
-- **Tools:** the Butcher (a protection racket that scares tenants out), an arson crew, a crooked fire inspector, a city councilman.
+- **Pawns:** the Butcher (a protection racket that scares tenants out), an arson crew, a crooked fire inspector, a city councilman.
 - **Calling card:** every building that gets hit has an eviction notice from the same shell company, Harbor & Main Holdings.
+- **Scheme beats (first case):** at 2, a tenant who talked to the heroes disappears. At 4, the Calloway annex burns. At 6, the city condemns the block and the tenants are out by Friday.
 
 ## Test fight: The Cannery
 
@@ -1090,7 +1263,13 @@ One short fight to check the math: **Rook** (Brawler) and **Nightjar** (Stalker)
 
 ### Winning
 
-The heroes win if they drop the Butcher, **or** a hero reaches the Freezer and spends an Interact to free the hostage while no enemy is in that zone. The Saints run when 3 of them are down, unless the Butcher can see them.
+The heroes win if they drop the Butcher, **or** they finish the Objective, **Free the hostage** (3 steps, all in the Freezer, and no step can be taken while an enemy is in that zone):
+
+1. **Break the padlock:** Force or Focus against rating -1 (a chained door). *Pays:* the hostage clock does not tick this round.
+2. **Cut the hostage loose:** Flow or Focus against rating +1. *Pays:* the hostage clock stops for good. The Butcher can still use Human shield if he is in the Freezer.
+3. **Get the hostage out the back:** Flow or Presence against rating +1 (move them, or talk them through it). *Pays:* the Objective is done.
+
+The Saints run when 3 of them are down, unless the Butcher can see them.
 
 ### What to watch for
 
@@ -1100,6 +1279,7 @@ The heroes win if they drop the Butcher, **or** a hero reaches the Freezer and s
 - Did anyone reach Fraying? Did the GM use a hook?
 - Was Jab ever worth it over a Strike?
 - Did the hostage clock change what the heroes did, or did they ignore it?
+- Did anyone choose the Objective over attacking, and was it the faster way to win?
 - Did the zones and Hidden feel tactical without counting squares?
 
 After one or two runs, adjust the numbers that felt off: Harm boxes, villain Harm, Drive earn rate, or the Impact bands.
@@ -1110,27 +1290,34 @@ After one or two runs, adjust the numbers that felt off: Harm boxes, villain Har
 
 ### Resolved Nov 10
 
-- **Protector and Detective Drive.** The Protector now earns from any attack against them, hit or miss. The Detective also earns when an ally hits using the Edge from their Read. Luke went from 0.29 to 0.62 Drive a round; win rates didn't move.
+- **Protector and Detective Drive.** The Protector now earns from any attack against them, hit or miss. The Detective also earns when an ally hits using the Edge from their Read. The Protector went from 0.29 to 0.62 Drive a round; win rates didn't move.
 - **Guard 15 enemies.** Kept, with GM advice under Fights (Hard-to-hit enemies): one per fight at most, and always a way to get Edge or Advantage.
 - **The Specialist against guns.** Kit is now in the simulator. Smoke cuts Patchwork's chance of going Down against gunmen from 28% to 23%, and the Kit text now says to take Smoke or Armor when guns are expected. Prepared's trap now ignores Toughness, which lifts parties with a Specialist about 4 points.
 - **Already Broken** starts each Night with 4 Drive. In the simulator Rook gets 1.7 Signatures a fight instead of 1.1, and Nightjar (who already runs hot) Breaks in 70% of fights instead of 18%. A real trade, which is the point.
-- **Lethality.** Kept as it is. Death only comes when an enemy hits a hero who is already Down, and the Harm rules now tell the GM to treat that as a deliberate, announced move.
+- **Lethality.** A hero is only ever Dying when an enemy hits them while they are already Down, and the GM announces that move first. Since Nov 12, death itself is decided at the table: a Dying hero who isn't stabilized is left for dead unless their player says otherwise.
 - **Fight length.** A case's main villain has 10 Harm (8 for a smaller one). The Cannery now runs 4.7 rounds with a 90.6% win rate.
 - **Toughness villains.** If a Detective's Read asks about the weakness, the hit using that Edge ignores Toughness. With guns, Mighty, the Taser and the trap, every party now has an answer to armor.
 - **The Order Trait.** Session 1 showed Order giving Edge on almost every roll. Its Steady perk is now: name one step of your plan, and the roll for that step has Edge, once per scene.
 
 ### Still to watch
 
-- **Parties with no fighter** (Patchwork, the Ledger, Jessica) win only 38% of the Cannery. That's intended: they should win the case and pick their ground first. Check it at a table.
-- **A villain fighting alone** goes down in 3.4 rounds. If that feels short in play, give solo villains 12 Harm.
+- **Parties with no fighter** (Patchwork, the Ledger, a third non-fighter) win only 38% of the Cannery. That's intended: they should win the case and pick their ground first. Check it at a table.
+- **A villain fighting alone** goes down in about 3.3 rounds (Nov 12 run). With 12 Harm it is 3.9 rounds, but the weakest party drops from 56% to 38%. If it feels short in play, give solo villains 12 Harm.
+- **Objectives can be very fast.** In the simulator, three non-fighters finish the Cannery's three steps in about 2.4 rounds. Limiting the team to one finished step a round makes that 3.3 rounds. A GM who contests the steps may make the limit unnecessary. Watch it.
+- **The Leader needs a fighter or an Objective.** Presence attacks deal no Harm, so a Leader with two non-fighters wins a straight slugfest only 7 to 21% of the time in the simulator, but 76 to 93% when the fight has an Objective. Beside a fighter the Leader is about level with the other archetypes.
 - **The new Order perk and Already Broken** haven't been played yet.
+- **A Specialist with Gadgeteer** carries 5 belt tools. If one hero is answering every problem in a fight, limit belt tools to one use per turn.
+- **Clues per Night.** Three heroes can bank up to 9 clues in one Night (2 leads and 1 free clue each). Complexity now scales with the team to keep a case at 2 to 4 Nights. Check how many Nights a case really takes.
 
 ### Not yet tested at a table
 
+- The Nov 11 audit, all new: the changed Traits (Thrill, Fear, Mercy, Spite, Vanity, Duty, Loyalty, Obsession), named enemies resisting being shut down, 6 Stress case villains and Breaking in a fight, the Patrol budget (2 actions a Night, one free clue a Night) and Scheme beats, GM moves (placeholders), Defeat, Objectives, the Cannery's Objective, the fight clarifications (engaging on a free move, Hidden, leaving a fight, ambush) and cop mooks, and the light melee, knife and heavy melee changes. The simulator numbers above were run before these changes.
+- The Nov 12 pass, all new: Sleep It Off clearing 3 Stress and Show Up clearing 1, Grit your teeth, Objective steps that pay and earn Drive (and can't be worked while engaged), the trap after a missed theory, Complexity scaling with the team, the new Levitation, the rewritten GM moves (Costs, fight, Patrol and Dawn moves), Chases, the Rampage and Knows your moves Tricks, stat raises limited to every other case, and the Butcher's and Voss's Presence attack lines.
+- The Leader archetype, the Insidious villain role, and death decided at the table (left for dead), all new on Nov 12 and not played or simulated.
 - Every trial Flair (Resources, Acrobat, Already Broken, The Roast, Trick Arrows, Patient Hunter, Sucker Punch, Bodyguard, Quick Study, Chill, Rooftop Runner, Smarmy and Scrapper), the "More tools" list and Assets.
 - The Loyalty, Obsession, Fear and Duty Traits, which are new and have not been played or simulated.
 - The Bow as a free weapon, and the Weighted lash and Scoped rifle, which the simulator models only as a light weapon and a pistol.
-- Most powers. Only Shadow Manipulation, Resilience, Invulnerability, Mighty and Healing Factor have seen play or the simulator.
+- Most powers. Only Shadow Manipulation, Resilience, Invulnerability, Mighty and Healing Factor have seen play or the simulator. The other seven core powers (Gadgeteer, Peak Strength, Enhanced Senses, Danger Sense, Martial Artist, Telepathy and Fear Aura) are the next to test. Everything on the "More powers" lists comes after that.
 - Floating mysteries (one rough Gemini run), Arcs, Old Habits, and Dawn choices across several Nights.
 
 ### GM practice (from the voice session)
@@ -1152,6 +1339,11 @@ After one or two runs, adjust the numbers that felt off: Harm boxes, villain Har
 - **Method:** Gemini invents dice and simulator tables unless it is handed a numbered dice bank, and every log needs an audit. Use the simulator for numbers and a live session for feel.
 - **Open-questions pass (Nov 10, simulator):** Specialist Kit (Taser, Flashbang, Smoke) and Prepared are now simulated. Changes: Protector and Detective Drive triggers widened, Prepared's trap and a Read weakness ignore Toughness, case villains 10 Harm, Already Broken starts at 4 Drive, the Order perk reworked, and GM advice for hard-to-hit enemies and killing blows. Result across all 56 three-hero parties: the Cannery 90.6% wins in 4.7 rounds (weakest party 38%), the gun lieutenant 92.5% in 3.9 rounds, and every hero averages about one Signature a fight. Kit with Edge was tested and rejected (too small to be worth a rule).
 - **Several named enemies (Nov 11, Stephen):** a fight can have more than one villain or lieutenant. Villains keep the usual turns; a lieutenant always gets one turn per round. The simulator and the Encounter lab model this; a single villain's fight is unchanged.
+- **Audit pass (Nov 11, Stephen):** Trait perks that fired on nearly every roll are now once per scene or once per round. Named enemies can lose only one turn per fight. Case villains have 6 Stress, and Breaking no longer ends a fight. Patrol has a budget. GM moves, Defeat and Objectives were written down. Light melee, knives and heavy melee were rebalanced. Not run through the simulator.
+- **Table and review pass (Nov 12, Stephen):** in a played session a hero reached Fraying and Sleep It Off wiped it, so Sleep It Off now clears 3 Stress and Show Up clears 1. A missed theory can go in anyway and hit a trap, so the Night never stalls. Objective steps pay as they go. Complexity scales with the team. Levitation no longer costs Stress every round. The GM moves were rewritten. Not run through the simulator.
+- **Death, the Leader and the Insidious (Nov 12, Stephen):** death is decided at the table, never by the dice. A sixth archetype, the Leader, leads with Presence. A new villain role, the Insidious, does the same for villains. Not run through the simulator.
+- **Core powers (Nov 12, Stephen):** twelve powers are core (six street, six strange). The rest stay in the book on "More powers" lists as trial rules. No power text changed.
+- **Simulator pass (Nov 12):** the simulator now plays today's rules: the weapon changes, Grit your teeth, villain Stress and Breaking, the taser against named enemies, Objectives and the hostage clock, and the Leader. Across all 56 three-hero parties, the Cannery with the Butcher at 8 Harm ran 96.5% wins in 3.8 rounds, under the 4 to 6 round target, so the trial rule "a villain with Toughness has 2 fewer Harm" was dropped and the Butcher is back to 10. With 10 Harm: 93.4% wins in 4.4 rounds, weakest party 45%. Turning on the Cannery's Objective lifts the weakest party to 76% (92.6% average, 4.4 rounds, 42% of wins by Objective). Grit your teeth is worth about 1.5 points on average and 9 for the weakest party. Light-melee Jabs and villain Stress barely move the totals. The gun lieutenant: 94.7% in 3.6 rounds.
 
 ## Playtest log: Session 1
 

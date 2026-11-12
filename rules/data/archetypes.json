@@ -44,5 +44,15 @@
       { "id": "read", "name": "Read", "text": "In a fight, roll Focus against a target's Wits. For each Impact level, ask one: What's their weakness? What will they do next? What are they protecting? The GM answers truthfully, and your team's next roll against that target has Edge. If you asked about their weakness, a hit with that Edge also ignores Toughness." }
     ],
     "signature": { "id": "called-it", "name": "Called It", "text": "Name what a villain will do next. When they try it, it fails, and every ally gets a free Quick Action." }
+  },
+  {
+    "id": "leader", "name": "Leader", "trial": true,
+    "text": "You make everyone around you better, and you carry what it costs them. Presence is your stat: a Presence Strike takes a mook out like any other hit, and deals Stress to a named enemy.",
+    "drive_trigger": "An ally hits with Edge you gave them (Rally or Help), or your Presence attack hits a named enemy.",
+    "feature": { "id": "carry-the-weight", "name": "Carry the weight", "text": "Once per scene, when an ally who can hear you would take Stress, you take it instead." },
+    "quick_actions": [
+      { "id": "rally", "name": "Rally", "text": "Pick one ally who can hear you, in any zone. They get Edge on their next roll, or they make a free move right now. Once per round." }
+    ],
+    "signature": { "id": "on-my-signal", "name": "On My Signal", "text": "Pick one ally who can hear you. They take a full turn right now (a free move, plus one Full Action or two Quick Actions), with Advantage on their first roll. It doesn't use up their own turn this round." }
   }
 ]

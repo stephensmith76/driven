@@ -5,12 +5,12 @@ Machine-readable rules. The sheets, the builder, the dice roller and the simulat
 | File | Holds |
 | --- | --- |
 | `core.json` | `rules_version`, defenses, Impact bands, Harm boxes, Stress stages, Drive, slots, clocks, case and Dawn rules, villain scaling |
-| `archetypes.json` | The 5 archetypes |
+| `archetypes.json` | The 6 archetypes (the Leader is marked `trial`) |
 | `traits.json` | The 12 Traits |
 | `flairs.json` | The 19 Flairs (13 marked `trial`) |
 | `gear.json` | Gear, including the trial "More gear" list |
-| `powers.json` | Street and strange powers, flaws, villain-only powers |
-| `villains.json` | Roles, the Butcher, Voss, a lieutenant template, the Saints |
+| `powers.json` | Street and strange powers (12 marked `core`, the rest `trial`), flaws, villain-only powers |
+| `villains.json` | Roles, the Butcher, Voss, a lieutenant template, the Saints, the cops |
 | `tags.json` | Ranges and zone tags |
 | `toughness.json` | The Toughness table, generated from rules.md by `npm run gen:toughness` (never hand-edited) |
 

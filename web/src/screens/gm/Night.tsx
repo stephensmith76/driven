@@ -6,7 +6,7 @@ import type { Character, Clock, Clue } from '../../data/types'
 import { Track } from '../../components/Track'
 import { useRunner } from '../../components/Toast'
 import {
-  CORE, MISSED_CRACK_TICKS, PHASE_NAMES, confrontationText, crackDefense, crackResultText, crackWarnings,
+  CORE, MISSED_CRACK_TICKS, PHASE_NAMES, TRAP_TICKS, caseComplexity, complexityOptions, confrontationText, crackDefense, crackResultText, crackWarnings, trapText,
   impactBand, minCluesToCrack, nextPhase, phases, priceOf, resolveRoll, rollDice, theoryCount, upgrade, type Phase,
 } from '../../engine'
 import { GmShell, type GmContext } from './GmShell'
@@ -84,13 +84,13 @@ function NightBody({ campaign }: GmContext) {
 
         <section className="card stack">
           <h2>Crack the Case</h2>
-          <CrackHelper campaignNight={campaign.night} clues={clues} complexityDefault={secrets?.case.complexity ?? 6}
+          <CrackHelper campaignNight={campaign.night} clues={clues} heroCount={heroes.length} caseComplexityValue={secrets?.case.complexity}
             onRecord={(attempt) => run(async () => {
               if (!secrets) throw new Error('Case file not loaded.')
               await save({ case: { ...secrets.case, crack_log: [...(secrets.case.crack_log ?? []), attempt] } })
               report(`Recorded: ${impactBand(attempt.impact).label}. ${crackResultText(attempt.impact)}`)
             })}
-            onMissTicks={() => tick(MISSED_CRACK_TICKS, 'everyone')} />
+            onMissTicks={(ticks) => tick(ticks, 'everyone')} />
           {(secrets?.case.crack_log ?? []).length > 0 && (
             <details>
               <summary className="small">Earlier attempts ({secrets!.case.crack_log!.length})</summary>
@@ -152,17 +152,24 @@ function TickScheme({ heroes, onTick }: { heroes: Character[]; onTick: (ticks: n
 
 type Attempt = NonNullable<NonNullable<import('../../data/caseFile').CaseFile['crack_log']>>[number]
 
-function CrackHelper({ campaignNight, clues, complexityDefault, onRecord, onMissTicks }: {
+function CrackHelper({ campaignNight, clues, heroCount, caseComplexityValue, onRecord, onMissTicks }: {
   campaignNight: number
   clues: Clue[]
-  complexityDefault: number
+  heroCount: number
+  /** The Complexity written in the case file, if any. */
+  caseComplexityValue?: number
   onRecord: (a: Attempt) => void
-  onMissTicks: () => void
+  onMissTicks: (ticks: number) => void
 }) {
   const caseClues = clues.filter((c) => !c.is_arc)
   const [chosen, setChosen] = useState<string[]>([])
   const [caseSense, setCaseSense] = useState(false)
-  const [complexity, setComplexity] = useState(complexityDefault)
+  // Complexity scales with the team. The case file's number is used until the GM picks another.
+  const [picked, setPicked] = useState<number | null>(null)
+  const teamNormal = caseComplexity('normal', heroCount)
+  const complexity = picked ?? caseComplexityValue ?? teamNormal
+  const options = complexityOptions(heroCount)
+  const offScale = !options.some((o) => o.value === complexity)
   const [dice, setDice] = useState<[string, string]>(['', ''])
   const [upgraded, setUpgraded] = useState(false)
 
@@ -178,10 +185,13 @@ function CrackHelper({ campaignNight, clues, complexityDefault, onRecord, onMiss
   return (
     <div className="stack">
       <label className="small">Complexity{' '}
-        <select value={complexity} onChange={(e) => setComplexity(Number(e.target.value))}>
-          {CORE.case.complexity.map((c) => <option key={c.value} value={c.value}>{c.value}: {c.text}</option>)}
+        <select value={complexity} onChange={(e) => setPicked(Number(e.target.value))}>
+          {offScale && <option value={complexity}>{complexity}: from the case file</option>}
+          {options.map((o) => <option key={o.size} value={o.value}>{o.value}: {o.text}</option>)}
         </select>
       </label>
+      {offScale && <p className="warn small">⚠ The case file says Complexity {complexity}. With {heroCount} {heroCount === 1 ? 'hero' : 'heroes'}, a normal case is {teamNormal}.</p>}
+      <p className="muted small">Complexity scales with the team: 2 plus twice the number of heroes for a normal case, and 2 more for a finale.</p>
       <p className="small">Clues in the theory (red herrings don't count). Personal clues count 2.</p>
       {caseClues.length === 0 ? <p className="muted small">No case clues found yet.</p> : (
         <ul className="plain small">
@@ -210,8 +220,10 @@ function CrackHelper({ campaignNight, clues, complexityDefault, onRecord, onMiss
           )}
           <div className="button-row">
             <button onClick={() => onRecord({ at: new Date().toISOString(), night: campaignNight, clues: count, dice: nums, total: roll.total, defense, impact, upgraded: upgraded || undefined })}>Record result</button>
-            {impact === 0 && <button className="secondary" onClick={onMissTicks}>Tick Scheme twice (everyone takes Stress)</button>}
+            {impact === 0 && <button className="secondary" onClick={() => onMissTicks(MISSED_CRACK_TICKS)}>Regroup: tick Scheme twice</button>}
+            {impact === 0 && <button className="secondary" onClick={() => onMissTicks(TRAP_TICKS)}>Go in anyway: tick once (the trap)</button>}
           </div>
+          {impact === 0 && <p className="muted">Every hero takes 1 Stress per tick. <strong>The trap:</strong> {trapText()}</p>}
         </div>
       )}
     </div>

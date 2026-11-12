@@ -10,7 +10,7 @@ import { Roller, type Report, type Run } from '../../components/Roller'
 import { Track } from '../../components/Track'
 import { useRunner } from '../../components/Toast'
 import {
-  CORE, TAGS, customEnemy, enemyFromLibrary, enemyState, gangGroups, libraryEntries, namedTurns, tickClock,
+  CORE, TAGS, customEnemy, enemyFromLibrary, enemyState, gangGroups, libraryEntries, namedTurns, tickClock, villainStress,
   type Enemy, type EnemyKind,
 } from '../../engine'
 import { GmShell, type GmContext } from './GmShell'
@@ -299,11 +299,11 @@ function EnemyPanel({ campaignId, enemies, scene, run }: { campaignId: string; e
             ) : (
               <>
                 <Track label="Harm" value={e.harm} max={e.harm_max} onChange={(v) => run(() => setEnemyField(campaignId, e.id, 'harm', v))} />
-                <Track label="Stress" value={e.stress} max={CORE.stress.villain_boxes} onChange={(v) => run(() => setEnemyField(campaignId, e.id, 'stress', v))} />
+                <Track label="Stress" value={e.stress} max={villainStress(e.kind).max} onChange={(v) => run(() => setEnemyField(campaignId, e.id, 'stress', v))} />
                 <Track label="Drive" value={e.drive} max={CORE.drive.max} onChange={(v) => run(() => setEnemyField(campaignId, e.id, 'drive', v))} />
-                {e.stress >= CORE.stress.villain_breaking_at
-                  ? <p className="small warn">Breaking: reckless. They flee, turn on their own, or give something away.</p>
-                  : e.stress >= CORE.stress.villain_fraying_at && <p className="small warn">Fraying: use their Trait's Fraying line.</p>}
+                {e.stress >= villainStress(e.kind).breaking
+                  ? <p className="small warn">Breaking: their Breaking line takes over for the rest of the scene, and every attack against them has Edge. If they flee, the heroes get one round to stop them.</p>
+                  : e.stress >= villainStress(e.kind).fraying && <p className="small warn">Fraying: use their Trait's Fraying line.</p>}
               </>
             )}
             <div className="button-row">

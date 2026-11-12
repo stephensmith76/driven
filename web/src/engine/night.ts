@@ -14,6 +14,25 @@ export const nextPhase = (p: Phase): Phase | null => PHASES[PHASES.indexOf(p) + 
 export const crackDefense = (complexity: number) => CORE.case.crack_defense_base + complexity
 export const minCluesToCrack = (complexity: number) => Math.ceil(complexity / 2)
 
+/** Complexity scales with the team (rules.md, Case prep): one-Night 4; normal 2 + twice the heroes (never under 6); finale 2 more. */
+export type CaseSize = 'one_night' | 'normal' | 'finale'
+export function caseComplexity(size: CaseSize, heroes: number): number {
+  const k = CORE.case.complexity
+  if (size === 'one_night') return k.one_night
+  const normal = Math.max(k.normal_min, k.normal_base + k.normal_per_hero * heroes)
+  return size === 'finale' ? normal + k.finale_extra : normal
+}
+export function complexityOptions(heroes: number): { size: CaseSize; value: number; text: string }[] {
+  const who = `${heroes} ${heroes === 1 ? 'hero' : 'heroes'}`
+  return [
+    { size: 'one_night', value: caseComplexity('one_night', heroes), text: 'A one-Night job' },
+    { size: 'normal', value: caseComplexity('normal', heroes), text: `A normal case for ${who}` },
+    { size: 'finale', value: caseComplexity('finale', heroes), text: `An arc finale for ${who}` },
+  ]
+}
+/** How many clues case prep should hold (Complexity plus 4). */
+export const prepClues = (complexity: number) => complexity + CORE.case.complexity.prep_clues_extra
+
 export type TheoryClue = { id: string; personal: boolean }
 
 /** Clues the theory counts: a personal clue counts as 2; Case Sense makes one clue count double (+1). */
@@ -32,8 +51,10 @@ export const leadResultText = (impact: number) => CORE.case.lead_results.find((r
 export const confrontationText = (impact: number) =>
   CORE.case.confrontation.find((c) => (impact <= 0 ? c.impact === 'miss' : impact === 1 ? c.impact === '1' : c.impact === '2-3'))?.text ?? ''
 
-/** How many Scheme ticks a missed Crack the Case costs (rules.md: "the Scheme clock ticks twice"). */
-export const MISSED_CRACK_TICKS = 2
+/** A missed Crack the Case: Regroup ticks the Scheme twice; Go in anyway ticks it once and springs a trap. */
+export const MISSED_CRACK_TICKS = CORE.case.missed_crack.regroup_ticks
+export const TRAP_TICKS = CORE.case.missed_crack.trap_ticks
+export const trapText = () => CORE.case.missed_crack.trap_text
 
 /** Where a clock is after `ticks`, and what the rules say happens at half and full. */
 export function tickClock(clock: { kind: string; size: number; filled: number }, ticks: number) {

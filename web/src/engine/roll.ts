@@ -33,6 +33,8 @@ export type RollInput = {
   defense: number
   /** Jab: -2 to the roll, and a hit is always Impact 1. */
   jab?: boolean
+  /** The Jab is with light melee (or bare hands that count as it): no -2. */
+  lightJab?: boolean
 }
 
 export type RollResult = {
@@ -45,7 +47,7 @@ export type RollResult = {
   errors: string[]
 }
 
-export function resolveRoll({ dice, bonus, edge, adv = 0, defense, jab }: RollInput): RollResult {
+export function resolveRoll({ dice, bonus, edge, adv = 0, defense, jab, lightJab }: RollInput): RollResult {
   const errors: string[] = []
   const need = adv ? CORE.dice.advantage_count : CORE.dice.count
   if (dice.length !== need) errors.push(`Expected ${need} dice, got ${dice.length}.`)
@@ -57,7 +59,7 @@ export function resolveRoll({ dice, bonus, edge, adv = 0, defense, jab }: RollIn
   const hasEdge = typeof edge === 'number' ? edge > 0 : Boolean(edge)
   const total = kept.reduce((s, d) => s + d, 0) + bonus
     + (hasEdge ? CORE.edge_bonus : 0)
-    + (jab ? CORE.jab_penalty : 0)
+    + (jab && !lightJab ? CORE.jab_penalty : 0)
   const margin = total - defense
   let impact = impactFor(margin)
   if (jab && impact > 0) impact = 1
@@ -109,8 +111,8 @@ export function harm(input: HarmInput): HarmResult {
   }
 
   if (weapon === 'light' && impact >= 2) bump('Light weapon (+1 on Impact 2+)', 1)
-  if (weapon === 'heavy') bump('Heavy weapon (+1)', 1)
-  if (weapon === 'knife' && input.targetToughness === 0) bump('Blade vs no Toughness (+1)', 1)
+  if (weapon === 'heavy' && !input.jab) bump('Heavy weapon (+1 on a Strike)', 1)
+  if (weapon === 'knife' && impact >= 2 && input.targetToughness === 0) bump('Blade vs no Toughness (+1 on Impact 2+)', 1)
   if (gun && impact >= 2) bump('Gun (+1 on Impact 2+)', 1)
   if (input.mighty && impact >= 2) bump('Mighty (+1 on Impact 2+)', 1)
   for (const e of input.extra ?? []) if (e.value) bump(e.source, e.value)

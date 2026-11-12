@@ -174,3 +174,11 @@ export function customEnemy(c: CustomEnemy): Draft {
     stress: 0, count: 1, count_max: 1, drive: CORE.drive.start_night, zone: null, line: '', source_id: null,
   }
 }
+
+/** A named enemy's Stress track: a lieutenant has 4 boxes (Fraying 2), a case villain 6 (Fraying 3). */
+export function villainStress(kind: string): { max: number; fraying: number; breaking: number } {
+  const s = CORE.stress
+  return kind === 'lieutenant'
+    ? { max: s.villain_boxes, fraying: s.villain_fraying_at, breaking: s.villain_breaking_at }
+    : { max: s.case_villain_boxes, fraying: s.case_villain_fraying_at, breaking: s.case_villain_breaking_at }
+}

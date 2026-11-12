@@ -12,6 +12,8 @@ export type RollSetup = {
   advantage: boolean
   disadvantage: boolean
   jab: boolean
+  /** The Jab is with light melee: no -2 (rules.md, Your turn). */
+  lightJab?: boolean
   defense: number
 }
 
@@ -23,7 +25,7 @@ export const diceNeeded = (s: Pick<RollSetup, 'advantage' | 'disadvantage'>) =>
   setupAdv(s) ? CORE.dice.advantage_count : CORE.dice.count
 
 export function evaluate(s: RollSetup, dice: number[]): RollResult {
-  return resolveRoll({ dice, bonus: s.bonus, edge: s.edge, adv: setupAdv(s), defense: s.defense, jab: s.jab })
+  return resolveRoll({ dice, bonus: s.bonus, edge: s.edge, adv: setupAdv(s), defense: s.defense, jab: s.jab, lightJab: s.lightJab })
 }
 
 /** The defense an obstacle rating gives: 12 + rating. Ratings run from -1 to +5. */
@@ -69,13 +71,13 @@ export function rollRow(args: {
   note?: string
 }): RollRowData {
   const { setup, result } = args
-  const notes = [args.note?.trim(), setup.jab ? 'Jab (-2)' : ''].filter(Boolean)
+  const notes = [args.note?.trim(), setup.jab ? (setup.lightJab ? 'Jab (light melee, no penalty)' : 'Jab (-2)') : ''].filter(Boolean)
   return {
     actor_name: args.actorName,
     character_id: args.characterId,
     label: args.label.trim(),
     stat: args.stat,
-    bonus: setup.bonus + (setup.jab ? CORE.jab_penalty : 0),
+    bonus: setup.bonus + (setup.jab && !setup.lightJab ? CORE.jab_penalty : 0),
     edge: setup.edge,
     adv: setupAdv(setup),
     defense: setup.defense,

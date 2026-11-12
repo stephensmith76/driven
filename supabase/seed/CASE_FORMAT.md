@@ -31,7 +31,7 @@ Only the GM's device ever reads these. Players see a clue only after the GM pres
 | Field | Notes |
 | --- | --- |
 | `mode` | `fixed` (the GM picked the culprit) or `floating` (the theory decides) |
-| `complexity` | 4 for a one-Night job, 6 for a normal case, 8 for an arc finale. Crack the Case rolls against 10 + Complexity |
+| `complexity` | 4 for a one-Night job. A normal case is 2 plus twice the number of heroes (6 for two, 8 for three, 10 for four). An arc finale is 2 more. Crack the Case rolls against 10 + Complexity |
 | `leads[].rating` | Obstacle rating. The defense is 12 + rating |
 | `clues[].id` | Required and unique within the case: the Reveal button uses it |
 | `clues[].personal_for` | A hero's name. It counts as 2 clues in a theory, and revealing it offers to tick that hero's Home clock |

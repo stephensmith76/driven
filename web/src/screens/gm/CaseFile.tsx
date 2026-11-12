@@ -7,7 +7,7 @@ import type { Clock } from '../../data/types'
 import { supabase } from '../../data/supabase'
 import { Track } from '../../components/Track'
 import { useRunner } from '../../components/Toast'
-import { CORE, crackDefense } from '../../engine'
+import { CORE, caseComplexity, crackDefense, prepClues } from '../../engine'
 import { setField } from '../../data/writes'
 import { addDemoClocks, demoArc, demoCase, demoNotes } from '../../data/demoSeed'
 import { setUpScene } from '../../data/fight'
@@ -105,6 +105,18 @@ function CaseBody({ campaign }: GmContext) {
               {c.mode === 'floating' ? 'Floating (the theory decides)' : 'Fixed Culprit'} · Complexity {c.complexity ?? '?'}
               {c.complexity != null && <> · Crack the Case against {crackDefense(c.complexity)}</>}
             </p>
+            {heroes.length > 0 && (() => {
+              const normal = caseComplexity('normal', heroes.length)
+              const finale = caseComplexity('finale', heroes.length)
+              const fits = c.complexity == null || [normal, finale, caseComplexity('one_night', heroes.length)].includes(c.complexity)
+              return (
+                <p className={fits ? 'muted small' : 'warn small'}>
+                  {fits ? '' : '⚠ '}With {heroes.length} {heroes.length === 1 ? 'hero' : 'heroes'}, a normal case is Complexity {normal} and a finale is {finale}
+                  {c.complexity != null && <> (prep about {prepClues(c.complexity)} clues; this case has {(c.clues ?? []).length})</>}.
+                  {!fits && ' Edit the case to change it.'}
+                </p>
+              )
+            })()}
             {c.culprit && <p><strong>Culprit:</strong> {c.culprit}</p>}
             {c.facets && (
               <ul className="plain small">
@@ -166,7 +178,7 @@ function CaseBody({ campaign }: GmContext) {
               <li><strong>Mastermind:</strong> {arc.mastermind || 'someone (not decided)'}</li>
               <li><strong>Endgame:</strong> {arc.endgame || '—'}</li>
               <li><strong>Calling card:</strong> {arc.calling_card || '—'}</li>
-              {(arc.tools ?? []).map((t, i) => <li key={i}><strong>Tool:</strong> {t.name}{t.knows && <> · knows {t.knows}</>}</li>)}
+              {(arc.tools ?? []).map((t, i) => <li key={i}><strong>Pawn:</strong> {t.name}{t.knows && <> · knows {t.knows}</>}</li>)}
               {(arc.arc_clues ?? []).map((t, i) => <li key={i}><strong>Arc clue:</strong> {t}</li>)}
             </ul>
           )}

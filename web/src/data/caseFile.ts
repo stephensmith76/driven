@@ -83,7 +83,8 @@ export function checkCase(v: unknown): { ok: boolean; warnings: string[] } {
   if (!isObj(v)) return { ok: false, warnings: ['The case file must be a JSON object.'] }
   const c = v as CaseFile
   const w: string[] = []
-  if (c.complexity !== undefined && ![4, 6, 8].includes(c.complexity)) w.push(`Complexity is usually 4, 6 or 8 (this says ${c.complexity}).`)
+  if (c.complexity !== undefined && !(Number.isInteger(c.complexity) && c.complexity >= 4 && c.complexity <= 14 && c.complexity % 2 === 0))
+    w.push(`Complexity is 4 for a one-Night job, or 2 plus twice the number of heroes for a normal case (this says ${c.complexity}).`)
   if (c.clues !== undefined && !Array.isArray(c.clues)) w.push('"clues" should be a list.')
   const ids = (c.clues ?? []).map((k) => k?.id)
   if (ids.some((id) => !id)) w.push('Every clue needs an "id" so it can be revealed.')

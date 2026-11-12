@@ -188,3 +188,157 @@ One effect to know: Kit was once per item per fight. Belt gear uses its own limi
 **Protecting a connection pays.** The first time each scene you take Harm or Stress, or put yourself at real risk, to protect or save one of your connections, gain 1 Drive.
 
 The app's character sheet now has a Connections section (four one-line boxes, also in the Builder), so connections no longer have to live in Notes.
+
+## 11. Audit pass: Traits, named enemies, villain Stress, Patrol, GM moves, fight rules, weapons (Nov 11)
+
+Everything new here is marked (trial) in the rules. Rules version 2026-11-11.17.
+
+**Traits.**
+- Thrill, Fraying: "Advantage on Flow rolls" is now "Advantage on a Flow roll, once per round."
+- Mercy, Fraying: "clear 1 Stress whenever you pull someone out of danger" is now "once per scene, clear 1 Stress when you pull someone out of danger."
+- Fear, Fraying: "Clear 1 Stress whenever an attack against you Misses" is now "Once per scene, clear 1 Stress when an attack against you Misses." (The same change as Mercy.)
+- Spite, Fraying: add "once per round" after "your attacker takes 1 Stress."
+- Vanity, Fraying: "+1 Impact on flashy moves" is now "+1 Harm on a hit made in front of witnesses, once per round."
+- Duty and Loyalty, Steady, with the same fix Order had: "once per scene, name one roll you make to keep an oath, a promise or your code (Duty), or to protect, help or avenge one of your connections or a teammate (Loyalty). That roll has Edge." Their Fraying perk, "that Edge becomes Advantage", now means that one roll.
+- Obsession, Steady: "Edge on rolls that move it forward" is now "Once per scene, name one roll that moves it forward. That roll has Edge." Fraying is now "that Edge becomes Advantage" (it was "+1 Harm on hits against your target").
+
+**Villains chapter, new section "Named enemies resist being shut down (trial)"**, after "Scaling to the party":
+
+A named enemy (a villain or a lieutenant) can lose at most one turn per fight, from all sources combined. After that, any effect that would cost them a turn gives them Disadvantage on their next roll instead. "Loses their next Quick Action" against a named enemy always means Disadvantage on their next roll. Mooks lose turns as written.
+
+Cross-references were added to: Taser, Taser gun, Stun grenade, Flashbangs, Tossies, Tranquilizer darts (a second hit now costs one turn instead of "puts them out"), Shock Touch (Start and Overload), Ice Control (Freeze) and Fear Aura (Nightmare). Telepathy, Control: add "You can't take over a named enemy during a fight: against one, Control works as Influence." Force Fields, Containment: add "A named enemy rolls with Edge, and the hold ends after they have been held for one full round. It counts as their one lost turn."
+
+**Villain Stress.** Villains chapter, "What a villain has": lieutenants keep 4 Stress (Fraying 2, Breaking 4). A case villain has 6 (Fraying 3, Breaking 6). Add this paragraph before "Answer Toughness": "**A villain who Breaks (trial)** doesn't leave the fight. Their Breaking line takes over for the rest of the scene, and every attack against them has Edge. If the Breaking line says they flee, the heroes get one round to stop them." The Butcher and Voss stat blocks now say Stress 6 (Fraying 3, Breaking 6).
+
+**Toughness villains.** A named villain with Toughness has 2 fewer Harm boxes. Harm section: "Named villains: 5 to 10 boxes" is now "3 to 10 boxes", with a sentence added. The Butcher stat block: Harm 10 is now Harm 8.
+
+**Patrol.**
+- Replace "Plan on 1 or 2 lead scenes per hero per Night." with: "**Patrol budget (trial).** Each hero gets 2 Patrol actions per Night. Following a lead costs one." and "**One free clue per Night (trial).** A hero can take at most one no-roll clue per Night, from all sources combined: Work the Case, Plugs, Network, a forensic kit, a hacking rig, a tracker and the like."
+- Case prep: add the bullet "**Scheme beats (trial):** three, at 2, 4 and 6 on the clock. Each is an event the heroes can see in the fiction: a witness disappears, a building burns." In "The Scheme clock", add "When it reaches 2, 4 or 6, that beat happens."
+- Clocks table, Scheme, "At half" cell: "The villain knows someone is digging" is now "Beats at 2, 4 and 6: three events the heroes can see, written in case prep (a witness disappears, a building burns)". Heat, "At half": add "and try to arrest everyone, heroes included (see Cops)".
+- The Landlord example: add "**Scheme beats (first case):** at 2, a tenant who talked to the heroes disappears. At 4, the Calloway annex burns. At 6, the city condemns the block and the tenants are out by Friday."
+- Bike or car is now "One extra Patrol action per Night. In a chase, Edge on Flow." Vehicle (Assets): "travel between leads costs no time" is now "one extra Patrol action per Night (it doesn't stack with a bike or car)".
+- Lockpicks and bypass kit: cross out "On Patrol, a lead through a locked place costs nothing extra." Mask and voice changer: cross out "Being unmasked costs 2 Stress instead of 1 Heat."
+- Burner phones is now "Once per Night, use a contact-based ability (Plugs, Network, or calling in a contact with Drive) one extra time. Any clue it gives still counts toward your one no-roll clue per Night."
+
+**GM moves, Defeat and Objectives.**
+- New chapter "GM moves (trial)" between "The clocks" and "Archetypes". It is a placeholder and may be rewritten. It lists 4 soft and 4 hard fight moves and 4 soft and 4 hard Patrol moves. A Miss in a fight earns a soft move. A hard move in a fight needs a reason: the hero was warned, was in a Hazard, rolled with Disadvantage, or it is that hero's second Miss in a row. Every hard move still costs the 1 Stress already in the Stress list.
+- Fights, new section "Defeat (trial)": when every hero is Down or has fled, the villain gets what they came for, the Scheme clock ticks twice, and each hero ticks Home or Heat (their choice). Nobody dies from defeat alone: a Dying hero is stabilized by a bystander, or because the villain walks away.
+- Fights, "Give the fight a goal" is now a procedure (trial): every Confrontation has an Objective of 2 to 4 steps. A step is a Full Action and a roll, with whatever stat fits, against a rating. Finishing the Objective ends the fight in the heroes' favour as surely as dropping the villain.
+- The Cannery, "Winning": the Interact to free the hostage is replaced by a three-step Objective, Free the hostage, all in the Freezer: break the padlock (rating -1), cut the hostage loose (rating +1), get the hostage out the back (rating +1).
+
+**Fight clarifications (trial).**
+- Your turn, free move: it now says you can also engage one enemy in the zone you move into.
+- Zones and range, new "Hidden" paragraph: Hidden ends when you attack, when you leave the zone tags that allow it (or they go away), or when an enemy spends a Quick Action to search and beats your Flow-based roll: they roll Focus against 12 + your Flow. Mooks search with their attack bonus.
+- Your turn, after "Breaking away": "**Leaving a fight (trial):** from a zone with an exit, when you aren't engaged, spend your turn to leave. If you're engaged, break away first as usual, then spend your turn. Rooftop Runner skips the turn cost." Rooftop Runner now reads "leaving a fight costs you no turn" (it was "you can leave a fight without a roll").
+- Turn order: "Heroes go first unless they were ambushed" now continues ", in which case the villains go first. The ambushing side has Edge on its first roll."
+- Confrontation: whose ground? For Impact 2 or 3, "Take the first move" is now "Ambush the villain (your side has Edge on its first roll, trial)".
+- Sample villains: add the cop mook block (Attack +1, Guard 12, Wits 12, Poise 12, Harm 1 each; they try to arrest everyone, heroes included).
+
+**Weapons.**
+- Light melee (Weapons you carry, and the baton, fighting sticks and weighted gloves): add ", and Jabs with it have no -2 penalty." The Jab entry now says "(no penalty with light melee)". The Weighted lash gets the same.
+- Knife, and the Blades row in the Combat chapter: "+1 Harm against anyone without Toughness" is now "+1 Harm on Impact 2 or better against anyone without Toughness."
+- Martial Artist, Start: the bare-hands text now includes the no-penalty Jab, and adds "and you have Edge on rolls to grab or disarm."
+- Remove the Full Action "Swing something heavy". Strike now ends "A heavy melee attack is a Strike." Heavy melee is now "+1 Harm on any hit, but only on a Strike (never a Jab)" in both weapon tables and on the bat, pipe and crowbar.
+
+## 12. Cleanup pass: odds, wording, renames, creation checklist (Nov 11)
+
+No design changes. Rules version 2026-11-11.18.
+
+- **Title and header.** The first page no longer says "v2" or "Nov 9, 2026". It now reads "Driven - Street Level Heroic RPG" and, under it, "Rules version 2026-11-11.18 · Nov 11, 2026 · @Stephen". If your print says "Nov 9, 2026", it is the printed copy this page measures changes against.
+- **Unmasking odds.** "With 4 arc clues that's right 55% of the time, and 6 arc clues gets you to 64%." is now "With 4 arc clues that's right 45% of the time, 5 arc clues gets you to 55%, and 6 arc clues to 64%."
+- **Toughness wording.** Stats and defenses, Toughness: "Toughness reduces each hit's Impact by 1, but a hit always does at least 1 Harm" is now "Toughness reduces the Harm of each hit by 1, after weapon bonuses, but a hit always does at least 1 Harm", and adds "The roll's Impact is unchanged." Iron Skin, Steel: "reduce one hit by 1 more Impact, to a minimum of 0" is now "reduce the Harm of one hit by 1 more, to a minimum of 0."
+- **Dawn order.** Add before "Each hero picks two": "At the start of Dawn, the Scheme clock ticks and its Stress lands, before heroes make their picks."
+- **Renames.**
+  - Street power Resilient is now **Fast Healer** (Resilience keeps its name), and Healing Factor's note says "the strange version of Fast Healer".
+  - The villain role Mastermind is now **Schemer** (Roles table, the Voss stat block). The arc's hidden boss is still the Mastermind.
+  - Arc Tools are now **Pawns** (Arcs: the arc sheet, the Endgame clock table, getting arc clues, Unmasking, the finale, the Landlord example, and the "To design later" note). Gear tools keep the word. Restraints: "A bound prisoner is a Tool you can interrogate." is now "A bound prisoner can be interrogated."
+  - Electrical Aptitude, Strike is now **Discharge**. Elementalist, Surge is now **Unleash**. Vampirism, Control is now **Glamour**. Ice Control, Chill is now **Frost**. Healing Factor, Hard to kill is now **Won't die**. (Telepathy's Control, Electrical Aptitude's Surge, the Chill Flair and the Hard to Kill Flair keep their names.)
+- **Kinesis.** The heading note "pyro or hydro; a stored-power version of Elementalist" is now "move things with your mind; the street-scale version of Telekinesis".
+- **Names in the text.** Playtest notes: "Luke" is now "The Protector", and "Jessica" is now "a third non-fighter". Healing Factor's Allergy example "adamantium" is now "a rare alloy".
+- **Character creation checklist.** New first section of the Archetypes chapter, listing the steps in order with the section that has each rule: stat array, Trait, archetype, Flair, four Connections, free weapon, three slots, and the anchor for Home.
+
+## 13. Table and review pass: Stress at Dawn, Objectives, the trap, Complexity, Levitation, GM moves (Nov 12)
+
+Everything new here is marked (trial) in the rules. Rules version 2026-11-12.19.
+
+**A fix that didn't land in entry 11.** Fear, Fraying still read "Clear 1 Stress whenever an attack against you Misses". It now reads "once per scene, clear 1 Stress when an attack against you Misses."
+
+**Stress at Dawn.**
+- Sleep It Off: "clear all Stress" is now "clear 3 Stress". (In play, a Fraying hero slept it all off in one pick.)
+- Show Up now reads: "be there for your civilian life. Play a short scene with one of your connections, then clear 1 Stress. If you don't pick this, tick your Home clock."
+- Harm, after "Past Down", add: "**Grit your teeth (trial).** At the start of your turn, a Wounded hero can take 1 Stress to ignore the Wounded Disadvantage until their next turn."
+
+**Objectives (Fights, "Give the fight a goal").**
+- The Miss result is now "A Miss leaves the step undone, and the GM makes a soft move (see GM moves)."
+- Add three bullets. **Every step pays:** the GM writes what finishing each step changes right away. **Steps earn Drive:** finishing a step counts as your archetype's Drive trigger for that round. **You can't work a step while engaged,** unless the step is about that enemy.
+- The Cannery: each step now has a payoff. Break the padlock: the hostage clock does not tick this round. Cut the hostage loose: the hostage clock stops for good (the Butcher can still use Human shield if he is in the Freezer). Get the hostage out the back: the Objective is done.
+
+**Cracking the case.**
+- The Miss row is now: "Wrong. The GM says which facet doesn't hold up. The team picks one: **Regroup** (the Scheme clock ticks twice; try again once you have at least one new clue) or **Go in anyway** (the Scheme clock ticks once, and you walk into a trap)."
+- New paragraph "**The trap (trial)**" after the odds: a Confrontation on the villain's ground, their side ambushes, and the case villain isn't there unless the Scheme clock is full. Wrong Who: a patsy and a clean-up crew (the Objective is keeping the patsy alive). Wrong What: a live job (+1 Heat, cops on round 2). Wrong Where: a decoy (one Hazard zone and a clock of 4). Win the fight or finish its Objective and the team takes 1 clue, and the GM gives the true answer to the facet that was wrong.
+- Confrontation: "A miss you couldn't fix, or a full Scheme clock" is now "A trap, or a full Scheme clock".
+
+**Complexity scales with the team (trial).** Case prep: "4 for a one-Night job, 6 for a normal case, 8 for an arc finale" is now "4 for a one-Night job. A normal case is 2 plus twice the number of heroes: 6 for two heroes (or one), 8 for three, 10 for four. An arc finale is 2 more than a normal case." "8 to 12 clues" is now "Complexity plus 4" clues. The finale is "a case against the Mastermind at finale Complexity". Unmasking still rolls against 16. The app's Night and Case file screens work the number out from the heroes in the campaign.
+
+**Levitation.** All three abilities are replaced.
+- Start: "Float. You pay the usual 1 Stress the first time you use it in a fight or scene. After that, hovering is free. Your free move can reach High Ground or drop from any height, and falls never hurt you."
+- Drift: "Quick Action: rise out of reach. Until the start of your next turn, enemies on the ground can only reach you with ranged attacks, and your free move can cross one extra zone through open air. The first round is free. Each round after that costs 1 Stress."
+- Lift: "carry one person your size when you float. The first time each scene, that costs 1 Stress."
+
+**GM moves.** The chapter is rewritten and is no longer a placeholder. It opens with when to make a move and three habits: start from the fiction, say the threat first, then follow through. New "Costs" list for Impact 1: 1 Harm, 1 Stress, a clock tick, you lose your spot, you lose a thing, a connection gets pulled in. There are six soft and six hard fight moves, six soft and six hard Patrol moves, and four Dawn moves. A Miss in a Hazard zone is no longer a reason for a hard move: the Hazard's 1 Harm is its own cost. In "You gain Stress when", the hard move line is now "the GM makes a hard move against you (1, on top of what the move costs)".
+
+**Small fixes.**
+- Light melee everywhere (the weapon tables, weighted lash, Martial Artist): "+1 Harm on a Strike at Impact 2 or better. Jabs with it have no -2 penalty." A Jab is always Impact 1, so the old "works with Jabs" bonus could never apply. The Harm chapter's weapon table gets a Light melee row.
+- Bow: add "Like a gun, it is at Disadvantage when you're engaged in melee."
+- Drone: add "The spot lasts until the start of your next turn."
+- Advancement: "+1 to a stat (max +4)" is now "+1 to a stat (max +4, and never two cases in a row)".
+- Fights, after "Leaving a fight", add "**Chases (trial)**": each round the chasers pick one hero to roll Flow against the quarry's Guard. Three hits catch them, and an Impact 3 counts as two. Three Misses and they're gone. Heroes who are running roll against the pursuers' Wits.
+- Villain roles: the Heavy's Trick "Ignore one hit (2 Drive)" is now "Rampage (2 Drive): right after taking a hit, make a free Strike at whoever dealt it, if they can reach them". The Nemesis's "Cancel the rival's Drive spend (2)" is now "Knows your moves (2 Drive): when the rival spends Drive, the Nemesis has Edge against them until the end of the round".
+- The Butcher and Voss stat blocks each gain a Presence attack line (+2 and +3 vs Poise, free, once per round, 1 Stress per Impact).
+
+## 14. Death at the table, the Leader archetype, the Insidious villain role (Nov 12)
+
+All marked (trial). Rules version 2026-11-12.20.
+
+**Death is decided at the table.** Harm, "Past Down": cross out "A Dying hero dies at the end of the scene unless an ally spends a Full Action next to them to stabilize them. Street level means people can actually die, so the GM should make this a clear choice, never a surprise. In practice, death only comes when an enemy hits someone already Down." In its place:
+
+- An ally can still spend a Full Action next to a Dying hero to stabilize them.
+- No hero dies to a dice roll. If a Dying hero hasn't been stabilized by the end of the scene, their player decides. They can say this is where the hero's story ends. Otherwise the hero is **left for dead**: they survive, stay Down until Dawn like any stabilized hero, and tick their Home clock twice, because you're too fucked up to manage your life at all.
+- A power that works "when you would die" (Not today, Can't die, Won't die, Reform, The Prestige) works when you would be left for dead, and spares you that cost.
+- **Enemies too.** An enemy who drops is out of the fight, not dead. Whether anyone actually dies is the table's call.
+- GM moves, "Finish them": it leaves the hero Dying, and whether they die is still their player's call.
+
+**Leader, a sixth archetype.** Add after the Detective:
+
+You make everyone around you better, and you carry what it costs them. Presence is your stat: a Presence Strike takes a mook out like any other hit, and deals Stress to a named enemy.
+
+- **Drive trigger:** an ally hits with Edge you gave them (Rally or Help), or your Presence attack hits a named enemy.
+- **Carry the weight:** once per scene, when an ally who can hear you would take Stress, you take it instead.
+- **Rally** (Quick): pick one ally who can hear you, in any zone. They get Edge on their next roll, or they make a free move right now. Once per round.
+- **Signature: On My Signal.** Pick one ally who can hear you. They take a full turn right now (a free move, plus one Full Action or two Quick Actions), with Advantage on their first roll. It doesn't use up their own turn this round.
+
+**Insidious, a new villain role.** Add to the Roles table, above Mooks. Earns Drive when a hero takes Stress from them, or goes along with a hook. Tricks: Whisper (1 Drive): their Presence attack this round goes against every hero who can hear them. Lever (2 Drive): name one of a hero's connections; that hero takes 1 Stress, or has Disadvantage until the end of their next turn.
+
+## 15. Core powers and more powers (Nov 12)
+
+No power text changed. Rules version 2026-11-12.21.
+
+Twelve powers are now **core**: the ones the game is built and tested around.
+
+- **Core street powers:** Gadgeteer, Resilience, Peak Strength, Enhanced Senses, Danger Sense, Martial Artist. Custom Power stays with them.
+- **Core strange powers:** Shadow Manipulation, Invulnerability, Mighty, Healing Factor, Telepathy, Fear Aura.
+
+Every other power moves, unchanged, to a "More street powers (trial)" or "More strange powers (trial)" list. They are still in the book. Pick one with your GM's agreement. In the app's Builder, core powers are listed first and the others are marked (trial).
+
+## 16. Simulator pass: the Butcher is back to 10 Harm (Nov 12)
+
+Rules version 2026-11-12.22.
+
+The trial rule from entry 11, "a named villain with Toughness has 2 fewer Harm boxes", is dropped. With the Butcher at 8 Harm the Cannery ran 3.8 rounds in the simulator, under the 4 to 6 round target. At 10 Harm it runs 4.4.
+
+- Harm, "Named villains": the heading is "5 to 10 boxes" again, and the sentence about 2 fewer boxes is gone.
+- Villains, "What a villain has": "and 2 fewer if they have Toughness" is gone.
+- The Butcher's stat block: Harm 8 is Harm 10 again.
+
+The playtest notes have the new simulator numbers, and two things to watch: Objectives can finish very fast, and the Leader needs a fighter or an Objective.

@@ -1,31 +1,35 @@
 {
   "roles": [
-    { "id": "heavy", "name": "Heavy", "drive_trigger": "They deal or take Impact 2+", "trick": "Ignore one hit (2 Drive)" },
-    { "id": "mastermind", "name": "Mastermind", "drive_trigger": "One of their clocks ticks", "trick": "A mook group acts out of turn (1), tick a villain clock (2)" },
-    { "id": "nemesis", "name": "Nemesis", "drive_trigger": "They target their rival", "trick": "Cancel the rival's Drive spend (2)" },
+    { "id": "heavy", "name": "Heavy", "drive_trigger": "They deal or take Impact 2+", "trick": "Rampage (2 Drive): right after taking a hit, make a free Strike at whoever dealt it, if they can reach them" },
+    { "id": "mastermind", "name": "Schemer", "drive_trigger": "One of their clocks ticks", "trick": "A mook group acts out of turn (1), tick a villain clock (2)" },
+    { "id": "nemesis", "name": "Nemesis", "drive_trigger": "They target their rival", "trick": "Knows your moves (2 Drive): when the rival spends Drive, the Nemesis has Edge against them until the end of the round" },
     { "id": "trickster", "name": "Trickster", "drive_trigger": "A hero misses them", "trick": "Swap places with a mook in sight (2), force a reroll (1)" },
+    { "id": "insidious", "name": "Insidious", "trial": true, "drive_trigger": "A hero takes Stress from them, or goes along with a hook", "trick": "Whisper (1 Drive): their Presence attack this round goes against every hero who can hear them. Lever (2 Drive): name one of a hero's connections; that hero takes 1 Stress, or has Disadvantage until the end of their next turn" },
     { "id": "mooks", "name": "Mooks", "drive_trigger": "Never", "trick": "None. They act in groups of 3." }
   ],
   "rules": {
-    "has": "Stats and defenses (same as a hero). Harm: 5 for a lieutenant, 10 for a case's main villain (8 for a smaller one). Stress: 4 boxes, Fraying at 2, Breaking at 4. Trait: one line for Fraying and one for Breaking. Drive: starts at 2, earned from their role trigger once per round. Trick: one special move that costs Drive. Weakness: something the heroes can discover and exploit.",
+    "has": "Stats and defenses (same as a hero). Harm: 5 for a lieutenant, 10 for a case's main villain (8 for a smaller one). Stress: 4 boxes for a lieutenant (Fraying at 2, Breaking at 4), 6 for a case villain (Fraying at 3, Breaking at 6). Trait: one line for Fraying and one for Breaking. Drive: starts at 2, earned from their role trigger once per round. Trick: one special move that costs Drive. Weakness: something the heroes can discover and exploit.",
     "answer_toughness": "Every named villain should have at least one way past Toughness: fire, electricity, gas, a hazard they can trigger, or a Presence attack.",
     "presence_attack": "Every named villain has a Presence attack (vs Poise, deals Stress). Once per round they can use it as a free extra action.",
-    "breaking": "A Breaking villain does something reckless: flees, turns on their own people, or gives something away."
+    "breaking": "A Breaking villain does something reckless: flees, turns on their own people, or gives something away. It does not end the fight: their Breaking line takes over for the rest of the scene, and every attack against them has Edge. If the line says they flee, the heroes get one round to stop them.",
+    "named_enemy_resist": "A named enemy can lose at most one turn per fight, from all sources combined. After that, any effect that would cost them a turn gives them Disadvantage on their next roll instead. Losing their next Quick Action means Disadvantage on their next roll."
   },
   "villains": [
     { "id": "the-butcher", "name": "The Butcher of Fifth Street", "kind": "villain", "role": "heavy", "line": "Heavy, case boss",
       "stats": { "force": 4, "flow": 0, "focus": 1, "presence": 2 },
-      "harm_max": 10, "toughness": 1, "stress_max": 4, "drive": 2, "weapon": "unarmed",
+      "harm_max": 10, "toughness": 1, "stress_max": 6, "drive": 2, "weapon": "unarmed",
       "trait": { "name": "Spite", "fraying": "Goes after whoever hurt him last, plan or no plan.", "breaking": "Wrecks everything in reach, his own men included." },
       "drive_trigger": "Deals or takes Impact 2+",
+      "presence_attack": "Free, once per round: +2 vs Poise, 1 Stress per Impact. \"I know where you sleep.\"",
       "tricks": [{ "cost": 2, "text": "Human shield. Redirect a hit to a hostage in his zone." }],
       "weakness": "Can't turn down a challenge in front of his crew.",
       "sim": { "name": "The Butcher", "force": 4, "flow": 0, "focus": 1, "presence": 2, "harm_max": 10, "toughness_v": 1, "drive": 2, "weapon": "unarmed" } },
-    { "id": "augustine-voss", "name": "Augustine Voss, the Landlord", "kind": "villain", "role": "mastermind", "line": "Mastermind, case boss",
+    { "id": "augustine-voss", "name": "Augustine Voss, the Landlord", "kind": "villain", "role": "mastermind", "line": "Schemer, case boss",
       "stats": { "force": -1, "flow": 1, "focus": 4, "presence": 3 },
-      "harm_max": 5, "toughness": 0, "stress_max": 4, "drive": 2, "weapon": "unarmed",
+      "harm_max": 5, "toughness": 0, "stress_max": 6, "drive": 2, "weapon": "unarmed",
       "trait": { "name": "Order", "fraying": "Sticks to the plan even as it falls apart.", "breaking": "Runs, and sets the building on fire behind him." },
       "drive_trigger": "One of his clocks ticks (Eviction, Evidence)",
+      "presence_attack": "Free, once per round: +3 vs Poise, 1 Stress per Impact. \"I own everything you love.\"",
       "tricks": [
         { "cost": 1, "text": "A mook group acts out of turn." },
         { "cost": 2, "text": "Tick the Eviction clock." }
@@ -45,6 +49,10 @@
     { "id": "fifth-street-saints", "name": "Fifth Street Saints", "kind": "mooks", "role": "mooks",
       "attack": 2, "guard": 13, "wits": 12, "poise": 12, "harm_each": 1, "group_size": 3, "gunner": true,
       "text": "One attack per group per turn, with Edge if all 3 are standing. One in each group carries a pistol (+1 Harm on Impact 2+, ignores Toughness, +1 Heat). They run when half the gang is down, unless a boss is in sight.",
-      "sim": { "name": "Saints", "count": 3, "attack": 2, "guard": 13, "gunner": true } }
+      "sim": { "name": "Saints", "count": 3, "attack": 2, "guard": 13, "gunner": true } },
+    { "id": "cops", "name": "Cops", "kind": "mooks", "role": "mooks", "trial": true,
+      "attack": 1, "guard": 12, "wits": 12, "poise": 12, "harm_each": 1, "group_size": 3, "gunner": false,
+      "text": "They try to arrest everyone, heroes included.",
+      "sim": { "name": "Cops", "count": 3, "attack": 1, "guard": 12, "gunner": false } }
   ]
 }

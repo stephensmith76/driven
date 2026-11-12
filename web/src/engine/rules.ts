@@ -48,6 +48,8 @@ export type PowerEntry = {
   id: string; name: string; tier: 'street' | 'strange'; slots: number; note?: string
   abilities: { name: string; text: string }[]
   always_on?: boolean; required_flaw?: string
+  /** core: one of the twelve tested powers. trial: on a "More powers" list. */
+  core?: boolean; trial?: boolean
   /** false: no first-use Stress (Invulnerability, Levitation have their own cost). */
   first_use_stress?: boolean
   effects?: PowerEffect[]

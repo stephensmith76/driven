@@ -437,7 +437,7 @@
       "harm": 0,
       "harm_max": 10,
       "stress": 0,
-      "stress_max": 4,
+      "stress_max": 6,
       "drive": 2,
       "zone": "killfloor",
       "weapon": "unarmed",

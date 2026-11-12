@@ -36,11 +36,17 @@ export function dawn(sheet: Sheet, t: Trackers, picks: string[]): DawnResult {
   const has = (id: string) => picks.includes(id)
   const name = (id: string) => CORE.dawn.options.find((o) => o.id === id)?.name ?? id
 
-  if (has('sleep_it_off')) {
-    const floor = stressFloor(sheet)
-    patch.stress = Math.min(t.stress, floor)
-    notes.push(floor > 0 ? `${name('sleep_it_off')}: Stress down to ${floor} (it never drops lower).` : `${name('sleep_it_off')}: Stress cleared.`)
+  // Sleep It Off clears 3 Stress and Show Up clears 1 (rules.md, Dawn). Stress never drops below the hero's floor.
+  const floor = stressFloor(sheet)
+  let stress = t.stress
+  for (const id of ['sleep_it_off', 'show_up']) {
+    const clear = (CORE.dawn.options.find((o) => o.id === id) as { stress_clear?: number } | undefined)?.stress_clear ?? 0
+    if (!has(id) || clear === 0 || stress <= floor) continue
+    const next = Math.max(floor, stress - clear)
+    notes.push(`${name(id)}: Stress ${stress} to ${next}${next === floor && floor > 0 ? ' (it never drops lower)' : ''}.`)
+    stress = next
   }
+  if (stress !== t.stress) patch.stress = stress
 
   if (has('patch_up')) {
     const boxes = harmBoxes(sheet).length
