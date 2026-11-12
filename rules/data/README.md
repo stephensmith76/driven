@@ -6,8 +6,8 @@ Machine-readable rules. The sheets, the builder, the dice roller and the simulat
 | --- | --- |
 | `core.json` | `rules_version`, defenses, Impact bands, Harm boxes, Stress stages, Drive, slots, clocks, case and Dawn rules, villain scaling |
 | `archetypes.json` | The 5 archetypes |
-| `traits.json` | The 8 Traits |
-| `flairs.json` | The 9 Flairs (3 marked `trial`) |
+| `traits.json` | The 12 Traits |
+| `flairs.json` | The 19 Flairs (13 marked `trial`) |
 | `gear.json` | Gear, including the trial "More gear" list |
 | `powers.json` | Street and strange powers, flaws, villain-only powers |
 | `villains.json` | Roles, the Butcher, Voss, a lieutenant template, the Saints |

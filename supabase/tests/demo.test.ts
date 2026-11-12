@@ -19,7 +19,7 @@ async function main() {
 
     const heroes = (await gm.from('characters').select('name, flair_ids').eq('campaign_id', cid)).data ?? []
     check('five heroes', heroes.length === 5, heroes.map((h) => h.name).join(', '))
-    check('the Ledger has Connected', heroes.find((h) => h.name === 'The Ledger')?.flair_ids?.includes('connected') === true)
+    check('the Ledger has Plugs', heroes.find((h) => h.name === 'The Ledger')?.flair_ids?.includes('connected') === true)
 
     const secrets = (await gm.from('gm_secrets').select('case, arc, notes').eq('campaign_id', cid).single()).data
     check('case file saved', secrets?.case?.title === 'The Butcher of Fifth Street' && secrets.case.clues.length === 18)

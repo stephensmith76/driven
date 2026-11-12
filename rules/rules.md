@@ -230,6 +230,34 @@ Pick one. Each Trait lists how it earns Drive, its two perks, its hook, and how 
 - *Fraying:* Advantage on Flow rolls. *Hook:* you won't take cover or retreat.
 - *Breaking:* you do the most dangerous thing in reach and drag someone into it with you.
 
+**Loyalty**
+
+- *Drive:* when you take a risk for a connection or a teammate.
+- *Steady:* Edge on rolls made to protect, help or avenge one of your connections or a teammate.
+- *Fraying:* that Edge becomes Advantage. *Hook:* you won't leave anyone behind or sell anyone out.
+- *Breaking:* you shield them from the truth or the law, even when they're wrong: you lie, hide evidence, or step between them and justice. Take +1 Heat.
+
+**Obsession**
+
+- *Drive:* when you chase your target past what's sensible.
+- *Steady:* At the start of each Night, name one person or case as your target. Edge on rolls that move it forward.
+- *Fraying:* +1 Harm on hits against your target. *Hook:* you ignore anything that isn't about the target.
+- *Breaking:* you abandon the team or a civilian to chase the lead. The GM picks which.
+
+**Fear**
+
+- *Drive:* when you act despite being scared.
+- *Steady:* Edge on the first roll you make in each fight.
+- *Fraying:* Clear 1 Stress whenever an attack against you Misses. *Hook:* you overprepare and won't go in blind.
+- *Breaking:* you run, or you strike first and hardest at the thing you're afraid of. The GM picks which.
+
+**Duty**
+
+- *Drive:* when you keep your word or follow your code at a cost.
+- *Steady:* Edge on rolls to keep an oath, a promise or your code.
+- *Fraying:* that Edge becomes Advantage. *Hook:* you won't break your code, even when it's tactically dumb.
+- *Breaking:* you follow the code into disaster, whoever it costs.
+
 ## Drive
 
 Drive is your heroic fuel. There is one price list for everyone. Archetypes change how you earn Drive, never what it costs.
@@ -474,10 +502,10 @@ All heroes start with 4 Harm boxes, 8 Stress boxes, and 2 Drive.
 
 Pick one at character creation.
 
-- **Last Push:** when you go Down, take one Full Action first.
+- **The Best:** when you go Down, take one Full Action first.
 - **Hard to Kill:** add a fifth Harm box, *Battered*, between Hurt and Wounded.
-- **Street Smart:** Edge on Patrol rolls in your own neighborhood.
-- **Connected:** once per Night, a contact gives you 1 clue, no roll. Each use ticks your Home clock or Heat (your choice).
+- **A Thing or Two:** Edge on Patrol rolls in your own neighborhood.
+- **Plugs:** once per Night, a contact gives you 1 clue, no roll. Each use ticks your Home clock or Heat (your choice).
 - **Opportunist:** once per scene, when an enemy misses you, gain 1 Drive.
 - **Fast Hands:** once per turn, Interact is free.
 
@@ -486,6 +514,25 @@ Pick one at character creation.
 **Acrobat** (trial Flair): Hazard zones don't cost you Harm on a miss, and you can move into a zone and climb to its High Ground in the same free move.
 
 **Already Broken** (trial Flair): your Stress never drops below 4, so you're always Fraying and the GM always has a hook. In return, start each Night with 4 Drive instead of 2.
+
+**The Roast** (trial Flair): once per fight, as a Quick Action, roll Presence against a named enemy's Poise. On a hit, they take Stress equal to the Impact and the next attack against them has Edge. A Miss costs you 1 Stress: it landed badly.
+
+**Patient Hunter** (trial Flair): once per Night, when you take a clue, take it clean: no cost is paid, even on a Miss.
+
+**Sucker Punch** (trial Flair): your first attack against an enemy who hasn't acted yet has Edge.
+
+**Bodyguard** (trial Flair): once per round, take a hit aimed at an ally in your zone. You take 1 less Harm from it.
+
+**Quick Study** (trial Flair): once per scene, after a villain spends Drive on a Trick against you, you have Edge against that villain for the rest of the scene.
+
+**Chill** (trial Flair): once per fight, ignore one Stress you would gain, or clear 1 Stress when you roll Impact 3.
+
+**Rooftop Runner** (trial Flair): your free move can cross one extra zone, and you can leave a fight without a roll.
+
+**Smarmy** (trial Flair): once per Night, a Presence roll to talk someone down or past a door counts as one Impact higher (still capped at 3).
+
+**Scrapper** (trial Flair): once per scene, when you're outnumbered in your zone, your next attack has Edge and deals +1 Harm.
+**Trick Arrows** (trial Flair): you need a bow as one of your weapons. Twice per fight, add one effect to a bow attack, a different arrow each time. Net: the target can't take their free move until they spend a Quick Action to get free. Flash: the target has Disadvantage on their next roll. Grapple: you move to any zone you can see, including High Ground. Boom: on a hit, everyone else in the target's zone takes 1 Harm.
 
 ### Connections
 
@@ -527,6 +574,7 @@ Everyone carries a **knife**, and every hero also gets **one free weapon** of th
 | Knife (everyone has one) | +1 Harm against anyone without Toughness. Can be thrown at Near range. It is a backup: each attack uses one weapon, never two weapon bonuses. |
 | Sidearm (free pick) | A gun (Flow to shoot). Far range is at Disadvantage. |
 | Long gun (free pick) | A gun with no Far penalty. Being seen carrying one is +1 Heat. |
+| Bow (free pick) | Flow to shoot, no Far penalty, +1 Harm on Impact 2 or better. Silent: unlike a gun, it adds no Heat on its own. Not a gun, so Toughness applies. |
 | Light melee (free pick: baton, fighting sticks, weighted gloves) | +1 Harm on Impact 2 or better. Works with Strikes and Jabs. |
 | Heavy melee (free pick: bat, pipe, crowbar) | +1 Harm on any hit, but only as a Full Action. |
 
@@ -571,8 +619,18 @@ Gear is armor and tools. Gear can be lost: smashing your gear, or catching you w
 | Bike or car | Out of fights: move between leads with no time cost once per Night. In a chase, Edge on Flow. |
 | Drone | Quick Action: see into any zone within Far range. Allies attacking a target you've spotted get Edge, once per round. Breaks on any hit. |
 | Climbing gear and gloves | Hard climbs to High Ground need no roll. No Hazard cost for falls of one story. |
-
-**Bow** (or crossbow): ranged, Flow to shoot, no Far penalty. +1 Harm on Impact 2+. Silent, so it causes no Heat. Not a gun: no graze rule, and Toughness applies.
+| Tossies | Ranged, Near. Flow to throw. A hit deals 1 Harm (Toughness applies). On Impact 2 or better the target drops what they're holding, so their weapon bonus is off until they spend a Quick Action to recover it. If they hold nothing, they lose their next Quick Action instead. Three per fight. |
+| Forensic kit | Once per case, spend a scene working a crime scene or an object and take 1 clue, no roll. |
+| Hacking rig | Edge on Focus rolls against systems, cameras and records. Once per Night, take 1 clue from them with no roll. If it comes from police or city records, take +1 Heat. |
+| Weighted lash | A light melee weapon on a cable. +1 Harm on Impact 2 or better, and it works with Strikes and Jabs. Quick Action, Near range: pull an enemy to Engaged with you, or swing yourself to High Ground in your zone or the next one. |
+| Trip mines | Quick Action: set a trap in your zone. The next enemy to move into it takes Impact 2, ignoring Toughness, and stops there. Two per fight. |
+| Scoped rifle | A long gun with a scope. Edge on attacks at Far range if you haven't moved this turn. Being seen carrying one is +1 Heat. |
+| Rebreather | Gas and fumes don't affect you, and you ignore stun grenades and flashbangs (built-in ear and eye protection). |
+| Caltrops | Quick Action: scatter them in a zone you're leaving. Until the end of next round, any enemy who moves in stops there. In a chase, anyone behind you has Disadvantage on Flow rolls. Two per fight. |
+| Tranquilizer darts | Ranged, Near. On a hit, a mook goes down. A named enemy has Disadvantage on all rolls until the end of their next turn, and a second hit in the same fight puts them out. Two per fight. |
+| Restraints | Full Action: bind an enemy who is Down, surrendering or willing. They can't act until freed or the scene ends. A bound prisoner is a Tool you can interrogate. |
+| Disguise kit | Take on a new identity for a scene. Once per Night, pass as someone else with no roll. If you're seen through, take +1 Heat. |
+| Glider cape | Falls of any height cost you nothing, and you can drop into any zone below you as a free move. |
 
 **Stun grenade** (heavier flashbang): Quick Action, Near zone. Everyone there without ear and eye protection rolls Focus vs 12 or loses their next turn; mooks just lose it. Allies in the zone are caught too. One per fight.
 

@@ -93,7 +93,7 @@ Every number and rule text the app shows comes from JSON files in `rules/data/`.
 | --- | --- |
 | `core.json` | `rules_version`, defense base (12), Impact bands, Harm box names, Stress stages, Drive prices and starting Drive (2), slot costs, clock sizes, Dawn options, villain turn and gang size scaling |
 | `archetypes.json` | The 5 archetypes: Drive trigger, feature, Quick Actions, Signature |
-| `traits.json` | The 8 Traits: Drive trigger, Steady, Fraying, hook, Breaking |
+| `traits.json` | The 12 Traits: Drive trigger, Steady, Fraying, hook, Breaking |
 | `flairs.json` | The 9 Flairs |
 | `gear.json` | Every gear item: slots, text, uses per fight |
 | `powers.json` | Street and strange powers: tier, the 3 abilities, always-on flag, flaw rules |
