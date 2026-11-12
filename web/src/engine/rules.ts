@@ -5,7 +5,6 @@ import archetypes from '../../../rules/data/archetypes.json'
 import traits from '../../../rules/data/traits.json'
 import flairs from '../../../rules/data/flairs.json'
 import gear from '../../../rules/data/gear.json'
-import kit from '../../../rules/data/kit.json'
 import powersFile from '../../../rules/data/powers.json'
 import villainsFile from '../../../rules/data/villains.json'
 import tagsFile from '../../../rules/data/tags.json'
@@ -41,7 +40,6 @@ export type GearEntry = {
   unreliable?: boolean
   sim: SimFields
 }
-export type KitEntry = { id: string; name: string; text: string; toughness?: ToughnessMap; sim: SimFields }
 export type PowerEffect = {
   level: number; toughness?: ToughnessMap; guard?: number; boxes_bonus?: number
   weapon?: WeaponId; mighty?: boolean
@@ -72,7 +70,6 @@ export const ARCHETYPES: ArchetypeEntry[] = archetypes
 export const TRAITS: TraitEntry[] = traits
 export const FLAIRS = flairs as FlairEntry[]
 export const GEAR = gear as GearEntry[]
-export const KIT = kit as KitEntry[]
 export const POWERS = powersFile.powers as PowerEntry[]
 export const POWER_RULES = powersFile.rules
 export const POWER_FLAWS = powersFile.flaws
@@ -93,7 +90,6 @@ const byId = {
   trait: index(TRAITS),
   flair: index(FLAIRS),
   gear: index(GEAR),
-  kit: index(KIT),
   power: index(POWERS),
 }
 
@@ -101,5 +97,11 @@ export const archetype = (id: string | null | undefined) => (id ? byId.archetype
 export const trait = (id: string | null | undefined) => (id ? byId.trait.get(id) : undefined)
 export const flair = (id: string) => byId.flair.get(id)
 export const gearItem = (id: string) => byId.gear.get(id)
-export const kitItem = (id: string) => byId.kit.get(id)
+/** Belt picks are saved with kind 'kit' (the old name). Old picks used the old Kit ids; these map to the gear that replaced them. */
+const LEGACY_KIT: Record<string, string> = {
+  smoke: 'smoke-grenades', grapple: 'grapple-line', flashbang: 'flashbangs', taser: 'taser', tracker: 'tracker', armor: 'kevlar-vest',
+}
+export const beltItem = (id: string) => byId.gear.get(id) ?? byId.gear.get(LEGACY_KIT[id] ?? '')
+/** Gear that can sit on a utility belt: one slot, not a weapon. */
+export const beltEligible = (g: GearEntry) => g.slots === 1 && !g.weapon && !g.baseline
 export const power = (id: string) => byId.power.get(id)

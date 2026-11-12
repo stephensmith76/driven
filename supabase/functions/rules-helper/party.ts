@@ -5,7 +5,6 @@ export type RulesData = {
   defenseBase: number
   archetypes: { id: string; name: string }[]
   gear: { id: string; name: string; guard?: number }[]
-  kit: { id: string; name: string }[]
   powers: { id: string; name: string; effects?: { level: number; guard?: number }[] }[]
 }
 type Item = { kind: string; id: string; ability_level?: number; flaw?: string; custom_text?: string }
@@ -37,14 +36,18 @@ export function defenseNumbers(h: Hero, d: RulesData) {
   }
 }
 
+const LEGACY_KIT: Record<string, string> = {
+  smoke: 'smoke-grenades', grapple: 'grapple-line', flashbang: 'flashbangs', taser: 'taser', tracker: 'tracker', armor: 'kevlar-vest',
+}
 const sign = (n: number) => (n >= 0 ? `+${n}` : `${n}`)
 
 export function partySummary(heroes: Hero[], d: RulesData): string {
   return heroes.map((h) => {
     const def = defenseNumbers(h, d)
     const items = (h.loadout ?? []).map((it) => {
-      const list = it.kind === 'gear' ? d.gear : it.kind === 'kit' ? d.kit : d.powers
-      const name = list.find((x) => x.id === it.id)?.name ?? it.id
+      // Utility belt picks are saved with kind 'kit' and are gear ids (old Kit ids map to the gear that replaced them).
+      const list = it.kind === 'power' ? d.powers : d.gear
+      const name = list.find((x) => x.id === it.id)?.name ?? (it.kind === 'kit' ? d.gear.find((x) => x.id === LEGACY_KIT[it.id])?.name : undefined) ?? it.id
       return it.kind === 'power' && it.ability_level ? `${name} (ability ${it.ability_level})` : name
     })
     const arch = d.archetypes.find((a) => a.id === h.archetype_id)?.name ?? 'no archetype'

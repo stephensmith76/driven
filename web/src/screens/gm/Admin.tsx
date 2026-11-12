@@ -87,7 +87,7 @@ function AdminBody({ campaign, members, uid }: GmContext) {
             })}
           </tbody>
         </table>
-        <p className="small muted">Locked: the player can still use their trackers, notes and Kit, but not change the build.</p>
+        <p className="small muted">Locked: the player can still use their trackers, notes and utility belt, but not change the build.</p>
       </section>
 
       <section className="card stack">

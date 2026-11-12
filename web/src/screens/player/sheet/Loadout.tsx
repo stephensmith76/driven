@@ -1,9 +1,9 @@
-import { KIT, kitPicks, kitItem, resolveLoadout, usesLeft } from '../../../engine'
+import { GEAR, beltEligible, beltItem, beltSlots, resolveLoadout, usesLeft } from '../../../engine'
 import { bump, setFlag, setKit } from '../../../data/writes'
 import type { Character } from '../../../data/types'
 import type { Report } from './Actions'
 
-/** Every gear item and power with its rules text, limited-use counters, Push, flaw and the Kit picker. */
+/** Every gear item and power with its rules text, limited-use counters, Push, flaw and the utility belt picker. */
 export function Loadout({ hero, report, run }: {
   hero: Character
   report: Report
@@ -11,7 +11,7 @@ export function Loadout({ hero, report, run }: {
 }) {
   const items = resolveLoadout(hero).filter((r) => r.kind !== 'kit')
   const kitIds = hero.loadout.filter((i) => i.kind === 'kit').map((i) => i.id)
-  const picks = kitPicks(hero)
+  const picks = beltSlots(hero)
   const fs = hero.fight_state
 
   const markUse = (id: string, name: string, perFight: number, delta: 1 | -1) => run(async () => {
@@ -113,22 +113,22 @@ export function Loadout({ hero, report, run }: {
 
       {(picks > 0 || kitIds.length > 0) && (
         <div className="item">
-          <p><strong>Kit</strong> <span className="muted small">pick {picks} at the start of each Night · {kitIds.length} picked · sits outside your slots</span></p>
+          <p><strong>Utility belt</strong> <span className="muted small">fill {picks} at the start of each Night · {kitIds.length} picked · sits outside your slots</span></p>
           {kitIds.length > picks && <p className="small error">You picked more than {picks}. That's allowed, but check with the GM.</p>}
           <div className="chips">
-            {KIT.map((k) => (
+            {GEAR.filter(beltEligible).map((k) => (
               <button key={k.id} className={`chip ${kitIds.includes(k.id) ? 'on' : ''}`} aria-pressed={kitIds.includes(k.id)} onClick={() => toggleKit(k.id)} title={k.text}>
                 {k.name}
               </button>
             ))}
           </div>
           {kitIds.map((id) => {
-            const k = kitItem(id)
+            const k = beltItem(id)
             if (!k) return null
             const used = Boolean(fs[`kit:${id}`])
             return (
               <p key={id} className="small">
-                <strong>{k.name}.</strong> {k.text}{' '}
+                <strong>{k.name}.</strong> {k.text}{k.uses_per_fight ? ` (${k.uses_per_fight} per fight)` : ''}{' '}
                 <button className={`mini ${used ? '' : 'secondary'}`} aria-pressed={used} onClick={() => toggleKitUsed(id)}>
                   {used ? 'Used this fight' : 'Mark used'}
                 </button>

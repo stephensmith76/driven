@@ -30,10 +30,9 @@
   {
     "id": "specialist", "name": "Specialist",
     "text": "Gadgets, trick shots, and a plan for everything.",
-    "drive_trigger": "You use Kit to change the fight (a new zone tag, a moved enemy, a blocked exit).",
-    "feature": { "id": "kit", "name": "Kit", "text": "Pick 3 items at the start of each Night. Using one is a Quick Action, once per item per fight. Expecting guns? Take Smoke or Armor: without them, a Specialist is usually the first one down." },
+    "drive_trigger": "You use a tool to change the fight (a new zone tag, a moved enemy, a blocked exit).",
+    "feature": { "id": "belt", "name": "Utility belt", "text": "3 belt slots. At the start of each Night, fill them with tools or light armor (any one-slot gear that isn't a weapon). Belt gear works exactly like gear and doesn't use your 3 slots. Expecting guns? Take smoke grenades or a Kevlar vest: without them, a Specialist is usually the first one down." },
     "quick_actions": [],
-    "kit_picks": 3,
     "signature": { "id": "prepared", "name": "Prepared", "text": "Reveal something you set up earlier: a new exit, a trap (Impact 2 to whoever sets it off, ignoring Toughness), or backup arriving. Then take Advantage on your next roll." }
   },
   {

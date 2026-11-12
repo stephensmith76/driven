@@ -1,9 +1,0 @@
-[
-  { "id": "smoke", "name": "Smoke", "text": "A zone becomes Dark until the end of next round.", "sim": { "kit": "smoke" } },
-  { "id": "grapple", "name": "Grapple", "text": "Move to any zone you can see, including High Ground.", "sim": null },
-  { "id": "flashbang", "name": "Flashbang", "text": "Roll Flow against the Guard of everyone in a zone. Everyone you beat has Disadvantage on their next roll.", "sim": { "kit": "flashbang" } },
-  { "id": "taser", "name": "Taser", "text": "A Jab. On a hit, the target loses their next Quick Action.", "sim": { "kit": "taser" } },
-  { "id": "tracker", "name": "Tracker", "text": "Tag someone. If they get away, take 1 clue about where they went.", "sim": {} },
-  { "id": "armor", "name": "Armor", "text": "Toughness 1 against guns for the Night.", "toughness": { "gun": 1 }, "sim": { "kit": "armor" } },
-  { "id": "long-gun-rig", "name": "Long gun or rig", "text": "No Disadvantage at Far range.", "sim": null }
-]

@@ -30,17 +30,17 @@ const getJson = async (p: string) => {
 async function loadRules(): Promise<Rules> {
   const core = await getJson('rules/data/core.json')
   if (cache && cache.version === core.rules_version) return cache
-  const [md, archetypes, gear, kit, powers] = await Promise.all([
+  const [md, archetypes, gear, powers] = await Promise.all([
     fetch(BASE + 'rules/rules.md').then((r) => {
       if (!r.ok) throw new Error(`could not load rules.md (${r.status})`)
       return r.text()
     }),
     getJson('rules/data/archetypes.json'), getJson('rules/data/gear.json'),
-    getJson('rules/data/kit.json'), getJson('rules/data/powers.json'),
+    getJson('rules/data/powers.json'),
   ])
   cache = {
     version: core.rules_version, text: md,
-    data: { defenseBase: core.defense_base, archetypes, gear, kit, powers: powers.powers },
+    data: { defenseBase: core.defense_base, archetypes, gear, powers: powers.powers },
   }
   return cache
 }

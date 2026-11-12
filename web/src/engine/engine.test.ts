@@ -3,8 +3,8 @@ import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import demo from '../../../supabase/seed/demo-heroes.json'
 import {
-  CORE, FLAIRS, GEAR, KIT, POWERS, ARCHETYPES, TRAITS,
-  defenses, harm, harmBoxes, netAdv, resolveRoll, simHero, slotsUsed, stressStage, toughness, upgrade, weaponOf,
+  CORE, FLAIRS, GEAR, POWERS, ARCHETYPES, TRAITS,
+  defenses, harm, harmBoxes, netAdv, resolveRoll, simHero, slotsUsed, stressStage, toughness, upgrade, weaponOf, resolveLoadout, beltSlots,
   type Sheet,
 } from './index'
 
@@ -112,10 +112,23 @@ describe('Harm boxes and slots', () => {
     expect(r.warnings.some((w) => /Mighty needs a flaw/.test(w))).toBe(true)
     expect(r.warnings.some((w) => /one strange power/.test(w))).toBe(true)
   })
-  it("a Specialist's Kit sits outside the slots", () => {
+  it("a Specialist's utility belt sits outside the slots", () => {
     const p = { ...hero('Patchwork'), loadout: [...hero('Patchwork').loadout!,
       { kind: 'kit' as const, id: 'smoke' }, { kind: 'kit' as const, id: 'taser' }, { kind: 'kit' as const, id: 'armor' }] }
     expect(slotsUsed(p)).toMatchObject({ used: 3, warnings: [] })
+  })
+  it('belt picks are gear: old Kit ids still resolve, and weapons or 2-slot armor are refused', () => {
+    const base = hero('Patchwork')
+    const r = resolveLoadout({ ...base, loadout: [{ kind: 'kit', id: 'smoke' }, { kind: 'kit', id: 'armor' }, { kind: 'kit', id: 'tracker' }] })
+    expect(r.map((x) => x.entry?.name)).toEqual(['Smoke grenades', 'Kevlar vest', 'Tracker'])
+    const bad = slotsUsed({ ...base, loadout: [{ kind: 'kit', id: 'sidearm' }, { kind: 'kit', id: 'powered-armor' }] })
+    expect(bad.warnings.filter((w) => /can't go on a utility belt/.test(w))).toHaveLength(2)
+    expect(slotsUsed({ ...hero('Rook'), loadout: [{ kind: 'kit', id: 'smoke' }] }).warnings.some((w) => /Only Specialists/.test(w))).toBe(true)
+    expect(beltSlots(base)).toBe(3)
+  })
+  it('a Kevlar vest on the belt gives Toughness against guns', () => {
+    const s = { ...hero('Patchwork'), loadout: [{ kind: 'kit' as const, id: 'armor' }] }
+    expect(toughness(s, 'gun').value).toBe(1)
   })
   it('a free weapon costs no slot, and everyone has a knife', () => {
     const s: Sheet = { stats: { force: 0, flow: 0, focus: 0, presence: 0 }, loadout: [{ kind: 'gear', id: 'sidearm', free: true }, { kind: 'gear', id: 'baton' }] }
@@ -254,7 +267,7 @@ describe('Rules data stays in step with rules.md', () => {
   const md = readFileSync(resolve(import.meta.dirname, '../../../rules/rules.md'), 'utf8').toLowerCase()
   const base = (n: string) => n.replace(/\s*\(.*\)\s*$/, '').toLowerCase()
   const cases: [string, { name: string }[]][] = [
-    ['gear', GEAR], ['kit', KIT], ['power', POWERS], ['flair', FLAIRS], ['archetype', ARCHETYPES], ['trait', TRAITS],
+    ['gear', GEAR], ['power', POWERS], ['flair', FLAIRS], ['archetype', ARCHETYPES], ['trait', TRAITS],
   ]
   for (const [kind, list] of cases) {
     it(`every ${kind} named in the data appears in rules.md`, () => {

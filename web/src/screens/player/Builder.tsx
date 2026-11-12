@@ -155,7 +155,7 @@ function BuilderForm({ campaignId, existing, isGm, canBuild }: {
           {arch && (
             <p className="small muted">
               Drive: {arch.drive_trigger} Signature: {arch.signature.name}.
-              {arch.id === 'specialist' && ' You pick 3 Kit items on your sheet at the start of each Night; Kit sits outside your slots.'}
+              {arch.id === 'specialist' && ' You get a utility belt: 3 belt slots for tools or light armor, filled on your sheet at the start of each Night. It sits outside your slots.'}
             </p>
           )}
         </section>

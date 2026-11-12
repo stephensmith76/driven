@@ -1,7 +1,7 @@
 // Derived numbers for a character sheet. Pure functions, no network.
 import {
-  CORE, archetype, flair, gearItem, kitItem, power, tableToughness,
-  type AttackKind, type GearEntry, type KitEntry, type PowerEffect, type PowerEntry, type ToughnessMap,
+  CORE, archetype, flair, beltItem, beltEligible, gearItem, power, tableToughness,
+  type AttackKind, type GearEntry, type PowerEffect, type PowerEntry, type ToughnessMap,
 } from './rules'
 
 export type Stats = { force: number; flow: number; focus: number; presence: number }
@@ -35,7 +35,8 @@ export type Defense = { base: number; total: number; mods: Modifier[] }
 
 type Resolved =
   | { item: LoadoutItem; kind: 'gear'; entry: GearEntry }
-  | { item: LoadoutItem; kind: 'kit'; entry: KitEntry }
+  /** A utility belt pick (saved with kind 'kit'). */
+  | { item: LoadoutItem; kind: 'kit'; entry: GearEntry }
   | { item: LoadoutItem; kind: 'power'; entry: PowerEntry }
   | { item: LoadoutItem; kind: 'unknown'; entry: undefined }
 
@@ -43,7 +44,7 @@ type Resolved =
 export function resolveLoadout(sheet: Sheet): Resolved[] {
   return (sheet.loadout ?? []).map((item) => {
     if (item.kind === 'gear') { const e = gearItem(item.id); if (e) return { item, kind: 'gear', entry: e } }
-    if (item.kind === 'kit') { const e = kitItem(item.id); if (e) return { item, kind: 'kit', entry: e } }
+    if (item.kind === 'kit') { const e = beltItem(item.id); if (e) return { item, kind: 'kit', entry: e } }
     if (item.kind === 'power') { const e = power(item.id); if (e) return { item, kind: 'power', entry: e } }
     return { item, kind: 'unknown', entry: undefined }
   })
@@ -62,7 +63,7 @@ export function defenses(sheet: Sheet): { guard: Defense; wits: Defense; poise: 
   const base = CORE.defense_base
   const guardMods: Modifier[] = []
   for (const r of resolveLoadout(sheet)) {
-    if (r.kind === 'gear' && r.entry.guard) guardMods.push({ source: r.entry.name, value: r.entry.guard })
+    if ((r.kind === 'gear' || r.kind === 'kit') && r.entry.guard) guardMods.push({ source: r.entry.name, value: r.entry.guard })
     if (r.kind === 'power') {
       for (const e of powerEffects(r.entry, r.item)) if (e.guard) guardMods.push({ source: r.entry.name, value: e.guard })
     }
@@ -106,7 +107,10 @@ export function toughness(
         if (r.entry.unreliable && sheet.fight_state?.[`offline:${r.item.id}`]) continue
         add(r.entry.name, tableToughness('gear', r.item.id) ?? r.entry.toughness)
       }
-      if (r.kind === 'kit') add(`Kit: ${r.entry.name}`, r.entry.toughness)
+      if (r.kind === 'kit') {
+        if (r.entry.unreliable && sheet.fight_state?.[`offline:${r.entry.id}`]) continue
+        add(`Belt: ${r.entry.name}`, tableToughness('gear', r.entry.id) ?? r.entry.toughness)
+      }
       if (r.kind === 'power') {
         add(r.entry.name, tableToughness('power', r.item.id))
         for (const e of powerEffects(r.entry, r.item)) add(r.entry.name, e.toughness)
@@ -159,24 +163,24 @@ export function slotsUsed(sheet: Sheet, opts: { creation?: boolean } = {}): Slot
     } else if (r.kind === 'unknown') {
       warnings.push(`"${r.item.id}" isn't in the rules data.`)
     }
-    // Kit sits outside the slots.
+    // Belt picks sit outside the slots.
   }
   const freeItems = resolveLoadout(sheet).filter((r) => r.kind === 'gear' && r.item.free)
   if (freeItems.length > 1) warnings.push('Only one weapon is free; the others cost a slot each.')
   for (const r of freeItems) if (r.kind === 'gear' && !r.entry.free_pick) warnings.push(`${r.entry.name} can't be a free weapon.`)
   if (used > max) warnings.unshift(`Uses ${used} slots; the limit is ${max}.`)
   if (creation && strange > CORE.slots.max_strange_at_creation) warnings.push('Only one strange power is allowed at creation.')
-  const isSpecialist = sheet.archetype_id === 'specialist'
-  const kitCount = (sheet.loadout ?? []).filter((i) => i.kind === 'kit').length
-  const kitMax = kitPicks(sheet)
-  if (kitCount > kitMax) warnings.push(`${kitCount} Kit items picked; the limit is ${kitMax}.`)
-  if (kitCount > 0 && kitMax === 0 && !isSpecialist) warnings.push('Only Specialists (or Gadgeteers) get Kit.')
+  const belt = resolveLoadout(sheet).filter((r) => r.kind === 'kit')
+  const beltMax = beltSlots(sheet)
+  if (belt.length > beltMax) warnings.push(`${belt.length} belt items picked; the limit is ${beltMax}.`)
+  if (belt.length > 0 && beltMax === 0) warnings.push('Only Specialists (or Gadgeteers) get a utility belt.')
+  for (const r of belt) if (r.kind === 'kit' && !beltEligible(r.entry)) warnings.push(`${r.entry.name} can't go on a utility belt (one-slot gear, no weapons).`)
   return { used, max, strange, warnings }
 }
 
-/** How many Kit items this hero picks each Night. */
-export function kitPicks(sheet: Sheet): number {
-  const k = CORE.kit_picks
+/** How many belt slots this hero fills each Night. */
+export function beltSlots(sheet: Sheet): number {
+  const k = CORE.belt_slots
   const spec = sheet.archetype_id === 'specialist'
   const gadg = (sheet.loadout ?? []).some((i) => i.kind === 'power' && i.id === 'gadgeteer')
   return spec && gadg ? k.specialist_gadgeteer : spec ? k.specialist : gadg ? k.gadgeteer : 0

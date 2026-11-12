@@ -445,15 +445,8 @@ You strike from the dark and are gone before they turn around.
 
 Gadgets, trick shots, and a plan for everything.
 
-- **Drive trigger:** you use Kit to change the fight (a new zone tag, a moved enemy, a blocked exit).
-- **Kit:** pick 3 items at the start of each Night. Using one is a Quick Action, once per item per fight. Expecting guns? Take Smoke or Armor: without them, a Specialist is usually the first one down.
-  - *Smoke:* a zone becomes Dark until the end of next round.
-  - *Grapple:* move to any zone you can see, including High Ground.
-  - *Flashbang:* roll Flow against the Guard of everyone in a zone. Everyone you beat has Disadvantage on their next roll.
-  - *Taser:* a Jab. On a hit, the target loses their next Quick Action.
-  - *Tracker:* tag someone. If they get away, take 1 clue about where they went.
-  - *Armor:* Toughness 1 against guns for the Night.
-  - *Long gun or rig:* no Disadvantage at Far range.
+- **Drive trigger:** you use a tool to change the fight (a new zone tag, a moved enemy, a blocked exit).
+- **Utility belt:** 3 belt slots, on top of your 3 slots. At the start of each Night, fill them with tools or light armor (any one-slot gear that isn't a weapon). Belt gear works exactly like gear. Expecting guns? Take smoke grenades or a Kevlar vest: without them, a Specialist is usually the first one down.
 - **Signature: Prepared.** Reveal something you set up earlier: a new exit, a trap (Impact 2 to whoever sets it off, ignoring Toughness), or backup arriving. Then take Advantage on your next roll.
 
 ### Detective
@@ -523,7 +516,7 @@ Street-level heroes don't fight in street clothes. At character creation, every 
 | A street power | 1 slot |
 | A strange power | 2 slots |
 
-Every hero also carries a free weapon and a knife (see below), which cost no slots. Spend your slots however fits the hero. Three pieces of gear is a Batman or a Punisher. A strange power plus one piece of gear is a Luke Cage or a Jessica Jones. Two street powers and a free weapon is a Daredevil. At creation, a hero can have at most one strange power. Specialists get their Kit on top of their slots.
+Every hero also carries a free weapon and a knife (see below), which cost no slots. Spend your slots however fits the hero. Three pieces of gear is a Batman or a Punisher. A strange power plus one piece of gear is a Luke Cage or a Jessica Jones. Two street powers and a free weapon is a Daredevil. At creation, a hero can have at most one strange power. Specialists and Gadgeteers also get a utility belt, which sits on top of their slots (see Specialist and Gadgeteer).
 
 ### Weapons you carry
 
@@ -541,27 +534,35 @@ A stranger weapon, like a mono-edge blade, shock gauntlets or a rail rifle, is t
 
 ### Gear
 
-Gear can be lost. Disarming you, smashing your gear, or catching you without it are all fair GM moves.
+Gear is armor and tools. Gear can be lost: smashing your gear, or catching you without it, is a fair GM move. A utility belt (Specialists and Gadgeteers) holds one-slot armor and tools, but never weapons or powered armor.
 
-| Gear | Effect |
+**Armor**
+
+| Armor | Effect |
 | --- | --- |
 | Kevlar vest | Toughness 1 against guns and blades. Doesn't stack with other Toughness. |
 | Tactical armor | Toughness 1 against everything, but Disadvantage on Vanish and climbing. |
 | Powered armor (takes 2 slots) | Toughness 2 against blunt, blades and guns. Unreliable: when you roll a Miss while wearing it, the GM can cut it out (out of power, a jammed joint, a short circuit, whatever fits the scene). While it is offline it gives no Toughness. Spend a Quick Action to get it running again, or it is repaired at Dawn. Doesn't stack with other Toughness. |
+
+**Tools**
+
+| Tool | Effect |
+| --- | --- |
 | Grapple line | Quick Action: move to any zone you can see, including High Ground. |
 | Med kit | Once per fight, Full Action: an ally next to you clears one Harm box (Down becomes Wounded). |
 | Night-vision goggles | Dark zones don't affect you. |
 | Police scanner | Once per Night, Edge on a Patrol roll. You also hear the cops coming a round early. |
 | Earpiece comms | You can Help allies in any zone. |
 
-**More gear** (trial additions, not yet playtested):
+**More tools** (trial additions, not yet playtested):
 
-| Gear | Effect |
+| Tool | Effect |
 | --- | --- |
-| Taser | Works like the Kit Taser: a Jab, and on a hit the target loses their next Quick Action. Electricity, so it ignores Toughness. Two uses per fight. |
+| Taser | A Jab. On a hit, the target loses their next Quick Action. Electricity, so it ignores Toughness. Two uses per fight. |
+| Tracker | Tag someone. If they get away, take 1 clue about where they went. |
 | Pepper spray | Quick Action, Engaged. On a hit, the target has Disadvantage on attacks until the end of their next turn. |
-| Smoke grenades | Works like Kit Smoke: Quick Action, a zone becomes Dark until the end of next round. Two per fight. |
-| Flashbangs | Works like the Kit Flashbang: Quick Action, roll Flow against the Guard of everyone in a zone; everyone you beat has Disadvantage on their next roll. One per fight. |
+| Smoke grenades | Quick Action: a zone becomes Dark until the end of next round. Two per fight. |
+| Flashbangs | Quick Action: roll Flow against the Guard of everyone in a zone; everyone you beat has Disadvantage on their next roll. One per fight. |
 | Bolas or net launcher | Ranged, Near. On a hit, the target can't take their free move until they spend a Quick Action to get free. |
 | Riot shield | +1 Guard. Take Cover works anywhere. Disadvantage on Vanish, and you can't use a long gun. |
 | Mask and voice changer | Edge on rolls to scare or bluff someone who doesn't know you. Being unmasked costs 2 Stress instead of 1 Heat. |
@@ -611,7 +612,7 @@ Powers are adapted from the Supersworn: Street Level cards. Each power has three
 
 **Gadgeteer** (Technology)
 
-- *Start:* Utility belt. You get Kit: pick 2 Kit items per Night (using one is a Quick Action, once per item per fight). A Specialist, who already has Kit, picks 5 instead of 3.
+- *Start:* Utility belt. You get 2 belt slots: each Night, fill them with tools or light armor (any one-slot gear that isn't a weapon). A Specialist, who already has a belt, gets 5 belt slots instead of 3.
 - *Built for this:* once per Night, reveal a gadget made for exactly this. The roll it helps is an automatic Impact 2.
 - *Tinker:* when you Patch Up at Dawn, also repair one broken piece of gear.
 
@@ -860,7 +861,7 @@ Too big for street-level heroes, but fine for a Nemesis: **Biokinesis** (reshape
 | Bulwark | Street power (1) + 2 gear | Just the knife; Resilience (source: years of hauling hoses), med kit, riot shield |
 | Rook | Free weapon + 3 gear | Free weighted gloves; Kevlar vest, med kit, police scanner |
 | Nightjar | Free weapon + strange power (2) + gear (1) | Free fighting sticks; Shadow Manipulation (Allergy: floodlights burn her skin), grapple line |
-| Patchwork | 3 gear | Just the knife; night-vision goggles, grapple line, earpiece comms (plus Kit) |
+| Patchwork | 3 gear | Just the knife; night-vision goggles, grapple line, earpiece comms (plus a utility belt) |
 | The Ledger | Free weapon + 3 gear | Free concealed sidearm; Kevlar vest, police scanner, burner phones |
 
 ## Villains

@@ -17,7 +17,7 @@
   "powers": [
     { "id": "gadgeteer", "name": "Gadgeteer", "tier": "street", "slots": 1, "note": "Technology",
       "abilities": [
-        { "name": "Utility belt", "text": "You get Kit: pick 2 Kit items per Night (using one is a Quick Action, once per item per fight). A Specialist, who already has Kit, picks 5 instead of 3." },
+        { "name": "Utility belt", "text": "You get 2 belt slots: each Night, fill them with tools or light armor (any one-slot gear that isn't a weapon). A Specialist, who already has a belt, gets 5 belt slots instead of 3." },
         { "name": "Built for this", "text": "Once per Night, reveal a gadget made for exactly this. The roll it helps is an automatic Impact 2." },
         { "name": "Tinker", "text": "When you Patch Up at Dawn, also repair one broken piece of gear." }
       ],

@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest'
-import { ARCHETYPES, CORE, GEAR, KIT, POWERS, defenses } from '../engine'
+import { ARCHETYPES, CORE, GEAR, POWERS, defenses } from '../engine'
 import { defenseNumbers, partySummary, type Hero, type RulesData } from '../../../supabase/functions/rules-helper/party'
 import heroes from '../../../supabase/seed/demo-heroes.json'
 
-const data: RulesData = { defenseBase: CORE.defense_base, archetypes: ARCHETYPES, gear: GEAR, kit: KIT, powers: POWERS }
+const data: RulesData = { defenseBase: CORE.defense_base, archetypes: ARCHETYPES, gear: GEAR, powers: POWERS }
 
 describe('rules helper party summary', () => {
   it('computes the same defenses as the engine for every sample hero', () => {

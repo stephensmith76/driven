@@ -1,5 +1,5 @@
 {
-  "rules_version": "2026-11-11.7",
+  "rules_version": "2026-11-11.8",
   "defense_base": 12,
   "dice": { "sides": 10, "count": 2, "advantage_count": 3 },
   "edge_bonus": 2,
@@ -102,9 +102,9 @@
     "at_creation": 3,
     "costs": { "gear": 1, "street": 1, "strange": 2 },
     "max_strange_at_creation": 1,
-    "text": "Every hero gets 3 slots: gear and street powers cost 1, a strange power costs 2 and needs a flaw. At creation, at most one strange power. Specialists get their Kit on top of their slots."
+    "text": "Every hero gets 3 slots: gear and street powers cost 1, a strange power costs 2 and needs a flaw. At creation, at most one strange power. Specialists and Gadgeteers also get a utility belt, which sits on top of their slots."
   },
-  "kit_picks": { "specialist": 3, "gadgeteer": 2, "specialist_gadgeteer": 5 },
+  "belt_slots": { "specialist": 3, "gadgeteer": 2, "specialist_gadgeteer": 5 },
   "actions": {
     "full": [
       { "id": "strike", "name": "Strike", "text": "Attack with Force, Flow, or Presence. Normal Impact." },

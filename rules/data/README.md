@@ -9,7 +9,6 @@ Machine-readable rules. The sheets, the builder, the dice roller and the simulat
 | `traits.json` | The 8 Traits |
 | `flairs.json` | The 9 Flairs (3 marked `trial`) |
 | `gear.json` | Gear, including the trial "More gear" list |
-| `kit.json` | The 7 Kit items |
 | `powers.json` | Street and strange powers, flaws, villain-only powers |
 | `villains.json` | Roles, the Butcher, Voss, a lieutenant template, the Saints |
 | `tags.json` | Ranges and zone tags |
@@ -32,4 +31,4 @@ Fields the engine uses to work out numbers:
 - `null`: it matters in a fight, but the simulator can't model it. It shows under "Not simulated".
 - `{}`: it has no effect in a fight (Patrol or Dawn only), so there's nothing to model.
 
-`npm test` fails if a gear, Kit, power, Flair, archetype or Trait name here is missing from `rules.md`.
+`npm test` fails if a gear, power, Flair, archetype or Trait name here is missing from `rules.md`.

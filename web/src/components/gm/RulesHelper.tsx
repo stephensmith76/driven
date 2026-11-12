@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { supabase } from '../../data/supabase'
 import { useCharacters } from '../../data/hooks'
-import { ARCHETYPES, CORE, GEAR, KIT, POWERS } from '../../engine'
+import { ARCHETYPES, CORE, GEAR, POWERS } from '../../engine'
 import { partySummary, type Hero, type RulesData } from '../../../../supabase/functions/rules-helper/party'
 
 const MAX = 500
 const TIMEOUT_MS = 20_000
 const RULES_DATA: RulesData = {
-  defenseBase: CORE.defense_base, archetypes: ARCHETYPES, gear: GEAR, kit: KIT, powers: POWERS,
+  defenseBase: CORE.defense_base, archetypes: ARCHETYPES, gear: GEAR, powers: POWERS,
 }
 
 /** The GM-only rules helper, docked at the bottom of every GM screen. */

@@ -23,7 +23,7 @@ const QUESTIONS = [
 const data = (f: string) => JSON.parse(readFileSync(resolve(repo, 'rules/data', f), 'utf8'))
 const rules: RulesData = {
   defenseBase: data('core.json').defense_base, archetypes: data('archetypes.json'),
-  gear: data('gear.json'), kit: data('kit.json'), powers: data('powers.json').powers,
+  gear: data('gear.json'), powers: data('powers.json').powers,
 }
 
 async function ask(client: Awaited<ReturnType<typeof device>>, campaign_id: string, question: string, extra = {}) {

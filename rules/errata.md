@@ -148,3 +148,35 @@ A stranger weapon, like a mono-edge blade, shock gauntlets or a rail rifle, is t
 | Nightjar | Free weapon + strange power (2) + gear (1) | Free fighting sticks; Shadow Manipulation (Allergy: floodlights burn her skin), grapple line |
 | Patchwork | 3 gear | Just the knife; night-vision goggles, grapple line, earpiece comms (plus Kit) |
 | The Ledger | Free weapon + 3 gear | Free concealed sidearm; Kevlar vest, police scanner, burner phones |
+
+## 9. Kit is now the utility belt; gear is armor and tools (Nov 11)
+
+Kit no longer exists as a separate list. A Specialist's or Gadgeteer's utility belt holds ordinary gear, so there is one list of items instead of two. Kit items map to gear: Smoke is smoke grenades, Grapple is the grapple line, Flashbang is flashbangs, Taser is the taser, Tracker is the tracker (new gear), Armor is a Kevlar vest. "Long gun or rig" is gone: a long gun is a weapon now.
+
+**Specialist section.** Replace the Drive trigger and the whole Kit entry (the Kit line and its seven sub-bullets) with:
+
+- **Drive trigger:** you use a tool to change the fight (a new zone tag, a moved enemy, a blocked exit).
+- **Utility belt:** 3 belt slots, on top of your 3 slots. At the start of each Night, fill them with tools or light armor (any one-slot gear that isn't a weapon). Belt gear works exactly like gear. Expecting guns? Take smoke grenades or a Kevlar vest: without them, a Specialist is usually the first one down.
+
+**Gadgeteer, Start.**
+- Was: "Utility belt. You get Kit: pick 2 Kit items per Night (using one is a Quick Action, once per item per fight). A Specialist, who already has Kit, picks 5 instead of 3."
+- Now: "Utility belt. You get 2 belt slots: each Night, fill them with tools or light armor (any one-slot gear that isn't a weapon). A Specialist, who already has a belt, gets 5 belt slots instead of 3."
+
+**Gear and Powers, intro.** "Specialists get their Kit on top of their slots." now reads: "Specialists and Gadgeteers also get a utility belt, which sits on top of their slots (see Specialist and Gadgeteer)."
+
+**Gear section.** Replace the sentence under the Gear heading with: "Gear is armor and tools. Gear can be lost: smashing your gear, or catching you without it, is a fair GM move. A utility belt (Specialists and Gadgeteers) holds one-slot armor and tools, but never weapons or powered armor." Split the Gear table in two: put Kevlar vest, Tactical armor and Powered armor under a bold **Armor** heading (header row "Armor | Effect"), and the rest under a bold **Tools** heading (header row "Tool | Effect").
+
+**More gear.** Rename "More gear" to **More tools** (header row "Tool | Effect"). Reword three rows so they no longer point to Kit:
+- Taser: "A Jab. On a hit, the target loses their next Quick Action. Electricity, so it ignores Toughness. Two uses per fight."
+- Smoke grenades: "Quick Action: a zone becomes Dark until the end of next round. Two per fight."
+- Flashbangs: "Quick Action: roll Flow against the Guard of everyone in a zone; everyone you beat has Disadvantage on their next roll. One per fight."
+
+Add one new row to that table, before Pepper spray:
+
+| Tool | Effect |
+| --- | --- |
+| Tracker | Tag someone. If they get away, take 1 clue about where they went. |
+
+**Sample loadouts, Patchwork.** "(plus Kit)" is now "(plus a utility belt)".
+
+One effect to know: Kit was once per item per fight. Belt gear uses its own limits, so a taser or smoke grenades on the belt gets two uses per fight.

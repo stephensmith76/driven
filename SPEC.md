@@ -96,7 +96,6 @@ Every number and rule text the app shows comes from JSON files in `rules/data/`.
 | `traits.json` | The 8 Traits: Drive trigger, Steady, Fraying, hook, Breaking |
 | `flairs.json` | The 9 Flairs |
 | `gear.json` | Every gear item: slots, text, uses per fight |
-| `kit.json` | The 7 Kit items |
 | `powers.json` | Street and strange powers: tier, the 3 abilities, always-on flag, flaw rules |
 | `villains.json` | Stat blocks (the Butcher, Voss, the Saints, a lieutenant template) and the four roles |
 | `tags.json` | Zone tags and their effects |
@@ -481,3 +480,7 @@ Written Nov 11 after M7. Where this section and an earlier one disagree, this on
 - **Join QR code (M7)** is drawn locally as SVG on the GM Table.
 - **Several named enemies** are supported in the simulator and Encounter lab (see "Encounter simulator").
 - **Resilience** is the display name of the street power whose id is still `toughness`.
+
+### Kit became the utility belt (Nov 11, rules_version 2026-11-11.8)
+
+`kit.json` is gone. Belt picks are ordinary gear (one slot, no weapons) saved in `loadout` with `kind: "kit"` (the old name, kept so no migration was needed) and a gear id. Old Kit ids (`smoke`, `grapple`, `flashbang`, `taser`, `tracker`, `armor`) still resolve to the gear that replaced them. Slots: `belt_slots` in `core.json` (Specialist 3, Gadgeteer 2, both 5). Free weapons are loadout items with `free: true`; everyone also has a knife.
