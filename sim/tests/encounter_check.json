@@ -54,7 +54,7 @@
       "stress": 0,
       "drive": 2,
       "kit": [],
-      "not_simulated": []
+      "not_simulated": ["Nightjar: Grapple line"]
     },
     {
       "key": "ledger",

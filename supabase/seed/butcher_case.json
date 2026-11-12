@@ -75,11 +75,16 @@
         },
         {
           "kind": "gear",
-          "id": "weighted-gloves"
+          "id": "weighted-gloves",
+          "free": true
         },
         {
           "kind": "gear",
           "id": "med-kit"
+        },
+        {
+          "kind": "gear",
+          "id": "police-scanner"
         }
       ],
       "harm": 0,
@@ -119,7 +124,12 @@
         },
         {
           "kind": "gear",
-          "id": "fighting-sticks"
+          "id": "fighting-sticks",
+          "free": true
+        },
+        {
+          "kind": "gear",
+          "id": "grapple-line"
         }
       ],
       "harm": 0,
@@ -191,7 +201,8 @@
       "loadout": [
         {
           "kind": "gear",
-          "id": "sidearm"
+          "id": "sidearm",
+          "free": true
         },
         {
           "kind": "gear",
@@ -200,6 +211,10 @@
         {
           "kind": "gear",
           "id": "police-scanner"
+        },
+        {
+          "kind": "gear",
+          "id": "burner-phones"
         }
       ],
       "harm": 0,
@@ -430,7 +445,7 @@
       "trick": "Meat hook (2 Drive): drag a hero from an adjacent zone into his.",
       "weakness": "His old gym. Anyone who knew him then can rattle him: Edge on Presence attacks.",
       "answer_toughness": "The hooks and chains hazard on the Kill Floor, and his Presence threats.",
-      "line": "Force +4 \u00b7 Guard 12 Wits 13 Poise 14 \u00b7 Harm 10 \u00b7 Toughness 1 \u00b7 2 turns a round vs 3 heroes, plus 1 free threat"
+      "line": "Force +4 · Guard 12 Wits 13 Poise 14 · Harm 10 · Toughness 1 · 2 turns a round vs 3 heroes, plus 1 free threat"
     },
     {
       "id": "saints1",
@@ -446,7 +461,7 @@
       "count_max": 3,
       "gunner": true,
       "zone": "dock",
-      "line": "Attack +2 \u00b7 Guard 13 Wits 12 Poise 12 \u00b7 one pistol in the group \u00b7 max 2 Harm per attack \u00b7 they run when half the gang is down"
+      "line": "Attack +2 · Guard 13 Wits 12 Poise 12 · one pistol in the group · max 2 Harm per attack · they run when half the gang is down"
     }
   ],
   "notes": "Seed for the demo campaign. The case block goes in gm_secrets.case; nothing in it may reach a player device. Flairs for Bulwark and Patchwork are deliberately empty: pick them at the table.",

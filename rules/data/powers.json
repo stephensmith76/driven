@@ -62,10 +62,18 @@
       "sim": { "guard_bonus": 1 } },
     { "id": "special-weapon", "name": "Special Weapon", "tier": "street", "slots": 1, "note": "Write in the weapon",
       "abilities": [
-        { "name": "That ain't a knife", "text": "Your weapon follows its gear rules, and your first attack each fight with it has Edge." },
+        { "name": "That ain't a knife", "text": "Your weapon works like the closest ordinary weapon (light, heavy or gun) and replaces your free weapon. Your first attack each fight with it has Edge." },
         { "name": "How's it feel?", "text": "On a hit with it, choose one: the target takes 1 Stress, or +1 Harm on Impact 2 or better." },
         { "name": "This is a knife", "text": "Once per fight, take 1 Stress to reroll a missed attack with it." }
       ],
+      "sim": null },
+    { "id": "martial-artist", "name": "Martial Artist", "tier": "street", "slots": 1, "note": "Training",
+      "abilities": [
+        { "name": "Trained hands", "text": "Your bare hands count as light melee (+1 Harm on Impact 2 or better, works with Strikes and Jabs). You can't be disarmed." },
+        { "name": "Turn it back", "text": "Once per round, when an enemy you're engaged with misses you, make a free Jab against them." },
+        { "name": "Pressure point", "text": "On a Strike hit at Impact 2 or better, choose one: the target loses their free move, or has Disadvantage on their next attack." }
+      ],
+      "effects": [{ "level": 1, "weapon": "light" }],
       "sim": null },
     { "id": "quick", "name": "Quick", "tier": "street", "slots": 1, "note": "Fast for a human; formerly Super-Speed",
       "abilities": [

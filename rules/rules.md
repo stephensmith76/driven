@@ -118,6 +118,8 @@ Lieutenants have 5. A case's main villain has 10, or 8 for a smaller one. Villai
 
 ### Weapons
 
+Everyone carries a knife and one free weapon (see Weapons you carry).
+
 | Weapon | Effect |
 | --- | --- |
 | Fists, kicks, thrown junk | No change |
@@ -492,6 +494,21 @@ Pick one at character creation.
 
 **Already Broken** (trial Flair): your Stress never drops below 4, so you're always Fraying and the GM always has a hook. In return, start each Night with 4 Drive instead of 2.
 
+### Connections
+
+Every hero is tied to the world by four connections, written at character creation, one line each. They are what the GM can lean on and what the player has to lose.
+
+- **Someone you protect.** This is your stake. A person you would take a hit for, or can't afford to lose.
+- **Someone with leverage over you.** A debt, a secret, a boss, a cop, a promise. This is the GM's lever.
+- **A place you're tied to.** A block, a bar, a rooftop, a grave.
+- **A mistake that could come back.** An old case gone wrong, someone you failed.
+
+At least one connection should link you to another hero. At the table, ask: how do we know each other?
+
+The GM uses connections for Impact 1 costs, Miss moves, Home crises (a loved one becomes a target, someone learns who you are) and personal clues, which already count double and tick your Home clock. When a connection is lost, resolved or betrayed, write a new one at the next Dawn.
+
+A hero with no civilian life still has connections. Their "someone you protect" can be anything that anchors them to their humanity, even a goldfish.
+
 ### Advancement
 
 When a case closes, each hero picks one: +1 to a stat (max +4), a new Flair, the next ability on one of their powers, a new slot (spend it on gear or a street power; a strange power needs two slots, so it takes two picks), or an Asset.
@@ -506,7 +523,21 @@ Street-level heroes don't fight in street clothes. At character creation, every 
 | A street power | 1 slot |
 | A strange power | 2 slots |
 
-Spend them however fits the hero. Three pieces of gear is a Batman or a Punisher. A strange power plus one piece of gear is a Luke Cage or a Jessica Jones. Two street powers and a weapon is a Daredevil. At creation, a hero can have at most one strange power. Specialists get their Kit on top of their slots.
+Every hero also carries a free weapon and a knife (see below), which cost no slots. Spend your slots however fits the hero. Three pieces of gear is a Batman or a Punisher. A strange power plus one piece of gear is a Luke Cage or a Jessica Jones. Two street powers and a free weapon is a Daredevil. At creation, a hero can have at most one strange power. Specialists get their Kit on top of their slots.
+
+### Weapons you carry
+
+Everyone carries a **knife**, and every hero also gets **one free weapon** of their choice. Neither costs a slot. Each extra weapon costs 1 slot. A weapon can still be lost: disarming you is a fair GM move.
+
+| Weapon | Effect |
+| --- | --- |
+| Knife (everyone has one) | +1 Harm against anyone without Toughness. Can be thrown at Near range. It is a backup: each attack uses one weapon, never two weapon bonuses. |
+| Sidearm (free pick) | A gun (Flow to shoot). Far range is at Disadvantage. |
+| Long gun (free pick) | A gun with no Far penalty. Being seen carrying one is +1 Heat. |
+| Light melee (free pick: baton, fighting sticks, weighted gloves) | +1 Harm on Impact 2 or better. Works with Strikes and Jabs. |
+| Heavy melee (free pick: bat, pipe, crowbar) | +1 Harm on any hit, but only as a Full Action. |
+
+A stranger weapon, like a mono-edge blade, shock gauntlets or a rail rifle, is the **Special Weapon** street power. Fighting with bare hands is the **Martial Artist** street power.
 
 ### Gear
 
@@ -517,11 +548,6 @@ Gear can be lost. Disarming you, smashing your gear, or catching you without it 
 | Kevlar vest | Toughness 1 against guns and blades. Doesn't stack with other Toughness. |
 | Tactical armor | Toughness 1 against everything, but Disadvantage on Vanish and climbing. |
 | Powered armor (takes 2 slots) | Toughness 2 against blunt, blades and guns. Unreliable: when you roll a Miss while wearing it, the GM can cut it out (out of power, a jammed joint, a short circuit, whatever fits the scene). While it is offline it gives no Toughness. Spend a Quick Action to get it running again, or it is repaired at Dawn. Doesn't stack with other Toughness. |
-| Sidearm | A gun (Flow to shoot). Far range is at Disadvantage. |
-| Long gun | A gun with no Far penalty. Being seen carrying one is +1 Heat. |
-| Light melee (baton, fighting sticks, weighted gloves) | +1 Harm on Impact 2 or better. Works with Strikes and Jabs. |
-| Heavy melee (bat, pipe, crowbar) | +1 Harm on any hit, but only as a Full Action. |
-| Knife | +1 Harm against anyone without Toughness. Can be thrown at Near range. |
 | Grapple line | Quick Action: move to any zone you can see, including High Ground. |
 | Med kit | Once per fight, Full Action: an ally next to you clears one Harm box (Down becomes Wounded). |
 | Night-vision goggles | Dark zones don't affect you. |
@@ -550,8 +576,6 @@ Gear can be lost. Disarming you, smashing your gear, or catching you without it 
 **Stun grenade** (heavier flashbang): Quick Action, Near zone. Everyone there without ear and eye protection rolls Focus vs 12 or loses their next turn; mooks just lose it. Allies in the zone are caught too. One per fight.
 
 **Taser gun** (dart taser): Near range. On a hit, instead of Harm, the target loses their next Quick Action and a mook drops. Electricity, so it ignores Toughness. Two shots per fight, and reloading between them takes a Quick Action.
-
-**Martial arts training** (takes a gear slot): your bare hands count as light melee (+1 Harm on Impact 2 or better, works with Strikes and Jabs). It can't be taken away, lost or left at home.
 
 **Gun rules (all guns):** +1 Harm on Impact 2 or better, ignores natural Toughness (Force +3) but not armor, Disadvantage when you're engaged in melee, and +1 Heat for each fight where you fire one.
 
@@ -623,9 +647,15 @@ Powers are adapted from the Supersworn: Street Level cards. Each power has three
 
 **Special Weapon** (write in the weapon)
 
-- *Start:* That ain't a knife. Your weapon follows its gear rules, and your first attack each fight with it has Edge.
+- *Start:* That ain't a knife. Your weapon works like the closest ordinary weapon (light, heavy or gun) and replaces your free weapon. Your first attack each fight with it has Edge.
 - *How's it feel?:* on a hit with it, choose one: the target takes 1 Stress, or +1 Harm on Impact 2 or better.
 - *This is a knife:* once per fight, take 1 Stress to reroll a missed attack with it.
+
+**Martial Artist** (training)
+
+- *Start:* Trained hands. Your bare hands count as light melee (+1 Harm on Impact 2 or better, works with Strikes and Jabs). You can't be disarmed.
+- *Turn it back:* once per round, when an enemy you're engaged with misses you, make a free Jab against them.
+- *Pressure point:* on a Strike hit at Impact 2 or better, choose one: the target loses their free move, or has Disadvantage on their next attack.
 
 **Quick** (fast for a human; formerly Super-Speed)
 
@@ -827,11 +857,11 @@ Too big for street-level heroes, but fine for a Nemesis: **Biokinesis** (reshape
 
 | Hero | Slots | Loadout |
 | --- | --- | --- |
-| Bulwark | Street power (1) + 2 gear | Resilience (source: years of hauling hoses), med kit, riot shield |
-| Rook | 3 gear | Kevlar vest, weighted gloves, med kit |
-| Nightjar | Strange power (2) + gear (1) | Shadow Manipulation (Allergy: floodlights burn her skin), fighting sticks |
-| Patchwork | 3 gear | Night-vision goggles, grapple line, earpiece comms (plus Kit) |
-| The Ledger | 3 gear | Concealed sidearm, Kevlar vest, police scanner |
+| Bulwark | Street power (1) + 2 gear | Just the knife; Resilience (source: years of hauling hoses), med kit, riot shield |
+| Rook | Free weapon + 3 gear | Free weighted gloves; Kevlar vest, med kit, police scanner |
+| Nightjar | Free weapon + strange power (2) + gear (1) | Free fighting sticks; Shadow Manipulation (Allergy: floodlights burn her skin), grapple line |
+| Patchwork | 3 gear | Just the knife; night-vision goggles, grapple line, earpiece comms (plus Kit) |
+| The Ledger | Free weapon + 3 gear | Free concealed sidearm; Kevlar vest, police scanner, burner phones |
 
 ## Villains
 

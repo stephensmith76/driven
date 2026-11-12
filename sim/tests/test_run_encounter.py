@@ -64,7 +64,7 @@ def test_unmodeled_power_is_listed():
 def test_non_specialist_kit_is_listed():
     c = cfg(runs=20)
     c["heroes"][0]["kit"] = ["taser"]
-    assert S.run_encounter(c)["not_simulated"] == ["Rook: taser (only a Specialist's Kit is simulated)"]
+    assert "Rook: taser (only a Specialist's Kit is simulated)" in S.run_encounter(c)["not_simulated"]
 
 
 def test_starting_state_matters():

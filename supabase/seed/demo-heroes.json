@@ -17,8 +17,9 @@
     "flair_ids": ["hard-to-kill"],
     "loadout": [
       {"kind": "gear", "id": "kevlar-vest"},
-      {"kind": "gear", "id": "weighted-gloves"},
-      {"kind": "gear", "id": "med-kit"}
+      {"kind": "gear", "id": "weighted-gloves", "free": true},
+      {"kind": "gear", "id": "med-kit"},
+      {"kind": "gear", "id": "police-scanner"}
     ]
   },
   {
@@ -28,7 +29,8 @@
     "flair_ids": ["opportunist"],
     "loadout": [
       {"kind": "power", "id": "shadow-manipulation", "ability_level": 1, "flaw": "Allergy: floodlights burn her skin"},
-      {"kind": "gear", "id": "fighting-sticks"}
+      {"kind": "gear", "id": "fighting-sticks", "free": true},
+      {"kind": "gear", "id": "grapple-line"}
     ]
   },
   {
@@ -48,9 +50,10 @@
     "stats": {"force": -1, "flow": 1, "focus": 4, "presence": 2},
     "flair_ids": ["connected"],
     "loadout": [
-      {"kind": "gear", "id": "sidearm", "custom_text": "Concealed"},
+      {"kind": "gear", "id": "sidearm", "free": true, "custom_text": "Concealed"},
       {"kind": "gear", "id": "kevlar-vest"},
-      {"kind": "gear", "id": "police-scanner"}
+      {"kind": "gear", "id": "police-scanner"},
+      {"kind": "gear", "id": "burner-phones"}
     ]
   }
 ]

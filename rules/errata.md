@@ -83,3 +83,68 @@ Only the name changed. On the first page:
 - **Overview, first sentence.**
   - Was: "Street Level is a tactical superhero RPG about vigilantes..."
   - Now: "Driven is a tactical street-level heroic RPG about vigilantes..."
+
+## 7. Connections (Nov 11)
+
+A new part of character creation. Add this as its own section in the Archetypes chapter, between "Flairs" and "Advancement":
+
+**Connections**
+
+Every hero is tied to the world by four connections, written at character creation, one line each. They are what the GM can lean on and what the player has to lose.
+
+- **Someone you protect.** This is your stake. A person you would take a hit for, or can't afford to lose.
+- **Someone with leverage over you.** A debt, a secret, a boss, a cop, a promise. This is the GM's lever.
+- **A place you're tied to.** A block, a bar, a rooftop, a grave.
+- **A mistake that could come back.** An old case gone wrong, someone you failed.
+
+At least one connection should link you to another hero. At the table, ask: how do we know each other?
+
+The GM uses connections for Impact 1 costs, Miss moves, Home crises (a loved one becomes a target, someone learns who you are) and personal clues, which already count double and tick your Home clock. When a connection is lost, resolved or betrayed, write a new one at the next Dawn.
+
+A hero with no civilian life still has connections. Their "someone you protect" can be anything that anchors them to their humanity, even a goldfish.
+
+## 8. Free weapons, the knife and Martial Artist (Nov 11)
+
+Weapons no longer cost slots. Everyone carries a knife, plus one free weapon.
+
+**Gear and Powers chapter, intro.** In "Spend them however fits the hero", the Daredevil line now reads "Two street powers and a free weapon is a Daredevil." Add this sentence before it: "Every hero also carries a free weapon and a knife (see below), which cost no slots."
+
+**New section "Weapons you carry"**, between the slots text and "Gear". Add:
+
+Everyone carries a **knife**, and every hero also gets **one free weapon** of their choice. Neither costs a slot. Each extra weapon costs 1 slot. A weapon can still be lost: disarming you is a fair GM move.
+
+| Weapon | Effect |
+| --- | --- |
+| Knife (everyone has one) | +1 Harm against anyone without Toughness. Can be thrown at Near range. It is a backup: each attack uses one weapon, never two weapon bonuses. |
+| Sidearm (free pick) | A gun (Flow to shoot). Far range is at Disadvantage. |
+| Long gun (free pick) | A gun with no Far penalty. Being seen carrying one is +1 Heat. |
+| Light melee (free pick: baton, fighting sticks, weighted gloves) | +1 Harm on Impact 2 or better. Works with Strikes and Jabs. |
+| Heavy melee (free pick: bat, pipe, crowbar) | +1 Harm on any hit, but only as a Full Action. |
+
+A stranger weapon, like a mono-edge blade, shock gauntlets or a rail rifle, is the **Special Weapon** street power. Fighting with bare hands is the **Martial Artist** street power.
+
+**Gear table.** Cross out the Sidearm, Long gun, Light melee, Heavy melee and Knife rows: they moved to the new section.
+
+**Combat chapter, Weapons.** Add this line under the heading: "Everyone carries a knife and one free weapon (see Weapons you carry)."
+
+**Martial arts training.** Cross out the "Martial arts training (takes a gear slot)" paragraph. It is now the Martial Artist power, below.
+
+**Street powers, Special Weapon, Start.**
+- Was: "...Your weapon follows its gear rules, and your first attack each fight with it has Edge."
+- Now: "...Your weapon works like the closest ordinary weapon (light, heavy or gun) and replaces your free weapon. Your first attack each fight with it has Edge."
+
+**Street powers, new: Martial Artist (training).** Add after Special Weapon:
+
+- *Start:* Trained hands. Your bare hands count as light melee (+1 Harm on Impact 2 or better, works with Strikes and Jabs). You can't be disarmed.
+- *Turn it back:* once per round, when an enemy you're engaged with misses you, make a free Jab against them.
+- *Pressure point:* on a Strike hit at Impact 2 or better, choose one: the target loses their free move, or has Disadvantage on their next attack.
+
+**Sample loadouts.** Rook, Nightjar and The Ledger now show a free weapon, and Bulwark and Patchwork carry just the knife. Replace the table with:
+
+| Hero | Slots | Loadout |
+| --- | --- | --- |
+| Bulwark | Street power (1) + 2 gear | Just the knife; Resilience (source: years of hauling hoses), med kit, riot shield |
+| Rook | Free weapon + 3 gear | Free weighted gloves; Kevlar vest, med kit, police scanner |
+| Nightjar | Free weapon + strange power (2) + gear (1) | Free fighting sticks; Shadow Manipulation (Allergy: floodlights burn her skin), grapple line |
+| Patchwork | 3 gear | Just the knife; night-vision goggles, grapple line, earpiece comms (plus Kit) |
+| The Ledger | Free weapon + 3 gear | Free concealed sidearm; Kevlar vest, police scanner, burner phones |

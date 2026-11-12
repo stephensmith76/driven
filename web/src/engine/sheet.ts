@@ -11,6 +11,8 @@ export type LoadoutItem = {
   ability_level?: number
   flaw?: string
   custom_text?: string
+  /** The hero's one free weapon: costs no slot. */
+  free?: boolean
 }
 /** The parts of a `characters` row the engine reads. */
 export type Sheet = {
@@ -144,7 +146,7 @@ export function slotsUsed(sheet: Sheet, opts: { creation?: boolean } = {}): Slot
   let strange = 0
   const warnings: string[] = []
   for (const r of resolveLoadout(sheet)) {
-    if (r.kind === 'gear') used += r.entry.slots ?? costs.gear
+    if (r.kind === 'gear') used += r.item.free ? 0 : (r.entry.slots ?? costs.gear)
     else if (r.kind === 'power') {
       used += r.entry.tier === 'strange' ? costs.strange : costs.street
       if (r.entry.tier === 'strange') {
@@ -159,6 +161,9 @@ export function slotsUsed(sheet: Sheet, opts: { creation?: boolean } = {}): Slot
     }
     // Kit sits outside the slots.
   }
+  const freeItems = resolveLoadout(sheet).filter((r) => r.kind === 'gear' && r.item.free)
+  if (freeItems.length > 1) warnings.push('Only one weapon is free; the others cost a slot each.')
+  for (const r of freeItems) if (r.kind === 'gear' && !r.entry.free_pick) warnings.push(`${r.entry.name} can't be a free weapon.`)
   if (used > max) warnings.unshift(`Uses ${used} slots; the limit is ${max}.`)
   if (creation && strange > CORE.slots.max_strange_at_creation) warnings.push('Only one strange power is allowed at creation.')
   const isSpecialist = sheet.archetype_id === 'specialist'
@@ -192,7 +197,8 @@ export function weaponOf(sheet: Sheet): { id: 'unarmed' | 'light' | 'heavy' | 'p
       if (w) return { id: w, source: r.entry.name }
     }
   }
-  return { id: 'unarmed', source: null }
+  // Everyone carries a knife.
+  return { id: 'knife', source: 'Knife (everyone has one)' }
 }
 
 export function hasMighty(sheet: Sheet): boolean {

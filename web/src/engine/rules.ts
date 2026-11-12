@@ -35,6 +35,8 @@ export type GearEntry = {
   id: string; name: string; slots: number; text: string
   group?: string; trial?: boolean
   weapon?: WeaponId; toughness?: ToughnessMap; guard?: number; uses_per_fight?: number
+  /** Can be the hero's one free weapon (no slot). */ free_pick?: boolean
+  /** Everyone has it (the knife); costs no slot and is hidden from pickers. */ baseline?: boolean
   /** Powered armor: a Miss can cut it out. The sheet tracks that with the flag `offline:<id>`. */
   unreliable?: boolean
   sim: SimFields

@@ -38,7 +38,9 @@
       "drive_spent": 3.09
     }
   },
-  "not_simulated": [],
+  "not_simulated": [
+    "Nightjar: Grapple line"
+  ],
   "runs": 2000,
   "seed": 7,
   "sim_version": "2026-11-11.3"

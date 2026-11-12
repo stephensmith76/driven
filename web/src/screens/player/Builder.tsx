@@ -75,6 +75,11 @@ function BuilderForm({ campaignId, existing, isGm, canBuild }: {
   const setItem = (i: number, patch: Partial<LoadoutItem>) =>
     set('loadout', draft.loadout.map((it, n) => (n === i ? { ...it, ...patch } : it)))
   const removeItem = (i: number) => set('loadout', draft.loadout.filter((_, n) => n !== i))
+  const freeIdx = draft.loadout.findIndex((it) => it.kind === 'gear' && it.free)
+  const setFreeWeapon = (id: string) => {
+    const rest = draft.loadout.filter((it) => !(it.kind === 'gear' && it.free))
+    set('loadout', id ? [{ kind: 'gear', id, free: true }, ...rest] : rest)
+  }
   const addGear = () => { if (gearPick) { set('loadout', [...draft.loadout, { kind: 'gear', id: gearPick }]); setGearPick('') } }
   const addPower = () => {
     if (!powerPick) return
@@ -212,7 +217,12 @@ function BuilderForm({ campaignId, existing, isGm, canBuild }: {
 
         <section className="card stack">
           <h2>Loadout <span className={slots.used > slots.max ? 'warn' : 'muted'}>{slots.used} of {slots.max} slots</span></h2>
-          <p className="muted small">Gear and street powers cost 1 slot; a strange power costs 2 and needs a flaw. Go over and you'll see a warning, but you can still save.</p>
+          <p className="muted small">Gear and street powers cost 1 slot (powered armor costs 2); a strange power costs 2 and needs a flaw. Go over and you'll see a warning, but you can still save.</p>
+          <label className="small" htmlFor="free-weapon">Free weapon (no slot). Everyone also carries a knife.</label>
+          <select id="free-weapon" value={freeIdx >= 0 ? draft.loadout[freeIdx].id : ''} onChange={(e) => setFreeWeapon(e.target.value)}>
+            <option value="">Just the knife</option>
+            {GEAR.filter((g) => g.free_pick).map((g) => <option key={g.id} value={g.id}>{g.name}</option>)}
+          </select>
 
           {draft.loadout.map((it, i) => {
             if (it.kind === 'kit') return null
@@ -220,7 +230,7 @@ function BuilderForm({ campaignId, existing, isGm, canBuild }: {
               const g = gearItem(it.id)
               return (
                 <div key={i} className="item">
-                  <p><strong>{g?.name ?? it.id}</strong> <span className="muted small">1 slot</span>{' '}
+                  <p><strong>{g?.name ?? it.id}</strong> <span className="muted small">{it.free ? 'free weapon' : `${g?.slots ?? 1} slot${(g?.slots ?? 1) > 1 ? 's' : ''}`}</span>{' '}
                     <button type="button" className="mini secondary" onClick={() => removeItem(i)}>Remove</button></p>
                   <p className="small">{g?.text ?? "Not in the rules data."}</p>
                   <input aria-label={`Note for ${g?.name ?? it.id}`} placeholder="Note (optional)" value={it.custom_text ?? ''} onChange={(e) => setItem(i, { custom_text: e.target.value })} />
@@ -265,8 +275,8 @@ function BuilderForm({ campaignId, existing, isGm, canBuild }: {
 
           <div className="button-row">
             <select aria-label="Add gear" value={gearPick} onChange={(e) => setGearPick(e.target.value)}>
-              <option value="">Add gear…</option>
-              {GEAR.map((g) => <option key={g.id} value={g.id}>{g.name}{g.trial ? ' (trial)' : ''}</option>)}
+              <option value="">Add gear (1 slot each)…</option>
+              {GEAR.filter((g) => !g.baseline).map((g) => <option key={g.id} value={g.id}>{g.name}{g.trial ? ' (trial)' : ''}</option>)}
             </select>
             <button type="button" className="secondary" disabled={!gearPick} onClick={addGear}>Add</button>
           </div>

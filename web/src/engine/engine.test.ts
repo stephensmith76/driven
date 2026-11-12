@@ -4,7 +4,7 @@ import { resolve } from 'node:path'
 import demo from '../../../supabase/seed/demo-heroes.json'
 import {
   CORE, FLAIRS, GEAR, KIT, POWERS, ARCHETYPES, TRAITS,
-  defenses, harm, harmBoxes, netAdv, resolveRoll, simHero, slotsUsed, stressStage, toughness, upgrade,
+  defenses, harm, harmBoxes, netAdv, resolveRoll, simHero, slotsUsed, stressStage, toughness, upgrade, weaponOf,
   type Sheet,
 } from './index'
 
@@ -98,7 +98,7 @@ describe('Harm boxes and slots', () => {
   it('a build using 4 slots warns but is not blocked', () => {
     const s: Sheet = { stats: { force: 0, flow: 0, focus: 0, presence: 0 }, loadout: [
       { kind: 'power', id: 'mighty', flaw: 'marked' },
-      { kind: 'gear', id: 'knife' }, { kind: 'gear', id: 'med-kit' },
+      { kind: 'gear', id: 'bat' }, { kind: 'gear', id: 'med-kit' },
     ] }
     const r = slotsUsed(s)
     expect(r.used).toBe(4)
@@ -116,6 +116,24 @@ describe('Harm boxes and slots', () => {
     const p = { ...hero('Patchwork'), loadout: [...hero('Patchwork').loadout!,
       { kind: 'kit' as const, id: 'smoke' }, { kind: 'kit' as const, id: 'taser' }, { kind: 'kit' as const, id: 'armor' }] }
     expect(slotsUsed(p)).toMatchObject({ used: 3, warnings: [] })
+  })
+  it('a free weapon costs no slot, and everyone has a knife', () => {
+    const s: Sheet = { stats: { force: 0, flow: 0, focus: 0, presence: 0 }, loadout: [{ kind: 'gear', id: 'sidearm', free: true }, { kind: 'gear', id: 'baton' }] }
+    expect(slotsUsed(s)).toMatchObject({ used: 1, warnings: [] })
+    expect(weaponOf(s).id).toBe('pistol')
+    expect(weaponOf({ stats: s.stats, loadout: [] })).toMatchObject({ id: 'knife' })
+    expect(simHero({ stats: s.stats, loadout: [] }).weapon).toBe('knife')
+  })
+  it('warns about a second free weapon or a free weapon that is not a weapon pick', () => {
+    const two: Sheet = { stats: { force: 0, flow: 0, focus: 0, presence: 0 }, loadout: [{ kind: 'gear', id: 'sidearm', free: true }, { kind: 'gear', id: 'bat', free: true }] }
+    expect(slotsUsed(two).warnings.some((w) => /Only one weapon is free/.test(w))).toBe(true)
+    const bad: Sheet = { stats: two.stats, loadout: [{ kind: 'gear', id: 'med-kit', free: true }] }
+    expect(slotsUsed(bad).warnings.some((w) => /can't be a free weapon/.test(w))).toBe(true)
+  })
+  it('Martial Artist makes bare hands light melee', () => {
+    const s: Sheet = { stats: { force: 0, flow: 0, focus: 0, presence: 0 }, loadout: [{ kind: 'power', id: 'martial-artist' }] }
+    expect(weaponOf(s)).toMatchObject({ id: 'light', source: 'Martial Artist' })
+    expect(slotsUsed(s).used).toBe(1)
   })
   it('Stress stages', () => {
     expect([0, 3, 4, 7, 8].map((s) => stressStage(s).name)).toEqual(['Steady', 'Steady', 'Fraying', 'Fraying', 'Breaking'])
@@ -212,7 +230,7 @@ describe('Harm', () => {
 describe('simHero matches the simulator\'s own sample heroes (make_heroes, gear on)', () => {
   it('Bulwark', () => expect(simHero(hero('Bulwark'))).toMatchObject({
     key: 'bulwark', arch: 'Protector', trait: 'Mercy', force: 3, flow: 0, focus: 1, presence: 2,
-    boxes: 5, medkit: 1, power: 'Toughness', tough_blunt: 1, guard_bonus: 1, weapon: 'unarmed', strange: false,
+    boxes: 5, medkit: 1, power: 'Toughness', tough_blunt: 1, guard_bonus: 1, weapon: 'knife', strange: false,
   }))
   it('Rook', () => expect(simHero(hero('Rook'))).toMatchObject({
     key: 'rook', boxes: 5, weapon: 'light', armor_guns: 1, medkit: 1, flairs: ['hard_to_kill'], not_simulated: [],
@@ -221,7 +239,7 @@ describe('simHero matches the simulator\'s own sample heroes (make_heroes, gear 
     weapon: 'light', flairs: ['opportunist'], power: 'Shadow Manipulation', strange: true, boxes: 4,
   }))
   it('Patchwork lists what the simulator leaves out', () => expect(simHero(hero('Patchwork'))).toMatchObject({
-    weapon: 'unarmed',
+    weapon: 'knife',
     not_simulated: ['Patchwork: Night-vision goggles', 'Patchwork: Grapple line', 'Patchwork: Earpiece comms'],
   }))
   it('The Ledger', () => expect(simHero(hero('The Ledger'))).toMatchObject({
@@ -323,7 +341,7 @@ describe('Sheet bookkeeping', () => {
   })
   it('Advancement: extra slots raise the limit, and a second strange power is fine after creation', () => {
     const s: Sheet = { ...hero('Nightjar'), extra_slots: 3,
-      loadout: [...hero('Nightjar').loadout!, { kind: 'power', id: 'mighty', flaw: 'marked' }, { kind: 'gear', id: 'knife' }] }
+      loadout: [...hero('Nightjar').loadout!, { kind: 'power', id: 'mighty', flaw: 'marked' }, { kind: 'gear', id: 'bat' }] }
     expect(slotsUsed(s, { creation: false })).toMatchObject({ used: 6, max: 6, warnings: [] })
     expect(slotsUsed(s).warnings.some((x) => /one strange power/.test(x))).toBe(true)
   })

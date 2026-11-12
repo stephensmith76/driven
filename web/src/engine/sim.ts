@@ -67,5 +67,7 @@ export function simHero(sheet: Sheet, key?: string): SimHero {
       h.not_simulated.push(`${name}: ${r.entry.name} (abilities past the first)`)
     }
   }
+  // Everyone carries a knife.
+  if (h.weapon === 'unarmed') h.weapon = 'knife'
   return h
 }
