@@ -288,7 +288,7 @@ function EnemyPanel({ campaignId, enemies, scene, run }: { campaignId: string; e
             {e.line && <p className="small">{e.line}</p>}
             {e.kind === 'mooks' ? (
               <div className="button-row small">
-                <span>Standing {e.count}/{e.count_max}</span>
+                <span>Standing {e.count}/{e.count_max}{e.harm_max > 1 && ` · ${e.harm_max} Harm each${e.harm > 0 ? ', the next one is staggered' : ''}`}</span>
                 <button className="mini secondary" onClick={() => run(() => setEnemyField(campaignId, e.id, 'count', Math.max(0, e.count - 1)))}>−1</button>
                 <button className="mini secondary" onClick={() => run(() => setEnemyField(campaignId, e.id, 'count', Math.min(e.count_max, e.count + 1)))}>+1</button>
                 <label className="small">Group of{' '}

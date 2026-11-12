@@ -1,6 +1,6 @@
 # Driven - Street Level Heroic RPG
 
-Rules version 2026-11-12.22 · Nov 12, 2026 · @Stephen
+Rules version 2026-11-12.23 · Nov 12, 2026 · @Stephen
 
 ## Overview
 
@@ -117,6 +117,8 @@ Harm is damage to your body. Each point of Impact fills one Harm box, top to bot
 ### Mooks: 1 box
 
 Any hit takes a mook out. An Impact 3 hit also drops a second mook in the same zone. When mooks attack, they deal at most **2 Harm** per attack. Apply the cap last, after the gun bonus, armor, and Toughness.
+
+**Bruisers (trial).** Some mooks are tougher: enforcers, bouncers, riot cops. A bruiser has 2 Harm boxes and no Toughness. Bruisers take Harm the way a named enemy does, so weapon bonuses count. Every 2 Harm drops one, and Harm left over carries to the next bruiser in the group. An Impact 3 doesn't drop a second bruiser by itself: its Harm drops one and staggers the next. Anything that takes a mook out with no Harm (a tranquilizer dart, a taser gun) deals 1 Harm to a bruiser instead. In every other way they are mooks: they act as a group, their attacks cap at 2 Harm, and they lose turns as written.
 
 ### Named villains: 5 to 10 boxes
 
@@ -1102,7 +1104,7 @@ A villain fits in a short stat block. They use the same stats, defenses, and Dri
 
 - **Villain turns:** a named villain gets one turn per round for every two heroes, rounded up. One turn against 1 or 2 heroes, two against 3 or 4. Spread the turns through the round. A villain fighting alone, with no mooks or lieutenants, gets one turn per hero instead.
 - **Lieutenants and several named enemies:** a lieutenant gets one turn per round, however many heroes there are, even fighting alone. When a fight has more than one named enemy, each villain takes its own turns by the rule above and each lieutenant takes one; no villain counts as alone while another named enemy is in the fight. Spread all their turns through the round.
-- **Gang size:** in a fight with no named villain, start with one group of 3 mooks per hero. With a named villain present, one group per two heroes (rounded down, minimum 1). Then adjust for how hard the fight should be.
+- **Gang size:** in a fight with no named villain, start with one group of 3 mooks per hero. With a named villain present, one group per two heroes (rounded down, minimum 1). Then adjust for how hard the fight should be. For a harder fight, make one mook group bruisers, or all of them (trial). Don't add extra groups on top when a named villain is in the fight: that is a much bigger jump.
 
 ### Named enemies resist being shut down (trial)
 
@@ -1160,6 +1162,13 @@ They run when half the gang is down, unless a boss is in sight.
 COPS (Mooks, groups of 3) (trial)
 Attack +1   Guard 12  Wits 12  Poise 12   Harm 1 each
 They try to arrest everyone, heroes included.
+```
+
+```
+BRUISERS (Tough mooks, groups of 3) (trial)
+Attack +3   Guard 12  Wits 12  Poise 13   Harm 2 each
+One attack per group per turn, with Edge if all 3 are standing.
+Every 2 Harm drops one. Leftover Harm carries to the next. No Toughness.
 ```
 
 ## Old Habits: changing your Trait
@@ -1303,6 +1312,8 @@ After one or two runs, adjust the numbers that felt off: Harm boxes, villain Har
 
 - **Parties with no fighter** (Patchwork, the Ledger, a third non-fighter) win only 38% of the Cannery. That's intended: they should win the case and pick their ground first. Check it at a table.
 - **A villain fighting alone** goes down in about 3.3 rounds (Nov 12 run). With 12 Harm it is 3.9 rounds, but the weakest party drops from 56% to 38%. If it feels short in play, give solo villains 12 Harm.
+- **Bruisers are a small lever.** In the simulator, making one Saints group bruisers takes the Cannery from 93.4% wins in 4.4 rounds to 89.4% in 4.6, and the weakest party from 45% to 33%. Making every group bruisers in a gang-only fight: 99.4% in 2.5 rounds becomes 97.9% in 2.9. A pair of bruisers is weaker than three Saints with a pistol, so they come in threes. Adding a bruiser group on top of the usual gang, with the Butcher there, drops the average to 73%: too much.
+- **Gang-only fights are short** (2.5 rounds, 99% wins) mostly because the gang runs when half of it is down. If they feel too easy, give the gang a reason to stay, or a lieutenant.
 - **Objectives can be very fast.** In the simulator, three non-fighters finish the Cannery's three steps in about 2.4 rounds. Limiting the team to one finished step a round makes that 3.3 rounds. A GM who contests the steps may make the limit unnecessary. Watch it.
 - **The Leader needs a fighter or an Objective.** Presence attacks deal no Harm, so a Leader with two non-fighters wins a straight slugfest only 7 to 21% of the time in the simulator, but 76 to 93% when the fight has an Objective. Beside a fighter the Leader is about level with the other archetypes.
 - **The new Order perk and Already Broken** haven't been played yet.
@@ -1313,6 +1324,7 @@ After one or two runs, adjust the numbers that felt off: Harm boxes, villain Har
 
 - The Nov 11 audit, all new: the changed Traits (Thrill, Fear, Mercy, Spite, Vanity, Duty, Loyalty, Obsession), named enemies resisting being shut down, 6 Stress case villains and Breaking in a fight, the Patrol budget (2 actions a Night, one free clue a Night) and Scheme beats, GM moves (placeholders), Defeat, Objectives, the Cannery's Objective, the fight clarifications (engaging on a free move, Hidden, leaving a fight, ambush) and cop mooks, and the light melee, knife and heavy melee changes. The simulator numbers above were run before these changes.
 - The Nov 12 pass, all new: Sleep It Off clearing 3 Stress and Show Up clearing 1, Grit your teeth, Objective steps that pay and earn Drive (and can't be worked while engaged), the trap after a missed theory, Complexity scaling with the team, the new Levitation, the rewritten GM moves (Costs, fight, Patrol and Dawn moves), Chases, the Rampage and Knows your moves Tricks, stat raises limited to every other case, and the Butcher's and Voss's Presence attack lines.
+- Bruisers (mooks with 2 Harm boxes), new on Nov 12. Simulated, not played.
 - The Leader archetype, the Insidious villain role, and death decided at the table (left for dead), all new on Nov 12 and not played or simulated.
 - Every trial Flair (Resources, Acrobat, Already Broken, The Roast, Trick Arrows, Patient Hunter, Sucker Punch, Bodyguard, Quick Study, Chill, Rooftop Runner, Smarmy and Scrapper), the "More tools" list and Assets.
 - The Loyalty, Obsession, Fear and Duty Traits, which are new and have not been played or simulated.
@@ -1344,6 +1356,7 @@ After one or two runs, adjust the numbers that felt off: Harm boxes, villain Har
 - **Death, the Leader and the Insidious (Nov 12, Stephen):** death is decided at the table, never by the dice. A sixth archetype, the Leader, leads with Presence. A new villain role, the Insidious, does the same for villains. Not run through the simulator.
 - **Core powers (Nov 12, Stephen):** twelve powers are core (six street, six strange). The rest stay in the book on "More powers" lists as trial rules. No power text changed.
 - **Simulator pass (Nov 12):** the simulator now plays today's rules: the weapon changes, Grit your teeth, villain Stress and Breaking, the taser against named enemies, Objectives and the hostage clock, and the Leader. Across all 56 three-hero parties, the Cannery with the Butcher at 8 Harm ran 96.5% wins in 3.8 rounds, under the 4 to 6 round target, so the trial rule "a villain with Toughness has 2 fewer Harm" was dropped and the Butcher is back to 10. With 10 Harm: 93.4% wins in 4.4 rounds, weakest party 45%. Turning on the Cannery's Objective lifts the weakest party to 76% (92.6% average, 4.4 rounds, 42% of wins by Objective). Grit your teeth is worth about 1.5 points on average and 9 for the weakest party. Light-melee Jabs and villain Stress barely move the totals. The gun lieutenant: 94.7% in 3.6 rounds.
+- **Bruisers (Nov 12):** a second mook type with 2 Harm boxes, for harder gangs. Making every mook 2 Harm was simulated and rejected: fights ran 0.5 rounds longer, but the weakest party fell from 45% to 31% and "any hit drops a mook" was lost.
 
 ## Playtest log: Session 1
 

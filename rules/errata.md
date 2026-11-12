@@ -342,3 +342,17 @@ The trial rule from entry 11, "a named villain with Toughness has 2 fewer Harm b
 - The Butcher's stat block: Harm 8 is Harm 10 again.
 
 The playtest notes have the new simulator numbers, and two things to watch: Objectives can finish very fast, and the Leader needs a fighter or an Objective.
+
+## 17. Bruisers: mooks with 2 Harm boxes (Nov 12)
+
+Trial. Rules version 2026-11-12.23.
+
+**Harm, "Mooks: 1 box"**, add:
+
+**Bruisers (trial).** Some mooks are tougher: enforcers, bouncers, riot cops. A bruiser has 2 Harm boxes and no Toughness. Bruisers take Harm the way a named enemy does, so weapon bonuses count. Every 2 Harm drops one, and Harm left over carries to the next bruiser in the group. An Impact 3 doesn't drop a second bruiser by itself: its Harm drops one and staggers the next. Anything that takes a mook out with no Harm (a tranquilizer dart, a taser gun) deals 1 Harm to a bruiser instead. In every other way they are mooks: they act as a group, their attacks cap at 2 Harm, and they lose turns as written.
+
+**Villains, "Gang size"**, add: "For a harder fight, make one mook group bruisers, or all of them. Don't add extra groups on top when a named villain is in the fight: that is a much bigger jump."
+
+**Sample villains**, add the stat block: Bruisers (tough mooks, groups of 3): Attack +3, Guard 12, Wits 12, Poise 13, Harm 2 each. One attack per group per turn, with Edge if all 3 are standing. Every 2 Harm drops one, and leftover Harm carries to the next. No Toughness.
+
+The app's Fight screen has Bruisers in the enemy library, and tracks a staggered bruiser.

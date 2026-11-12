@@ -10,7 +10,7 @@ Machine-readable rules. The sheets, the builder, the dice roller and the simulat
 | `flairs.json` | The 19 Flairs (13 marked `trial`) |
 | `gear.json` | Gear, including the trial "More gear" list |
 | `powers.json` | Street and strange powers (12 marked `core`, the rest `trial`), flaws, villain-only powers |
-| `villains.json` | Roles, the Butcher, Voss, a lieutenant template, the Saints, the cops |
+| `villains.json` | Roles, the Butcher, Voss, a lieutenant template, the Saints, the cops, bruisers |
 | `tags.json` | Ranges and zone tags |
 | `toughness.json` | The Toughness table, generated from rules.md by `npm run gen:toughness` (never hand-edited) |
 

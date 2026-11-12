@@ -1,5 +1,5 @@
 {
-  "rules_version": "2026-11-12.22",
+  "rules_version": "2026-11-12.23",
   "defense_base": 12,
   "dice": { "sides": 10, "count": 2, "advantage_count": 3 },
   "edge_bonus": 2,
@@ -57,6 +57,8 @@
     "left_for_dead": { "home_ticks": 2 },
     "grit_your_teeth": { "stress": 1, "text": "At the start of your turn, a Wounded hero can take 1 Stress to ignore the Wounded Disadvantage until their next turn." },
     "mook_boxes": 1,
+    "bruiser_boxes": 2,
+    "bruiser_text": "Bruisers (trial). Some mooks are tougher: enforcers, bouncers, riot cops. A bruiser has 2 Harm boxes and no Toughness. Bruisers take Harm the way a named enemy does, so weapon bonuses count. Every 2 Harm drops one, and Harm left over carries to the next bruiser in the group. An Impact 3 doesn't drop a second bruiser by itself: its Harm drops one and staggers the next. Anything that takes a mook out with no Harm (a tranquilizer dart, a taser gun) deals 1 Harm to a bruiser instead. In every other way they are mooks: they act as a group, their attacks cap at 2 Harm, and they lose turns as written.",
     "mook_attack_cap": 2,
     "lieutenant_boxes": 5,
     "villain_boxes": 10,

@@ -4,7 +4,7 @@ import { resolve } from 'node:path'
 import demo from '../../../supabase/seed/demo-heroes.json'
 import {
   CORE, FLAIRS, GEAR, POWERS, ARCHETYPES, TRAITS,
-  defenses, harm, harmBoxes, netAdv, resolveRoll, simHero, slotsUsed, stressStage, toughness, upgrade, weaponOf, resolveLoadout, beltSlots, villainStress,
+  defenses, harm, harmBoxes, netAdv, resolveRoll, simHero, slotsUsed, stressStage, toughness, upgrade, weaponOf, resolveLoadout, beltSlots, villainStress, enemyHit,
   type Sheet,
 } from './index'
 
@@ -213,6 +213,14 @@ describe('Harm', () => {
     expect(resolveRoll({ dice: [5, 5], bonus: 2, defense: 12, jab: true }).total).toBe(10)
     expect(resolveRoll({ dice: [5, 5], bonus: 2, defense: 12, jab: true, lightJab: true })).toMatchObject({ total: 12, impact: 1 })
     expect(resolveRoll({ dice: [10, 10], bonus: 4, defense: 12, jab: true, lightJab: true }).impact).toBe(1)
+  })
+  it('Bruisers: every 2 Harm drops one, and leftover Harm carries to the next', () => {
+    const b = { kind: 'mooks' as const, harm: 0, harm_max: 2, count: 2 }
+    expect(enemyHit(b, 1, 1).patch).toEqual({ count: 2, harm: 1 })
+    expect(enemyHit({ ...b, harm: 1 }, 1, 1).patch).toEqual({ count: 1, harm: 0 })
+    expect(enemyHit(b, 3, 3).patch).toEqual({ count: 1, harm: 1 })
+    expect(enemyHit(b, 3, 4).patch).toEqual({ count: 0, harm: 0 })
+    expect(enemyHit({ kind: 'mooks', harm: 0, harm_max: 1, count: 3 }, 3, 3).patch).toEqual({ count: 1 })
   })
   it('Villain Stress: 4 boxes for a lieutenant, 6 for a case villain', () => {
     expect(villainStress('lieutenant')).toEqual({ max: 4, fraying: 2, breaking: 4 })

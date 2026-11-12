@@ -53,6 +53,10 @@
     { "id": "cops", "name": "Cops", "kind": "mooks", "role": "mooks", "trial": true,
       "attack": 1, "guard": 12, "wits": 12, "poise": 12, "harm_each": 1, "group_size": 3, "gunner": false,
       "text": "They try to arrest everyone, heroes included.",
-      "sim": { "name": "Cops", "count": 3, "attack": 1, "guard": 12, "gunner": false } }
+      "sim": { "name": "Cops", "count": 3, "attack": 1, "guard": 12, "gunner": false } },
+    { "id": "bruisers", "name": "Bruisers", "kind": "mooks", "role": "mooks", "trial": true,
+      "attack": 3, "guard": 12, "wits": 12, "poise": 13, "harm_each": 2, "group_size": 3, "gunner": false,
+      "text": "Tough mooks. One attack per group per turn, with Edge if all 3 are standing. Every 2 Harm drops one, and leftover Harm carries to the next. No Toughness.",
+      "sim": { "name": "Bruisers", "count": 3, "attack": 3, "guard": 12, "gunner": false, "harm_each": 2 } }
   ]
 }

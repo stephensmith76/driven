@@ -85,6 +85,15 @@ export const mooksDropped = (impact: number) => (impact <= 0 ? 0 : impact >= 3 ?
 export function enemyHit(e: Pick<Enemy, 'kind' | 'harm' | 'harm_max' | 'count'>, impact: number, harm: number):
   { patch: Partial<Pick<Enemy, 'harm' | 'count'>>; note: string } {
   if (impact <= 0) return { patch: {}, note: 'A miss does nothing.' }
+  if (e.kind === 'mooks' && e.harm_max > 1) {
+    // Bruisers: every `harm_max` Harm drops one, and leftover Harm carries to the next (rules.md, Mooks).
+    const total = e.harm + harm
+    const drop = Math.min(e.count, Math.floor(total / e.harm_max))
+    const left = e.count - drop
+    const carry = left > 0 ? total - drop * e.harm_max : 0
+    return { patch: { count: left, harm: carry },
+      note: `${harm} Harm: ${drop} down, ${left} standing${carry > 0 ? ', the next one is staggered' : ''}.` }
+  }
   if (e.kind === 'mooks') {
     const drop = Math.min(e.count, mooksDropped(impact))
     return { patch: { count: e.count - drop }, note: `${drop} mook${drop === 1 ? '' : 's'} down, ${e.count - drop} standing.` }
@@ -135,7 +144,7 @@ export function enemyFromLibrary(entry: LibraryVillain | LibraryMooks): Draft {
     return {
       name: m.name, kind: 'mooks', stats: { attack: m.attack },
       defenses: { guard: m.guard, wits: m.wits, poise: m.poise },
-      toughness: 0, harm: 0, harm_max: CORE.harm.mook_boxes, stress: 0,
+      toughness: 0, harm: 0, harm_max: m.harm_each ?? CORE.harm.mook_boxes, stress: 0,
       count: m.group_size, count_max: m.group_size, drive: 0, zone: null,
       line: m.gunner ? 'Gunner in the group' : '', source_id: m.id,
     }

@@ -12,7 +12,7 @@ export type SimVillain = {
   harm_max: number; toughness_v: number; drive: number; weapon: string
   role: VillainRole
 }
-export type SimMooks = { name: string; count: number; attack: number; guard: number; gunner: boolean }
+export type SimMooks = { name: string; count: number; attack: number; guard: number; gunner: boolean; harm_each?: number }
 
 export type SimConfig = {
   runs: number; seed?: number | null
@@ -114,6 +114,7 @@ export function mooksFromEnemy(e: Enemy, now = false): SimMooks {
   return {
     name: e.name, count: now ? Math.max(0, e.count) : e.count_max, attack: e.stats.attack ?? 2,
     guard: e.defenses.guard ?? 13, gunner: lib ? lib.sim.gunner : /gunner/i.test(e.line),
+    ...(e.harm_max > 1 ? { harm_each: e.harm_max } : {}),
   }
 }
 

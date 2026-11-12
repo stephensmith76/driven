@@ -45,7 +45,7 @@ Rule switches (defaults match the current rules doc):
 import argparse, itertools, json, random, statistics, sys
 from dataclasses import dataclass, field, fields
 
-SIM_VERSION = "2026-11-12.1"   # bump when fight logic or run_encounter's output changes
+SIM_VERSION = "2026-11-12.2"   # bump when fight logic or run_encounter's output changes
 
 # ---------------------------------------------------------------- dice
 DEF_BASE = 12   # defenses are DEF_BASE + stat (was 10 before the Nov 9 balance pass)
@@ -110,6 +110,9 @@ class Rules:
     heal_hurt_cost: bool = True    # current rule: a heal after being hurt since your last turn costs 1 Stress  # one group of 3 mooks per hero (False = always 2 groups)
     # Nov 11 and 12 rules
     objective: int = 0             # Objective steps (0 = none). 3 = the Cannery's Free the hostage
+    bruisers: int = 0              # swap this many mook groups for a bruiser group (2 Harm each)
+    bruisers_extra: int = 0        # add this many bruiser groups on top of the usual gang
+    bruiser_size: int = 3          # bruisers in a group
     obj_per_round: int = 0         # at most this many Objective steps finished per round (0 = no limit)
     hostage: int = 0               # a clock that ticks each round; full = 2 Stress to every hero (0 = none)
     grit: bool = True              # Grit your teeth: 1 Stress to ignore Wounded for a turn
@@ -180,6 +183,8 @@ class Mooks:
     attack: int = 2; guard: int = 13; gunner: bool = True
     fled: bool = False
     dis_next: bool = False
+    harm_each: int = 1             # 2 = bruisers: every 2 Harm drops one, leftover carries to the next
+    dmg: int = 0
     @property
     def out(self): return self.count <= 0 or self.fled
     @property
@@ -306,6 +311,12 @@ class Fight:
             elif scenario == "cannery": n = max(1, len(party) // 2)   # with a named villain: one group per two heroes
             else: n = len(party)
             self.groups = [Mooks(name=f"Saints {chr(65+i)}", guard=rules.mook_guard) for i in range(n)]
+            bz = rules.bruiser_size
+            mk = lambda i: Mooks(name=f"Bruisers {chr(65+i)}", count=bz, start=bz, attack=3, guard=12, gunner=False, harm_each=2)
+            for i in range(min(rules.bruisers, len(self.groups))):   # swap mook groups for bruiser groups
+                self.groups[i] = mk(i)
+            for i in range(rules.bruisers_extra):                    # or add bruiser groups on top
+                self.groups.append(mk(len(self.groups)))
         if scenario in ("boss", "cannery"):
             self.boss = Boss()   # the Butcher: 10 Harm (the "2 fewer for Toughness" trial rule was dropped on Nov 12)
             if rules.boss_harm: self.boss.harm_max = rules.boss_harm
@@ -405,9 +416,14 @@ class Fight:
     # -- damage to foes
     def hit_group(self, h, g, impact, sig_takedown=False):
         if impact <= 0 or g.out: return 0
-        sp = self.rules.spill
-        n = impact if sp == "full" else (2 if impact >= 3 else 1) if sp == "reduced" else 1
-        drops = min(g.count, n)
+        if g.harm_each > 1:   # bruisers take Harm like a named enemy
+            g.dmg += impact + weapon_bonus(h.weapon, impact, self.rules, 0)
+            drops = min(g.count, g.dmg // g.harm_each)
+            g.dmg = 0 if drops >= g.count else g.dmg - drops * g.harm_each
+        else:
+            sp = self.rules.spill
+            n = impact if sp == "full" else (2 if impact >= 3 else 1) if sp == "reduced" else 1
+            drops = min(g.count, n)
         g.count -= drops
         self.log(f"   {drops} of {g.name} drop ({g.count} left)")
         # the gunner is down if he was among them
@@ -698,7 +714,7 @@ class Fight:
         smoke = gun and self.smoke_until >= self.round
         adv = net_adv(-1 if (gun and engaged) else 0, -1 if (gun and (self.rules.dark or smoke)) else 0, -1 if g.dis_next else 0)
         g.dis_next = False
-        edge = g.count >= 3
+        edge = g.count >= 3 or (g.harm_each > 1 and g.count >= g.start)
         imp, m, dice, tot = self.d.roll(g.attack, t.guard, adv, edge)
         self.log(f" {g.name} ({g.count}{', gun' if gun else ''}) -> {t.name} {dice} = {tot} vs {t.guard}: "
                  f"{'MISS' if imp==0 else 'Impact '+str(imp)}")
@@ -886,7 +902,7 @@ _HERO_STATE = {"harm", "stress", "drive"}
 _HERO_FIELDS = {f.name for f in fields(Hero)} - {"stats"}
 _HERO_EXTRA = {"kit", "not_simulated"}
 _BOSS_FIELDS = {"name", "force", "flow", "focus", "presence", "harm_max", "toughness_v", "drive", "weapon", "role"}
-_MOOK_FIELDS = {"name", "count", "attack", "guard", "gunner"}
+_MOOK_FIELDS = {"name", "count", "attack", "guard", "gunner", "harm_each"}
 _WEAPONS = {"unarmed", "light", "heavy", "pistol", "knife"}
 
 def _check_keys(what, d, allowed):
@@ -1003,7 +1019,7 @@ def rules_from(args, extra=None):
               down_stress=not args.no_down_stress, villain_presence=not args.no_villain_presence,
               strange_stress=not args.no_strange_stress, invuln_overflow=not args.no_invuln_overflow,
               presence_free=not args.threat_replaces_attack, heal_cost=args.heal_cost, heal_calm=args.heal_calm_only,
-              objective=args.objective, obj_per_round=args.obj_per_round, hostage=args.hostage, grit=not args.no_grit, light_jab=not args.no_light_jab,
+              bruisers=args.bruisers, bruisers_extra=args.bruisers_extra, bruiser_size=args.bruiser_size, objective=args.objective, obj_per_round=args.obj_per_round, hostage=args.hostage, grit=not args.no_grit, light_jab=not args.no_light_jab,
               villain_stress=not args.no_villain_stress, new_weapons=not args.old_weapons)
     if extra:
         k, _, v = extra.partition("=")
@@ -1051,6 +1067,9 @@ def main():
     ap.add_argument("--no-invuln-overflow", action="store_true")
     ap.add_argument("--fixed-gang", action="store_true", help="always 2 mook groups instead of one per hero")
     ap.add_argument("--objective", type=int, default=0, help="Objective steps (3 = the Cannery's Free the hostage)")
+    ap.add_argument("--bruisers", type=int, default=0, help="swap N mook groups for a bruiser group (2 Harm each)")
+    ap.add_argument("--bruisers-extra", type=int, default=0, help="add N bruiser groups on top of the usual gang")
+    ap.add_argument("--bruiser-size", type=int, default=3, help="bruisers in a group (default 3)")
     ap.add_argument("--obj-per-round", type=int, default=0, help="at most N Objective steps finished per round (0 = no limit)")
     ap.add_argument("--hostage", type=int, default=0, help="a clock that ticks each round; full = 2 Stress to every hero")
     ap.add_argument("--no-grit", action="store_true")
