@@ -29,6 +29,8 @@ export type Member = {
   display_name: string
 }
 
+export type Connections = { protect?: string; leverage?: string; place?: string; mistake?: string }
+
 export type Character = {
   id: string
   campaign_id: string
@@ -48,6 +50,7 @@ export type Character = {
   extra_slots: number
   fight_state: Record<string, unknown>
   notes: string
+  connections: Connections
   is_npc: boolean
   locked: boolean
 }

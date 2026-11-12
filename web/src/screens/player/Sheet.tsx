@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { errorText } from '../../data/supabase'
 import { useCampaign, useCharacters, useLiveRows, useMe } from '../../data/hooks'
 import { bump, newFight, setField } from '../../data/writes'
-import type { Clock, Clue } from '../../data/types'
+import type { Clock, Clue, Connections } from '../../data/types'
 import { HeroTrackers } from '../../components/HeroTrackers'
 import { Track } from '../../components/Track'
 import { ScenePanel } from '../../components/ScenePanel'
@@ -153,6 +153,12 @@ export function Sheet({ campaignId, characterId }: { campaignId: string; charact
       </section>
 
       <section className="card stack">
+        <h2>Connections</h2>
+        <ConnectionsField value={hero.connections ?? {}} onSave={(v) => run(() => setField('characters', hero.id, 'connections', v))} />
+        <p className="muted small">When one is lost, resolved or betrayed, write a new one at the next Dawn. Protecting one earns 1 Drive, once per scene.</p>
+      </section>
+
+      <section className="card stack">
         <h2>Notes</h2>
         <NotesField value={hero.notes} onSave={(v) => run(() => setField('characters', hero.id, 'notes', v))} />
         <p className="muted small">Visible to you and the GM.</p>
@@ -184,6 +190,34 @@ export function Sheet({ campaignId, characterId }: { campaignId: string; charact
         </p>
       </footer>
     </main>
+  )
+}
+
+const CONNECTION_LABELS = [
+  ['protect', 'Someone you protect'], ['leverage', 'Someone with leverage over you'],
+  ['place', "A place you're tied to"], ['mistake', 'A mistake that could come back'],
+] as const
+
+/** Four one-line connections; each saves when you leave it. */
+function ConnectionsField({ value, onSave }: { value: Connections; onSave: (v: Connections) => void }) {
+  const [text, setText] = useState<Connections>(value)
+  const focused = useRef(false)
+  useEffect(() => { if (!focused.current) setText(value) }, [value])
+  return (
+    <div className="stack">
+      {CONNECTION_LABELS.map(([k, label]) => (
+        <div key={k} className="stack">
+          <label htmlFor={`conn-${k}`} className="muted small">{label}</label>
+          <input id={`conn-${k}`} value={text[k] ?? ''} maxLength={160}
+            onChange={(e) => setText({ ...text, [k]: e.target.value })}
+            onFocus={() => { focused.current = true }}
+            onBlur={() => {
+              focused.current = false
+              if ((text[k] ?? '') !== (value[k] ?? '')) onSave(Object.fromEntries(Object.entries(text).filter(([, v]) => v)) as Connections)
+            }} />
+        </div>
+      ))}
+    </div>
   )
 }
 

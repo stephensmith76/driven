@@ -180,3 +180,11 @@ Add one new row to that table, before Pepper spray:
 **Sample loadouts, Patchwork.** "(plus Kit)" is now "(plus a utility belt)".
 
 One effect to know: Kit was once per item per fight. Belt gear uses its own limits, so a taser or smoke grenades on the belt gets two uses per fight.
+
+## 10. Protecting a connection earns Drive (Nov 11)
+
+**Connections section.** After the paragraph that ends "write a new one at the next Dawn.", add:
+
+**Protecting a connection pays.** The first time each scene you take Harm or Stress, or put yourself at real risk, to protect or save one of your connections, gain 1 Drive.
+
+The app's character sheet now has a Connections section (four one-line boxes, also in the Builder), so connections no longer have to live in Notes.

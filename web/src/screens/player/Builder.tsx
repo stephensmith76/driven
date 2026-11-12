@@ -3,7 +3,7 @@ import { go } from '../../router'
 import { errorText, supabase } from '../../data/supabase'
 import { useCampaign, useCharacters, useMe } from '../../data/hooks'
 import { updateColumns } from '../../data/writes'
-import type { Character, LoadoutItem, Stats } from '../../data/types'
+import type { Character, Connections, LoadoutItem, Stats } from '../../data/types'
 import {
   ARCHETYPES, CORE, FLAIRS, GEAR, POWERS, TRAITS,
   buildWarnings, gearItem, power, slotsUsed, startingDrive, type Sheet as SheetData,
@@ -18,7 +18,15 @@ type Draft = {
   flair_ids: string[]
   loadout: LoadoutItem[]
   extra_slots: number
+  connections: Connections
 }
+
+const CONNECTION_FIELDS = [
+  { key: 'protect', label: 'Someone you protect', hint: 'Your stake: a person you would take a hit for, or cannot afford to lose.' },
+  { key: 'leverage', label: 'Someone with leverage over you', hint: "A debt, a secret, a boss, a cop, a promise. This is the GM's lever." },
+  { key: 'place', label: "A place you're tied to", hint: 'A block, a bar, a rooftop, a grave.' },
+  { key: 'mistake', label: 'A mistake that could come back', hint: 'An old case gone wrong, someone you failed.' },
+] as const
 
 const STAT_IDS = ['force', 'flow', 'focus', 'presence'] as const
 const FLAW_KINDS = ['Allergy', 'Unstable', 'Marked'] as const
@@ -27,12 +35,13 @@ const sign = (n: number) => (n > 0 ? `+${n}` : String(n))
 const blank = (): Draft => ({
   name: '', civilian: '', archetype_id: null, trait_id: null,
   stats: { force: 3, flow: 2, focus: 1, presence: 0 }, // the Balanced array, ready to adjust
-  flair_ids: [], loadout: [], extra_slots: 0,
+  flair_ids: [], loadout: [], extra_slots: 0, connections: {},
 })
 
 const fromCharacter = (c: Character): Draft => ({
   name: c.name, civilian: c.civilian, archetype_id: c.archetype_id, trait_id: c.trait_id,
   stats: c.stats, flair_ids: c.flair_ids, loadout: c.loadout, extra_slots: c.extra_slots ?? 0,
+  connections: c.connections ?? {},
 })
 
 /** Builder (new hero) and Advancement (edit an existing hero) on one screen. */
@@ -97,6 +106,7 @@ function BuilderForm({ campaignId, existing, isGm, canBuild }: {
         name: draft.name.trim() || 'New hero', civilian: draft.civilian.trim(),
         archetype_id: draft.archetype_id, trait_id: draft.trait_id, stats: draft.stats,
         flair_ids: draft.flair_ids, loadout: draft.loadout, extra_slots: draft.extra_slots,
+        connections: Object.fromEntries(Object.entries(draft.connections).map(([k, v]) => [k, (v ?? '').trim()]).filter(([, v]) => v)),
       }
       if (existing) {
         const original = fromCharacter(existing)
@@ -140,6 +150,18 @@ function BuilderForm({ campaignId, existing, isGm, canBuild }: {
           <input id="b-name" value={draft.name} onChange={(e) => set('name', e.target.value)} maxLength={60} />
           <label htmlFor="b-civ">Civilian identity</label>
           <input id="b-civ" value={draft.civilian} onChange={(e) => set('civilian', e.target.value)} maxLength={120} placeholder="Name and what they do by day" />
+        </section>
+
+        <section className="card stack">
+          <h2>Connections</h2>
+          <p className="muted small">Four ties to the world, one line each. They are what the GM can lean on and what you have to lose. At least one should link you to another hero.</p>
+          {CONNECTION_FIELDS.map((f) => (
+            <div key={f.key} className="stack">
+              <label htmlFor={`b-conn-${f.key}`}>{f.label}</label>
+              <input id={`b-conn-${f.key}`} value={draft.connections[f.key] ?? ''} maxLength={160} placeholder={f.hint}
+                onChange={(e) => set('connections', { ...draft.connections, [f.key]: e.target.value })} />
+            </div>
+          ))}
         </section>
 
         <section className="card stack">

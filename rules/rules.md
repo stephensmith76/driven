@@ -548,6 +548,8 @@ At least one connection should link you to another hero. At the table, ask: how 
 
 The GM uses connections for Impact 1 costs, Miss moves, Home crises (a loved one becomes a target, someone learns who you are) and personal clues, which already count double and tick your Home clock. When a connection is lost, resolved or betrayed, write a new one at the next Dawn.
 
+**Protecting a connection pays.** The first time each scene you take Harm or Stress, or put yourself at real risk, to protect or save one of your connections, gain 1 Drive.
+
 A hero with no civilian life still has connections. Their "someone you protect" can be anything that anchors them to their humanity, even a goldfish.
 
 ### Advancement

@@ -121,7 +121,7 @@ export function demoNotes(): string {
 export const demoClocks = (): Pick<Clock, 'name' | 'kind' | 'size' | 'filled' | 'visible_to_players' | 'sort'>[] =>
   seed.clocks.filter((k) => k.kind !== 'scheme' && k.kind !== 'heat').map((k) => ({ ...k, kind: k.kind as Clock['kind'] }))
 
-type HeroRow = Omit<Character, 'id' | 'campaign_id' | 'extra_slots'>
+type HeroRow = Omit<Character, 'id' | 'campaign_id' | 'extra_slots' | 'connections'>
 export const demoHeroes = (): HeroRow[] =>
   seed.characters.map(({ id: _id, harm_boxes: _boxes, loadout, ...h }) => ({
     ...h,
