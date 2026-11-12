@@ -532,6 +532,7 @@ Pick one at character creation.
 **Smarmy** (trial Flair): once per Night, a Presence roll to talk someone down or past a door counts as one Impact higher (still capped at 3).
 
 **Scrapper** (trial Flair): once per scene, when you're outnumbered in your zone, your next attack has Edge and deals +1 Harm.
+
 **Trick Arrows** (trial Flair): you need a bow as one of your weapons. Twice per fight, add one effect to a bow attack, a different arrow each time. Net: the target can't take their free move until they spend a Quick Action to get free. Flash: the target has Disadvantage on their next roll. Grapple: you move to any zone you can see, including High Ground. Boom: on a hit, everyone else in the target's zone takes 1 Harm.
 
 ### Connections
@@ -1124,7 +1125,9 @@ After one or two runs, adjust the numbers that felt off: Harm boxes, villain Har
 
 ### Not yet tested at a table
 
-- The Resources, Acrobat and Already Broken Flairs, the "More gear" list, and Assets.
+- Every trial Flair (Resources, Acrobat, Already Broken, The Roast, Trick Arrows, Patient Hunter, Sucker Punch, Bodyguard, Quick Study, Chill, Rooftop Runner, Smarmy and Scrapper), the "More tools" list and Assets.
+- The Loyalty, Obsession, Fear and Duty Traits, which are new and have not been played or simulated.
+- The Bow as a free weapon, and the Weighted lash and Scoped rifle, which the simulator models only as a light weapon and a pistol.
 - Most powers. Only Shadow Manipulation, Resilience, Invulnerability, Mighty and Healing Factor have seen play or the simulator.
 - Floating mysteries (one rough Gemini run), Arcs, Old Habits, and Dawn choices across several Nights.
 

@@ -6,6 +6,8 @@ export type LoadoutItem = {
   ability_level?: number
   flaw?: string
   custom_text?: string
+  /** The hero's one free weapon: costs no slot. */
+  free?: boolean
 }
 
 export type Campaign = {
