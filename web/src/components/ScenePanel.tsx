@@ -1,5 +1,6 @@
 import { TAGS } from '../engine'
 import type { Character, Scene } from '../data/types'
+import { Portrait } from './Portrait'
 
 const tagName = (id: string) => TAGS.tags.find((t) => t.id === id)?.name ?? id
 
@@ -22,14 +23,14 @@ export function ScenePanel({ scene, characters }: { scene: Scene | undefined; ch
             <strong>{z.name}</strong>
             <div className="chips">{z.tags.map((t) => <span key={t} className="tag" title={TAGS.tags.find((x) => x.id === t)?.text}>{tagName(t)}</span>)}</div>
             <p className="small">
-              {heroAt(z.id).map((h) => <span key={h.id} className="token hero">{h.name}</span>)}
-              {enemiesAt(z.id).map((e) => <span key={e.id} className="token enemy">{e.name}{e.standing != null ? ` ×${e.standing}` : ''} · {e.state}</span>)}
+              {heroAt(z.id).map((h) => <span key={h.id} className="token hero">{h.portrait && <Portrait value={h.portrait} name={h.name} size={22} />}{h.name}</span>)}
+              {enemiesAt(z.id).map((e) => <span key={e.id} className="token enemy">{e.portrait && <Portrait value={e.portrait} name={e.name} size={22} />}{e.name}{e.standing != null ? ` ×${e.standing}` : ''} · {e.state}</span>)}
             </p>
           </div>
         ))}
       </div>
       {loose.length > 0 && (
-        <p className="small">Elsewhere: {loose.map((e) => <span key={e.id} className="token enemy">{e.name}{e.standing != null ? ` ×${e.standing}` : ''} · {e.state}</span>)}</p>
+        <p className="small">Elsewhere: {loose.map((e) => <span key={e.id} className="token enemy">{e.portrait && <Portrait value={e.portrait} name={e.name} size={22} />}{e.name}{e.standing != null ? ` ×${e.standing}` : ''} · {e.state}</span>)}</p>
       )}
     </div>
   )

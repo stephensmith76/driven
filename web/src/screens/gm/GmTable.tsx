@@ -5,6 +5,8 @@ import type { Clock, Clue } from '../../data/types'
 import { joinLink } from '../../router'
 import { QrCode } from '../../components/QrCode'
 import { HeroTrackers } from '../../components/HeroTrackers'
+import { PortraitPicker } from '../../components/Portrait'
+import { deletePortrait, heroKey, uploadPortrait, viaRun } from '../../data/portraits'
 import { RollLog } from '../../components/RollLog'
 import { RulesNotice } from '../../components/RulesNotice'
 import { ClocksPanel } from '../../components/gm/ClocksPanel'
@@ -73,6 +75,9 @@ function TableBody({ campaignId, campaign, members }: GmContext & { campaignId: 
           const d = defenses(h)
           return (
             <article key={h.id} className="card stack">
+              <PortraitPicker value={h.portrait} name={h.name} size={56}
+                onPick={viaRun(run, async (file: File) => setField('characters', h.id, 'portrait', await uploadPortrait(h.campaign_id, heroKey(h.id), file)))}
+                onRemove={viaRun(run, async () => { await deletePortrait(h.portrait); await setField('characters', h.id, 'portrait', null) })} />
               <h2>{h.name}{h.is_npc && <span className="tag">NPC</span>}{h.locked && <span className="tag">locked</span>}</h2>
               <p className="muted small">
                 {archetype(h.archetype_id)?.name ?? '—'} · Guard {d.guard.total} / Wits {d.wits.total} / Poise {d.poise.total}

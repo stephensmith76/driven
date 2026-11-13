@@ -6,6 +6,7 @@ import { bump, setField } from './writes'
 import type { Character, Scene } from './types'
 import type { CaseScene } from './caseFile'
 import { enemyHit, heroHit, publicEnemy, standDown, type Enemy } from '../engine'
+import { findEnemyPortrait } from './portraits'
 
 /** Read every enemy and write the player-safe summary into the scene. */
 export async function syncPublicEnemies(campaignId: string, db: SupabaseClient = supabase) {
@@ -22,7 +23,9 @@ export async function setEnemyField(campaignId: string, id: string, field: strin
 }
 
 export async function addEnemy(campaignId: string, draft: Omit<Enemy, 'id' | 'campaign_id'>) {
-  const { error } = await supabase.from('enemies').insert({ campaign_id: campaignId, ...draft })
+  // An enemy of the same name that already has a picture in this campaign keeps it.
+  const portrait = draft.portrait ?? await findEnemyPortrait(campaignId, draft.name)
+  const { error } = await supabase.from('enemies').insert({ campaign_id: campaignId, ...draft, ...(portrait ? { portrait } : {}) })
   if (error) throw error
   await syncPublicEnemies(campaignId)
 }

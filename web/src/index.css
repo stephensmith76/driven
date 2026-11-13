@@ -182,3 +182,11 @@ button.token.on { background: var(--filled); color: var(--bg); border-color: var
 .errata-table { overflow-x: auto; }
 .errata-table table { border-collapse: collapse; width: 100%; font-size: .9rem; }
 .errata-table th, .errata-table td { border: 1px solid var(--line); padding: 4px 8px; text-align: left; }
+
+/* Pictures for heroes and enemies */
+.portrait { border-radius: 50%; object-fit: cover; border: 1px solid var(--line); flex: none; display: block; }
+.portrait.blank { display: inline-flex; align-items: center; justify-content: center; background: var(--bg); color: var(--muted); font-weight: 600; }
+.portrait-link { display: inline-block; line-height: 0; flex: none; }
+.portrait-picker { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.with-portrait { display: flex; align-items: flex-start; gap: 14px; flex-wrap: wrap; }
+.token .portrait, .token .portrait-link { display: inline-block; vertical-align: middle; margin-right: 5px; }

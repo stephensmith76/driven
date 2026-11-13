@@ -51,6 +51,8 @@ export type Character = {
   fight_state: Record<string, unknown>
   notes: string
   connections: Connections
+  /** Storage path of the hero's picture, with ?v=... (see data/portraits.ts). */
+  portrait?: string | null
   is_npc: boolean
   locked: boolean
 }

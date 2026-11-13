@@ -4,6 +4,8 @@ import { useCampaign, useCharacters, useLiveRows, useMe } from '../../data/hooks
 import { bump, newFight, setField } from '../../data/writes'
 import type { Clock, Clue, Connections } from '../../data/types'
 import { HeroTrackers } from '../../components/HeroTrackers'
+import { PortraitPicker } from '../../components/Portrait'
+import { deletePortrait, heroKey, uploadPortrait, viaRun } from '../../data/portraits'
 import { Track } from '../../components/Track'
 import { ScenePanel } from '../../components/ScenePanel'
 import { RollLog } from '../../components/RollLog'
@@ -66,10 +68,17 @@ export function Sheet({ campaignId, characterId }: { campaignId: string; charact
   return (
     <main className="page">
       <header className="sheet-header card">
-        <h1>{hero.name}</h1>
-        <p className="muted small">
-          {hero.civilian && <>{hero.civilian} · </>}{arch?.name ?? '—'} · {t?.name ?? '—'}
-        </p>
+        <div className="with-portrait">
+          <PortraitPicker value={hero.portrait} name={hero.name} size={72}
+            onPick={viaRun(run, async (file: File) => setField('characters', hero.id, 'portrait', await uploadPortrait(campaignId, heroKey(hero.id), file)))}
+            onRemove={viaRun(run, async () => { await deletePortrait(hero.portrait); await setField('characters', hero.id, 'portrait', null) })} />
+          <div>
+            <h1>{hero.name}</h1>
+            <p className="muted small">
+              {hero.civilian && <>{hero.civilian} · </>}{arch?.name ?? '—'} · {t?.name ?? '—'}
+            </p>
+          </div>
+        </div>
         <HeroTrackers hero={hero} onChange={(f, v) => run(() => bump(hero.id, f, v - hero[f]))} />
       </header>
 

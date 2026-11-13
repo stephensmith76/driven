@@ -14,6 +14,7 @@ import { CaseFile } from './screens/gm/CaseFile'
 import { Admin } from './screens/gm/Admin'
 import { Fight } from './screens/gm/Fight'
 import { EncounterLab } from './screens/gm/EncounterLab'
+import { Bank } from './screens/gm/Bank'
 import { Display } from './screens/Display'
 import { Errata } from './screens/Errata'
 import { ConnectionBadge } from './components/ConnectionBadge'
@@ -62,6 +63,7 @@ function Routes() {
   if (a === 'gm' && b && c === 'fight') return <Fight campaignId={b} />
   if (a === 'gm' && b && c === 'lab') return <EncounterLab campaignId={b} />
   if (a === 'gm' && b && c === 'case') return <CaseFile campaignId={b} />
+  if (a === 'gm' && b && c === 'bank') return <Bank campaignId={b} />
   if (a === 'gm' && b && c === 'admin') return <Admin campaignId={b} />
   if (a === 'gm' && b) return <GmTable campaignId={b} />
   if (a === 'gm') return <GmEnter />

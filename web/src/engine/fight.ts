@@ -23,6 +23,8 @@ export type Enemy = {
   zone: string | null
   line: string
   source_id: string | null
+  /** Storage path of the enemy's picture, with ?v=... (see data/portraits.ts). */
+  portrait?: string | null
 }
 
 export type EnemyState = 'fresh' | 'hurt' | 'badly hurt' | 'down'
@@ -40,12 +42,13 @@ export function enemyState(e: Pick<Enemy, 'kind' | 'harm' | 'harm_max' | 'count'
 }
 
 /** What `scene.public_enemies` holds for one enemy: name, zone, mooks standing, a rough state. */
-export type PublicEnemy = { id: string; name: string; zone: string | null; standing: number | null; state: EnemyState }
+export type PublicEnemy = { id: string; name: string; zone: string | null; standing: number | null; state: EnemyState; portrait?: string | null }
 
 export const publicEnemy = (e: Enemy): PublicEnemy => ({
   id: e.id, name: e.name, zone: e.zone,
   standing: e.kind === 'mooks' ? Math.max(0, e.count) : null,
   state: enemyState(e),
+  ...(e.portrait ? { portrait: e.portrait } : {}),
 })
 
 // ----------------------------------------------------------------- reminders

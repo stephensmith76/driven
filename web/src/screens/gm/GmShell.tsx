@@ -11,6 +11,7 @@ const TABS = [
   { id: 'case', name: 'Case file' },
   { id: 'fight', name: 'Fight' },
   { id: 'lab', name: 'Encounter lab' },
+  { id: 'bank', name: 'Bank' },
   { id: 'admin', name: 'Admin' },
 ] as const
 

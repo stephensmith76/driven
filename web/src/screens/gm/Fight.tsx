@@ -8,6 +8,8 @@ import { ClocksPanel } from '../../components/gm/ClocksPanel'
 import { RollLog } from '../../components/RollLog'
 import { Roller, type Report, type Run } from '../../components/Roller'
 import { Track } from '../../components/Track'
+import { PortraitPicker } from '../../components/Portrait'
+import { deletePortrait, enemyKey, uploadPortrait, viaRun } from '../../data/portraits'
 import { useRunner } from '../../components/Toast'
 import {
   CORE, TAGS, customEnemy, enemyFromLibrary, enemyState, gangGroups, libraryEntries, namedTurns, tickClock, villainStress,
@@ -278,6 +280,9 @@ function EnemyPanel({ campaignId, enemies, scene, run }: { campaignId: string; e
         const state = enemyState(e)
         return (
           <div key={e.id} className="item enemy-card">
+            <PortraitPicker value={e.portrait} name={e.name} size={56}
+              onPick={viaRun(run, async (file: File) => setEnemyField(campaignId, e.id, 'portrait', await uploadPortrait(campaignId, enemyKey(e.name), file)))}
+              onRemove={viaRun(run, async () => { await deletePortrait(e.portrait); await setEnemyField(campaignId, e.id, 'portrait', null) })} />
             <p><strong>{e.name}</strong> <span className="tag">{e.kind}</span> <span className="tag">players see: {state}</span></p>
             <p className="small muted">
               {e.kind === 'mooks'
