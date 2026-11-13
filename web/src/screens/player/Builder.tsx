@@ -4,6 +4,9 @@ import { errorText, supabase } from '../../data/supabase'
 import { useCampaign, useCharacters, useMe } from '../../data/hooks'
 import { updateColumns } from '../../data/writes'
 import { loadBank, saveBankEntry } from '../../data/bank'
+import { deletePortrait, uploadPortrait, viaRun } from '../../data/portraits'
+import { PortraitPicker } from '../../components/Portrait'
+import { useRunner } from '../../components/Toast'
 import type { Character, Connections, LoadoutItem, Stats } from '../../data/types'
 import {
   ARCHETYPES, CORE, FLAIRS, GEAR, POWERS, TRAITS,
@@ -97,6 +100,8 @@ function BuilderForm({ campaignId, existing, isGm, canBuild, bankTarget, initial
   const [busy, setBusy] = useState(false)
   const [gearPick, setGearPick] = useState('')
   const [powerPick, setPowerPick] = useState('')
+  const [portrait, setPortrait] = useState<string | null>(bankTarget?.portrait ?? null)
+  const { run, toast } = useRunner()
 
   const creation = bankTarget ? bankTarget.isNew : !existing
   const lockedOut = Boolean(existing?.locked) && !isGm
@@ -140,7 +145,7 @@ function BuilderForm({ campaignId, existing, isGm, canBuild, bankTarget, initial
       }
       if (bankTarget) {
         const { name, ...data } = row
-        await saveBankEntry({ id: bankTarget.entryId, bank_id: bankTarget.bankId, kind: 'hero', name, data, portrait: bankTarget.portrait })
+        await saveBankEntry({ id: bankTarget.entryId, bank_id: bankTarget.bankId, kind: 'hero', name, data, portrait })
         go(`/gm/${campaignId}/bank`)
       } else if (existing) {
         const original = fromCharacter(existing)
@@ -173,7 +178,7 @@ function BuilderForm({ campaignId, existing, isGm, canBuild, bankTarget, initial
   return (
     <main className="page">
       <h1>{bankTarget ? (bankTarget.isNew ? 'New hero for the bank' : `Edit ${draft.name || 'hero'} in the bank`) : existing ? `Edit ${existing.name}` : 'New character'}</h1>
-      {bankTarget && <p className="muted small">This hero is saved in the bank, not in a campaign. Add it to a campaign from the Bank tab; a picture can be added on its sheet there.</p>}
+      {bankTarget && <p className="muted small">This hero is saved in the bank, not in a campaign. Add it to a campaign from the Bank tab.</p>}
       {existing && <p className="muted small">Advancement: when a case closes, each hero picks one: +1 to a stat, a new Flair, the next ability on a power, a new slot, or an Asset.</p>}
       {lockedOut && <p className="warn">The GM has locked this sheet's build.</p>}
       {noBuild && <p className="warn">This campaign doesn't let players build characters.</p>}
@@ -181,6 +186,11 @@ function BuilderForm({ campaignId, existing, isGm, canBuild, bankTarget, initial
       <fieldset disabled={disabled} className="stack plain-fieldset">
         <section className="card stack">
           <h2>Who</h2>
+          {bankTarget && (
+            <PortraitPicker value={portrait} name={draft.name || 'Hero'} size={72}
+              onPick={viaRun(run, async (file: File) => setPortrait(await uploadPortrait(bankTarget.bankId, `entry-${bankTarget.entryId}`, file)))}
+              onRemove={viaRun(run, async () => { await deletePortrait(portrait); setPortrait(null) })} />
+          )}
           <label htmlFor="b-name">Name</label>
           <input id="b-name" value={draft.name} onChange={(e) => set('name', e.target.value)} maxLength={60} />
           <label htmlFor="b-civ">Civilian identity</label>
@@ -371,6 +381,7 @@ function BuilderForm({ campaignId, existing, isGm, canBuild, bankTarget, initial
         <button disabled={busy || disabled} onClick={save}>{bankTarget ? 'Save to the bank' : existing ? 'Save changes' : 'Create character'}</button>
         <a className="button secondary" href={back}>Cancel</a>
       </div>
+      {toast}
     </main>
   )
 }
