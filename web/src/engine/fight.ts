@@ -5,6 +5,25 @@ import { harmBoxes, type Sheet } from './sheet'
 
 export type EnemyKind = 'mooks' | 'lieutenant' | 'villain'
 
+/** The parts of a villain sheet beyond the stat block. Everything is optional: a quick enemy has none of it. */
+export type VillainDetails = {
+  /** A role id from villains.json (heavy, mastermind = Schemer, nemesis, trickster, insidious). */
+  role?: string
+  concept?: string
+  weapon?: 'unarmed' | 'light' | 'heavy' | 'knife' | 'pistol'
+  trait?: { id?: string; name?: string; fraying?: string; breaking?: string }
+  drive_trigger?: string
+  tricks?: { cost: number; text: string }[]
+  weakness?: string
+  /** What they say when they make their Presence attack. */
+  threat?: string
+  /** Power ids from powers.json. */
+  powers?: string[]
+  notes?: string
+  /** Mook groups: one of them carries a gun. */
+  gunner?: boolean
+}
+
 /** A row of the GM-only `enemies` table. */
 export type Enemy = {
   id: string
@@ -25,6 +44,8 @@ export type Enemy = {
   source_id: string | null
   /** Storage path of the enemy's picture, with ?v=... (see data/portraits.ts). */
   portrait?: string | null
+  /** The rest of a built villain's sheet, shown on the Fight screen. */
+  details?: VillainDetails | null
 }
 
 export type EnemyState = 'fresh' | 'hurt' | 'badly hurt' | 'down'
@@ -158,6 +179,21 @@ export function enemyFromLibrary(entry: LibraryVillain | LibraryMooks): Draft {
     defenses: { guard: 12 + v.stats.flow, wits: 12 + v.stats.focus, poise: 12 + v.stats.presence },
     toughness: v.toughness, harm: 0, harm_max: v.harm_max, stress: 0,
     count: 1, count_max: 1, drive: v.drive, zone: null, line: v.line, source_id: v.id,
+    details: libraryDetails(v),
+  }
+}
+
+/** A library villain's Trait lines, Tricks and Weakness, in the shape a built villain uses. */
+export function libraryDetails(v: LibraryVillain): VillainDetails {
+  const threat = /"([^"]+)"/.exec((v as { presence_attack?: string }).presence_attack ?? '')?.[1]
+  return {
+    role: v.role,
+    weapon: v.weapon as VillainDetails['weapon'],
+    ...(v.trait.name || v.trait.fraying || v.trait.breaking ? { trait: { name: v.trait.name, fraying: v.trait.fraying, breaking: v.trait.breaking } } : {}),
+    ...(v.drive_trigger ? { drive_trigger: v.drive_trigger } : {}),
+    ...(v.tricks.length ? { tricks: v.tricks.map((k) => ({ cost: k.cost, text: k.text })) } : {}),
+    ...(v.weakness ? { weakness: v.weakness } : {}),
+    ...(threat ? { threat } : {}),
   }
 }
 

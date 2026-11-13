@@ -25,7 +25,14 @@ export async function setEnemyField(campaignId: string, id: string, field: strin
 export async function addEnemy(campaignId: string, draft: Omit<Enemy, 'id' | 'campaign_id'>) {
   // An enemy of the same name that already has a picture in this campaign keeps it.
   const portrait = draft.portrait ?? await findEnemyPortrait(campaignId, draft.name)
-  const { error } = await supabase.from('enemies').insert({ campaign_id: campaignId, ...draft, ...(portrait ? { portrait } : {}) })
+  const row = { campaign_id: campaignId, ...draft, ...(portrait ? { portrait } : {}) }
+  let { error } = await supabase.from('enemies').insert(row)
+  if (error && row.details && /details/i.test(error.message)) {
+    // The database has no `details` column yet (the villains migration isn't applied): add the stat block alone.
+    const { details: _details, ...plain } = row
+    void _details
+    ;({ error } = await supabase.from('enemies').insert(plain))
+  }
   if (error) throw error
   await syncPublicEnemies(campaignId)
 }

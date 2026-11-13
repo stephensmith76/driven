@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useCharacters, useLiveRows } from '../../data/hooks'
 import { setField } from '../../data/writes'
 import { addEnemy, endFight, removeEnemy, setEnemyField, setScene } from '../../data/fight'
@@ -9,6 +9,8 @@ import { RollLog } from '../../components/RollLog'
 import { Roller, type Report, type Run } from '../../components/Roller'
 import { Track } from '../../components/Track'
 import { PortraitPicker } from '../../components/Portrait'
+import { VillainDetailsView } from '../../components/VillainDetailsView'
+import { enemyDraft, listVillains, type VillainSheet } from '../../data/villains'
 import { deletePortrait, enemyKey, uploadPortrait, viaRun } from '../../data/portraits'
 import { useRunner } from '../../components/Toast'
 import {
@@ -252,6 +254,10 @@ function EnemyPanel({ campaignId, enemies, scene, run }: { campaignId: string; e
   const [c, setC] = useState({ name: '', kind: 'lieutenant' as EnemyKind, force: 0, flow: 0, focus: 0, presence: 0, toughness: 0, harm_max: 5, attack: 2, guard: 13, count: 3 })
   const entries = libraryEntries()
   const picked = entries.find((e) => e.id === (pick || entries[0].id))
+  // Villains built for this campaign (the Villains tab). Missing table or no rows: just the library.
+  const [sheets, setSheets] = useState<VillainSheet[]>([])
+  useEffect(() => { listVillains(campaignId).then(setSheets).catch(() => undefined) }, [campaignId])
+  const sheet = sheets.find((s) => `sheet:${s.id}` === pick)
   const zoneName = (id: string | null) => scene.zones.find((z) => z.id === id)?.name
 
   const add = () => run(async () => {
@@ -261,6 +267,8 @@ function EnemyPanel({ campaignId, enemies, scene, run }: { campaignId: string; e
         attack: c.attack, guard: c.guard, count: c.count, toughness: c.toughness, harm_max: c.harm_max,
       }))
       setC({ ...c, name: '' })
+    } else if (sheet) {
+      await addEnemy(campaignId, enemyDraft(sheet.name, sheet.data, sheet.portrait))
     } else {
       if (picked) await addEnemy(campaignId, enemyFromLibrary(picked))
     }
@@ -290,6 +298,12 @@ function EnemyPanel({ campaignId, enemies, scene, run }: { campaignId: string; e
                 : `Guard ${def.guard} · Wits ${def.wits} · Poise ${def.poise} · Toughness ${e.toughness}`}
               {' · '}{zoneName(e.zone) ?? 'not on the map'}
             </p>
+            {e.details && (
+              <details>
+                <summary className="small">Sheet: Trait, Tricks, Weakness</summary>
+                <VillainDetailsView details={e.details} presence={e.kind === 'mooks' ? undefined : e.stats.presence ?? 0} />
+              </details>
+            )}
             {e.line && <p className="small">{e.line}</p>}
             {e.kind === 'mooks' ? (
               <div className="button-row small">
@@ -325,9 +339,11 @@ function EnemyPanel({ campaignId, enemies, scene, run }: { campaignId: string; e
           {!custom && (
             <select aria-label="Library entry" value={pick || entries[0].id} onChange={(e) => setPick(e.target.value)}>
               {entries.map((e) => <option key={e.id} value={e.id}>{e.name} ({e.kind})</option>)}
+              {sheets.map((s) => <option key={s.id} value={`sheet:${s.id}`}>{s.name} (your {s.kind})</option>)}
             </select>
           )}
-          <label className="small check"><input type="checkbox" checked={custom} onChange={(e) => setCustom(e.target.checked)} /> Make one</label>
+          <label className="small check"><input type="checkbox" checked={custom} onChange={(e) => setCustom(e.target.checked)} /> Quick stat block</label>
+          <a className="small" href={`#/gm/${campaignId}/villains/new`}>Build a full villain</a>
         </div>
         {custom && (
           <div className="button-row">
@@ -343,7 +359,8 @@ function EnemyPanel({ campaignId, enemies, scene, run }: { campaignId: string; e
               : <>{num('force', 'Force')}{num('flow', 'Flow')}{num('focus', 'Focus')}{num('presence', 'Presence')}{num('toughness', 'Toughness')}{num('harm_max', 'Harm boxes')}</>}
           </div>
         )}
-        {!custom && picked && <p className="muted small">{'text' in picked ? picked.text : picked.line}</p>}
+        {!custom && sheet && <p className="muted small">{sheet.data.details?.concept || sheet.data.line || 'A villain you built for this campaign.'}</p>}
+        {!custom && !sheet && picked && <p className="muted small">{'text' in picked ? picked.text : picked.line}</p>}
         <div><button onClick={add}>Add to the fight</button></div>
         <p className="muted small">Any number of named enemies work in the simulator too. A lieutenant takes one turn a round; a villain takes the usual turns.</p>
       </div>

@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { go } from '../../router'
 import { errorText, supabase } from '../../data/supabase'
 import { useCampaign, useCharacters, useMe } from '../../data/hooks'
 import { updateColumns } from '../../data/writes'
+import { loadBank, saveBankEntry } from '../../data/bank'
 import type { Character, Connections, LoadoutItem, Stats } from '../../data/types'
 import {
   ARCHETYPES, CORE, FLAIRS, GEAR, POWERS, TRAITS,
@@ -59,16 +60,45 @@ export function Builder({ campaignId, characterId }: { campaignId: string; chara
     isGm={role === 'gm'} canBuild={campaign.settings.players_can_build} />
 }
 
-function BuilderForm({ campaignId, existing, isGm, canBuild }: {
+/** Where a hero built straight in the bank is saved. */
+type BankTarget = { bankId: string; entryId: string; isNew: boolean; portrait: string | null }
+
+/** Build or edit a hero in the bank this campaign is linked to (GM only: the database enforces it). */
+export function BankHeroBuilder({ campaignId, entryId }: { campaignId: string; entryId?: string }) {
+  const [loaded, setLoaded] = useState<{ target: BankTarget; initial: Draft } | null>(null)
+  const [problem, setProblem] = useState<string | null>(null)
+  const wanted = entryId && entryId !== 'new' ? entryId : undefined
+  useEffect(() => {
+    let cancelled = false
+    loadBank(campaignId).then((b) => {
+      if (cancelled) return
+      if (!b.bank) { setProblem('This campaign is not linked to a bank yet. Open the Bank tab first.'); return }
+      if (!wanted) { setLoaded({ target: { bankId: b.bank.id, entryId: crypto.randomUUID(), isNew: true, portrait: null }, initial: blank() }); return }
+      const entry = b.entries.find((x) => x.id === wanted && x.kind === 'hero')
+      if (!entry) { setProblem('That hero is no longer in the bank.'); return }
+      setLoaded({
+        target: { bankId: b.bank.id, entryId: entry.id, isNew: false, portrait: entry.portrait },
+        initial: { ...blank(), ...(entry.data as Partial<Draft>), name: entry.name },
+      })
+    }).catch((e) => { if (!cancelled) setProblem(errorText(e)) })
+    return () => { cancelled = true }
+  }, [campaignId, wanted])
+  if (problem) return <main className="page"><p className="error">{problem}</p><a href={`#/gm/${campaignId}/bank`}>Back to the bank</a></main>
+  if (!loaded) return <main className="page"><p className="muted">Loading…</p></main>
+  return <BuilderForm key={loaded.target.entryId} campaignId={campaignId} isGm canBuild bankTarget={loaded.target} initial={loaded.initial} />
+}
+
+function BuilderForm({ campaignId, existing, isGm, canBuild, bankTarget, initial }: {
   campaignId: string; existing?: Character; isGm: boolean; canBuild: boolean
+  bankTarget?: BankTarget; initial?: Draft
 }) {
-  const [draft, setDraft] = useState<Draft>(existing ? fromCharacter(existing) : blank())
+  const [draft, setDraft] = useState<Draft>(initial ?? (existing ? fromCharacter(existing) : blank()))
   const [error, setError] = useState<string | null>(null)
   const [busy, setBusy] = useState(false)
   const [gearPick, setGearPick] = useState('')
   const [powerPick, setPowerPick] = useState('')
 
-  const creation = !existing
+  const creation = bankTarget ? bankTarget.isNew : !existing
   const lockedOut = Boolean(existing?.locked) && !isGm
   const noBuild = creation && !isGm && !canBuild
   const disabled = lockedOut || noBuild
@@ -77,7 +107,7 @@ function BuilderForm({ campaignId, existing, isGm, canBuild }: {
   const sheet: SheetData = draft
   const slots = slotsUsed(sheet, { creation })
   const warnings = buildWarnings(sheet, { creation })
-  const back = existing ? `#/c/${campaignId}/sheet/${existing.id}` : isGm ? '#/gm' : `#/c/${campaignId}/sheet`
+  const back = bankTarget ? `#/gm/${campaignId}/bank` : existing ? `#/c/${campaignId}/sheet/${existing.id}` : isGm ? `#/gm/${campaignId}` : `#/c/${campaignId}/sheet`
   const arch = ARCHETYPES.find((a) => a.id === draft.archetype_id)
   const trait = TRAITS.find((t) => t.id === draft.trait_id)
 
@@ -108,7 +138,11 @@ function BuilderForm({ campaignId, existing, isGm, canBuild }: {
         flair_ids: draft.flair_ids, loadout: draft.loadout, extra_slots: draft.extra_slots,
         connections: Object.fromEntries(Object.entries(draft.connections).map(([k, v]) => [k, (v ?? '').trim()]).filter(([, v]) => v)),
       }
-      if (existing) {
+      if (bankTarget) {
+        const { name, ...data } = row
+        await saveBankEntry({ id: bankTarget.entryId, bank_id: bankTarget.bankId, kind: 'hero', name, data, portrait: bankTarget.portrait })
+        go(`/gm/${campaignId}/bank`)
+      } else if (existing) {
         const original = fromCharacter(existing)
         const changed: Record<string, unknown> = {}
         for (const [k, v] of Object.entries(row)) {
@@ -138,7 +172,8 @@ function BuilderForm({ campaignId, existing, isGm, canBuild }: {
 
   return (
     <main className="page">
-      <h1>{existing ? `Edit ${existing.name}` : 'New character'}</h1>
+      <h1>{bankTarget ? (bankTarget.isNew ? 'New hero for the bank' : `Edit ${draft.name || 'hero'} in the bank`) : existing ? `Edit ${existing.name}` : 'New character'}</h1>
+      {bankTarget && <p className="muted small">This hero is saved in the bank, not in a campaign. Add it to a campaign from the Bank tab; a picture can be added on its sheet there.</p>}
       {existing && <p className="muted small">Advancement: when a case closes, each hero picks one: +1 to a stat, a new Flair, the next ability on a power, a new slot, or an Asset.</p>}
       {lockedOut && <p className="warn">The GM has locked this sheet's build.</p>}
       {noBuild && <p className="warn">This campaign doesn't let players build characters.</p>}
@@ -333,7 +368,7 @@ function BuilderForm({ campaignId, existing, isGm, canBuild }: {
       )}
       {error && <p className="error">{error}</p>}
       <div className="button-row">
-        <button disabled={busy || disabled} onClick={save}>{existing ? 'Save changes' : 'Create character'}</button>
+        <button disabled={busy || disabled} onClick={save}>{bankTarget ? 'Save to the bank' : existing ? 'Save changes' : 'Create character'}</button>
         <a className="button secondary" href={back}>Cancel</a>
       </div>
     </main>

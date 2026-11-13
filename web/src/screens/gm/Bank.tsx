@@ -1,13 +1,15 @@
 import { useCallback, useEffect, useState } from 'react'
 import { errorText } from '../../data/supabase'
-import { useCharacters, useLiveRows } from '../../data/hooks'
+import { useCharacters } from '../../data/hooks'
 import {
-  addEnemyToCampaign, addHeroToCampaign, createBank, linkBank, loadBank, removeEntry, saveEnemy, saveHero, unlinkBank,
+  addHeroToCampaign, addVillainToCampaign, createBank, linkBank, loadBank, removeEntry, saveHero, saveVillainSheet, unlinkBank,
   type Bank as BankInfo, type BankEntry,
 } from '../../data/bank'
+import { listVillains, villainStatLine, type VillainData, type VillainSheet } from '../../data/villains'
+import { VillainDetailsView } from '../../components/VillainDetailsView'
 import { Portrait } from '../../components/Portrait'
 import { useRunner } from '../../components/Toast'
-import { archetype, trait, type Enemy } from '../../engine'
+import { archetype, trait } from '../../engine'
 import { GmShell, type GmContext } from './GmShell'
 
 export function Bank({ campaignId }: { campaignId: string }) {
@@ -23,14 +25,14 @@ function heroLine(d: Record<string, unknown>) {
 }
 
 function enemyLine(d: Record<string, unknown>) {
-  const kind = String(d.kind ?? 'enemy')
-  return kind === 'mooks' ? `mooks · group of ${d.count_max ?? '?'}` : `${kind} · ${d.harm_max ?? '?'} Harm`
+  const v = d as unknown as VillainData
+  return `${v.kind ?? 'enemy'} · ${villainStatLine(v.kind ?? 'villain', v)}`
 }
 
 function BankBody({ campaign }: GmContext) {
   const cid = campaign.id
   const { rows: characters } = useCharacters(cid)
-  const { rows: enemies } = useLiveRows<Enemy>('enemies', cid)
+  const [roster, setRoster] = useState<VillainSheet[]>([])
   const { run, report, toast } = useRunner()
   const [bank, setBank] = useState<BankInfo | null>(null)
   const [entries, setEntries] = useState<BankEntry[]>([])
@@ -44,6 +46,7 @@ function BankBody({ campaign }: GmContext) {
     try {
       const r = await loadBank(cid)
       setBank(r.bank); setEntries(r.entries); setState('ready')
+      setRoster(await listVillains(cid).catch(() => []))
     } catch (e) {
       setProblem(errorText(e)); setState('error')
     }
@@ -125,11 +128,16 @@ function BankBody({ campaign }: GmContext) {
           <p className="small muted">{x.kind === 'hero' ? heroLine(x.data) : enemyLine(x.data)}</p>
         </div>
       </div>
+      {x.kind === 'enemy' && (
+        <VillainDetailsView details={(x.data as unknown as VillainData).details}
+          presence={(x.data as unknown as VillainData).kind === 'mooks' ? undefined : (x.data as unknown as VillainData).stats?.presence ?? 0} />
+      )}
       <div className="button-row">
         <button className="mini" disabled={busy} onClick={() => act(async () => {
           if (x.kind === 'hero') { await addHeroToCampaign(cid, x); return `${x.name} added to ${campaign.name} as a new hero.` }
-          await addEnemyToCampaign(cid, x); return `${x.name} added to the Fight screen.`
+          await addVillainToCampaign(cid, x); return `${x.name} added to this campaign's Villains.`
         })}>Add to this campaign</button>
+        <a className="button secondary mini-link" href={`#/gm/${cid}/bank/${x.kind === 'hero' ? 'hero' : 'villain'}/${x.id}`}>Edit</a>
         {confirm === x.id
           ? <>
               <button className="mini secondary" disabled={busy} onClick={() => act(async () => { await removeEntry(x); return `${x.name} removed from the bank.` })}>Yes, remove from the bank</button>
@@ -154,6 +162,10 @@ function BankBody({ campaign }: GmContext) {
               </>
             : <button className="mini secondary" onClick={() => setConfirm('unlink')}>Stop using this bank…</button>}
         </div>
+        <div className="button-row">
+          <a className="button" href={`#/gm/${cid}/bank/hero/new`}>Build a hero in the bank</a>
+          <a className="button" href={`#/gm/${cid}/bank/villain/new`}>Build a villain in the bank</a>
+        </div>
       </section>
 
       <div className="gm-grid">
@@ -163,7 +175,7 @@ function BankBody({ campaign }: GmContext) {
         </section>
         <section className="card stack">
           <h2>Villains and enemies in the bank</h2>
-          {foes.length === 0 ? <p className="muted small">None yet. Add an enemy on the Fight screen, then save it from the list below.</p> : foes.map(entryRow)}
+          {foes.length === 0 ? <p className="muted small">None yet. Build one here, or save one from this campaign below.</p> : foes.map(entryRow)}
         </section>
       </div>
 
@@ -188,23 +200,23 @@ function BankBody({ campaign }: GmContext) {
           <p className="small muted">The build is saved: stats, Trait, archetype, Flairs, loadout, connections and picture. Harm, Stress, Drive and notes stay in this campaign.</p>
         </section>
         <section className="card stack">
-          <h2>Save enemies from this campaign</h2>
-          {enemies.length === 0 && <p className="muted small">No enemies on the Fight screen right now.</p>}
-          {enemies.map((e) => (
-            <div key={e.id} className="item">
+          <h2>Save villains from this campaign</h2>
+          {roster.length === 0 && <p className="muted small">This campaign has no built villains yet. <a href={`#/gm/${cid}/villains/new`}>Build one</a>.</p>}
+          {roster.map((v) => (
+            <div key={v.id} className="item">
               <div className="portrait-picker">
-                <Portrait value={e.portrait} name={e.name} size={40} />
-                <div><strong>{e.name}</strong><p className="small muted">{enemyLine(e as unknown as Record<string, unknown>)}</p></div>
+                <Portrait value={v.portrait} name={v.name} size={40} />
+                <div><strong>{v.name}</strong><p className="small muted">{v.kind} · {villainStatLine(v.kind, v.data)}</p></div>
               </div>
               <div className="button-row">
                 <button className="mini secondary" disabled={busy} onClick={() => act(async () => {
-                  const r = await saveEnemy(bank, entries, e)
-                  return r === 'added' ? `${e.name} saved to the bank.` : `${e.name} updated in the bank.`
-                })}>{inBank('enemy', e.name) ? 'Update in the bank' : 'Save to the bank'}</button>
+                  const r = await saveVillainSheet(bank, entries, v)
+                  return r === 'added' ? `${v.name} saved to the bank.` : `${v.name} updated in the bank.`
+                })}>{inBank('enemy', v.name) ? 'Update in the bank' : 'Save to the bank'}</button>
               </div>
             </div>
           ))}
-          <p className="small muted">The stat block and picture are saved, fresh: no Harm, no Stress, nobody down.</p>
+          <p className="small muted">The whole sheet and picture are saved: stats, role, Trait lines, Tricks, Weakness, powers and notes.</p>
         </section>
       </div>
       {toast}

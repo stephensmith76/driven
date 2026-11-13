@@ -4,7 +4,7 @@ import { useHashPath } from './router'
 import { Home } from './screens/Home'
 import { Join } from './screens/player/Join'
 import { Sheet } from './screens/player/Sheet'
-import { Builder } from './screens/player/Builder'
+import { BankHeroBuilder, Builder } from './screens/player/Builder'
 import { Rolls } from './screens/player/Rolls'
 import { GmEnter } from './screens/gm/GmEnter'
 import { GmTable } from './screens/gm/GmTable'
@@ -15,6 +15,8 @@ import { Admin } from './screens/gm/Admin'
 import { Fight } from './screens/gm/Fight'
 import { EncounterLab } from './screens/gm/EncounterLab'
 import { Bank } from './screens/gm/Bank'
+import { Villains } from './screens/gm/Villains'
+import { VillainBuilder } from './screens/gm/VillainBuilder'
 import { Display } from './screens/Display'
 import { Errata } from './screens/Errata'
 import { ConnectionBadge } from './components/ConnectionBadge'
@@ -63,7 +65,11 @@ function Routes() {
   if (a === 'gm' && b && c === 'fight') return <Fight campaignId={b} />
   if (a === 'gm' && b && c === 'lab') return <EncounterLab campaignId={b} />
   if (a === 'gm' && b && c === 'case') return <CaseFile campaignId={b} />
+  if (a === 'gm' && b && c === 'bank' && d === 'hero') return <BankHeroBuilder campaignId={b} entryId={e} />
+  if (a === 'gm' && b && c === 'bank' && d === 'villain') return <VillainBuilder campaignId={b} id={e} bank />
   if (a === 'gm' && b && c === 'bank') return <Bank campaignId={b} />
+  if (a === 'gm' && b && c === 'villains' && d) return <VillainBuilder campaignId={b} id={d} />
+  if (a === 'gm' && b && c === 'villains') return <Villains campaignId={b} />
   if (a === 'gm' && b && c === 'admin') return <Admin campaignId={b} />
   if (a === 'gm' && b) return <GmTable campaignId={b} />
   if (a === 'gm') return <GmEnter />

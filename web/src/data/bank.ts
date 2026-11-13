@@ -4,7 +4,7 @@
 import { supabase } from './supabase'
 import type { Character } from './types'
 import type { Enemy } from '../engine'
-import { addEnemy } from './fight'
+import { saveVillain, type VillainData, type VillainSheet } from './villains'
 import { deletePortrait, enemyKey, heroKey, portraitUrl, putPortrait } from './portraits'
 
 export type Bank = { id: string; name: string; code: string }
@@ -52,6 +52,7 @@ export const heroData = (c: Character) => ({
 export const enemyData = (e: Enemy) => ({
   kind: e.kind, stats: e.stats, defenses: e.defenses, toughness: e.toughness, harm_max: e.harm_max,
   count_max: e.count_max, drive: e.drive, line: e.line, source_id: e.source_id,
+  ...(e.details ? { details: e.details } : {}),
 })
 
 /** Copy a picture into another folder of the bucket. Returns the new stored value, or null if there is none. */
@@ -95,6 +96,16 @@ export const saveHero = (bank: Bank, entries: BankEntry[], c: Character) =>
 export const saveEnemy = (bank: Bank, entries: BankEntry[], e: Enemy) =>
   saveEntry(bank, entries, 'enemy', e.name, enemyData(e), e.portrait)
 
+/** Save a built villain from a campaign's roster to the bank. */
+export const saveVillainSheet = (bank: Bank, entries: BankEntry[], v: VillainSheet) =>
+  saveEntry(bank, entries, 'enemy', v.name, v.data as unknown as Record<string, unknown>, v.portrait)
+
+/** Create or replace one bank entry as it stands (used by the builders that work straight in the bank). */
+export async function saveBankEntry(entry: { id: string; bank_id: string; kind: 'hero' | 'enemy'; name: string; data: object; portrait: string | null }) {
+  const { error } = await supabase.from('bank_entries').upsert(entry)
+  if (error) throw error
+}
+
 /** Add a banked hero to this campaign as a new, separate hero. */
 export async function addHeroToCampaign(campaignId: string, entry: BankEntry) {
   const { data: row, error } = await supabase.from('characters')
@@ -107,15 +118,13 @@ export async function addHeroToCampaign(campaignId: string, entry: BankEntry) {
   }
 }
 
-/** Add a banked enemy to this campaign's fight, fresh. */
-export async function addEnemyToCampaign(campaignId: string, entry: BankEntry) {
-  const d = entry.data as ReturnType<typeof enemyData>
+/** Add a banked villain to this campaign's roster as a separate sheet. From there it can join a fight. */
+export async function addVillainToCampaign(campaignId: string, entry: BankEntry) {
+  const d = entry.data as unknown as VillainData
   const portrait = await copyPortrait(entry.portrait, campaignId, enemyKey(entry.name))
-  await addEnemy(campaignId, {
-    name: entry.name, kind: d.kind, stats: d.stats ?? {}, defenses: d.defenses ?? {}, toughness: d.toughness ?? 0,
-    harm: 0, harm_max: d.harm_max ?? 1, stress: 0, count: d.count_max ?? 1, count_max: d.count_max ?? 1,
-    drive: d.drive ?? 0, zone: null, line: d.line ?? '', source_id: d.source_id ?? null,
-    ...(portrait ? { portrait } : {}),
+  await saveVillain({
+    id: crypto.randomUUID(), campaign_id: campaignId, name: entry.name, kind: d.kind ?? 'villain',
+    data: { ...d, kind: d.kind ?? 'villain' }, portrait,
   })
 }
 

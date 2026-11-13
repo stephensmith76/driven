@@ -10,6 +10,7 @@ const TABS = [
   { id: 'night', name: 'Night' },
   { id: 'case', name: 'Case file' },
   { id: 'fight', name: 'Fight' },
+  { id: 'villains', name: 'Villains' },
   { id: 'lab', name: 'Encounter lab' },
   { id: 'bank', name: 'Bank' },
   { id: 'admin', name: 'Admin' },
