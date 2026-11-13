@@ -1,6 +1,6 @@
 # Driven - Street Level Heroic RPG
 
-Rules version 2026-11-12.23 · Nov 12, 2026 · @Stephen
+Rules version 2026-11-13.24 · Nov 13, 2026 · @Stephen
 
 ## Overview
 
@@ -182,6 +182,8 @@ With these in play, Sleep It Off at Dawn becomes a real choice.
 ### Traits
 
 Pick one. Each Trait lists how it earns Drive, its two perks, its hook, and how you break.
+
+**Your own Trait (trial).** With the GM's agreement you can write your own instead. It needs all five parts: a Drive trigger, a Steady perk, a Fraying perk, a hook, and a Breaking fallout. Match the twelve below for strength: a once-per-scene or once-per-round limit on any perk that would otherwise fire on most rolls, and a Breaking fallout that costs the hero something real.
 
 **Justice**
 
@@ -1091,7 +1093,7 @@ A villain fits in a short stat block. They use the same stats, defenses, and Dri
 - **Stats and defenses**, same as a hero.
 - **Harm:** 5 for a lieutenant, 10 for a case's main villain (8 for a smaller one).
 - **Stress:** a lieutenant has 4 boxes (Fraying at 2, Breaking at 4). A case villain has 6 (Fraying at 3, Breaking at 6). Presence attacks and Stress Flairs fill it. A Breaking villain does something reckless: flees, turns on their own people, or gives something away.
-- **Trait:** one line for Fraying and one for Breaking.
+- **Trait:** one line for Fraying and one for Breaking. Use a hero's Trait, a villain Trait (below), or write your own.
 - **Drive:** starts at 2, earned from their role trigger once per round. Same spend prices as heroes.
 - **Trick:** one special move that costs Drive.
 - **Weakness:** something the heroes can discover (a Detective's Read, an Impact 3 on Patrol) and exploit.
@@ -1120,6 +1122,23 @@ A named enemy (a villain or a lieutenant) can lose at most one turn per fight, f
 | Trickster | A hero misses them | Swap places with a mook in sight (2), force a reroll (1) |
 | Insidious (trial) | A hero takes Stress from them, or goes along with a hook | Whisper (1 Drive): their Presence attack this round goes against every hero who can hear them. Lever (2 Drive): name one of a hero's connections; that hero takes 1 Stress, or has Disadvantage until the end of their next turn |
 | Mooks | Never | None. They act in groups of 3. |
+
+### Villain Traits (trial)
+
+Heroes' Traits work for villains too (the Butcher is Spite, Voss is Order). These ten are for villains only. Like every villain Trait, each is two lines: what they do when Fraying, and what they do when they Break. Fraying should give the heroes an opening; Breaking should be reckless.
+
+| Trait | Who has it | Fraying | Breaking |
+| --- | --- | --- | --- |
+| **Greed** | Wants more, whatever it costs other people. | Protects the money before their people. A hero who threatens the stash or offers a cut has Edge against them. | Grabs what they can carry and runs, leaving their crew to take the fall. |
+| **Desperation** | Has run out of other options: a debt, a deadline, someone held over them. | Takes any risk to finish the job. Their attacks have Edge, and so do attacks against them. | Does the one thing they swore they never would: hurts a hostage, lights the fuse, or begs. |
+| **Narcissism** | Needs to be admired, and can't stand being laughed at. | Has to be seen winning. Won't take cover or back off while anyone is watching, and goes after whoever mocks them. | Drops the plan to humiliate whoever humiliated them, in front of everyone. |
+| **Lust** | Wants someone (or wants to own them), and won't take no. | Fixates on the one they want. Won't harm them, and goes after anyone standing between them. | Tries to take that person and get out with them. The heroes get one round to stop it. |
+| **Viciousness** | Enjoys the hurting. | Goes after the most hurt target in reach, hero or bystander, instead of the biggest threat. | Hurts whoever is closest and can't fight back, their own people included, until someone stops them. |
+| **Paranoia** | Sure that everyone is out to get them, and sometimes right. | Sees a trap in everything. Keeps a mook group between them and the heroes, and any bluff about backup, cops or a traitor has Edge against them. | Turns on their own lieutenant or bolts for the nearest exit, certain it's a setup. |
+| **Envy** | Wants what someone else has: the fame, the family, the life. | Goes after the hero who has what they lack and ignores the rest. | Leaves the fight to wreck something that hero loves. The heroes get one round to stop them. |
+| **Contempt** | Thinks the heroes, and most people, are beneath them. | Won't take the heroes seriously. Toys with the weakest-looking hero instead of the biggest threat. | Drops the act and throws everything at whoever got under their skin, plan and people be damned. |
+| **Zealotry** | Believes in a cause, and that the cause makes them right. | Can't be talked down or bought: Presence attacks against them have Disadvantage. Won't retreat, either. | Tries to take everyone down with them for the cause: themselves, their followers, the building. |
+| **Control** | Has to run everything and everyone. | Everything has to go to plan. When a hero changes the fight (a door, the lights, a zone tag), they spend their next turn putting it back. | Destroys what they can't control any more: the evidence, the building, the hostage. The heroes get one round to stop it. |
 
 ### Sample villains
 
@@ -1326,6 +1345,7 @@ After one or two runs, adjust the numbers that felt off: Harm boxes, villain Har
 - The Nov 12 pass, all new: Sleep It Off clearing 3 Stress and Show Up clearing 1, Grit your teeth, Objective steps that pay and earn Drive (and can't be worked while engaged), the trap after a missed theory, Complexity scaling with the team, the new Levitation, the rewritten GM moves (Costs, fight, Patrol and Dawn moves), Chases, the Rampage and Knows your moves Tricks, stat raises limited to every other case, and the Butcher's and Voss's Presence attack lines.
 - Bruisers (mooks with 2 Harm boxes), new on Nov 12. Simulated, not played.
 - The Leader archetype, the Insidious villain role, and death decided at the table (left for dead), all new on Nov 12 and not played or simulated.
+- Villain Traits and writing your own Trait, new on Nov 13.
 - Every trial Flair (Resources, Acrobat, Already Broken, The Roast, Trick Arrows, Patient Hunter, Sucker Punch, Bodyguard, Quick Study, Chill, Rooftop Runner, Smarmy and Scrapper), the "More tools" list and Assets.
 - The Loyalty, Obsession, Fear and Duty Traits, which are new and have not been played or simulated.
 - The Bow as a free weapon, and the Weighted lash and Scoped rifle, which the simulator models only as a light weapon and a pistol.

@@ -46,6 +46,7 @@ export async function unlinkBank(campaignId: string) {
 export const heroData = (c: Character) => ({
   civilian: c.civilian, archetype_id: c.archetype_id, trait_id: c.trait_id, stats: c.stats,
   flair_ids: c.flair_ids, loadout: c.loadout, extra_slots: c.extra_slots, connections: c.connections,
+  ...(c.custom_trait ? { custom_trait: c.custom_trait } : {}),
 })
 
 /** An enemy's stat block, fresh: no Harm, no Stress, nobody down, no zone. */

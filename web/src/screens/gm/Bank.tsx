@@ -9,7 +9,7 @@ import { listVillains, villainStatLine, type VillainData, type VillainSheet } fr
 import { VillainDetailsView } from '../../components/VillainDetailsView'
 import { Portrait } from '../../components/Portrait'
 import { useRunner } from '../../components/Toast'
-import { archetype, trait } from '../../engine'
+import { archetype, heroTrait, type CustomTrait } from '../../engine'
 import { GmShell, type GmContext } from './GmShell'
 
 export function Bank({ campaignId }: { campaignId: string }) {
@@ -20,7 +20,7 @@ const sameName = (a: string, b: string) => a.trim().toLowerCase() === b.trim().t
 
 function heroLine(d: Record<string, unknown>) {
   const a = archetype((d.archetype_id as string | null) ?? null)?.name
-  const t = trait((d.trait_id as string | null) ?? null)?.name
+  const t = heroTrait({ trait_id: (d.trait_id as string | null) ?? null, custom_trait: d.custom_trait as CustomTrait | null })?.name
   return [a, t].filter(Boolean).join(' · ') || 'No archetype yet'
 }
 

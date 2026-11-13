@@ -9,7 +9,7 @@ import { PortraitPicker } from '../../components/Portrait'
 import { useRunner } from '../../components/Toast'
 import type { Character, Connections, LoadoutItem, Stats } from '../../data/types'
 import {
-  ARCHETYPES, CORE, FLAIRS, GEAR, POWERS, TRAITS,
+  ARCHETYPES, CORE, CUSTOM_TRAIT_ID, FLAIRS, GEAR, POWERS, TRAITS, type CustomTrait,
   buildWarnings, gearItem, power, slotsUsed, startingDrive, type Sheet as SheetData,
 } from '../../engine'
 
@@ -18,6 +18,7 @@ type Draft = {
   civilian: string
   archetype_id: string | null
   trait_id: string | null
+  custom_trait: CustomTrait | null
   stats: Stats
   flair_ids: string[]
   loadout: LoadoutItem[]
@@ -32,18 +33,27 @@ const CONNECTION_FIELDS = [
   { key: 'mistake', label: 'A mistake that could come back', hint: 'An old case gone wrong, someone you failed.' },
 ] as const
 
+const OWN_TRAIT_FIELDS: { key: keyof CustomTrait; label: string; hint: string }[] = [
+  { key: 'name', label: 'Name', hint: 'Pride' },
+  { key: 'drive_trigger', label: 'Earns Drive when', hint: 'When you refuse help you need.' },
+  { key: 'steady', label: 'Steady perk', hint: 'Once per scene, name one roll you make alone. That roll has Edge.' },
+  { key: 'fraying', label: 'Fraying perk', hint: 'That Edge becomes Advantage.' },
+  { key: 'hook', label: "The GM's hook", hint: "You won't admit you're wrong." },
+  { key: 'breaking', label: 'Breaking', hint: 'You go it alone and cut the team out of the plan.' },
+]
+
 const STAT_IDS = ['force', 'flow', 'focus', 'presence'] as const
 const FLAW_KINDS = ['Allergy', 'Unstable', 'Marked'] as const
 const sign = (n: number) => (n > 0 ? `+${n}` : String(n))
 
 const blank = (): Draft => ({
-  name: '', civilian: '', archetype_id: null, trait_id: null,
+  name: '', civilian: '', archetype_id: null, trait_id: null, custom_trait: null,
   stats: { force: 3, flow: 2, focus: 1, presence: 0 }, // the Balanced array, ready to adjust
   flair_ids: [], loadout: [], extra_slots: 0, connections: {},
 })
 
 const fromCharacter = (c: Character): Draft => ({
-  name: c.name, civilian: c.civilian, archetype_id: c.archetype_id, trait_id: c.trait_id,
+  name: c.name, civilian: c.civilian, archetype_id: c.archetype_id, trait_id: c.trait_id, custom_trait: c.custom_trait ?? null,
   stats: c.stats, flair_ids: c.flair_ids, loadout: c.loadout, extra_slots: c.extra_slots ?? 0,
   connections: c.connections ?? {},
 })
@@ -115,6 +125,8 @@ function BuilderForm({ campaignId, existing, isGm, canBuild, bankTarget, initial
   const back = bankTarget ? `#/gm/${campaignId}/bank` : existing ? `#/c/${campaignId}/sheet/${existing.id}` : isGm ? `#/gm/${campaignId}` : `#/c/${campaignId}/sheet`
   const arch = ARCHETYPES.find((a) => a.id === draft.archetype_id)
   const trait = TRAITS.find((t) => t.id === draft.trait_id)
+  const ownTrait = draft.trait_id === CUSTOM_TRAIT_ID
+  const setOwn = (k: keyof CustomTrait, v: string) => set('custom_trait', { ...(draft.custom_trait ?? {}), [k]: v })
 
   const setItem = (i: number, patch: Partial<LoadoutItem>) =>
     set('loadout', draft.loadout.map((it, n) => (n === i ? { ...it, ...patch } : it)))
@@ -142,6 +154,10 @@ function BuilderForm({ campaignId, existing, isGm, canBuild, bankTarget, initial
         archetype_id: draft.archetype_id, trait_id: draft.trait_id, stats: draft.stats,
         flair_ids: draft.flair_ids, loadout: draft.loadout, extra_slots: draft.extra_slots,
         connections: Object.fromEntries(Object.entries(draft.connections).map(([k, v]) => [k, (v ?? '').trim()]).filter(([, v]) => v)),
+        // Only sent when there is one, so saving works before the custom_trait migration is applied.
+        ...(ownTrait || existing?.custom_trait
+          ? { custom_trait: ownTrait ? Object.fromEntries(Object.entries(draft.custom_trait ?? {}).map(([k, v]) => [k, (v ?? '').trim()]).filter(([, v]) => v)) : null }
+          : {}),
       }
       if (bankTarget) {
         const { name, ...data } = row
@@ -233,7 +249,19 @@ function BuilderForm({ campaignId, existing, isGm, canBuild, bankTarget, initial
           <select id="b-trait" value={draft.trait_id ?? ''} onChange={(e) => set('trait_id', e.target.value || null)}>
             <option value="">Pick a Trait…</option>
             {TRAITS.map((t) => <option key={t.id} value={t.id}>{t.name}</option>)}
+            <option value={CUSTOM_TRAIT_ID}>Write your own…</option>
           </select>
+          {ownTrait && (
+            <div className="stack">
+              <p className="muted small">With the GM's agreement. It needs all five parts. Match the twelve for strength: limit any perk that would fire on most rolls to once per scene or once per round, and make Breaking cost something real.</p>
+              {OWN_TRAIT_FIELDS.map((f) => (
+                <label key={f.key} className="small">{f.label}
+                  <input value={draft.custom_trait?.[f.key] ?? ''} maxLength={f.key === 'name' ? 40 : 240} placeholder={f.hint}
+                    onChange={(e) => setOwn(f.key, e.target.value)} />
+                </label>
+              ))}
+            </div>
+          )}
           {trait && (
             <ul className="plain small">
               <li><strong>Drive:</strong> {trait.drive_trigger}</li>

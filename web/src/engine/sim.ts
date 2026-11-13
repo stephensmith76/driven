@@ -1,5 +1,5 @@
 // Character sheet -> the simulator's Hero record (SPEC.md "Encounter simulator").
-import { archetype, flair, trait, type SimFields } from './rules'
+import { archetype, flair, heroTrait, type SimFields } from './rules'
 import { resolveLoadout, type Sheet } from './sheet'
 import { CORE } from './rules'
 
@@ -25,7 +25,7 @@ export function simHero(sheet: Sheet, key?: string): SimHero {
     key: key ?? name.toLowerCase().replace(/^the\s+/, '').replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, ''),
     name,
     arch: archetype(sheet.archetype_id)?.name ?? '',
-    trait: trait(sheet.trait_id)?.name ?? '',
+    trait: heroTrait(sheet)?.name ?? '',
     ...sheet.stats,
     boxes: CORE.harm.hero_boxes.length,
     weapon: 'unarmed',

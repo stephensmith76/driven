@@ -1,3 +1,5 @@
+import type { CustomTrait } from '../engine/rules'
+
 export type Stats = { force: number; flow: number; focus: number; presence: number }
 
 export type LoadoutItem = {
@@ -38,6 +40,8 @@ export type Character = {
   civilian: string
   archetype_id: string | null
   trait_id: string | null
+  /** The player's own Trait, when trait_id is 'custom' (migration 20261113120000; may be missing before it). */
+  custom_trait?: CustomTrait | null
   stats: Stats
   flair_ids: string[]
   loadout: LoadoutItem[]

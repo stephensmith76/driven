@@ -1,4 +1,4 @@
-import { CORE, harmBoxes, stressStage, trait, type Sheet } from '../engine'
+import { CORE, harmBoxes, heroTrait, stressStage, type Sheet } from '../engine'
 import { Track } from './Track'
 
 /** Harm, Stress and Drive for one hero, sized and labeled from the rules data. */
@@ -8,7 +8,7 @@ export function HeroTrackers({ hero, onChange }: {
 }) {
   const boxes = harmBoxes(hero)
   const stage = stressStage(hero.stress)
-  const t = trait(hero.trait_id)
+  const t = heroTrait(hero)
   const stageLine = t && (stage.id === 'steady' ? t.steady : stage.id === 'fraying' ? t.fraying : t.breaking)
   return (
     <>

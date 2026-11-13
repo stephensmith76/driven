@@ -1,7 +1,7 @@
 // Bookkeeping for the buttons on a sheet (SPEC.md "Player screens"). Pure
 // functions: they work out what changes, the screen writes it. Nothing here
 // blocks anything; a broken rule comes back as a warning string.
-import { CORE, flair } from './rules'
+import { CORE, CUSTOM_TRAIT_ID, CUSTOM_TRAIT_PARTS, flair } from './rules'
 import { harmBoxes, slotsUsed, type Sheet } from './sheet'
 
 /** Drive at the start of a Night: 2, or 4 with Already Broken. */
@@ -106,6 +106,10 @@ export function buildWarnings(sheet: Sheet, opts: { creation: boolean }): string
   if (!sheet.name?.trim()) w.push('Give the hero a name.')
   if (!sheet.archetype_id) w.push('Pick an archetype.')
   if (!sheet.trait_id) w.push('Pick a Trait.')
+  else if (sheet.trait_id === CUSTOM_TRAIT_ID) {
+    const c = sheet.custom_trait ?? {}
+    if (!c.name?.trim() || CUSTOM_TRAIT_PARTS.some((k) => !c[k]?.trim())) w.push('Your own Trait needs a name and all five parts.')
+  }
 
   const vals = [sheet.stats.force, sheet.stats.flow, sheet.stats.focus, sheet.stats.presence]
   if (vals.some((v) => v < STAT_MIN() || v > STAT_MAX())) w.push(`Stats run from ${STAT_MIN()} to +${STAT_MAX()}.`)

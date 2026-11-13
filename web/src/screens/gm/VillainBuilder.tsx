@@ -6,7 +6,7 @@ import { blankVillainData, listVillains, namedDefenses, saveVillain, type Villai
 import { deletePortrait, enemyKey, uploadPortrait, viaRun } from '../../data/portraits'
 import { PortraitPicker } from '../../components/Portrait'
 import { useRunner } from '../../components/Toast'
-import { CORE, POWERS, TRAITS, VILLAINS, villainStress, type EnemyKind, type VillainDetails, type WeaponId } from '../../engine'
+import { CORE, CUSTOM_TRAIT_ID, POWERS, TRAITS, VILLAIN_TRAITS, VILLAINS, villainStress, type EnemyKind, type VillainDetails, type WeaponId } from '../../engine'
 import { GmShell } from './GmShell'
 
 type Loaded = { id: string; name: string; data: VillainData; portrait: string | null; isNew: boolean; bankId: string | null }
@@ -92,6 +92,20 @@ function Form({ campaignId, initial, back }: { campaignId: string; initial: Load
   })
   const role = ROLES.find((r) => r.id === details.role)
   const heroTrait = TRAITS.find((t) => t.id === details.trait?.id)
+  const villainTrait = VILLAIN_TRAITS.find((t) => t.id === details.trait?.id)
+  const ownTrait = details.trait?.id === CUSTOM_TRAIT_ID
+  /** Pick a Trait. A villain Trait fills in its two lines, unless the GM has written their own there. */
+  const pickTrait = (traitId: string) => {
+    const prev = details.trait ?? {}
+    const was = VILLAIN_TRAITS.find((t) => t.id === prev.id)
+    const next = VILLAIN_TRAITS.find((t) => t.id === traitId)
+    const line = (k: 'fraying' | 'breaking') => {
+      const cur = prev[k] ?? ''
+      return !cur.trim() || cur === was?.[k] ? next?.[k] ?? '' : cur
+    }
+    const name = traitId === CUSTOM_TRAIT_ID ? '' : (next ?? TRAITS.find((t) => t.id === traitId))?.name
+    setDetails({ trait: { id: traitId || undefined, name, fraying: line('fraying'), breaking: line('breaking') } })
+  }
   const tricks = details.tricks ?? []
   const defs = named ? namedDefenses(data.stats) : data.defenses
   const stress = villainStress(data.kind)
@@ -205,15 +219,26 @@ function Form({ campaignId, initial, back }: { campaignId: string; initial: Load
       {named && (
         <section className="card stack">
           <h2>Trait</h2>
-          <p className="muted small">A villain's Trait is two lines: what they do when Fraying, and what they do when they Break.</p>
+          <p className="muted small">A villain's Trait is two lines: what they do when Fraying, and what they do when they Break. Fraying should give the heroes an opening; Breaking should be reckless.</p>
           <label htmlFor="v-trait">Trait</label>
-          <select id="v-trait" value={details.trait?.id ?? ''} onChange={(e) => {
-            const t = TRAITS.find((x) => x.id === e.target.value)
-            setDetails({ trait: { ...(details.trait ?? {}), id: t?.id, name: t?.name } })
-          }}>
+          <select id="v-trait" value={details.trait?.id ?? ''} onChange={(e) => pickTrait(e.target.value)}>
             <option value="">Pick one</option>
-            {TRAITS.map((t) => <option key={t.id} value={t.id}>{t.name}</option>)}
+            <optgroup label="Villain Traits">
+              {VILLAIN_TRAITS.map((t) => <option key={t.id} value={t.id}>{t.name}</option>)}
+            </optgroup>
+            <optgroup label="Hero Traits">
+              {TRAITS.map((t) => <option key={t.id} value={t.id}>{t.name}</option>)}
+            </optgroup>
+            <option value={CUSTOM_TRAIT_ID}>Write your own…</option>
           </select>
+          {villainTrait && <p className="muted small">{villainTrait.text}</p>}
+          {ownTrait && (
+            <>
+              <label htmlFor="v-trait-name">Trait name</label>
+              <input id="v-trait-name" value={details.trait?.name ?? ''} maxLength={40} placeholder="Devotion"
+                onChange={(e) => setDetails({ trait: { ...(details.trait ?? {}), name: e.target.value } })} />
+            </>
+          )}
           <label htmlFor="v-fray">Fraying</label>
           <input id="v-fray" value={details.trait?.fraying ?? ''} maxLength={240} placeholder={heroTrait ? `For heroes: ${heroTrait.hook}` : 'Goes after whoever hurt him last, plan or no plan.'}
             onChange={(e) => setDetails({ trait: { ...(details.trait ?? {}), fraying: e.target.value } })} />

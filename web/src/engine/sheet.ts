@@ -1,7 +1,7 @@
 // Derived numbers for a character sheet. Pure functions, no network.
 import {
   CORE, archetype, flair, beltItem, beltEligible, gearItem, power, tableToughness,
-  type AttackKind, type GearEntry, type PowerEffect, type PowerEntry, type ToughnessMap,
+  type AttackKind, type CustomTrait, type GearEntry, type PowerEffect, type PowerEntry, type ToughnessMap,
 } from './rules'
 
 export type Stats = { force: number; flow: number; focus: number; presence: number }
@@ -19,6 +19,8 @@ export type Sheet = {
   name?: string
   archetype_id?: string | null
   trait_id?: string | null
+  /** The player's own Trait, when trait_id is 'custom'. */
+  custom_trait?: CustomTrait | null
   stats: Stats
   flair_ids?: string[]
   loadout?: LoadoutItem[]

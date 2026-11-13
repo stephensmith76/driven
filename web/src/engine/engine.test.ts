@@ -314,7 +314,7 @@ describe('Rules data stays in step with rules.md', () => {
   })
 })
 
-import { buildWarnings, dawn, priceOf, secondWind, startingDrive, stressFloor, usesLeft } from './index'
+import { CUSTOM_TRAIT_ID, VILLAIN_TRAITS, buildWarnings, dawn, heroTrait, priceOf, secondWind, startingDrive, stressFloor, usesLeft } from './index'
 
 describe('Sheet bookkeeping', () => {
   const t = (o: Partial<{ harm: number; stress: number; drive: number; home_clock: number; dying: boolean }> = {}) =>
@@ -373,6 +373,21 @@ describe('Sheet bookkeeping', () => {
     const w = buildWarnings(bad, { creation: true })
     expect(w.some((x) => /starting array/.test(x))).toBe(true)
     expect(w.some((x) => /one Flair/.test(x))).toBe(true)
+  })
+  it('own Trait: reads like one of the twelve, and warns until all five parts are written', () => {
+    const own = { ...hero('Rook'), trait_id: CUSTOM_TRAIT_ID, custom_trait: { name: 'Pride', steady: 'Edge alone.' } }
+    expect(heroTrait(own)).toMatchObject({ id: 'custom', name: 'Pride', steady: 'Edge alone.', hook: '' })
+    expect(buildWarnings(own, { creation: false }).some((x) => /five parts/.test(x))).toBe(true)
+    const full = { ...own, custom_trait: { name: 'Pride', drive_trigger: 'a', steady: 'b', fraying: 'c', hook: 'd', breaking: 'e' } }
+    expect(buildWarnings(full, { creation: false }).some((x) => /five parts/.test(x))).toBe(false)
+    expect(heroTrait(hero('Rook'))?.id).toBe(hero('Rook').trait_id)
+  })
+  it('villain Traits: ten, each with a Fraying and a Breaking line, none clashing with a hero Trait id', () => {
+    expect(VILLAIN_TRAITS).toHaveLength(10)
+    for (const t of VILLAIN_TRAITS) {
+      expect(t.fraying && t.breaking && t.text, t.id).toBeTruthy()
+      expect(TRAITS.some((h) => h.id === t.id) || t.id === CUSTOM_TRAIT_ID, t.id).toBe(false)
+    }
   })
   it('Advancement: extra slots raise the limit, and a second strange power is fine after creation', () => {
     const s: Sheet = { ...hero('Nightjar'), extra_slots: 3,

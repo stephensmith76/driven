@@ -11,7 +11,7 @@ import { ScenePanel } from '../../components/ScenePanel'
 import { RollLog } from '../../components/RollLog'
 import type { Scene } from '../../data/types'
 import { RulesNotice } from '../../components/RulesNotice'
-import { CORE, archetype, defenses, slotsUsed, toughness, trait, type AttackKind } from '../../engine'
+import { CORE, archetype, defenses, heroTrait, slotsUsed, toughness, type AttackKind } from '../../engine'
 import { Actions } from './sheet/Actions'
 import { Loadout } from './sheet/Loadout'
 import { DawnPanel } from './sheet/DawnPanel'
@@ -59,7 +59,7 @@ export function Sheet({ campaignId, characterId }: { campaignId: string; charact
   const d = defenses(hero)
   const active = Object.keys(hero.fight_state).filter((k) => k.startsWith('active:') && hero.fight_state[k]).map((k) => k.slice(7))
   const arch = archetype(hero.archetype_id)
-  const t = trait(hero.trait_id)
+  const t = heroTrait(hero)
   const slots = slotsUsed(hero, { creation: false })
   const homeSize = CORE.clocks.find((c) => c.kind === 'home')!.size
   const teamClocks = clocks.filter((c) => c.kind === 'scheme' || c.kind === 'heat')

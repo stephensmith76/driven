@@ -55,7 +55,7 @@ export async function exportCampaign(client: SupabaseClient, campaignId: string)
 export const PATCH_COLUMNS: Record<string, string[]> = {
   campaigns: ['name', 'rules_version', 'night', 'phase', 'settings'],
   characters: ['name', 'civilian', 'archetype_id', 'trait_id', 'stats', 'flair_ids', 'loadout', 'harm', 'stress',
-    'drive', 'dying', 'hidden', 'home_clock', 'extra_slots', 'fight_state', 'notes', 'connections', 'is_npc', 'locked'],
+    'drive', 'dying', 'hidden', 'home_clock', 'extra_slots', 'fight_state', 'notes', 'connections', 'custom_trait', 'is_npc', 'locked'],
   clocks: ['name', 'kind', 'size', 'filled', 'visible_to_players', 'sort'],
   clues: ['text', 'found_by', 'personal_for', 'is_arc', 'night'],
   scene: ['title', 'text', 'round', 'zones', 'positions', 'public_enemies'],

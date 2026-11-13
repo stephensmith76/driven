@@ -356,3 +356,35 @@ Trial. Rules version 2026-11-12.23.
 **Sample villains**, add the stat block: Bruisers (tough mooks, groups of 3): Attack +3, Guard 12, Wits 12, Poise 13, Harm 2 each. One attack per group per turn, with Edge if all 3 are standing. Every 2 Harm drops one, and leftover Harm carries to the next. No Toughness.
 
 The app's Fight screen has Bruisers in the enemy library, and tracks a staggered bruiser.
+
+## 18. Villain Traits, and writing your own Trait (Nov 13)
+
+Trial. Rules version 2026-11-13.24.
+
+**Stress and Traits, "Traits"**, after "Pick one. Each Trait lists how it earns Drive, its two perks, its hook, and how you break.", add:
+
+**Your own Trait (trial).** With the GM's agreement you can write your own instead. It needs all five parts: a Drive trigger, a Steady perk, a Fraying perk, a hook, and a Breaking fallout. Match the twelve below for strength: a once-per-scene or once-per-round limit on any perk that would otherwise fire on most rolls, and a Breaking fallout that costs the hero something real.
+
+**Villains, "What a villain has", Trait line.**
+- Was: "Trait: one line for Fraying and one for Breaking."
+- Now: "Trait: one line for Fraying and one for Breaking. Use a hero's Trait, a villain Trait (below), or write your own."
+
+**Villains**, after the Roles table, add the section "Villain Traits (trial)":
+
+Heroes' Traits work for villains too (the Butcher is Spite, Voss is Order). These ten are for villains only. Like every villain Trait, each is two lines: what they do when Fraying, and what they do when they Break. Fraying should give the heroes an opening; Breaking should be reckless.
+
+| Trait | Who has it | Fraying | Breaking |
+| --- | --- | --- | --- |
+| **Greed** | Wants more, whatever it costs other people. | Protects the money before their people. A hero who threatens the stash or offers a cut has Edge against them. | Grabs what they can carry and runs, leaving their crew to take the fall. |
+| **Desperation** | Has run out of other options: a debt, a deadline, someone held over them. | Takes any risk to finish the job. Their attacks have Edge, and so do attacks against them. | Does the one thing they swore they never would: hurts a hostage, lights the fuse, or begs. |
+| **Narcissism** | Needs to be admired, and can't stand being laughed at. | Has to be seen winning. Won't take cover or back off while anyone is watching, and goes after whoever mocks them. | Drops the plan to humiliate whoever humiliated them, in front of everyone. |
+| **Lust** | Wants someone (or wants to own them), and won't take no. | Fixates on the one they want. Won't harm them, and goes after anyone standing between them. | Tries to take that person and get out with them. The heroes get one round to stop it. |
+| **Viciousness** | Enjoys the hurting. | Goes after the most hurt target in reach, hero or bystander, instead of the biggest threat. | Hurts whoever is closest and can't fight back, their own people included, until someone stops them. |
+| **Paranoia** | Sure that everyone is out to get them, and sometimes right. | Sees a trap in everything. Keeps a mook group between them and the heroes, and any bluff about backup, cops or a traitor has Edge against them. | Turns on their own lieutenant or bolts for the nearest exit, certain it's a setup. |
+| **Envy** | Wants what someone else has: the fame, the family, the life. | Goes after the hero who has what they lack and ignores the rest. | Leaves the fight to wreck something that hero loves. The heroes get one round to stop them. |
+| **Contempt** | Thinks the heroes, and most people, are beneath them. | Won't take the heroes seriously. Toys with the weakest-looking hero instead of the biggest threat. | Drops the act and throws everything at whoever got under their skin, plan and people be damned. |
+| **Zealotry** | Believes in a cause, and that the cause makes them right. | Can't be talked down or bought: Presence attacks against them have Disadvantage. Won't retreat, either. | Tries to take everyone down with them for the cause: themselves, their followers, the building. |
+| **Control** | Has to run everything and everyone. | Everything has to go to plan. When a hero changes the fight (a door, the lights, a zone tag), they spend their next turn putting it back. | Destroys what they can't control any more: the evidence, the building, the hostage. The heroes get one round to stop it. |
+
+The app's Villain builder lists these Traits and fills in their two lines, and both builders take a Trait you write yourself.
+

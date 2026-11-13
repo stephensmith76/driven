@@ -97,6 +97,25 @@ const byId = {
 
 export const archetype = (id: string | null | undefined) => (id ? byId.archetype.get(id) : undefined)
 export const trait = (id: string | null | undefined) => (id ? byId.trait.get(id) : undefined)
+
+/** Villain-only Traits: two lines each, Fraying and Breaking (rules.md, Villain Traits). */
+export type VillainTraitEntry = { id: string; name: string; text: string; fraying: string; breaking: string; trial?: boolean }
+export const VILLAIN_TRAITS = villainsFile.traits as VillainTraitEntry[]
+
+/** `trait_id` of a hero whose player wrote their own Trait; its text is in `custom_trait`. */
+export const CUSTOM_TRAIT_ID = 'custom'
+export type CustomTrait = { name?: string; drive_trigger?: string; steady?: string; fraying?: string; hook?: string; breaking?: string }
+export const CUSTOM_TRAIT_PARTS = ['drive_trigger', 'steady', 'fraying', 'hook', 'breaking'] as const
+
+/** A hero's Trait: one of the twelve, or the one they wrote (shaped like the twelve). */
+export function heroTrait(s: { trait_id?: string | null; custom_trait?: CustomTrait | null }): TraitEntry | undefined {
+  if (s.trait_id !== CUSTOM_TRAIT_ID) return trait(s.trait_id)
+  const c = s.custom_trait ?? {}
+  return {
+    id: CUSTOM_TRAIT_ID, name: c.name?.trim() || 'Their own Trait',
+    drive_trigger: c.drive_trigger ?? '', steady: c.steady ?? '', fraying: c.fraying ?? '', hook: c.hook ?? '', breaking: c.breaking ?? '',
+  }
+}
 export const flair = (id: string) => byId.flair.get(id)
 export const gearItem = (id: string) => byId.gear.get(id)
 /** Belt picks are saved with kind 'kit' (the old name). Old picks used the old Kit ids; these map to the gear that replaced them. */
