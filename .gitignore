@@ -11,3 +11,7 @@ __pycache__/
 
 # Old copies of the rules, kept by hand
 rules/older/
+
+# PDF build kit (local tool + its zip; builds from rules/rules.md)
+rules/driven_pdf_builder/
+rules/driven_pdf_builder.zip

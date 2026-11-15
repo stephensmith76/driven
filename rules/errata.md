@@ -605,3 +605,11 @@ Only a lieutenant can stop the tick, and only once per case. An accomplice gives
 **Playtest notes, Change log (new entry).** Add:
 
 - **Session 3 pass (Nov 14, Stephen):** an attack at Impact 1 never carries a cost, Bruised clears at the end of every scene, and archetype Drive triggers and lieutenants are spelled out as once per round. Other clarifications: Hazard types, Stress off the cost menu at 8, grenades thrown into an adjacent zone, the taser gun, the ambush's one Edge, Danger Sense on the sheet, Thrill Breaking, locked power abilities, and accomplices. New trial rules: the Patrol pool, clues and leads, the team's one no-roll clue, the bike as Edge, interrogation, Down and Stress (Breaking while Down no longer waits), Dying leaves a mark, one deadline per case, and Scheme beats at 1, 3 and 5. See Session 3.
+
+## 20. Free-form Patrol (Nov 15)
+
+A new optional rule, marked (optional, trial). Rules version 2026-11-15.26.
+
+**The Night, Patrol: working the case.** Add this paragraph after "One no-roll clue per Night (trial)":
+
+> **Free-form Patrol (optional, trial).** The Patrol pool, lead rolls and the one no-roll clue are tools, not requirements. The GM can set them aside and let clues and leads turn up through play: the heroes go where they want and talk to who they want, and the GM hands over a clue whenever a scene earns one. Two things stay, so the case keeps its pressure. The Scheme clock still ticks at every Dawn, and when a scene goes badly, the GM picks a cost from the lead table or makes a Patrol move (see GM moves). As a guide, about one clue per hero per Night keeps the Complexity numbers right. Crack the Case works the same either way, and the GM can switch styles from one Night to the next.
