@@ -54,7 +54,7 @@
       "sim": null },
     { "id": "danger-sense", "name": "Danger Sense", "tier": "street", "core": true, "slots": 1,
       "abilities": [
-        { "name": "Uh oh", "text": "+1 Guard." },
+        { "name": "Uh oh", "text": "+1 Guard. Write the +1 into the Guard number on your sheet." },
         { "name": "See it coming", "text": "When an attack hits you, take 1 Stress to make the attacker reroll." },
         { "name": "See the future", "text": "When you miss, the GM offers two moves and you pick which happens." }
       ],

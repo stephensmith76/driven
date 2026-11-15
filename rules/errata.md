@@ -388,3 +388,220 @@ Heroes' Traits work for villains too (the Butcher is Spite, Voss is Order). Thes
 
 The app's Villain builder lists these Traits and fills in their two lines, and both builders take a Trait you write yourself.
 
+## 19. Session 3 pass: Impact 1, the breather, the Patrol pool, interrogation, Scheme beats (Nov 14)
+
+Clarifications, and new trial rules marked (trial). Rules version 2026-11-14.25.
+
+**The core roll, Impact table.**
+- Was: "| 0 to 3 | Impact 1 | 1 Harm | You get it, with a cost or complication |"
+- Now: "| 0 to 3 | Impact 1 | 1 Harm, or the attack's effect. No cost | You get it, with a cost: the GM offers two, you pick one |"
+
+**The core roll, under the Impact table.**
+- Was: "Every roll in the game uses this one table. When an Impact 1 comes with a cost, the GM offers two that fit the scene and you pick one (see GM moves, Costs)."
+- Now: "Every roll in the game uses this one table.
+
+**Impact 1.** An attack never carries a cost: an attack at Impact 1 deals 1 Harm or its effect. Any other roll at Impact 1, in or out of a fight, succeeds with a cost: the GM offers two that fit the scene and you pick one (see GM moves, Costs)."
+
+**Stress and Traits, How Stress builds, item 4.**
+- Was: "4. **Stress as a cost.** On Impact 1, the GM offers 1 Stress as one of the two costs when it fits the fiction."
+- Now: "4. **Stress as a cost.** When a roll that isn't an attack lands at Impact 1, the GM can make 1 Stress one of the two costs on offer, when it fits the fiction. At 8 Stress, the GM leaves Stress off and offers two other costs."
+
+**GM moves, Costs.**
+- Was: "When an Impact 1 comes with a cost, offer two of these and let the player pick:"
+- Now: "When a roll at Impact 1 comes with a cost, offer two of these and let the player pick. Attacks never carry a cost. At 8 Stress, leave Stress off and offer two others."
+
+**Harm, Heroes: 4 boxes, Bruised row.**
+- Was: "| Bruised | No effect. Clears after any short breather. |"
+- Now: "| Bruised | No effect. Clears at the end of every scene (see Recovery). |"
+
+**Harm, Recovery, Breather.**
+- Was: "- **Breather** (a few quiet minutes between scenes): clear Bruised."
+- Now: "- **Breather:** Bruised clears automatically at the end of every scene, unless the GM says there is no time. It clears only the Bruised box. Hurt and Wounded stay filled, so a Wounded hero stays Wounded, and the next Harm fills Bruised again."
+
+**Harm, Recovery (new bullet).** Add:
+
+- **Dying leaves a mark (trial).** A hero who was Dying and got stabilized starts the next Night with one Harm box filled that Patch Up at that Dawn can't clear. A med kit, Fast Healer, Healing Factor or a Lair can clear it. It doesn't stack with left for dead.
+
+**Stress and Traits, The Stress track, Breaking row.**
+- Was: "| 8 | **Breaking** | Your Trait's Breaking fallout takes over for the rest of the scene. If you Break while Down, the fallout waits until you're back on your feet. |"
+- Now: "| 8 | **Breaking** | Your Trait's Breaking fallout takes over for the rest of the scene. |"
+
+**Stress and Traits, How Stress builds, item 2.**
+- Was: "2. **Going Down hurts more than your body.** A hero who goes Down takes 2 Stress. Every hero who sees an ally go Down takes 1, but only the first time in each fight."
+- Now: "2. **Going Down hurts more than your body.** A hero who goes Down takes 2 Stress. Every hero who sees an ally go Down takes 1, but only the first time in each fight. **Down and Stress (trial):** after that, a Downed hero takes no Stress from outside sources until they're back on their feet, including the Dawn Scheme tick. Stress the hero chooses to pay (Strain, Push, power costs) is still paid."
+
+**The Night, Dawn.**
+- Was: "At the start of Dawn, the Scheme clock ticks and its Stress lands, before heroes make their picks."
+- Now: "At the start of Dawn, the Scheme clock ticks and its Stress lands, before heroes make their picks. A hero who is still Down takes none of it (see How Stress builds)."
+
+**Stress and Traits, Thrill.**
+- Was: "- *Breaking:* you do the most dangerous thing in reach and drag someone into it with you."
+- Now: "- *Breaking:* you do the most dangerous thing in reach and drag someone into it with you. You still go after enemies, but you drop caution and stop protecting your friends."
+
+**Archetypes, all six Drive trigger lines.**
+- Was: "- **Drive trigger:** an enemy attacks you (hit or miss), or you take a hit meant for someone else."
+- Now: "- **Drive trigger (once per round):** an enemy attacks you (hit or miss), or you take a hit meant for someone else.
+
+(The same label change on the Brawler, Stalker, Specialist, Detective and Leader lines.)"
+
+**Fights, Zones and range, Hazard tag.**
+- Was: "- **Hazard:** any missed roll in this zone costs 1 Harm, heroes and villains alike."
+- Now: "- **Hazard:** when you tag a zone Hazard, name its type: fire, gas, a fall, hooks. Any missed roll in this zone costs a flat 1 Harm, heroes and villains alike, and Toughness doesn't reduce it. The type matters only for gear and powers that name one, like a rebreather for gas or climbing gear for a fall."
+
+**Fights, Turn order.**
+- Was: "Heroes go first unless they were ambushed, in which case the villains go first. The ambushing side has Edge on its first roll (trial). After that, sides alternate: one hero, then one villain or mook group, then another hero, and so on."
+- Now: "Heroes go first unless they were ambushed. Then the villains act first in round 1 only, and after that sides alternate as usual. The ambush gives Edge to one roll: the first roll by whichever enemy the GM has act first. When the heroes ambush, it's the first roll by whichever hero goes first. Sides alternate: one hero, then one villain or mook group, then another hero, and so on."
+
+**The Night, Confrontation: whose ground?.**
+- Was: "Ambush the villain (your side has Edge on its first roll, trial), or add one zone tag of your choice to the map."
+- Now: "Ambush the villain (one roll on your side has Edge: see Turn order), or add one zone tag of your choice to the map."
+
+**Fights, Enemies.**
+- Was: "Mooks act in groups of up to 3. Each group makes one attack per turn, with Edge if all 3 are still standing."
+- Now: "Mooks act in groups of up to 3. Each group makes one attack per turn, with Edge if all 3 are still standing.
+
+**Lieutenants:** a lieutenant gets one turn and one free Presence attack per round, whatever the party size (see Villains, Scaling to the party)."
+
+**Villains, Scaling to the party, Lieutenants.**
+- Was: "- **Lieutenants and several named enemies:** a lieutenant gets one turn per round, however many heroes there are, even fighting alone."
+- Now: "- **Lieutenants and several named enemies:** a lieutenant gets one turn and one free Presence attack per round, however many heroes there are, even fighting alone."
+
+**Villains, Named enemies resist being shut down.**
+- Was: ""Loses their next Quick Action" against a named enemy always means Disadvantage on their next roll. Mooks lose turns as written."
+- Now: ""Loses their next Quick Action" against a named enemy always means Disadvantage on their next roll. "Disadvantage on their next roll" applies to their next roll that isn't their free Presence attack. Mooks lose turns as written."
+
+**Villains, after Scaling to the party (new paragraph).** Add:
+
+**Accomplices.** A named underling who isn't a lieutenant (a corrupt inspector, a fixer) is an **accomplice**. In Arcs, Pawn keeps its own meaning: the villain of a case, working for the Mastermind.
+
+**The Night, Patrol, case prep, Scheme beats.**
+- Was: "- **Scheme beats (trial):** three, at 2, 4 and 6 on the clock. Each is an event the heroes can see in the fiction: a witness disappears, a building burns."
+- Now: "- **Scheme beats (trial):** three, at 1, 3 and 5 on the clock. Each is an event the heroes can see in the fiction: a witness disappears, a building burns. At 6 the villain pulls it off."
+
+**The Night, Patrol, Following a lead, Impact 1 row.**
+- Was: "| Impact 1 | The clue, and you pick one of those costs |"
+- Now: "| Impact 1 | The clue, and the GM offers two of these costs; you pick one |"
+
+**The Night, Patrol, Patrol budget (replaced by the Patrol pool).**
+- Was: "**Patrol budget (trial).** Each hero gets 2 Patrol actions per Night. Following a lead costs one."
+- Now: "**Patrol pool (trial).** Each Night the team shares a pool of Patrol actions equal to the number of heroes, minimum 2. Following a lead costs one action, and it buys everything that comes of that lead: any fight, search or interrogation in that thread costs no further action.
+
+**Clues and leads (trial).** Each lead gives one clue, plus the Impact 3 bonus as written. Anything else the heroes find in a scene is a new lead, not a clue. The team keeps it, and it becomes a clue when someone spends a Patrol action on it, that Night or a later one."
+
+**The Night, Patrol, One free clue per Night (now per team).**
+- Was: "**One free clue per Night (trial).** A hero can take at most one no-roll clue per Night, from all sources combined: Work the Case, Plugs, Network, a forensic kit, a hacking rig, a tracker and the like."
+- Now: "**One no-roll clue per Night (trial).** The whole team takes at most one no-roll clue per Night, from all sources combined: Work the Case, Plugs, Network, a forensic kit, a hacking rig, a tracker and the like. Any other no-roll source used that Night gives Edge on one lead roll instead. If that happens at Dawn, the Edge carries to the next Night's first lead.
+
+**Interrogation (trial).** Interrogating a captured named enemy is a roll of Presence against their Poise. It costs no action when the capture came out of a lead the team already paid for.
+
+| Result | You get |
+| --- | --- |
+| Miss | The clue, and the GM picks a cost |
+| Impact 1 | The clue, and the GM offers two costs; you pick one |
+| Impact 2 | The clue, and the Scheme clock doesn't tick at the next Dawn |
+| Impact 3 | As Impact 2, plus the usual Impact 3 bonus |
+
+Only a lieutenant can stop the tick, and only once per case. An accomplice gives the clue only."
+
+**The Night, Patrol, The Scheme clock.**
+- Was: "**The Scheme clock** is the villain's plan moving forward. It ticks at every Dawn and whenever a cost says so. When it reaches 2, 4 or 6, that beat happens. If it fills before you crack the case, the villain pulls it off. You still get a showdown, but on their ground, after the damage is done."
+- Now: "**The Scheme clock** is the villain's plan moving forward. It ticks at every Dawn and whenever a cost says so. When it reaches 1, 3 or 5, that beat happens. If it fills at 6 before you crack the case, the villain pulls it off: the investigation stops, and the showdown happens on their ground, after the damage is done.
+
+**One deadline per case (trial).** The Scheme clock is the only timer. A date the villain names is flavor. When you write clues, give deadlines as relative triggers ("after the inspection"), not calendar dates."
+
+**The Night, Dawn, Work the Case.**
+- Was: "- **Work the Case:** chase one lead off-screen and take 1 clue, no roll."
+- Now: "- **Work the Case:** chase one lead off-screen and take 1 clue, no roll. It counts as the team's one no-roll clue for the Night. If that is already used, take Edge on a lead next Night instead."
+
+**The Night, The clocks, Scheme row.**
+- Was: "| **Scheme** (team) | 6 | Every Dawn, and as a cost when following leads | Beats at 2, 4 and 6: three events the heroes can see, written in case prep (a witness disappears, a building burns) | The villain pulls it off. The showdown happens on their ground, after the damage is done. |"
+- Now: "| **Scheme** (team) | 6 | Every Dawn, and as a cost when following leads | Beats at 1, 3 and 5 (trial): three events the heroes can see, written in case prep (a witness disappears, a building burns) | The villain pulls it off. The investigation stops, and the showdown happens on their ground, after the damage is done. |"
+
+**Gear, More tools, Smoke grenades.**
+- Was: "| Smoke grenades | Quick Action: a zone becomes Dark until the end of next round. Two per fight. |"
+- Now: "| Smoke grenades | Quick Action: your zone or an adjacent one becomes Dark until the end of next round. Two per fight. |"
+
+**Gear, More tools, Flashbangs.**
+- Was: "| Flashbangs | Quick Action: roll Flow against the Guard of everyone in a zone; everyone you beat"
+- Now: "| Flashbangs | Quick Action: roll Flow against the Guard of everyone in your zone or an adjacent one; everyone you beat"
+
+**Gear, More tools, Burner phones.**
+- Was: "Any clue it gives still counts toward your one no-roll clue per Night. |"
+- Now: "Any clue it gives still counts toward the team's one no-roll clue per Night. |"
+
+**Gear, More tools, Bike or car.**
+- Was: "| Bike or car | One extra Patrol action per Night. In a chase, Edge on Flow. |"
+- Now: "| Bike or car | Edge on one lead roll per Night (trial). In a chase, Edge on Flow. |"
+
+**Gear, Stun grenade.**
+- Was: "**Stun grenade** (heavier flashbang): Quick Action, Near zone."
+- Now: "**Stun grenade** (heavier flashbang): Quick Action, your zone or an adjacent one."
+
+**Gear, Taser gun.**
+- Was: "**Taser gun** (dart taser): Near range. On a hit, instead of Harm,"
+- Now: "**Taser gun** (dart taser): a Full Action Strike with Flow at Near range, with no -2 (the plain Taser is the Jab). On a hit, instead of Harm,"
+
+**Gear, after the Taser gun (new paragraph).** Add:
+
+**Throwing grenades.** Smoke grenades, flashbangs and stun grenades can be thrown into an adjacent zone. Thrown weapons (a knife, tossies) keep their listed ranges.
+
+**Gear and Powers, Assets, Vehicle.**
+- Was: "one extra Patrol action per Night (it doesn't stack with a bike or car), Edge in chases,"
+- Now: "one extra Patrol action per Night, Edge in chases,"
+
+**Gear and Powers, Powers.**
+- Was: "Each power has three abilities. You start with the first. Unlocking the other two is an Advancement option."
+- Now: "Each power has three abilities. You start with the first. The second and third are marked *(locked)*: they're locked at creation, and unlocking them is an Advancement option."
+
+**Street powers, Danger Sense.**
+- Was: "- *Start:* Uh oh. +1 Guard."
+- Now: "- *Start:* Uh oh. +1 Guard. Write the +1 into the Guard number on your sheet."
+
+**Gear and Powers, every power's second and third ability.**
+- Was: "- *See it coming:* when an attack hits you, take 1 Stress to make the attacker reroll.
+- *See the future:* when you miss, the GM offers two moves and you pick which happens."
+- Now: "- *See it coming (locked):* when an attack hits you, take 1 Stress to make the attacker reroll.
+- *See the future (locked):* when you miss, the GM offers two moves and you pick which happens.
+
+(The same mark on all 78 second and third abilities.)"
+
+**Arcs, Example arc: The Landlord, Scheme beats.**
+- Was: "- **Scheme beats (first case):** at 2, a tenant who talked to the heroes disappears. At 4, the Calloway annex burns. At 6, the city condemns the block and the tenants are out by Friday."
+- Now: "- **Scheme beats (first case):** at 1, a tenant who talked to the heroes disappears. At 3, the Calloway annex burns. At 5, the city condemns the block. At 6, Voss pulls it off: the tenants are evicted the morning after the inspection."
+
+**Playtest notes, Still to watch, Clues per Night (removed: answered by Session 3).** Remove:
+- "- **Clues per Night.** Three heroes can bank up to 9 clues in one Night (2 leads and 1 free clue each). Complexity now scales with the team to keep a case at 2 to 4 Nights. Check how many Nights a case really takes."
+
+**Playtest notes, Still to watch (new bullets).** Add:
+
+- **A 4-segment Scheme clock** with beats on ticks 1, 2 and 3. Try it at the next live session. In the simulator it puts 2 to 4 heroes inside both targets at Complexity + 2, but the Scheme beats a solo hero in 40 to 51% of cases.
+- **Burner phones** give almost nothing under the team's one no-roll clue: the extra use only turns into Edge on a lead.
+- **Nightjar Breaks** in 56 to 77% of two-hero Cannery fights in the simulator: the hostage clock's 2 Stress, her strange power's 1 Stress, and the Butcher's Presence attack against her Poise of 11.
+- **Session 3 questions** 2, 3, 5, 6, 7, 8, 11, 20, 23, 24 and 26 are still open.
+
+**Playtest notes, Not yet tested at a table (new bullet).** Add:
+
+- The Session 3 pass, new on Nov 14: the Patrol pool, clues and leads, the team's one no-roll clue, the bike as Edge, interrogation, Down and Stress, Dying leaves a mark, one deadline per case, and Scheme beats at 1, 3 and 5. Simulated, not played.
+
+**Playtest notes, Session 3 (new section).** Add:
+
+### Session 3
+
+**Table errors.** The GM was a weaker model, and the audit found five errors. It charged costs on Impact 1 attack hits, kept a Bruised box a breather should have cleared, let the Brawler's Drive trigger fire more than once a round, gave a lieutenant extra turns and extra free Presence attacks, and never applied Danger Sense's +1 Guard. With those corrected, heroes hit 61% of the time and enemies 55%.
+
+**Simulator (two reports, Nov 14).**
+
+- **The case economy.** With 2 Patrol actions per hero, three heroes crack the case on Night 1 in 97% of cases. With a shared pool equal to the number of heroes, they crack it on Night 2 in 95%. The Patrol pool replaces the per-hero budget.
+- **The alley fight** (Cyrus, Bulwark and Patchwork against Sparks and two Saints) runs about 3 rounds, with 0.50 Downs per fight at 4 Harm boxes. That is short of the 4 to 6 round target. A full group of three Saints adds about half a round.
+- **Scheme beats at 1, 3 and 5** add about half a beat per case and change nothing else.
+
+**Closed.**
+
+- **A fifth Harm box for all heroes:** heroes stay at 4. Five boxes halved Downs (0.50 to 0.26 per fight) but barely changed the win rate.
+- **The new Danger Sense ability** (once per fight, Disadvantage on one attack): rejected. It gave no gain over +1 Guard.
+- **Toughness negating physical hazards:** rejected. A Hazard costs a flat 1 Harm.
+- **Splitting up as a Patrol rule:** dropped.
+
+**Playtest notes, Change log (new entry).** Add:
+
+- **Session 3 pass (Nov 14, Stephen):** an attack at Impact 1 never carries a cost, Bruised clears at the end of every scene, and archetype Drive triggers and lieutenants are spelled out as once per round. Other clarifications: Hazard types, Stress off the cost menu at 8, grenades thrown into an adjacent zone, the taser gun, the ambush's one Edge, Danger Sense on the sheet, Thrill Breaking, locked power abilities, and accomplices. New trial rules: the Patrol pool, clues and leads, the team's one no-roll clue, the bike as Edge, interrogation, Down and Stress (Breaking while Down no longer waits), Dying leaves a mark, one deadline per case, and Scheme beats at 1, 3 and 5. See Session 3.

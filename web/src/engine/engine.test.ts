@@ -431,7 +431,11 @@ describe('The Night', () => {
     expect(confrontationText(0)).toMatch(/villain chooses/)
   })
   it('clock ticks report half and full, and never pass the size', () => {
-    expect(tickClock({ kind: 'scheme', size: 6, filled: 2 }, 1)).toMatchObject({ filled: 3, events: [expect.stringMatching(/Beats at 2, 4 and 6/)] })
+    expect(tickClock({ kind: 'scheme', size: 6, filled: 2 }, 1)).toMatchObject({ filled: 3, events: [expect.stringMatching(/^Beat at 3: Beats at 1, 3 and 5/)] })
+    expect(tickClock({ kind: 'scheme', size: 6, filled: 0 }, 1).events).toEqual([expect.stringMatching(/^Beat at 1/)])
+    expect(tickClock({ kind: 'scheme', size: 6, filled: 0 }, 2).events).toEqual([expect.stringMatching(/^Beat at 1/)])
+    expect(tickClock({ kind: 'scheme', size: 6, filled: 3 }, 2).events).toEqual([expect.stringMatching(/^Beat at 5/)])
+    expect(tickClock({ kind: 'heat', size: 6, filled: 2 }, 1).events).toEqual([expect.stringMatching(/^At half/)])
     expect(tickClock({ kind: 'scheme', size: 6, filled: 5 }, 2)).toMatchObject({ filled: 6, events: [expect.stringMatching(/pulls it off/)] })
     expect(tickClock({ kind: 'heat', size: 6, filled: 0 }, -1).filled).toBe(0)
   })

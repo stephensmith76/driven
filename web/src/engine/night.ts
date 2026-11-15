@@ -62,7 +62,11 @@ export function tickClock(clock: { kind: string; size: number; filled: number },
   const rule = CORE.clocks.find((c) => c.kind === clock.kind)
   const half = Math.ceil(clock.size / 2)
   const events: string[] = []
-  if (rule && clock.filled < half && filled >= half) events.push(`At half: ${rule.half}`)
+  const beats = rule && 'beats' in rule ? (rule.beats as number[]) : null
+  if (rule && beats) {
+    // The Scheme clock's beats (1, 3 and 5): one event for each beat the ticks reach
+    for (const b of beats) if (b < clock.size && clock.filled < b && filled >= b) events.push(`Beat at ${b}: ${rule.half}`)
+  } else if (rule && clock.filled < half && filled >= half) events.push(`At half: ${rule.half}`)
   if (rule && clock.filled < clock.size && filled >= clock.size) events.push(`Full: ${rule.full}`)
   return { filled, events }
 }

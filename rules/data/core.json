@@ -1,5 +1,5 @@
 {
-  "rules_version": "2026-11-13.24",
+  "rules_version": "2026-11-14.25",
   "defense_base": 12,
   "dice": { "sides": 10, "count": 2, "advantage_count": 3 },
   "edge_bonus": 2,
@@ -9,8 +9,8 @@
       "fight": "The GM makes a move against you",
       "outside": "It fails or goes wrong, GM makes a move" },
     { "impact": 1, "min_margin": 0, "max_margin": 3, "label": "Impact 1",
-      "fight": "1 Harm",
-      "outside": "You get it, with a cost or complication" },
+      "fight": "1 Harm, or the attack's effect. No cost",
+      "outside": "You get it, with a cost: the GM offers two, you pick one" },
     { "impact": 2, "min_margin": 4, "max_margin": 7, "label": "Impact 2",
       "fight": "2 Harm",
       "outside": "Clean success" },
@@ -47,7 +47,7 @@
     "hero_boxes": ["Bruised", "Hurt", "Wounded", "Down"],
     "extra_box": { "name": "Battered", "after": "Hurt" },
     "box_text": {
-      "Bruised": "No effect. Clears after any short breather.",
+      "Bruised": "No effect. Clears at the end of every scene.",
       "Hurt": "No effect yet, but you're one box from real trouble.",
       "Battered": "No effect. An extra box from Hard to Kill or the Resilience power.",
       "Wounded": "Disadvantage on Force and Flow rolls. Grit your teeth: at the start of your turn, take 1 Stress to ignore it until your next turn.",
@@ -136,9 +136,9 @@
   "clocks": [
     { "kind": "scheme", "name": "Scheme", "size": 6, "scope": "team",
       "ticks": "Every Dawn, and as a cost when following leads",
-      "half": "Beats at 2, 4 and 6: three events the heroes can see, written in case prep (a witness disappears, a building burns)",
-      "beats": [2, 4, 6],
-      "full": "The villain pulls it off. The showdown happens on their ground, after the damage is done." },
+      "half": "Beats at 1, 3 and 5: three events the heroes can see, written in case prep (a witness disappears, a building burns)",
+      "beats": [1, 3, 5],
+      "full": "The villain pulls it off. The investigation stops, and the showdown happens on their ground, after the damage is done." },
     { "kind": "heat", "name": "Heat", "size": 6, "scope": "team",
       "ticks": "Guns, public fights, collateral damage, Vanity, Vengeance, sloppy feeding, a Marked hero seen by civilians",
       "half": "Cops show up to fights on round 3 and try to arrest everyone, heroes included",
@@ -168,7 +168,7 @@
     "unmasking_min_arc_clues": 3,
     "lead_results": [
       { "impact": 0, "text": "The clue, and the GM picks a cost: tick the Scheme clock, +1 Heat, 1 Stress, or an ambush" },
-      { "impact": 1, "text": "The clue, and you pick one of those costs" },
+      { "impact": 1, "text": "The clue, and the GM offers two of these costs; you pick one" },
       { "impact": 2, "text": "The clue, clean" },
       { "impact": 3, "text": "The clue, plus one: a second clue, Edge against the villain in the showdown, or a hint at their Weakness" }
     ],
@@ -181,35 +181,38 @@
     "missed_crack": { "regroup_ticks": 2, "trap_ticks": 1,
       "trap_text": "Going in on a wrong theory is a Confrontation on the villain's ground, and their side ambushes. The case villain isn't there unless the Scheme clock is full: the trap is a lieutenant or a gang. Wrong Who: you corner a patsy as a clean-up crew arrives (the Objective is keeping the patsy alive). Wrong What: you walk into a live job (+1 Heat, cops on round 2). Wrong Where: a decoy (one zone is a Hazard, and a clock of 4 counts down). Win the fight or finish its Objective and the team takes 1 clue, and the GM gives the true answer to the facet that was wrong." },
     "confrontation": [
-      { "impact": "2-3", "text": "You choose the ground. Ambush the villain (your side has Edge on its first roll), or add one zone tag of your choice to the map." },
+      { "impact": "2-3", "text": "You choose the ground. Ambush the villain (one roll on your side has Edge), or add one zone tag of your choice to the map." },
       { "impact": "1", "text": "You know where, but they're ready. No ambush either way, and the villain starts with +1 Drive." },
       { "impact": "miss", "text": "A trap, or a full Scheme clock: the villain chooses the ground and gets the ambush." }
     ]
   },
   "dawn": {
-    "order": "At the start of Dawn, the Scheme clock ticks and its Stress lands, before heroes make their picks.",
+    "order": "At the start of Dawn, the Scheme clock ticks and its Stress lands, before heroes make their picks. A hero who is still Down takes none of it.",
     "picks": 2,
     "options": [
       { "id": "sleep_it_off", "name": "Sleep It Off", "text": "Clear 3 Stress.", "stress_clear": 3 },
       { "id": "patch_up", "name": "Patch Up", "text": "Clear Hurt and Wounded. Pick both this and Sleep It Off to clear Down." },
       { "id": "show_up", "name": "Show Up", "text": "Be there for your civilian life. Play a short scene with one of your connections, then clear 1 Stress. If you don't pick this, tick your Home clock.", "stress_clear": 1 },
       { "id": "lay_low", "name": "Lay Low", "text": "Clear 1 Heat." },
-      { "id": "work_the_case", "name": "Work the Case", "text": "Chase one lead off-screen and take 1 clue, no roll." }
+      { "id": "work_the_case", "name": "Work the Case", "text": "Chase one lead off-screen and take 1 clue, no roll. It counts as the team's one no-roll clue for the Night. If that is already used, take Edge on a lead next Night instead." }
     ]
   },
   "patrol": {
-    "actions_per_night": 2,
+    "pool_per_hero": 1,
+    "pool_min": 2,
     "lead_cost": 1,
     "no_roll_clues_per_night": 1,
-    "text": "Each hero gets 2 Patrol actions per Night. Following a lead costs one. A hero can take at most one no-roll clue per Night, from all sources combined (Work the Case, Plugs, Network, forensic kit, hacking rig, tracker and the like)."
+    "no_roll_scope": "team",
+    "text": "Each Night the team shares a pool of Patrol actions equal to the number of heroes, minimum 2. Following a lead costs one action and buys everything that comes of it. Each lead gives one clue; anything else found is a new lead. The whole team takes at most one no-roll clue per Night, from all sources combined (Work the Case, Plugs, Network, forensic kit, hacking rig, tracker and the like). Any other no-roll source gives Edge on one lead roll instead."
   },
   "defeat": {
     "text": "When every hero is Down or has fled, the villain gets what they came for, the Scheme clock ticks twice, and each hero ticks Home or Heat (their choice). Nobody dies from defeat alone: a Dying hero is stabilized by a bystander, or because the villain walks away."
   },
   "recovery": [
-    { "id": "breather", "name": "Breather", "text": "A few quiet minutes between scenes: clear Bruised." },
+    { "id": "breather", "name": "Breather", "text": "Bruised clears automatically at the end of every scene, unless the GM says there is no time. Only the Bruised box: Hurt and Wounded stay filled." },
     { "id": "dawn", "name": "Dawn", "text": "Patch Up clears Hurt and Wounded." },
-    { "id": "after_fight", "name": "Down after a fight", "text": "A hero who is Down (but not Dying) gets back up at Wounded when the fight ends, at Disadvantage on Force and Flow until they heal. A stabilized Dying hero stays Down until Dawn and needs Patch Up and Sleep It Off together." }
+    { "id": "after_fight", "name": "Down after a fight", "text": "A hero who is Down (but not Dying) gets back up at Wounded when the fight ends, at Disadvantage on Force and Flow until they heal. A stabilized Dying hero stays Down until Dawn and needs Patch Up and Sleep It Off together." },
+    { "id": "dying_mark", "name": "Dying leaves a mark", "trial": true, "text": "A hero who was Dying and got stabilized starts the next Night with one Harm box filled that Patch Up at that Dawn can't clear. A med kit, Fast Healer, Healing Factor or a Lair can clear it. It doesn't stack with left for dead." }
   ],
   "stress_sources": [
     { "text": "You Strain for an extra action", "stress": "1" },
@@ -224,11 +227,11 @@
   "villain_scaling": {
     "turns_per_heroes": 2,
     "lieutenant_turns": 1,
-    "lieutenant_text": "A lieutenant gets one turn per round, however many heroes there are. With several named enemies, each villain takes its own turns and no villain counts as alone.",
+    "lieutenant_text": "A lieutenant gets one turn and one free Presence attack per round, however many heroes there are. With several named enemies, each villain takes its own turns and no villain counts as alone.",
     "turns_text": "A named villain gets one turn per round for every two heroes, rounded up. A villain fighting alone, with no mooks or lieutenants, gets one turn per hero instead.",
     "gang_text": "With no named villain, one group of 3 mooks per hero. With a named villain present, one group per two heroes (rounded down, minimum 1). Then adjust for how hard the fight should be.",
     "mook_group_size": 3,
-    "named_enemy_text": "A named enemy can lose at most one turn per fight, from all sources combined. After that, any effect that would cost them a turn gives them Disadvantage on their next roll instead. Losing their next Quick Action means Disadvantage on their next roll."
+    "named_enemy_text": "A named enemy can lose at most one turn per fight, from all sources combined. After that, any effect that would cost them a turn gives them Disadvantage on their next roll instead. Losing their next Quick Action means Disadvantage on their next roll. Disadvantage on their next roll applies to their next roll that isn't their free Presence attack."
   },
   "advancement": [
     "+1 to a stat (max +4, and never two cases in a row)",

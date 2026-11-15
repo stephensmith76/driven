@@ -46,7 +46,7 @@
     "steady": "Once per fight, Strain costs no Stress.",
     "fraying": "Advantage on a Flow roll, once per round.",
     "hook": "You won't take cover or retreat.",
-    "breaking": "You do the most dangerous thing in reach and drag someone into it with you." },
+    "breaking": "You do the most dangerous thing in reach and drag someone into it with you. You still go after enemies, but you drop caution and stop protecting your friends." },
   { "id": "loyalty", "name": "Loyalty",
     "drive_trigger": "When you take a risk for a connection or a teammate.",
     "steady": "Once per scene, name one roll you make to protect, help or avenge one of your connections or a teammate. That roll has Edge.",
