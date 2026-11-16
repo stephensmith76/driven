@@ -43,7 +43,7 @@ describe('encounterConfig', () => {
 
 describe('several named enemies', () => {
   it('library entries carry their role', () => {
-    expect(libraryVillains().map((v) => v.sim.role)).toEqual(['villain', 'villain', 'lieutenant'])
+    expect(libraryVillains().map((v) => v.sim.role)).toEqual(['villain', 'villain', 'villain', 'lieutenant', 'villain', 'villain', 'lieutenant'])
   })
   it('a form saved with one villain reads back as a list', () => {
     const old = { party: ['a'], villain: { ...butcher, role: undefined } }

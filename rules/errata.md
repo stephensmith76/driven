@@ -661,3 +661,35 @@ New trial rules. Rules version 2026-11-15.27. See the rules for the full text.
 **Villains, Sample villains.** New: the Task Force Commander (Heavy, lieutenant).
 
 **Gear and Powers, Assets.** New trial Assets: Crime lab, Back-alley clinic, Safe house, Inside man, Home turf. Dying leaves a mark now also lists the back-alley clinic.
+
+## 24. Four more sample villains (Nov 16)
+
+New trial villains. Rules version 2026-11-16.28. See the rules for the full stat blocks.
+
+**Villains, Sample villains.** New: the Papist (Schemer, case boss, with villain-only Telekinesis), Nemesista (Nemesis, lieutenant, a mercenary sniper), Reverse Cowgirl (Trickster, smaller case villain, with time powers), the Bakiarist (Insidious, smaller case villain) and his mooks, the Swarm. Every villain role now has a sample.
+
+## 25. Cleanup pass (Nov 16)
+
+Fixes and small trial additions. Rules version 2026-11-16.28.
+
+**Drive.** Was: "Start each Night with 2. At Dawn, anything above 3 drops to 3." Now: "Start your first Night with 2. At Dawn, Drive above 3 drops to 3, and Drive below 2 comes back up to 2."
+
+**Fights, Turn order.** Rewritten, same rule: sides alternate, heroes take the first turn of every round, and an ambushed side loses the first turn of round 1 only. Whoever ambushes has Edge on one roll, the first roll by whoever acts first on their side.
+
+**Harm, Weapons.** Guns: "+1 Heat" is now "+1 Heat for each fight where you fire one", to match Gun rules. The table is marked as the short version of Weapons you carry.
+
+**Weapons you carry.** Shotgun: being seen carrying one is +1 Heat, like a long gun.
+
+**Gear, Tools.** Bolas, foam grenades and the Net arrow (Trick Arrows): getting free is a Quick Action with no roll. Stun grenade and Taser gun moved into the tools table, text unchanged.
+
+**The Night, Patrol.** The Impact 3 bonus on a lead is now "Edge on one roll against the villain in the showdown". New: **Tailing and sneaking in (trial)**. A tail is a Chase, and getting in unseen is a lead roll or an Objective step.
+
+**The clocks.** A Home crisis always costs or changes one of that hero's Connections (trial).
+
+**Villains, What a villain has.** New: **Using a Weakness (trial)**. When the heroes play into a Weakness they know, it works with no roll, and the first roll that comes of it each scene has Edge. New guide (trial): a case villain's stats total 7 or 8, a lieutenant's 4 to 7.
+
+**Sample villains.** Task Force Commander: Focus +3 is now +1, so Wits 15 is now 13.
+
+**Sample heroes.** The table has a Flair column (Bulwark: Bodyguard, Rook: Hard to Kill, Nightjar: Opportunist, Patchwork: Fast Hands, the Ledger: Plugs). Bulwark's Guard is 13 with the riot shield. Sample loadouts: Bulwark has a free crowbar and Patchwork a free baton.
+
+**Test fight: The Cannery.** Both heroes start with 2 Drive, not 1.

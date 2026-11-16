@@ -1,5 +1,5 @@
 {
-  "rules_version": "2026-11-15.27",
+  "rules_version": "2026-11-16.28",
   "defense_base": 12,
   "dice": { "sides": 10, "count": 2, "advantage_count": 3 },
   "edge_bonus": 2,
@@ -70,7 +70,7 @@
     { "id": "light", "name": "Light melee", "attack_kind": "blunt", "text": "+1 Harm on a Strike at Impact 2 or better. Jabs with it have no -2 penalty." },
     { "id": "heavy", "name": "Heavy melee", "attack_kind": "blunt", "text": "+1 Harm on any hit, but only on a Strike (never a Jab)" },
     { "id": "knife", "name": "Blades", "attack_kind": "blade", "text": "+1 Harm on Impact 2 or better against anyone with no Toughness" },
-    { "id": "pistol", "name": "Guns", "attack_kind": "gun", "text": "+1 Harm on Impact 2 or better and ignores Toughness. Firing one is loud: +1 Heat" }
+    { "id": "pistol", "name": "Guns", "attack_kind": "gun", "text": "+1 Harm on Impact 2 or better and ignores Toughness. Firing one is loud: +1 Heat for each fight where you fire one" }
   ],
   "stress": {
     "boxes": 8,
@@ -146,7 +146,7 @@
     { "kind": "home", "name": "Home", "size": 6, "scope": "hero",
       "ticks": "You skip Show Up, you Break, you use a personal clue, you use Resources to buy past a problem, or a villain finds your Lair (+2)",
       "half": "Someone close starts asking questions",
-      "full": "Home crisis: lose the job, the relationship ends, someone learns who you are, or a loved one becomes a target. Play it out, then reset to 0." },
+      "full": "Home crisis: lose the job, the relationship ends, someone learns who you are, or a loved one becomes a target. It always costs or changes one of that hero's Connections (trial). Play it out, then reset to 0." },
     { "kind": "endgame", "name": "Endgame", "size": 8, "scope": "arc",
       "ticks": "A case's Scheme clock fills (+2); a Pawn escapes or a theory names the wrong culprit (+1); the heroes miss an Unmasking roll (+1)",
       "half": "The Mastermind makes it personal: pick one hero and hit their Home",
@@ -170,7 +170,7 @@
       { "impact": 0, "text": "The clue, and the GM picks a cost: tick the Scheme clock, +1 Heat, 1 Stress, or an ambush" },
       { "impact": 1, "text": "The clue, and the GM offers two of these costs; you pick one" },
       { "impact": 2, "text": "The clue, clean" },
-      { "impact": 3, "text": "The clue, plus one: a second clue, Edge against the villain in the showdown, or a hint at their Weakness" }
+      { "impact": 3, "text": "The clue, plus one: a second clue, Edge on one roll against the villain in the showdown, or a hint at their Weakness" }
     ],
     "crack_results": [
       { "impact": 0, "text": "Wrong. The GM says which facet doesn't hold up. The team picks one: Regroup (the Scheme clock ticks twice; try again once you have at least one new clue) or Go in anyway (the Scheme clock ticks once, and you walk into a trap)." },

@@ -186,8 +186,12 @@ export function enemyFromLibrary(entry: LibraryVillain | LibraryMooks): Draft {
 /** A library villain's Trait lines, Tricks and Weakness, in the shape a built villain uses. */
 export function libraryDetails(v: LibraryVillain): VillainDetails {
   const threat = /"([^"]+)"/.exec((v as { presence_attack?: string }).presence_attack ?? '')?.[1]
+  const more = v as { concept?: string; powers?: string[]; notes?: string }
   return {
     role: v.role,
+    ...(more.concept ? { concept: more.concept } : {}),
+    ...(more.powers?.length ? { powers: [...more.powers] } : {}),
+    ...(more.notes ? { notes: more.notes } : {}),
     weapon: v.weapon as VillainDetails['weapon'],
     ...(v.trait.name || v.trait.fraying || v.trait.breaking ? { trait: { name: v.trait.name, fraying: v.trait.fraying, breaking: v.trait.breaking } } : {}),
     ...(v.drive_trigger ? { drive_trigger: v.drive_trigger } : {}),

@@ -56,6 +56,6 @@
     "text": "Once per scene, when you're outnumbered in your zone, your next attack has Edge and deals +1 Harm.",
     "sim": null },
   { "id": "trick-arrows", "name": "Trick Arrows", "trial": true,
-    "text": "You need a bow as one of your weapons. Twice per fight, add one effect to a bow attack, a different arrow each time. Net: the target can't take their free move until they spend a Quick Action to get free. Flash: the target has Disadvantage on their next roll. Grapple: you move to any zone you can see, including High Ground. Boom: on a hit, everyone else in the target's zone takes 1 Harm.",
+    "text": "You need a bow as one of your weapons. Twice per fight, add one effect to a bow attack, a different arrow each time. Net: the target can't take their free move until they spend a Quick Action to get free (no roll). Flash: the target has Disadvantage on their next roll. Grapple: you move to any zone you can see, including High Ground. Boom: on a hit, everyone else in the target's zone takes 1 Harm.",
     "sim": null }
 ]

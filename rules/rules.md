@@ -1,6 +1,6 @@
 # Driven - Street Level Heroic RPG
 
-Rules version 2026-11-15.27 · Nov 15, 2026 · @Stephen
+Rules version 2026-11-16.28 · Nov 16, 2026 · @Stephen
 
 ## Overview
 
@@ -128,7 +128,7 @@ Lieutenants have 5. A case's main villain has 10, or 8 for a smaller one. Villai
 
 ### Weapons
 
-Everyone carries a knife and one free weapon (see Weapons you carry).
+Everyone carries a knife and one free weapon. The table below is the short version. Weapons you carry (under Gear and Powers) has the full list, with the bow and the shotgun.
 
 | Weapon | Effect |
 | --- | --- |
@@ -136,7 +136,7 @@ Everyone carries a knife and one free weapon (see Weapons you carry).
 | Light melee (baton, fighting sticks, weighted gloves) | +1 Harm on a Strike at Impact 2 or better. Jabs with it have no -2 penalty |
 | Heavy melee (bat, pipe, crowbar) | +1 Harm on any hit, but only on a Strike (never a Jab) |
 | Blades | +1 Harm on Impact 2 or better against anyone with no Toughness |
-| Guns | +1 Harm on Impact 2 or better (a graze is just a graze) and ignores natural Toughness, though armor still works. Firing one is loud: +1 Heat |
+| Guns | +1 Harm on Impact 2 or better (a graze is just a graze) and ignores natural Toughness, though armor still works. Firing one is loud: +1 Heat for each fight where you fire one |
 
 **Armor** (a vest, a reinforced suit) gives Toughness as listed under Gear and Powers. A hero with Force +3 and armor still has Toughness 1, not 2.
 
@@ -276,7 +276,7 @@ Pick one. Each Trait lists how it earns Drive, its two perks, its hook, and how 
 
 Drive is your heroic fuel. There is one price list for everyone. Archetypes change how you earn Drive, never what it costs.
 
-**You hold up to 6 Drive.** Start each Night with 2. At Dawn, anything above 3 drops to 3.
+**You hold up to 6 Drive.** Start your first Night with 2. At Dawn, Drive above 3 drops to 3, and Drive below 2 comes back up to 2.
 
 ### Earning Drive
 
@@ -337,7 +337,7 @@ Give each zone 0 to 2 tags: **Cover**, **High Ground**, **Dark**, **Cramped**, *
 
 ### Turn order
 
-Heroes go first unless they were ambushed. Then the villains act first in round 1 only, and after that sides alternate as usual. The ambush gives Edge to one roll: the first roll by whichever enemy the GM has act first. When the heroes ambush, it's the first roll by whichever hero goes first. Sides alternate: one hero, then one villain or mook group, then another hero, and so on. The players pick which hero goes next. If one side runs out of turns, the other side finishes theirs.
+Sides alternate: one hero, then one villain or mook group, then another hero, and so on. The players pick which hero goes next. If one side runs out of turns, the other side finishes theirs. Heroes take the first turn of every round, unless they were ambushed: then the enemy takes the first turn of round 1 only. Whoever ambushes has Edge on one roll: the first roll by whoever acts first on their side.
 
 At the **end of each round**, tick any clocks in play (a hostage, a fuse, sirens getting closer).
 
@@ -457,7 +457,7 @@ A campaign can start Floating and move to Fixed Culprit once recurring villains 
 | Miss | The clue, and the GM picks a cost: tick the Scheme clock, +1 Heat, 1 Stress, or an ambush |
 | Impact 1 | The clue, and the GM offers two of these costs; you pick one |
 | Impact 2 | The clue, clean |
-| Impact 3 | The clue, plus one: a second clue, Edge against the villain in the showdown, or a hint at their Weakness |
+| Impact 3 | The clue, plus one: a second clue, Edge on one roll against the villain in the showdown, or a hint at their Weakness |
 
 **Patrol pool (trial).** Each Night the team shares a pool of Patrol actions equal to the number of heroes, minimum 2. Following a lead costs one action, and it buys everything that comes of that lead: any fight, search or interrogation in that thread costs no further action.
 
@@ -477,6 +477,8 @@ A campaign can start Floating and move to Fixed Culprit once recurring villains 
 | Impact 3 | As Impact 2, plus the usual Impact 3 bonus |
 
 Only a lieutenant can stop the tick, and only once per case. An accomplice gives the clue only.
+
+**Tailing and sneaking in (trial).** These need no rules of their own. Tailing someone is a Chase: three hits and you followed them all the way unseen, three Misses and they spot you or lose you. Getting into a place unseen is a lead roll, or an Objective step when it happens during a fight.
 
 **The Scheme clock** is the villain's plan moving forward. It ticks at every Dawn and whenever a cost says so. When it reaches 1, 3 or 5, that beat happens. If it fills at 6 before you crack the case, the villain pulls it off: the investigation stops, and the showdown happens on their ground, after the damage is done.
 
@@ -536,8 +538,8 @@ You can never do everything. That's the point.
 | Clock | Size | Ticks when | At half | When it fills |
 | --- | --- | --- | --- | --- |
 | **Scheme** (team) | 6 | Every Dawn, and as a cost when following leads | Beats at 1, 3 and 5 (trial): three events the heroes can see, written in case prep (a witness disappears, a building burns) | The villain pulls it off. The investigation stops, and the showdown happens on their ground, after the damage is done. |
-| **Heat** (team) | 6 | Guns (and being seen with a long gun), public fights, collateral damage, Vanity, Vengeance, sloppy feeding (Vampirism on Impact 1 or a miss), a Marked hero seen by civilians | Cops show up to fights on round 3 and try to arrest everyone, heroes included (see Cops and Crackdowns) | Crackdown: a task force, a smear in the press, or someone gets a description. Play it out, then drop Heat to 2. |
-| **Home** (each hero) | 6 | You skip Show Up, you Break, you use a personal clue, you use Resources to buy past a problem, or a villain finds your Lair (+2) | Someone close starts asking questions | Home crisis: lose the job, the relationship ends, someone learns who you are, or a loved one becomes a target. Play it out, then reset to 0. |
+| **Heat** (team) | 6 | Guns (and being seen with a long gun or a shotgun), public fights, collateral damage, Vanity, Vengeance, sloppy feeding (Vampirism on Impact 1 or a miss), a Marked hero seen by civilians | Cops show up to fights on round 3 and try to arrest everyone, heroes included (see Cops and Crackdowns) | Crackdown: a task force, a smear in the press, or someone gets a description. Play it out, then drop Heat to 2. |
+| **Home** (each hero) | 6 | You skip Show Up, you Break, you use a personal clue, you use Resources to buy past a problem, or a villain finds your Lair (+2) | Someone close starts asking questions | Home crisis: lose the job, the relationship ends, someone learns who you are, or a loved one becomes a target. It always costs or changes one of that hero's Connections (trial). Play it out, then reset to 0. |
 
 **Heroes with no civilian life.** A pure vigilante has no day job or alter ego. Their civilian life, and so Show Up and the Home clock, just stands for whatever anchors them to their humanity, even if it's only feeding a goldfish. Name it when you build the hero. When Home ticks, that anchor is what's slipping, and a Home crisis is that anchor being lost, found or threatened.
 
@@ -705,15 +707,15 @@ You make everyone around you better, and you carry what it costs them. Presence 
 
 ### Sample heroes
 
-| Hero | Archetype | Trait | Force | Flow | Focus | Presence | Guard / Wits / Poise | Toughness |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **Bulwark** (Dana Okafor, ex-firefighter) | Protector | Mercy | +3 | 0 | +1 | +2 | 12 / 13 / 14 | 1 |
-| **Rook** (Tommy Reyes, washed-up boxer) | Brawler | Spite | +4 | +2 | -1 | +1 | 14 / 11 / 13 | 1 |
-| **Nightjar** (Lena Cho, bike courier) | Stalker | Vengeance | +1 | +4 | +2 | -1 | 16 / 14 / 11 | 0 |
-| **Patchwork** (Desmond Hale, engineering dropout) | Specialist | Thrill | 0 | +2 | +3 | +1 | 14 / 15 / 13 | 0 |
-| **The Ledger** (Ruth Abernathy, retired fraud investigator) | Detective | Order | -1 | +1 | +4 | +2 | 13 / 16 / 14 | 0 |
+| Hero | Archetype | Trait | Flair | Force | Flow | Focus | Presence | Guard / Wits / Poise | Toughness |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **Bulwark** (Dana Okafor, ex-firefighter) | Protector | Mercy | Bodyguard | +3 | 0 | +1 | +2 | 13 / 13 / 14 | 1 |
+| **Rook** (Tommy Reyes, washed-up boxer) | Brawler | Spite | Hard to Kill | +4 | +2 | -1 | +1 | 14 / 11 / 13 | 1 |
+| **Nightjar** (Lena Cho, bike courier) | Stalker | Vengeance | Opportunist | +1 | +4 | +2 | -1 | 16 / 14 / 11 | 0 |
+| **Patchwork** (Desmond Hale, engineering dropout) | Specialist | Thrill | Fast Hands | 0 | +2 | +3 | +1 | 14 / 15 / 13 | 0 |
+| **The Ledger** (Ruth Abernathy, retired fraud investigator) | Detective | Order | Plugs | -1 | +1 | +4 | +2 | 13 / 16 / 14 | 0 |
 
-All heroes start with 4 Harm boxes, 8 Stress boxes, and 2 Drive.
+All heroes start with 4 Harm boxes, 8 Stress boxes, and 2 Drive. Bulwark's Guard includes the riot shield.
 
 ### Flairs
 
@@ -750,7 +752,7 @@ Pick one at character creation.
 
 **Scrapper** (trial Flair): once per scene, when you're outnumbered in your zone, your next attack has Edge and deals +1 Harm.
 
-**Trick Arrows** (trial Flair): you need a bow as one of your weapons. Twice per fight, add one effect to a bow attack, a different arrow each time. Net: the target can't take their free move until they spend a Quick Action to get free. Flash: the target has Disadvantage on their next roll. Grapple: you move to any zone you can see, including High Ground. Boom: on a hit, everyone else in the target's zone takes 1 Harm.
+**Trick Arrows** (trial Flair): you need a bow as one of your weapons. Twice per fight, add one effect to a bow attack, a different arrow each time. Net: the target can't take their free move until they spend a Quick Action to get free (no roll). Flash: the target has Disadvantage on their next roll. Grapple: you move to any zone you can see, including High Ground. Boom: on a hit, everyone else in the target's zone takes 1 Harm.
 
 ### Connections
 
@@ -794,7 +796,7 @@ Everyone carries a **knife**, and every hero also gets **one free weapon** of th
 | Knife (everyone has one) | +1 Harm on Impact 2 or better against anyone without Toughness. Can be thrown at Near range. It is a backup: each attack uses one weapon, never two weapon bonuses. |
 | Sidearm (free pick) | A gun (Flow to shoot). Far range is at Disadvantage. |
 | Long gun (free pick) | A gun with no Far penalty. Being seen carrying one is +1 Heat. |
-| Shotgun (free pick, trial) | A gun for close quarters (Flow to shoot). No Disadvantage when you're engaged in melee, but it can't hit at Far range. |
+| Shotgun (free pick, trial) | A gun for close quarters (Flow to shoot). No Disadvantage when you're engaged in melee, but it can't hit at Far range. Being seen carrying one is +1 Heat. |
 | Bow (free pick) | Flow to shoot, no Far penalty, +1 Harm on Impact 2 or better. Silent: unlike a gun, it adds no Heat on its own. Not a gun, so Toughness applies. Like a gun, it is at Disadvantage when you're engaged in melee. |
 | Light melee (free pick: baton, fighting sticks, weighted gloves) | +1 Harm on a Strike at Impact 2 or better. Jabs with it have no -2 penalty. |
 | Heavy melee (free pick: bat, pipe, crowbar) | +1 Harm on any hit, but only on a Strike (never a Jab). |
@@ -839,7 +841,7 @@ Gear is armor and tools. Gear can be lost: smashing your gear, or catching you w
 | Pepper spray | Quick Action, Engaged. On a hit, the target has Disadvantage on attacks until the end of their next turn. |
 | Smoke grenades | Quick Action: your zone or an adjacent one becomes Dark until the end of next round. Two per fight. |
 | Flashbangs | Quick Action: roll Flow against the Guard of everyone in your zone or an adjacent one; everyone you beat has Disadvantage on their next roll. One per fight. Named enemies: see Named enemies resist being shut down. |
-| Bolas or net launcher | Ranged, Near. On a hit, the target can't take their free move until they spend a Quick Action to get free. |
+| Bolas or net launcher | Ranged, Near. On a hit, the target can't take their free move until they spend a Quick Action to get free (no roll). |
 | Riot shield | +1 Guard. Take Cover works anywhere. Disadvantage on Vanish, and you can't use a long gun. |
 | Mask and voice changer | Edge on rolls to scare or bluff someone who doesn't know you. |
 | Lockpicks and bypass kit | Edge on getting through locked doors, alarms and safes. |
@@ -857,17 +859,15 @@ Gear is armor and tools. Gear can be lost: smashing your gear, or catching you w
 | Restraints | Full Action: bind an enemy who is Down, surrendering or willing. They can't act until freed or the scene ends. A bound prisoner can be interrogated. |
 | Disguise kit | Take on a new identity for a scene. Once per Night, pass as someone else with no roll. If you're seen through, take +1 Heat. |
 | Glider cape | Falls of any height cost you nothing, and you can drop into any zone below you as a free move. |
-| Foam grenades | Quick Action, your zone or an adjacent one. Pick one: put out a fire or live-wire Hazard (the zone loses the tag), seal one door or exit (breaking through is a Force roll against 13), or glue one enemy in place (they can't take their free move until they spend a Quick Action to get free). Two per fight. |
+| Foam grenades | Quick Action, your zone or an adjacent one. Pick one: put out a fire or live-wire Hazard (the zone loses the tag), seal one door or exit (breaking through is a Force roll against 13), or glue one enemy in place (they can't take their free move until they spend a Quick Action to get free (no roll)). Two per fight. |
 | Parabolic mic and bug kit | Listen through glass and walls from across the street, or plant a bug. Once per Night, Edge on a lead roll that involves listening in or watching someone. |
 | EMP charge | Quick Action, your zone or an adjacent one. Lights, cameras and electronics there go dead: the zone becomes Dark until the end of the fight, and drones, comms and powered armor in it stop working until their owner spends a Quick Action to reset them. Your own gear there is hit too. One per fight. |
 | Signal jammer | Quick Action: phones, radios and wireless alarms in your zone and adjacent zones go dead for the scene. Nobody there can call for help, and a public fight there adds no Heat (gunfire still does). Earpiece comms stop working too, yours included. |
 | Breaching charge | Full Action, no roll: blow through a door, wall or vehicle in your zone. It opens a path into an adjacent zone, or removes Cover from your zone. On an Objective step it doesn't finish the step, but that step's roll has Advantage. Loud: +1 Heat. One per Night. |
 | Adrenaline injector | Quick Action, you or an ally in your zone: ignore the Wounded Disadvantage until the end of the fight. Take 1 Stress when the fight ends. One per Night. |
 | Hazmat suit | Fire, gas and live-wire Hazards cost you no Harm, and gas and fumes don't affect you. Disadvantage on Vanish and climbing. |
-
-**Stun grenade** (heavier flashbang): Quick Action, your zone or an adjacent one. Everyone there without ear and eye protection rolls Focus vs 12 or loses their next turn; mooks just lose it. Allies in the zone are caught too. Named enemies: see Named enemies resist being shut down. One per fight.
-
-**Taser gun** (dart taser): a Full Action Strike with Flow at Near range, with no -2 (the plain Taser is the Jab). On a hit, instead of Harm, the target loses their next Quick Action (a named enemy has Disadvantage on their next roll instead: see Named enemies resist being shut down) and a mook drops. Electricity, so it ignores Toughness. Two shots per fight, and reloading between them takes a Quick Action.
+| Stun grenade | A heavier flashbang. Quick Action, your zone or an adjacent one. Everyone there without ear and eye protection rolls Focus vs 12 or loses their next turn; mooks just lose it. Allies in the zone are caught too. Named enemies: see Named enemies resist being shut down. One per fight. |
+| Taser gun | A dart taser. A Full Action Strike with Flow at Near range, with no -2 (the plain Taser is the Jab). On a hit, instead of Harm, the target loses their next Quick Action (a named enemy has Disadvantage on their next roll instead: see Named enemies resist being shut down) and a mook drops. Electricity, so it ignores Toughness. Two shots per fight, and reloading between them takes a Quick Action. |
 
 **Throwing grenades.** Smoke grenades, flashbangs and stun grenades can be thrown into an adjacent zone. Thrown weapons (a knife, tossies) keep their listed ranges.
 
@@ -1178,10 +1178,10 @@ Too big for street-level heroes, but fine for a Nemesis: **Biokinesis** (reshape
 
 | Hero | Slots | Loadout |
 | --- | --- | --- |
-| Bulwark | Street power (1) + 2 gear | Just the knife; Resilience (source: years of hauling hoses), med kit, riot shield |
+| Bulwark | Free weapon + street power (1) + 2 gear | Free crowbar (a halligan bar); Resilience (source: years of hauling hoses), med kit, riot shield |
 | Rook | Free weapon + 3 gear | Free weighted gloves; Kevlar vest, med kit, police scanner |
 | Nightjar | Free weapon + strange power (2) + gear (1) | Free fighting sticks; Shadow Manipulation (Allergy: floodlights burn her skin), grapple line |
-| Patchwork | 3 gear | Just the knife; night-vision goggles, grapple line, earpiece comms (plus a utility belt) |
+| Patchwork | Free weapon + 3 gear | Free baton; night-vision goggles, grapple line, earpiece comms (plus a utility belt) |
 | The Ledger | Free weapon + 3 gear | Free concealed sidearm; Kevlar vest, police scanner, burner phones |
 
 ## Villains
@@ -1190,13 +1190,15 @@ A villain fits in a short stat block. They use the same stats, defenses, and Dri
 
 ### What a villain has
 
-- **Stats and defenses**, same as a hero.
+- **Stats and defenses**, same as a hero. As a guide (trial), a case villain's stats total 7 or 8, and a lieutenant's total 4 to 7.
 - **Harm:** 5 for a lieutenant, 10 for a case's main villain (8 for a smaller one).
 - **Stress:** a lieutenant has 4 boxes (Fraying at 2, Breaking at 4). A case villain has 6 (Fraying at 3, Breaking at 6). Presence attacks and Stress Flairs fill it. A Breaking villain does something reckless: flees, turns on their own people, or gives something away.
 - **Trait:** one line for Fraying and one for Breaking. Use a hero's Trait, a villain Trait (below), or write your own.
 - **Drive:** starts at 2, earned from their role trigger once per round. Same spend prices as heroes.
 - **Trick:** one special move that costs Drive.
-- **Weakness:** something the heroes can discover (a Detective's Read, an Impact 3 on Patrol) and exploit.
+- **Weakness:** something the heroes can discover (a Detective's Read, an Impact 3 on Patrol, Crack the Case or Unmasking) and exploit.
+
+**Using a Weakness (trial).** A Weakness is a promise from the GM. When the heroes play into one they know, it works: the villain takes the challenge, goes for the ledger, lets the hostage go. No roll is needed to make them bite. If a roll does come of it, the first one each scene has Edge.
 
 **A villain who Breaks (trial)** doesn't leave the fight. Their Breaking line takes over for the rest of the scene, and every attack against them has Edge. If the Breaking line says they flee, the heroes get one round to stop them.
 
@@ -1287,8 +1289,8 @@ They try to arrest everyone, heroes included (see Cops and Crackdowns).
 
 ```
 TASK FORCE COMMANDER (Heavy, lieutenant) (trial)
-Force +2  Flow +2  Focus +3  Presence +2
-Guard 14  Wits 15  Poise 14   Harm 5  Toughness 1 (tactical armor)  Stress 4 (Fraying 2, Breaking 4)
+Force +2  Flow +2  Focus +1  Presence +2
+Guard 14  Wits 13  Poise 14   Harm 5  Toughness 1 (tactical armor)  Stress 4 (Fraying 2, Breaking 4)
 Trait: Duty. Fraying: won't back off, even with civilians in the way.
        Breaking: calls in everything. Two more Cop groups arrive next round, and +1 Heat.
 Drive: deals or takes Impact 2+
@@ -1304,6 +1306,85 @@ BRUISERS (Tough mooks, groups of 3) (trial)
 Attack +3   Guard 12  Wits 12  Poise 13   Harm 2 each
 One attack per group per turn, with Edge if all 3 are standing.
 Every 2 Harm drops one. Leftover Harm carries to the next. No Toughness.
+```
+
+```
+THE PAPIST (Schemer, case boss) (trial)
+Force 0  Flow +1  Focus +4  Presence +3
+Guard 13  Wits 16  Poise 15   Harm 10  Stress 6 (Fraying 3, Breaking 6)
+Powers: Telekinesis (villain-only). He attacks with Focus at any range, throwing whatever is in the zone.
+        He floats: melee can't reach him unless the attacker is on High Ground or drags him down with a grab.
+Trait: Viciousness. Fraying: goes after the most hurt target in reach, hero or bystander.
+       Breaking: hurts whoever is closest and can't fight back, his own people included.
+Drive: one of his clocks ticks (Congregation, Miracle)
+Presence attack (free, once per round): +3 vs Poise, 1 Stress per Impact.
+       "Bless you, my child."
+Trick (1 Drive): Blessing. A mook group acts out of turn.
+      (2 Drive): Cast out. He throws one hero he can see into an adjacent zone or off High Ground:
+                 Focus vs Guard. A hit also costs 1 Harm that Toughness doesn't reduce.
+      (2 Drive): tick one of his clocks.
+Weakness: he has to speak the blessing. Gag him or drown him out and the telekinesis stops, and he drops.
+```
+
+```
+NEMESISTA (Nemesis, lieutenant) (trial)
+Force 0  Flow +4  Focus +1  Presence +2
+Guard 16  Wits 13  Poise 14   Harm 5  Stress 4 (Fraying 2, Breaking 4)
+Powers: Special Weapon (her rifle: a long gun, and her first shot each fight has Edge),
+        Enhanced Senses (Dark gives her no Disadvantage), Quick (her free move covers two zones).
+Trait: Greed. Fraying: protects her fee before anyone. A hero who offers a cut has Edge against her.
+       Breaking: grabs what she can carry and runs.
+Drive: she targets her rival (the hero she was hired for)
+Presence attack (free, once per round): +2 vs Poise, 1 Stress per Impact.
+       She just laughs.
+Trick (2 Drive): Knows your moves. When her rival spends Drive, she has Edge against them until the end of the round.
+      (1 Drive): Relocate. After she shoots, she makes a free move. In a zone where she could Vanish, she is Hidden.
+Weakness: she's paid by the job. Outbid her client, or show her the client can't pay, and she walks.
+```
+
+```
+REVERSE COWGIRL (Trickster, smaller case villain) (trial)
+Force 0  Flow +4  Focus +1  Presence +3
+Guard 16  Wits 13  Poise 15   Harm 8  Stress 6 (Fraying 3, Breaking 6)
+Powers: Temporal Instability (Unstable), Special Weapon (a pair of six-shooters: guns, and her first shot each fight has Edge).
+Trait: Thrill. Fraying: won't take cover or retreat, and takes the riskiest shot on offer.
+       Breaking: does the most dangerous thing in reach and drags someone into it with her.
+Drive: a hero misses her
+Presence attack (free, once per round): +3 vs Poise, 1 Stress per Impact.
+       "Yee ha!"
+Trick (1 Drive): Rewind. One roll just made by her or against her is rolled again, and the second result stands.
+                 If the new roll goes against her too, she slips out of sync and loses her next free move.
+      (2 Drive): Where was I? She swaps places with a mook in sight. She was standing there all along.
+      (2 Drive): Fan the hammer. One attack roll against every hero in one zone.
+Weakness: loves jewelry. She won't leave a good piece behind, and she'll take a bad risk for one.
+```
+
+```
+THE BAKIARIST (Insidious, smaller case villain) (trial)
+Force -1  Flow +1  Focus +3  Presence +3
+Guard 13  Wits 15  Poise 15   Harm 8  Stress 6 (Fraying 3, Breaking 6)
+Trait: Contempt. Fraying: won't take the heroes seriously. Toys with the weakest-looking hero.
+       Breaking: drops the act and throws everything at whoever got under his skin.
+Drive: a hero takes Stress from him or his bees
+Presence attack (free, once per round): +3 vs Poise, 1 Stress per Impact.
+       "Face my BOSTON BAKED BEES!"
+Trick (1 Drive): The hum. His Presence attack this round hits every hero in a zone the swarm is in.
+      (1 Drive): Swarm cloud. A zone he can see becomes Dark until the end of next round.
+      (2 Drive): From the walls. One swarm member that was cleared comes back.
+Weakness: the queen. Objective "Take the queen" (3 steps): find the hive box (Focus vs 13), reach it through
+          the swarm (Flow vs 13, no roll if the zone is smoked; this step costs the swarm its Edge),
+          then seal it in. That turns the swarm on him and ends the fight.
+```
+
+```
+THE SWARM (Mooks, groups of 3) (trial)
+Attack +1   Guard 12   Harm 1 each
+One attack per group per turn, with Edge if all 3 are standing.
+Stings find the gaps: Toughness and armor don't reduce their Harm.
+Fists and weapons only drop one on Impact 2+ (you're swatting a cloud).
+Smoke or fire is a Quick Action with no roll: it drops one, or two with a smoke grenade or open flame.
+Presence attacks don't touch them, they can't be grabbed, and they never run.
+A closed door stops them moving between zones.
 ```
 
 ## Old Habits: changing your Trait
@@ -1401,7 +1482,7 @@ One short fight to check the math: **Rook** (Brawler) and **Nightjar** (Stalker)
 ### Setup
 
 - The heroes cracked the case with an Impact 2, so they chose the ground: Nightjar starts Hidden on the Catwalk.
-- Both heroes start with 1 Drive, no Harm, and no Stress.
+- Both heroes start with 2 Drive, no Harm, and no Stress.
 - **Hazard (Kill Floor):** anyone who misses a roll in this zone takes 1 Harm from the hooks. A Haymaker can knock someone into them.
 - **Hostage clock: 4.** It ticks at the end of every round, after everyone's turns (clocks in a fight always tick last). When it fills, the Butcher's men hurt the hostage, and every hero takes 2 Stress.
 
