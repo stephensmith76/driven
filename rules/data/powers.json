@@ -4,7 +4,7 @@
     "strange_stress": "The first time you use a strange power in a fight or scene, take 1 Stress. Pushing it costs the usual 1 Stress on top. Street powers have no use cost.",
     "always_on": "Armored and Invulnerability are always on. Take the 1 Stress the first time the power stops a hit in a fight. They must take Allergy: while the weakness is present, their Toughness doesn't apply.",
     "street_source": "Street powers are within peak-human reach. Write in a source.",
-    "strange_cost": "Strange powers are clearly superhuman. They cost 2 slots, and you must write in a cost and pick a flaw."
+    "strange_cost": "Strange powers are clearly superhuman. They cost 2 slots. Write in a source, as with any power, and pick a flaw: the flaw is its price."
   },
   "flaws": [
     { "id": "allergy", "name": "Allergy",
@@ -97,7 +97,7 @@
       ],
       "counter": { "name": "Charge", "min": 0, "max": 3 },
       "sim": null },
-    { "id": "custom-power", "name": "Custom Power", "tier": "street", "slots": 1, "note": "Write in name, source, cost",
+    { "id": "custom-power", "name": "Custom Power", "tier": "street", "slots": 1, "note": "Write in name and source",
       "abilities": [
         { "name": "Start", "text": "Edge on rolls outside a fight that your power helps." },
         { "name": "Second ability", "text": "Edge on rolls in a fight that your power helps." },
@@ -216,7 +216,7 @@
       ],
       "extra": "Conspicuous: using any of its abilities ends Hidden, you can't Vanish that round, and anyone watching knows it's you.",
       "sim": null },
-    { "id": "invulnerability", "first_use_stress": false, "name": "Invulnerability", "tier": "strange", "core": true, "slots": 2, "note": "Write in a weakness", "always_on": true, "required_flaw": "allergy",
+    { "id": "invulnerability", "first_use_stress": false, "name": "Invulnerability", "tier": "strange", "core": true, "slots": 2, "note": "Your Allergy is the weakness", "always_on": true, "required_flaw": "allergy",
       "abilities": [
         { "name": "Start", "text": "When you would take Harm from a physical attack, take that much Stress instead. Work out the Harm first (weapon bonuses, then Toughness, then the 1-Harm minimum), then convert what's left. Your weakness gets through normally, and once your Stress is full (8), anything more spills into Harm. Invulnerability skips the always-on first-hit Stress cost." },
         { "name": "Untouchable", "text": "After people see you shrug off a hit, Edge on Presence rolls to intimidate them." },

@@ -1,6 +1,6 @@
 # Driven - Street Level Heroic RPG
 
-Rules version 2026-11-15.26 · Nov 15, 2026 · @Stephen
+Rules version 2026-11-15.27 · Nov 15, 2026 · @Stephen
 
 ## Overview
 
@@ -145,7 +145,7 @@ Everyone carries a knife and one free weapon (see Weapons you carry).
 - **Breather:** Bruised clears automatically at the end of every scene, unless the GM says there is no time. It clears only the Bruised box. Hurt and Wounded stay filled, so a Wounded hero stays Wounded, and the next Harm fills Bruised again.
 - **Dawn** (see The Night): Patch Up clears Hurt and Wounded.
 - **Down** after a fight: when the fight ends, a hero who is Down (but not Dying) gets back on their feet at Wounded and can carry on with the Night, at Disadvantage on Force and Flow until they heal. A hero who was Dying and got stabilized stays Down until Dawn, and only clears it with Patch Up and Sleep It Off together. Second Wind and a med kit get you up at Wounded in the middle of a fight.
-- **Dying leaves a mark (trial).** A hero who was Dying and got stabilized starts the next Night with one Harm box filled that Patch Up at that Dawn can't clear. A med kit, Fast Healer, Healing Factor or a Lair can clear it. It doesn't stack with left for dead.
+- **Dying leaves a mark (trial).** A hero who was Dying and got stabilized starts the next Night with one Harm box filled that Patch Up at that Dawn can't clear. A med kit, Fast Healer, Healing Factor, a Lair or a back-alley clinic can clear it. It doesn't stack with left for dead.
 
 ## Stress and Traits
 
@@ -323,6 +323,16 @@ Give each zone 0 to 2 tags: **Cover**, **High Ground**, **Dark**, **Cramped**, *
 - **High Ground:** ranged attacks from it get Edge. Melee can't reach you unless the attacker climbs up first, which is a move or, on a hard climb, a roll.
 - **Cramped:** heavy melee and long guns are at Disadvantage, and no more than two people can be engaged with any one person. A good spot for one hero to hold off a gang.
 
+**Hazard types (trial).** Some types add one more effect. Gear and powers that name a type (a rebreather, climbing gear, a hazmat suit, Acrobat) work as written.
+
+| Type | Also |
+| --- | --- |
+| Fire | At the end of round 2, it spreads to one adjacent zone unless someone puts it out. |
+| Gas or smoke | The zone also counts as Dark. |
+| A drop (a catwalk, a roof edge) | Knocking someone off it (a shove at Impact 2 or 3, a Haymaker, Hurl) costs them the flat 1 Harm, no miss needed. |
+| Traffic or a stampede | Leaving the zone takes your free move and a Quick Action. |
+| Anything else (hooks, live wires) | Nothing extra. |
+
 **Hidden (trial).** Hidden ends when you attack, when you leave the zone tags that allow it (or they go away), or when an enemy spends a Quick Action to search and beats your Flow-based roll: they roll Focus against 12 + your Flow. Mooks search with their attack bonus.
 
 ### Turn order
@@ -347,7 +357,7 @@ You get **one free move** (to an adjacent zone, where you can also engage one en
 - **Move:** go one more zone.
 - **Help:** give an ally in your zone Edge on their next roll.
 - **Take Cover:** in a Cover zone, +2 Guard until your next turn.
-- **Interact:** grab, open, throw a switch, kick a gun away.
+- **Interact:** pick up, open, throw a switch, kick a gun away.
 - **Archetype Quick Actions:** listed under each archetype.
 
 **Breaking away:** if you leave engagement, the enemy you were engaged with can make a free Jab at you.
@@ -355,6 +365,16 @@ You get **one free move** (to an adjacent zone, where you can also engage one en
 **Leaving a fight (trial):** from a zone with an exit, when you aren't engaged, spend your turn to leave. If you're engaged, break away first as usual, then spend your turn. Rooftop Runner skips the turn cost.
 
 **Chases (trial).** When someone runs and someone follows, each round the chasers pick one hero to roll Flow against the quarry's Guard (a car or a rooftop route uses a rating instead). Three hits catch them, and an Impact 3 counts as two. Three Misses and they're gone. When the heroes are the ones running, they roll the same way against the pursuers' Wits: three hits and they're clear.
+
+**Maneuvers (trial).** Grab, disarm, shove or trip someone you're engaged with. A maneuver is a Full Action, or a Quick Action at -2 like a Jab (and like a Jab, a hit counts as Impact 1). Roll Force to grab or shove, or Flow to trip or disarm, against the target's Guard. A maneuver deals no Harm, and like any attack it never carries a cost. Against a mook, a hit just takes it out of the fight.
+
+| Maneuver | Impact 1 | Impact 2 or 3 |
+| --- | --- | --- |
+| Grab | You hold them. Neither of you can take a free move or leave the zone until the grab ends. | As Impact 1, and allies' melee attacks against them have Edge. |
+| Disarm | Their weapon bonus is off until they spend a Quick Action to get their grip back. | The weapon lands in the zone, or in your hand. |
+| Shove or trip | They lose their next free move. | Push them into an adjacent zone, or off High Ground. |
+
+**Breaking a grab:** a Quick Action, Force or Flow against 12 + the grabber's Force. The grab also ends if the grabber attacks someone else, moves, or goes Down. A named enemy breaks free at the end of their next turn, no roll. Powers that give Edge to grab, hold or disarm (Martial Artist, Peak Strength) apply to these rolls. Powers that give Edge on escapes (Elasticity, Sand) apply to breaking a grab.
 
 ### Strain
 
@@ -385,6 +405,21 @@ Objectives are where non-fighters earn their spot: grabbing the evidence, holdin
 ### Defeat (trial)
 
 When every hero is Down or has fled, the heroes have lost the fight. The villain gets what they came for, the Scheme clock ticks twice, and each hero ticks Home or Heat (their choice). Nobody dies from defeat alone: a Dying hero is stabilized by a bystander, or because the villain walks away. They stay Down until Dawn, as usual.
+
+### Conditions at a glance
+
+A reference. The rules themselves are in Harm, Stress and Traits, Zones and range, Maneuvers, and Cops.
+
+| Condition | What it does | How it ends |
+| --- | --- | --- |
+| Hidden | Enemies can't target you. Your first attack from Hidden has Advantage. | You attack, you leave the tags that allow it, or a search beats 12 + your Flow. |
+| Grabbed | No free move, and you can't leave the zone. | A Quick Action: Force or Flow against 12 + the grabber's Force. |
+| Cuffed | You can't act, except to slip them. | A Full Action, Force or Flow against 13, or an ally's Full Action. |
+| Wounded | Disadvantage on Force and Flow. Grit your teeth: 1 Stress ignores it until your next turn. | Patch Up at Dawn, a med kit, or Second Wind. |
+| Down | Out of the fight: talk, crawl, or one desperate Quick Action a round at Disadvantage. | Up at Wounded when the fight ends, or by Second Wind or a med kit. |
+| Dying | Hit again while Down. An ally's Full Action stabilizes you. | Unstabilized at the scene's end: you die or are left for dead (the player decides). |
+| Fraying | 4 to 7 Stress. The Fraying perk replaces Steady, and the GM gets your hook. | Back to 3 Stress or less. |
+| Breaking | 8 Stress. Your Breaking fallout runs the scene. | At the scene's end: down to 4 Stress, +2 Drive, Home ticks once. |
 
 ## The Night
 
@@ -501,10 +536,25 @@ You can never do everything. That's the point.
 | Clock | Size | Ticks when | At half | When it fills |
 | --- | --- | --- | --- | --- |
 | **Scheme** (team) | 6 | Every Dawn, and as a cost when following leads | Beats at 1, 3 and 5 (trial): three events the heroes can see, written in case prep (a witness disappears, a building burns) | The villain pulls it off. The investigation stops, and the showdown happens on their ground, after the damage is done. |
-| **Heat** (team) | 6 | Guns (and being seen with a long gun), public fights, collateral damage, Vanity, Vengeance, sloppy feeding (Vampirism on Impact 1 or a miss), a Marked hero seen by civilians | Cops show up to fights on round 3 and try to arrest everyone, heroes included (see Cops) | Crackdown: a task force, a smear in the press, or someone gets a description. Play it out, then drop Heat to 2. |
+| **Heat** (team) | 6 | Guns (and being seen with a long gun), public fights, collateral damage, Vanity, Vengeance, sloppy feeding (Vampirism on Impact 1 or a miss), a Marked hero seen by civilians | Cops show up to fights on round 3 and try to arrest everyone, heroes included (see Cops and Crackdowns) | Crackdown: a task force, a smear in the press, or someone gets a description. Play it out, then drop Heat to 2. |
 | **Home** (each hero) | 6 | You skip Show Up, you Break, you use a personal clue, you use Resources to buy past a problem, or a villain finds your Lair (+2) | Someone close starts asking questions | Home crisis: lose the job, the relationship ends, someone learns who you are, or a loved one becomes a target. Play it out, then reset to 0. |
 
 **Heroes with no civilian life.** A pure vigilante has no day job or alter ego. Their civilian life, and so Show Up and the Home clock, just stands for whatever anchors them to their humanity, even if it's only feeding a goldfish. Name it when you build the hero. When Home ticks, that anchor is what's slipping, and a Home crisis is that anchor being lost, found or threatened.
+
+### Cops and Crackdowns (trial)
+
+**Cops in a fight.** At Heat 3 or more, one group of Cops arrives on round 3, and another each round after.
+
+- **They arrest.** A cop hit grabs the target instead of dealing Harm. A cop hit on someone already grabbed or Down cuffs them.
+- **Cuffed:** you can't act, except a Full Action to slip them: Force or Flow against 13. An ally next to you can free you with a Full Action, no roll.
+- **Fight the cops and it escalates.** The first time a hero attacks a cop, take +1 Heat. From then on the cops deal Harm as usual, and their pistols follow the gun rules.
+- **Busted.** A hero still cuffed when the team leaves is arrested. They spend Dawn in a cell: no Dawn picks, so their Home clock ticks for the missed Show Up. They're out by the next Night (bail, a lawyer, a cop who owes someone).
+
+**Crackdown.** When Heat fills, the GM picks one, plays it out, then drops Heat to 2:
+
+- **Task force.** For the rest of the case, cops come to every fight on round 2, whatever the Heat, led by the Task Force Commander (see Sample villains). Beat him in a fight or expose him and it ends.
+- **A smear.** For the next case, Presence rolls against civilians and cops are at Disadvantage.
+- **A description.** Someone got a look at the build, the car, the tattoo. Every hero ticks Home by 1.
 
 ## GM moves (trial)
 
@@ -744,15 +794,23 @@ Everyone carries a **knife**, and every hero also gets **one free weapon** of th
 | Knife (everyone has one) | +1 Harm on Impact 2 or better against anyone without Toughness. Can be thrown at Near range. It is a backup: each attack uses one weapon, never two weapon bonuses. |
 | Sidearm (free pick) | A gun (Flow to shoot). Far range is at Disadvantage. |
 | Long gun (free pick) | A gun with no Far penalty. Being seen carrying one is +1 Heat. |
+| Shotgun (free pick, trial) | A gun for close quarters (Flow to shoot). No Disadvantage when you're engaged in melee, but it can't hit at Far range. |
 | Bow (free pick) | Flow to shoot, no Far penalty, +1 Harm on Impact 2 or better. Silent: unlike a gun, it adds no Heat on its own. Not a gun, so Toughness applies. Like a gun, it is at Disadvantage when you're engaged in melee. |
 | Light melee (free pick: baton, fighting sticks, weighted gloves) | +1 Harm on a Strike at Impact 2 or better. Jabs with it have no -2 penalty. |
 | Heavy melee (free pick: bat, pipe, crowbar) | +1 Harm on any hit, but only on a Strike (never a Jab). |
+
+**Extra weapons** (1 slot each, trial additions). These are weapons, so they never go on a utility belt.
+
+| Weapon | Effect |
+| --- | --- |
+| Weighted lash | A light melee weapon on a cable: +1 Harm on a Strike at Impact 2 or better, and Jabs with it have no -2 penalty. Quick Action, Near range: pull an enemy to Engaged with you, or swing yourself to High Ground in your zone or the next one. |
+| Scoped rifle | A long gun with a scope. Edge on attacks at Far range if you haven't moved this turn. Being seen carrying one is +1 Heat. |
 
 A stranger weapon, like a mono-edge blade, shock gauntlets or a rail rifle, is the **Special Weapon** street power. Fighting with bare hands is the **Martial Artist** street power.
 
 ### Gear
 
-Gear is armor and tools. Gear can be lost: smashing your gear, or catching you without it, is a fair GM move. A utility belt (Specialists and Gadgeteers) holds one-slot armor and tools, but never weapons or powered armor.
+Gear is armor and tools. Gear can be lost: smashing your gear, or catching you without it, is a fair GM move. A utility belt (Specialists and Gadgeteers) holds one-slot armor and tools, but never weapons or 2-slot gear.
 
 **Armor**
 
@@ -792,15 +850,20 @@ Gear is armor and tools. Gear can be lost: smashing your gear, or catching you w
 | Tossies | Ranged, Near. Flow to throw. A hit deals 1 Harm (Toughness applies). On Impact 2 or better the target drops what they're holding, so their weapon bonus is off until they spend a Quick Action to recover it. If they hold nothing, they lose their next Quick Action instead (a named enemy has Disadvantage on their next roll: see Named enemies resist being shut down). Three per fight. |
 | Forensic kit | Once per case, spend a scene working a crime scene or an object and take 1 clue, no roll. |
 | Hacking rig | Edge on Focus rolls against systems, cameras and records. Once per Night, take 1 clue from them with no roll. If it comes from police or city records, take +1 Heat. |
-| Weighted lash | A light melee weapon on a cable: +1 Harm on a Strike at Impact 2 or better, and Jabs with it have no -2 penalty. Quick Action, Near range: pull an enemy to Engaged with you, or swing yourself to High Ground in your zone or the next one. |
 | Trip mines | Quick Action: set a trap in your zone. The next enemy to move into it takes Impact 2, ignoring Toughness, and stops there. Two per fight. |
-| Scoped rifle | A long gun with a scope. Edge on attacks at Far range if you haven't moved this turn. Being seen carrying one is +1 Heat. |
 | Rebreather | Gas and fumes don't affect you, and you ignore stun grenades and flashbangs (built-in ear and eye protection). |
 | Caltrops | Quick Action: scatter them in a zone you're leaving. Until the end of next round, any enemy who moves in stops there. In a chase, anyone behind you has Disadvantage on Flow rolls. Two per fight. |
 | Tranquilizer darts | Ranged, Near. On a hit, a mook goes down. A named enemy has Disadvantage on all rolls until the end of their next turn, and a second hit in the same fight costs them one turn (see Named enemies resist being shut down). Two per fight. |
 | Restraints | Full Action: bind an enemy who is Down, surrendering or willing. They can't act until freed or the scene ends. A bound prisoner can be interrogated. |
 | Disguise kit | Take on a new identity for a scene. Once per Night, pass as someone else with no roll. If you're seen through, take +1 Heat. |
 | Glider cape | Falls of any height cost you nothing, and you can drop into any zone below you as a free move. |
+| Foam grenades | Quick Action, your zone or an adjacent one. Pick one: put out a fire or live-wire Hazard (the zone loses the tag), seal one door or exit (breaking through is a Force roll against 13), or glue one enemy in place (they can't take their free move until they spend a Quick Action to get free). Two per fight. |
+| Parabolic mic and bug kit | Listen through glass and walls from across the street, or plant a bug. Once per Night, Edge on a lead roll that involves listening in or watching someone. |
+| EMP charge | Quick Action, your zone or an adjacent one. Lights, cameras and electronics there go dead: the zone becomes Dark until the end of the fight, and drones, comms and powered armor in it stop working until their owner spends a Quick Action to reset them. Your own gear there is hit too. One per fight. |
+| Signal jammer | Quick Action: phones, radios and wireless alarms in your zone and adjacent zones go dead for the scene. Nobody there can call for help, and a public fight there adds no Heat (gunfire still does). Earpiece comms stop working too, yours included. |
+| Breaching charge | Full Action, no roll: blow through a door, wall or vehicle in your zone. It opens a path into an adjacent zone, or removes Cover from your zone. On an Objective step it doesn't finish the step, but that step's roll has Advantage. Loud: +1 Heat. One per Night. |
+| Adrenaline injector | Quick Action, you or an ally in your zone: ignore the Wounded Disadvantage until the end of the fight. Take 1 Stress when the fight ends. One per Night. |
+| Hazmat suit | Fire, gas and live-wire Hazards cost you no Harm, and gas and fumes don't affect you. Disadvantage on Vanish and climbing. |
 
 **Stun grenade** (heavier flashbang): Quick Action, your zone or an adjacent one. Everyone there without ear and eye protection rolls Focus vs 12 or loses their next turn; mooks just lose it. Allies in the zone are caught too. Named enemies: see Named enemies resist being shut down. One per fight.
 
@@ -810,6 +873,14 @@ Gear is armor and tools. Gear can be lost: smashing your gear, or catching you w
 
 **Gun rules (all guns):** +1 Harm on Impact 2 or better, ignores natural Toughness (Force +3) but not armor, Disadvantage when you're engaged in melee, and +1 Heat for each fight where you fire one.
 
+**Less-lethal rounds (trial).** At the start of a Night, any gun can load beanbags or rubber rounds instead. Firing them adds no Heat, but the gun loses its +1 Harm, and Toughness applies as it does to a punch.
+
+**Prototype gear (trial, 2 slots).** A gear hero's centerpiece, the counterpart of a strange power. It costs no Stress and takes no flaw. Instead it is Unreliable, it can be smashed or taken like any gear, and it can't be hidden: you can't wear it in a civilian scene. Powered armor (under Armor) is the first one.
+
+| Prototype | Effect |
+| --- | --- |
+| Exo-frame (takes 2 slots) | Hydraulic braces over your arms and legs. You can lift a car. Force attacks get +1 Harm on Impact 2 or better and ignore Toughness, and you can throw heavy objects at Near range. Unreliable: when you roll a Miss with Force while wearing it, the GM can lock it up. While it is locked it gives nothing, and you have Disadvantage on Flow. Spend a Quick Action to vent it, or it is repaired at Dawn. You can't wear it with powered armor. |
+
 ### Assets
 
 Assets are bigger than gear: things you can't carry into a fight, that work between scenes or across a Night. They come only from Advancement (one Asset per pick), never from Resources.
@@ -817,6 +888,11 @@ Assets are bigger than gear: things you can't carry into a fight, that work betw
 - **Vehicle** (an armored car, a custom bike): one extra Patrol action per Night, Edge in chases, and once per Night it can crash into a fight as an entrance (move your whole group into any zone, and one mook group drops). Wrecking it costs a Dawn to fix.
 - **Lair** (a cave, a rooftop safehouse, a back room): at Dawn there, Sleep It Off clears 1 more Stress and Patch Up clears 1 more Harm. If a villain finds it, Home ticks by 2.
 - **Network** (informants, a cop who trusts you, a reporter): once per Night, take a free lead with no cost. Ignore them too long and they start asking for favors.
+- **Crime lab** (trial; a hidden bench, a borrowed university lab): once per Night, spend a scene on physical evidence and take 1 clue, no roll. It counts as the team's one no-roll clue. Gear that was taken from you is replaced by the next Night.
+- **Back-alley clinic** (trial; a surgeon who doesn't ask names, a night-shift nurse, a vet): it clears a Dying mark at Dawn. A hero who was Dying and stabilized clears Down here with Patch Up alone.
+- **Safe house** (trial; burner apartments, clean plates, spare IDs): Lay Low clears 2 Heat instead of 1. Once per case, burn an identity to ignore 1 Heat you would take.
+- **Inside man** (trial; a desk sergeant, a clerk at City Hall): once per Night, Edge on a lead that runs through police or city records, and using those records adds no Heat. When Heat fills, the team picks the Crackdown instead of the GM.
+- **Home turf** (trial; block captains, street vendors, a corner store): in your neighborhood, enemies can't ambush the team, and you can Vanish in a Crowd there with Edge. Once per Night there, the cops arrive a round late.
 
 ### Powers
 
@@ -825,7 +901,7 @@ Powers are adapted from the Supersworn: Street Level cards. Each power has three
 **Core powers and more powers.** Twelve powers are **core**: six street and six strange. They are the ones the game is built and tested around. Every other power is on a "More powers" list and is a trial rule: it works the same way, but it has seen less play, so pick one with your GM's agreement.
 
 - **Street powers** are within peak-human reach: training, technology, or a small gift. Write in a **source**.
-- **Strange powers** are clearly superhuman. They cost 2 slots, and you must write in a **cost**: a weakness, a side effect, a price. The GM can use it as a hook.
+- **Strange powers** are clearly superhuman. They cost 2 slots. Write in a **source**, as with any power. The flaw you pick for it (Allergy, Unstable or Marked, below) is its price, and the GM can use it as a hook.
 - **Slots:** a street power costs 1 slot and a strange power costs 2 (see the slot table above). Advancement adds slots.
 
 **Push (any power):** when your power helps a roll, take 1 Stress to roll with Advantage. Some abilities also cost Stress directly.
@@ -880,7 +956,7 @@ These six are the core street powers: the ones the game is built and tested arou
 - *Turn it back (locked):* once per round, when an enemy you're engaged with misses you, make a free Jab against them.
 - *Pressure point (locked):* on a Strike hit at Impact 2 or better, choose one: the target loses their free move, or has Disadvantage on their next attack.
 
-**Custom Power** (write in name, source, cost)
+**Custom Power** (write in name and source)
 
 - *Start:* Edge on rolls outside a fight that your power helps.
 - *Second ability (locked):* Edge on rolls in a fight that your power helps.
@@ -930,7 +1006,7 @@ These six are the core strange powers.
 - *Spread the dark (locked):* Quick Action: roll Focus against 13. On a hit your zone becomes Dark, and adjacent zones too on Impact 2+.
 - *Reveal (locked):* once per fight, when you drop out of Hidden for dramatic effect, gain 2 Drive.
 
-**Invulnerability** (write in a weakness)
+**Invulnerability** (your Allergy is the weakness)
 
 - *Start:* when you would take Harm from a physical attack, take that much Stress instead. Work out the Harm first (weapon bonuses, then Toughness, then the 1-Harm minimum), then convert what's left. Your weakness gets through normally, and once your Stress is full (8), anything more spills into Harm. Since every hit already costs Stress, Invulnerability skips the always-on first-hit Stress cost.
 - *Untouchable (locked):* after people see you shrug off a hit, Edge on Presence rolls to intimidate them.
@@ -1206,7 +1282,21 @@ They run when half the gang is down, unless a boss is in sight.
 ```
 COPS (Mooks, groups of 3) (trial)
 Attack +1   Guard 12  Wits 12  Poise 12   Harm 1 each
-They try to arrest everyone, heroes included.
+They try to arrest everyone, heroes included (see Cops and Crackdowns).
+```
+
+```
+TASK FORCE COMMANDER (Heavy, lieutenant) (trial)
+Force +2  Flow +2  Focus +3  Presence +2
+Guard 14  Wits 15  Poise 14   Harm 5  Toughness 1 (tactical armor)  Stress 4 (Fraying 2, Breaking 4)
+Trait: Duty. Fraying: won't back off, even with civilians in the way.
+       Breaking: calls in everything. Two more Cop groups arrive next round, and +1 Heat.
+Drive: deals or takes Impact 2+
+Presence attack (free, once per round): +2 vs Poise, 1 Stress per Impact.
+       "Hands where I can see them!"
+Trick (1 Drive): Flashbang. Every hero in his zone or an adjacent one rolls Focus vs 13 or has Disadvantage on their next roll.
+      (2 Drive): Net gun. One hero at Near range is grabbed (Force or Flow vs 13 to break free).
+Weakness: plays by the book. He won't risk a hostage, or do anything ugly on camera.
 ```
 
 ```

@@ -92,7 +92,7 @@ export function Loadout({ hero, report, run }: {
               ))}
             </ol>
             {p.extra && <p className="small muted">{p.extra}</p>}
-            {r.item.custom_text && <p className="small"><strong>{strange ? 'Cost / source' : 'Source'}:</strong> {r.item.custom_text}</p>}
+            {r.item.custom_text && <p className="small"><strong>Source:</strong> {r.item.custom_text}</p>}
             {r.item.flaw && <p className="small"><strong>Flaw:</strong> {r.item.flaw}</p>}
             <div className="button-row">
               <button className="mini secondary" onClick={push}>Push (1 Stress)</button>

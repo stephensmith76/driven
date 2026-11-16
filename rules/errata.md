@@ -613,3 +613,51 @@ A new optional rule, marked (optional, trial). Rules version 2026-11-15.26.
 **The Night, Patrol: working the case.** Add this paragraph after "One no-roll clue per Night (trial)":
 
 > **Free-form Patrol (optional, trial).** The Patrol pool, lead rolls and the one no-roll clue are tools, not requirements. The GM can set them aside and let clues and leads turn up through play: the heroes go where they want and talk to who they want, and the GM hands over a clue whenever a scene earns one. Two things stay, so the case keeps its pressure. The Scheme clock still ticks at every Dawn, and when a scene goes badly, the GM picks a cost from the lead table or makes a Patrol move (see GM moves). As a guide, about one clue per hero per Night keeps the Complexity numbers right. Crack the Case works the same either way, and the GM can switch styles from one Night to the next.
+
+## 21. Strange powers have one drawback, the flaw (Nov 15)
+
+A clarification. Rules version 2026-11-15.27. A strange power used to ask for a written cost and a flaw. The flaw is the only drawback.
+
+**Gear and Powers, Powers.**
+- Was: "**Strange powers** are clearly superhuman. They cost 2 slots, and you must write in a **cost**: a weakness, a side effect, a price. The GM can use it as a hook."
+- Now: "**Strange powers** are clearly superhuman. They cost 2 slots. Write in a **source**, as with any power. The flaw you pick for it (Allergy, Unstable or Marked, below) is its price, and the GM can use it as a hook."
+
+**Custom Power heading.** Was: "(write in name, source, cost)". Now: "(write in name and source)".
+
+**Invulnerability heading.** Was: "(write in a weakness)". Now: "(your Allergy is the weakness)".
+
+The app's hero builder now asks for a source for every power, and what was typed in the old cost box shows as the source.
+
+## 22. More gear (Nov 15)
+
+New trial gear. Rules version 2026-11-15.27.
+
+**Weapons you carry.** Add a free pick after the Long gun: "Shotgun (free pick, trial): A gun for close quarters (Flow to shoot). No Disadvantage when you're engaged in melee, but it can't hit at Far range."
+
+**Extra weapons.** The Weighted lash and the Scoped rifle move out of the Tools table into a new "Extra weapons" table (1 slot each) under Weapons you carry. They work the same. Being weapons, they never go on a utility belt.
+
+**Gear intro.** Was: "never weapons or powered armor". Now: "never weapons or 2-slot gear".
+
+**More tools.** Add: Foam grenades, Parabolic mic and bug kit, EMP charge, Signal jammer, Breaching charge, Adrenaline injector, and Hazmat suit. See the rules for their text.
+
+**After Gun rules.** Add Less-lethal rounds (trial): any gun can load beanbags or rubber rounds at the start of a Night. Firing them adds no Heat, but the gun loses its +1 Harm and Toughness applies.
+
+**Prototype gear (trial, 2 slots).** New: 2-slot gear that costs no Stress and takes no flaw, but is Unreliable, can be smashed or taken, and can't be worn in a civilian scene. Powered armor is the first one. The Exo-frame is new: Mighty's starting ability, worn instead of born, and it locks up on a Miss with Force.
+
+## 23. Maneuvers, Cops, more Assets, Hazard types (Nov 15)
+
+New trial rules. Rules version 2026-11-15.27. See the rules for the full text.
+
+**Fights, Your turn.** New: **Maneuvers (trial)**, after Chases. Grab, disarm, shove or trip someone you're engaged with: a Full Action, or a Quick Action at -2 like a Jab. Force to grab or shove, Flow to trip or disarm, against Guard. No Harm; the effect depends on Impact. Breaking a grab is a Quick Action, Force or Flow against 12 + the grabber's Force. A named enemy breaks free at the end of their next turn.
+
+**Your turn, Interact.** Was: "grab, open, throw a switch, kick a gun away." Now: "pick up, open, throw a switch, kick a gun away."
+
+**Zones and range.** New: **Hazard types (trial)**. Fire spreads at the end of round 2, gas or smoke also counts as Dark, a drop costs 1 Harm to anyone knocked off it, and leaving traffic or a stampede takes your free move and a Quick Action.
+
+**Fights.** New: **Conditions at a glance**, a reference table at the end of the chapter: Hidden, Grabbed, Cuffed, Wounded, Down, Dying, Fraying, Breaking.
+
+**The Night.** New: **Cops and Crackdowns (trial)**, after The clocks. At Heat 3+, a Cop group arrives on round 3 and another each round after. Cops grab, then cuff. Attacking a cop is +1 Heat, and then they fight to hurt. A hero left cuffed is arrested and loses their Dawn picks. The three Crackdowns are spelled out: a task force, a smear, a description.
+
+**Villains, Sample villains.** New: the Task Force Commander (Heavy, lieutenant).
+
+**Gear and Powers, Assets.** New trial Assets: Crime lab, Back-alley clinic, Safe house, Inside man, Home turf. Dying leaves a mark now also lists the back-alley clinic.

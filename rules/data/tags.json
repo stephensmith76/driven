@@ -11,7 +11,7 @@
     { "id": "high-ground", "name": "High Ground", "text": "Ranged attacks from it get Edge. Melee can't reach you unless the attacker climbs up first, which is a move or, on a hard climb, a roll." },
     { "id": "dark", "name": "Dark", "text": "Ranged attacks in or into the zone are at Disadvantage. You can Vanish here." },
     { "id": "cramped", "name": "Cramped", "text": "Heavy melee and long guns are at Disadvantage, and no more than two people can be engaged with any one person." },
-    { "id": "hazard", "name": "Hazard", "text": "Name its type: fire, gas, a fall, hooks. Any missed roll in this zone costs a flat 1 Harm, heroes and villains alike, and Toughness doesn't reduce it. The type matters only for gear and powers that name one." },
+    { "id": "hazard", "name": "Hazard", "text": "Name its type: fire, gas, a fall, hooks. Any missed roll in this zone costs a flat 1 Harm, heroes and villains alike, and Toughness doesn't reduce it. Some types add one more effect (see Hazard types), and gear and powers that name a type work as written." },
     { "id": "crowd", "name": "Crowd", "text": "You can Vanish here. Guns fired into a Crowd risk hitting bystanders (a fair GM move on any miss)." }
   ]
 }

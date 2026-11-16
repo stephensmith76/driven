@@ -346,7 +346,7 @@ function BuilderForm({ campaignId, existing, isGm, canBuild, bankTarget, initial
                   <button type="button" className="mini secondary" onClick={() => removeItem(i)}>Remove</button>
                 </p>
                 {p && <p className="small">{p.abilities[0].name}: {p.abilities[0].text}</p>}
-                <label className="small" htmlFor={`src-${i}`}>{strange ? 'Cost (a weakness, a side effect, a price)' : 'Source (training, technology, a small gift)'}</label>
+                <label className="small" htmlFor={`src-${i}`}>{strange ? 'Source (a mutation, an accident, a ritual)' : 'Source (training, technology, a small gift)'}</label>
                 <input id={`src-${i}`} value={it.custom_text ?? ''} onChange={(e) => setItem(i, { custom_text: e.target.value })} />
                 {strange && (
                   <div className="button-row">
