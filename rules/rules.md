@@ -319,7 +319,7 @@ Give each zone 0 to 2 tags: **Cover**, **High Ground**, **Dark**, **Cramped**, *
 - **Cover:** Take Cover (Quick Action) gives +2 Guard until your next turn. You can Vanish here.
 - **Dark:** ranged attacks in or into the zone are at Disadvantage. You can Vanish here.
 - **Crowd:** you can Vanish here. Guns fired into a Crowd risk hitting bystanders (a fair GM move on any miss).
-- **Hazard:** when you tag a zone Hazard, name its type: fire, gas, a fall, hooks. Any missed roll in this zone costs a flat 1 Harm, heroes and villains alike, and Toughness doesn't reduce it. The type matters only for gear and powers that name one, like a rebreather for gas or climbing gear for a fall.
+- **Hazard:** when you tag a zone Hazard, name its type: fire, gas, a fall, hooks. Any missed roll in this zone costs a flat 1 Harm, heroes and villains alike, and Toughness doesn't reduce it. Some types add one more effect (see Hazard types, below), and gear and powers that name a type work as written, like a rebreather for gas or climbing gear for a fall.
 - **High Ground:** ranged attacks from it get Edge. Melee can't reach you unless the attacker climbs up first, which is a move or, on a hard climb, a roll.
 - **Cramped:** heavy melee and long guns are at Disadvantage, and no more than two people can be engaged with any one person. A good spot for one hero to hold off a gang.
 
@@ -408,7 +408,7 @@ When every hero is Down or has fled, the heroes have lost the fight. The villain
 
 ### Conditions at a glance
 
-A reference. The rules themselves are in Harm, Stress and Traits, Zones and range, Maneuvers, and Cops.
+A reference. The rules themselves are in Harm, Stress and Traits, Zones and range, Maneuvers, and Cops and Crackdowns.
 
 | Condition | What it does | How it ends |
 | --- | --- | --- |
