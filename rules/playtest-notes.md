@@ -102,6 +102,8 @@ Split out of rules.md on Nov 15, 2026. Playtest findings, change log, and sessio
 
 - **Team pick, Lair styles, vehicles (Nov 17, rules 2026-11-17.31, Stephen):** paying a starting slot for the team Lair felt punitive, so the team now gets one free shared pick at creation (optional). Every Lair lets a hero lie low unfound, and has a style with one perk: Gym (a Dawn pick, Train, for 1 more Drive next Night), Hideout, Front or Watchtower. Vehicles in a fight got one paragraph (a vehicle is a zone, ramming, wrecking). Personal bonuses for each hero in the base were left for an expansion. Not played or simulated.
 
+- **Neighborhoods, Threat arcs, mooks (Nov 17, rules 2026-11-17.32, Stephen):** Stephen means the game to be mostly improvised, with the GM choosing the villain behind a case and little else. Added (trial): Your neighborhood as a session zero step that gives the GM people and places to improvise from, a Low prep paragraph under Case prep, Arcs without a Mastermind (Threat, Symptoms, Sign, Understanding, an Objective finale, three examples), and four mook types (Gunmen, Fanatics, Guards, Guard dogs). Not written: the starter case, lieutenants for each role and a Trick menu, which matter less for improvised play. Not played or simulated.
+
 ## Playtest log: Session 1
 
 Every roll from the first playtest, in order. Stephen played The Ledger (Ruth); the GM ran Rook and Nightjar. Dice came from the true-random dice bank. Defense = the number to beat; margin = total minus defense.

@@ -1,6 +1,6 @@
 # Driven - Street Level Heroic RPG
 
-Rules version 2026-11-17.31 · Nov 17, 2026 · @Stephen
+Rules version 2026-11-17.32 · Nov 17, 2026 · @Stephen
 
 ## Overview
 
@@ -453,6 +453,8 @@ Investigation never stalls. If your approach fits a lead, you get the clue. The 
 - **A Scheme clock:** 6 segments (see below).
 - **Scheme beats (trial):** three, at 1, 3 and 5 on the clock. Each is an event the heroes can see in the fiction: a witness disappears, a building burns. At 6 the villain pulls it off.
 
+**Low prep (trial).** That list is the most a case needs, not the least. Driven is built to be improvised. Most cases need only the villain: decide who is behind it, or leave even that open (see Floating, below), and make up the rest at the table. The heroes' neighborhoods and connections supply the people and places (see Your neighborhood), and Free-form Patrol hands out the clues.
+
 **Two ways to run a case.** The GM picks for each case:
 
 - **Fixed Culprit (default).** The GM decides who's behind it before play. Everything else (what they want, where they'll strike, how it connects) comes from the players' theory. Use this for recurring villains, secret identities, or any idea the GM wants to land.
@@ -675,7 +677,8 @@ Follow these steps in order. Each one points to the section that has the rules.
 6. **Free weapon.** Pick one. You also carry a knife (Gear and Powers, Weapons you carry).
 7. **Three slots.** Spend them on gear, a street power or a strange power (Gear and Powers). Specialists and Gadgeteers also fill a utility belt.
 8. **Anchor for Home.** Name your civilian life: a job, a family, an alter ego. A hero with no civilian life names whatever anchors them to their humanity (The Night, The clocks, Heroes with no civilian life).
-9. **Team pick (optional, trial).** If your table uses this rule, the team chooses it together once every hero is built: a Lair, with its style (Gym, Hideout, Front or Watchtower), or any one Asset (Gear and Powers, The Lair).
+9. **Neighborhood (trial).** Name your hero's neighborhood, who runs it, and what's wrong there right now (Archetypes, Your neighborhood).
+10. **Team pick (optional, trial).** If your table uses this rule, the team chooses it together once every hero is built: a Lair, with its style (Gym, Hideout, Front or Watchtower), or any one Asset (Gear and Powers, The Lair).
 
 ### The six archetypes
 
@@ -796,6 +799,22 @@ The GM uses connections for Impact 1 costs, Miss moves, Home crises (a loved one
 **Protecting a connection pays.** The first time each scene you take Harm or Stress, or put yourself at real risk, to protect or save one of your connections, gain 1 Drive.
 
 A hero with no civilian life still has connections. Their "someone you protect" can be anything that anchors them to their humanity, even a goldfish.
+
+### Your neighborhood (trial)
+
+The city has no map until the table draws one. Before the first Night, each player names one neighborhood and says three things about it:
+
+- **What it is.** One line: the docks, a hill of old money, six blocks of tower housing.
+- **Who runs it.** A gang, a landlord, a precinct captain, a church, nobody.
+- **What's wrong there right now.** A rumor, a string of fires, people going missing.
+
+That is your hero's own neighborhood: where they live, work or patrol. Your "place you're tied to" connection is usually in it. Two heroes can share one. The GM adds one more that nobody claimed, for trouble to come from.
+
+Write the names on a sheet of paper as boxes, and draw a line between any two that touch. That is the whole map.
+
+**What it does.** Any rule that says "your neighborhood" means this one (A Thing or Two, Home turf, Reputation, the Watchtower). It is also what the GM improvises from. "Who runs it" is a faction ready to use, and "what's wrong" is a first case. When the GM needs a victim, a lead or a Scheme beat and has nothing ready, it happens in a hero's neighborhood.
+
+**It changes.** When a case closes, each player whose neighborhood it touched says one thing that is different there now.
 
 ### Advancement
 
@@ -1413,6 +1432,41 @@ Every 2 Harm drops one. Leftover Harm carries to the next. No Toughness.
 ```
 
 ```
+GUNMEN (Mooks, groups of 3) (trial)
+Attack +3   Guard 13  Wits 12  Poise 12   Harm 1 each
+One attack per group per turn, with Edge if all 3 are standing.
+Every one of them has a gun: the group's attack is a gun attack (+1 Harm on Impact 2+, ignores natural
+Toughness but not armor), and it reaches Far at Disadvantage.
+They fight from Cover when there is any, and back off rather than be engaged.
+```
+
+```
+FANATICS (Mooks, groups of 3) (trial)
+Attack +2   Guard 12  Wits 11  Poise 14   Harm 1 each
+One attack per group per turn, with Edge if all 3 are standing.
+Knives: +1 Harm on Impact 2+ against anyone with no Toughness.
+They never run and can't be scared off: Presence attacks and Dread do nothing to them.
+Cut off from their leader, they can be talked down: Presence vs Poise, one group at a time.
+```
+
+```
+GUARDS (Mooks, groups of 3) (trial)
+Attack +1   Guard 12  Wits 13  Poise 11   Harm 1 each
+One attack per group per turn, with Edge if all 3 are standing.
+Paid, not loyal: a group gives up when its first guard drops, unless a named enemy is in sight.
+The alarm: if any guard is still standing at the end of round 1, backup or the cops arrive on round 3.
+```
+
+```
+GUARD DOGS (Mooks, groups of 3) (trial)
+Attack +2   Guard 14  Wits 14  Poise 11   Harm 1 each
+One attack per group per turn, with Edge if all 3 are standing.
+Bite and hold: a hit also takes away the target's free move until they shake it off
+(a Quick Action, Force or Flow vs 13).
+They smell you: Vanish is at Disadvantage with dogs in the zone. They never run.
+```
+
+```
 THE PAPIST (Schemer, case boss) (trial)
 Force 0  Flow +1  Focus +4  Presence +3
 Guard 13  Wits 16  Poise 15   Harm 10  Stress 6 (Fraying 3, Breaking 6)
@@ -1519,7 +1573,7 @@ This should be rare, maybe once in a long campaign. Take the new Trait and lose 
 
 An arc is 3 to 5 cases tied together by someone working behind the scenes, the **Mastermind**. Each case stands on its own, but each one leaves fingerprints that point at the same person.
 
-*To design later:* the threat behind an arc won't always be a person. It could be a volcano, or an astral alignment that opens a rift on its own unless someone counters it. Those arcs need their own version of Pawns, calling cards and Unmasking.
+The threat behind an arc isn't always a person. See Arcs without a Mastermind, at the end of this chapter.
 
 ### The arc sheet (GM)
 
@@ -1576,6 +1630,38 @@ The finale is a case against the Mastermind at finale Complexity (2 more than a 
 - **Pawns:** the Butcher (a protection racket that scares tenants out), an arson crew, a crooked fire inspector, a city councilman.
 - **Calling card:** every building that gets hit has an eviction notice from the same shell company, Harbor & Main Holdings.
 - **Scheme beats (first case):** at 1, a tenant who talked to the heroes disappears. At 3, the Calloway annex burns. At 5, the city condemns the block. At 6, Voss pulls it off: the tenants are evicted the morning after the inspection.
+
+### Arcs without a Mastermind (trial)
+
+Some arcs have nobody behind them: a river rising, a rift opening, a drug spreading, a gang war nobody planned. Run them with the same sheet and the same clock. Only the names change.
+
+| With a Mastermind | Without one |
+| --- | --- |
+| **Mastermind:** who is behind it | **Threat:** what is coming, and why nobody has stopped it |
+| **Pawns:** each case's villain works for the Mastermind | **Symptoms:** each case's villain is caused by the Threat, profits from it, or is fighting it the wrong way. Each knows one thing about it |
+| **Calling card:** one detail in every case | **Sign:** one detail in every case. Ash on the windowsills, the same dream, water where it shouldn't be |
+| **Unmasking:** who they are and what they want | **Understanding:** what it is and what stops it |
+
+**The Endgame clock** has 8 segments and ticks the same way: +2 when a case's Scheme clock fills, +1 when a Symptom is left unsolved (its villain escapes, or a theory names the wrong culprit), and +1 on a missed Understanding roll. At 4, the Threat reaches a hero's neighborhood. At 8, it happens, and the finale is damage control.
+
+**Understanding.** With at least 3 arc clues, the team says what the Threat is and what will stop it. Roll 2d10 + arc clues against 16, as for Unmasking.
+
+| Result | Meaning |
+| --- | --- |
+| Miss | Wrong, and the wrong cure makes it worse. Endgame clock +1. |
+| Impact 1 | Right, but the answer has a price: one step of the finale will cost a hero something they care about. |
+| Impact 2 | Right. You choose when and where to make your stand. |
+| Impact 3 | Right, and you find its weak point: one step of the finale's Objective is already done. |
+
+**The finale** is won by an Objective, not a knockout: 4 to 6 steps (close the rift, open the floodgates, get the block out, burn the lab). Give it a face all the same, so there is someone to fight: a cult that wants it, a profiteer, a thing it sent ahead, the one person who could have stopped it and didn't. Dropping them helps. Only the Objective ends it.
+
+**A Threat can grow a face.** If the players decide someone must be behind it and their answer is better than yours, promote that person to Mastermind and carry on (see Promotion).
+
+Three to start from:
+
+- **The Flood.** *Threat:* the river is rising and the levee money was stolen years ago. *Endgame:* the low neighborhoods go under. *Symptoms:* looters, a contractor burying evidence, a landlord locking tenants in to save the insurance, a crew sandbagging only their own block. *Sign:* water where it shouldn't be.
+- **The Rift.** *Threat:* an alignment three weeks off will open something under the old subway. *Endgame:* it opens, and it stays open. *Symptoms:* people with new powers and no control, a cult trying to hurry it, a scientist trying to bottle it, a thing that already slipped through. *Sign:* everyone near it has the same dream.
+- **The War.** *Threat:* two gangs sliding into open war that neither boss wants and neither can stop. *Endgame:* the east side becomes a battlefield and the task force moves in for good. *Symptoms:* a revenge killing, a gun shipment, a kidnapped peacemaker, a cop selling to both sides. *Sign:* the same batch of stolen rifles.
 
 ## Test fight: The Cannery
 

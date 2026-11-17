@@ -749,3 +749,15 @@ Rules version 2026-11-17.31. All trial.
 **Archetypes, Character creation checklist.** New step 9: the Team pick, chosen by the team together once every hero is built, if the table uses that rule.
 
 **Fights.** New: **Vehicles in a fight (trial)**, after Chases. A moving vehicle is a zone and the road around it is a traffic Hazard. The driver spends a Quick Action each turn. Crossing between moving vehicles is a Flow roll against -1, +1 or +3. Ramming is a Full Action: the vehicle's rating in place of Force (+1 bike, +3 car or truck) against Guard, counting as heavy melee, with a shove at Impact 2 or 3. A vehicle is wrecked by a hard move or an Impact 3 attack aimed at it.
+
+## 29. Neighborhoods, arcs without a Mastermind, four mook types (Nov 17)
+
+Rules version 2026-11-17.32. All trial.
+
+**Archetypes.** New: **Your neighborhood (trial)**, before Advancement. Before the first Night each player names a neighborhood, who runs it, and what's wrong there right now. The GM adds one nobody claimed. Rules that say "your neighborhood" mean this one. When a case closes, each player whose neighborhood it touched says one thing that changed. The checklist has it as step 9, and the Team pick is now step 10.
+
+**The Night, Patrol.** New: **Low prep (trial)**, after Case prep. The prep list is the most a case needs, not the least. Most cases need only the villain, and the rest is made up at the table.
+
+**Arcs.** The "to design later" note is replaced by **Arcs without a Mastermind (trial)**, at the end of the chapter. A Threat stands in for the Mastermind, Symptoms for Pawns, a Sign for the calling card, and Understanding for Unmasking (same roll, its own results table). The finale is won by an Objective of 4 to 6 steps. Three examples: the Flood, the Rift, the War.
+
+**Villains, Sample villains.** New mook types: Gunmen (Attack +3, Guard 13, all armed), Fanatics (never run, can't be scared), Guards (give up at the first one down, raise an alarm), Guard dogs (Guard 14, bite and hold, Vanish at Disadvantage near them).
