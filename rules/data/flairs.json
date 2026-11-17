@@ -38,7 +38,7 @@
     "text": "Your first attack against an enemy who hasn't acted yet has Edge.",
     "sim": null },
   { "id": "bodyguard", "name": "Bodyguard", "trial": true,
-    "text": "Once per round, take a hit aimed at an ally in your zone. You take 1 less Harm from it.",
+    "text": "Once per scene, take a hit aimed at an ally in your zone. You take 1 less Harm from it.",
     "sim": null },
   { "id": "quick-study", "name": "Quick Study", "trial": true,
     "text": "Once per scene, after a villain spends Drive on a Trick against you, you have Edge against that villain for the rest of the scene.",

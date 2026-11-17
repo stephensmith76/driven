@@ -23,8 +23,15 @@
         "focus": 1,
         "presence": 2
       },
-      "flair_ids": [],
+      "flair_ids": [
+        "bodyguard"
+      ],
       "loadout": [
+        {
+          "kind": "gear",
+          "id": "bat",
+          "free": true
+        },
         {
           "kind": "power",
           "id": "toughness",
@@ -156,8 +163,15 @@
         "focus": 3,
         "presence": 1
       },
-      "flair_ids": [],
+      "flair_ids": [
+        "fast-hands"
+      ],
       "loadout": [
+        {
+          "kind": "gear",
+          "id": "sidearm",
+          "free": true
+        },
         {
           "kind": "gear",
           "id": "night-vision-goggles"
@@ -464,7 +478,7 @@
       "line": "Attack +2 · Guard 13 Wits 12 Poise 12 · one pistol in the group · max 2 Harm per attack · they run when half the gang is down"
     }
   ],
-  "notes": "Seed for the demo campaign. The case block goes in gm_secrets.case; nothing in it may reach a player device. Flairs for Bulwark and Patchwork are deliberately empty: pick them at the table.",
+  "notes": "Seed for the demo campaign. The case block goes in gm_secrets.case; nothing in it may reach a player device.",
   "case": {
     "title": "The Butcher of Fifth Street",
     "mode": "Fixed Culprit",

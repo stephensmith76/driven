@@ -1,5 +1,5 @@
 {
-  "rules_version": "2026-11-16.28",
+  "rules_version": "2026-11-17.31",
   "defense_base": 12,
   "dice": { "sides": 10, "count": 2, "advantage_count": 3 },
   "edge_bonus": 2,
@@ -68,7 +68,7 @@
   "weapons": [
     { "id": "unarmed", "name": "Fists, kicks, thrown junk", "attack_kind": "blunt", "text": "No change" },
     { "id": "light", "name": "Light melee", "attack_kind": "blunt", "text": "+1 Harm on a Strike at Impact 2 or better. Jabs with it have no -2 penalty." },
-    { "id": "heavy", "name": "Heavy melee", "attack_kind": "blunt", "text": "+1 Harm on any hit, but only on a Strike (never a Jab)" },
+    { "id": "heavy", "name": "Heavy melee", "attack_kind": "blunt", "text": "+1 Harm on any hit, but only on a Strike with Force (never a Jab, never Flow)" },
     { "id": "knife", "name": "Blades", "attack_kind": "blade", "text": "+1 Harm on Impact 2 or better against anyone with no Toughness" },
     { "id": "pistol", "name": "Guns", "attack_kind": "gun", "text": "+1 Harm on Impact 2 or better and ignores Toughness. Firing one is loud: +1 Heat for each fight where you fire one" }
   ],
@@ -96,6 +96,7 @@
       { "source": "Your archetype trigger", "gain": 1, "limit": "Once per round" },
       { "source": "Your Trait's Drive trigger", "gain": 1, "limit": "Once per scene" },
       { "source": "Going along with the GM's hook while Fraying", "gain": 1, "limit": "Each time" },
+      { "source": "Protecting one of your connections", "gain": 1, "limit": "Once per scene" },
       { "source": "Breaking (at the end of the scene)", "gain": 2, "limit": "Each time" }
     ],
     "prices": [
@@ -116,7 +117,7 @@
   "belt_slots": { "specialist": 3, "gadgeteer": 2, "specialist_gadgeteer": 5 },
   "actions": {
     "full": [
-      { "id": "strike", "name": "Strike", "text": "Attack with Force, Flow, or Presence. Normal Impact. A heavy melee attack is a Strike." },
+      { "id": "strike", "name": "Strike", "text": "Attack with Force, Flow, or Presence. Normal Impact. A heavy melee attack is a Strike with Force." },
       { "id": "signature", "name": "Signature Move", "text": "Costs 3 Drive (see Archetypes)." },
       { "id": "stabilize", "name": "Stabilize", "text": "Save a Dying ally next to you." }
     ],
@@ -228,16 +229,16 @@
     "turns_per_heroes": 2,
     "lieutenant_turns": 1,
     "lieutenant_text": "A lieutenant gets one turn and one free Presence attack per round, however many heroes there are. With several named enemies, each villain takes its own turns and no villain counts as alone.",
-    "turns_text": "A named villain gets one turn per round for every two heroes, rounded up. A villain fighting alone, with no mooks or lieutenants, gets one turn per hero instead.",
+    "turns_text": "A named villain gets one turn per round for every two heroes, rounded up. A villain fighting alone, with no mooks or lieutenants, gets one turn per hero instead, and 2 more Harm.",
     "gang_text": "With no named villain, one group of 3 mooks per hero. With a named villain present, one group per two heroes (rounded down, minimum 1). Then adjust for how hard the fight should be.",
     "mook_group_size": 3,
     "named_enemy_text": "A named enemy can lose at most one turn per fight, from all sources combined. After that, any effect that would cost them a turn gives them Disadvantage on their next roll instead. Losing their next Quick Action means Disadvantage on their next roll. Disadvantage on their next roll applies to their next roll that isn't their free Presence attack."
   },
   "advancement": [
-    "+1 to a stat (max +4, and never two cases in a row)",
-    "A new Flair",
+    "+1 to a stat (max +4, never two cases in a row, and your four stats never total more than +10)",
+    "A new Flair (four at most)",
     "The next ability on one of your powers",
-    "A new slot (gear or a street power; a strange power needs two slots, so it takes two picks)",
-    "An Asset"
+    "A new slot, six at most (gear or a street power; a strange power needs two slots, so it takes two picks)",
+    "An Asset, or a room for the team's Lair"
   ]
 }

@@ -45,7 +45,7 @@ Rule switches (defaults match the current rules doc):
 import argparse, itertools, json, random, statistics, sys
 from dataclasses import dataclass, field, fields
 
-SIM_VERSION = "2026-11-12.2"   # bump when fight logic or run_encounter's output changes
+SIM_VERSION = "2026-11-16.1"   # bump when fight logic or run_encounter's output changes
 
 # ---------------------------------------------------------------- dice
 DEF_BASE = 12   # defenses are DEF_BASE + stat (was 10 before the Nov 9 balance pass)
@@ -220,6 +220,7 @@ def make_heroes(rules):
     g = rules.gear
     H = {
       "bulwark": Hero("bulwark", "Bulwark", "Protector", "Mercy", 3, 0, 1, 2,
+                      weapon="heavy" if g else "unarmed",
                       boxes=5 if g else 4, medkit=1 if g else 0, power="Toughness" if g else "",
                       tough_blunt=1 if g else 0, guard_bonus=1 if g else 0),
       "rook": Hero("rook", "Rook", "Brawler", "Spite", 4, 2, -1, 1, boxes=5,
@@ -229,7 +230,7 @@ def make_heroes(rules):
                        weapon="light" if g else "unarmed", flairs=("opportunist",),
                        power="Shadow Manipulation" if g else "", strange=g),
       "patchwork": Hero("patchwork", "Patchwork", "Specialist", "Thrill", 0, 2, 3, 1,
-                        weapon="unarmed"),
+                        weapon="pistol" if g else "unarmed"),
       "ledger": Hero("ledger", "The Ledger", "Detective", "Order", -1, 1, 4, 2,
                      weapon="pistol" if g else "unarmed", armor_guns=1 if g else 0),
       # strange-power test heroes (2-slot power + 1 gear)

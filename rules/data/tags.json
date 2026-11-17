@@ -3,7 +3,7 @@
   "ranges": [
     { "id": "engaged", "name": "Engaged", "means": "Toe to toe with someone in your zone", "who": "Melee and point-blank shots" },
     { "id": "near", "name": "Near", "means": "Same zone, not engaged", "who": "Guns, thrown things, Presence" },
-    { "id": "far", "name": "Far", "means": "An adjacent zone", "who": "Guns at Disadvantage (rifles and Specialists ignore this)" },
+    { "id": "far", "name": "Far", "means": "An adjacent zone", "who": "Guns at Disadvantage (long guns and bows ignore this)" },
     { "id": "out_of_reach", "name": "Out of reach", "means": "Two or more zones away", "who": "Nobody, unless a power says so" }
   ],
   "tags": [

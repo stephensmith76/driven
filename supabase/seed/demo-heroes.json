@@ -3,8 +3,9 @@
     "name": "Bulwark", "civilian": "Dana Okafor, ex-firefighter",
     "archetype_id": "protector", "trait_id": "mercy",
     "stats": {"force": 3, "flow": 0, "focus": 1, "presence": 2},
-    "flair_ids": [],
+    "flair_ids": ["bodyguard"],
     "loadout": [
+      {"kind": "gear", "id": "bat", "free": true},
       {"kind": "power", "id": "toughness", "ability_level": 1, "custom_text": "Source: years of hauling hoses"},
       {"kind": "gear", "id": "med-kit"},
       {"kind": "gear", "id": "riot-shield"}
@@ -37,8 +38,9 @@
     "name": "Patchwork", "civilian": "Desmond Hale, engineering dropout",
     "archetype_id": "specialist", "trait_id": "thrill",
     "stats": {"force": 0, "flow": 2, "focus": 3, "presence": 1},
-    "flair_ids": [],
+    "flair_ids": ["fast-hands"],
     "loadout": [
+      {"kind": "gear", "id": "sidearm", "free": true},
       {"kind": "gear", "id": "night-vision-goggles"},
       {"kind": "gear", "id": "grapple-line"},
       {"kind": "gear", "id": "earpiece-comms"}

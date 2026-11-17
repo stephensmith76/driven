@@ -120,7 +120,7 @@ describe('Harm boxes and slots', () => {
   it('belt picks are gear: old Kit ids still resolve, and weapons or 2-slot armor are refused', () => {
     const base = hero('Patchwork')
     const r = resolveLoadout({ ...base, loadout: [{ kind: 'kit', id: 'smoke' }, { kind: 'kit', id: 'armor' }, { kind: 'kit', id: 'tracker' }] })
-    expect(r.map((x) => x.entry?.name)).toEqual(['Smoke grenades', 'Kevlar vest', 'Tracker'])
+    expect(r.map((x) => x.entry?.name)).toEqual(['Smoke grenades', 'Kevlar vest', 'Surveillance kit'])
     const bad = slotsUsed({ ...base, loadout: [{ kind: 'kit', id: 'sidearm' }, { kind: 'kit', id: 'powered-armor' }] })
     expect(bad.warnings.filter((w) => /can't go on a utility belt/.test(w))).toHaveLength(2)
     expect(slotsUsed({ ...hero('Rook'), loadout: [{ kind: 'kit', id: 'smoke' }] }).warnings.some((w) => /Only Specialists/.test(w))).toBe(true)
@@ -262,7 +262,7 @@ describe('Harm', () => {
 describe('simHero matches the simulator\'s own sample heroes (make_heroes, gear on)', () => {
   it('Bulwark', () => expect(simHero(hero('Bulwark'))).toMatchObject({
     key: 'bulwark', arch: 'Protector', trait: 'Mercy', force: 3, flow: 0, focus: 1, presence: 2,
-    boxes: 5, medkit: 1, power: 'Toughness', tough_blunt: 1, guard_bonus: 1, weapon: 'knife', strange: false,
+    boxes: 5, medkit: 1, power: 'Toughness', tough_blunt: 1, guard_bonus: 1, weapon: 'heavy', strange: false,
   }))
   it('Rook', () => expect(simHero(hero('Rook'))).toMatchObject({
     key: 'rook', boxes: 5, weapon: 'light', armor_guns: 1, medkit: 1, flairs: ['hard_to_kill'], not_simulated: [],
@@ -271,8 +271,8 @@ describe('simHero matches the simulator\'s own sample heroes (make_heroes, gear 
     weapon: 'light', flairs: ['opportunist'], power: 'Shadow Manipulation', strange: true, boxes: 4,
   }))
   it('Patchwork lists what the simulator leaves out', () => expect(simHero(hero('Patchwork'))).toMatchObject({
-    weapon: 'knife',
-    not_simulated: ['Patchwork: Night-vision goggles', 'Patchwork: Grapple line', 'Patchwork: Earpiece comms'],
+    weapon: 'pistol',
+    not_simulated: ['Patchwork: Fast Hands', 'Patchwork: Night-vision goggles', 'Patchwork: Grapple line', 'Patchwork: Earpiece comms'],
   }))
   it('The Ledger', () => expect(simHero(hero('The Ledger'))).toMatchObject({
     key: 'ledger', weapon: 'pistol', armor_guns: 1, not_simulated: [],
@@ -363,7 +363,7 @@ describe('Sheet bookkeeping', () => {
     expect(usesLeft(undefined, 'taser', 2).left).toBe(2)
   })
   it('Builder warnings: sample heroes are clean; a rule break warns', () => {
-    // rules.md gives Rook and Nightjar a Flair in the simulator, but not Bulwark, Patchwork or the Ledger,
+    // Every sample hero now has a Flair; only Rook's and Nightjar's are simulated,
     // so the only warning a sample hero may have is the one-Flair reminder.
     for (const h of heroes) {
       const w = buildWarnings(h, { creation: true }).filter((x) => !/one Flair/.test(x))

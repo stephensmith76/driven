@@ -104,6 +104,7 @@
         { "name": "Third ability", "text": "Write your own with the GM, matching the others in strength." }
       ],
       "sim": null },
+    {"id": "reputation", "name": "Reputation", "tier": "street", "trial": true, "slots": 1, "note": "Write in what the street says about you", "abilities": [{"name": "Known", "text": "Edge on Presence rolls outside a fight with anyone who has heard the stories. In your own neighborhood that is nearly everyone."}, {"name": "They hesitate", "text": "Once per fight, when a mook group is about to attack you, roll Presence against their Poise. On a hit, they lose that attack."}, {"name": "Say the word", "text": "Once per Night, one mook group with no named enemy in sight runs or gives up, no roll."}], "sim": null},
 
     { "id": "telepathy", "name": "Telepathy", "tier": "strange", "core": true, "slots": 2, "note": "-1 to each roll for each extra person you target",
       "abilities": [
@@ -302,7 +303,9 @@
         { "name": "Drift", "text": "Quick Action: rise out of reach. Until the start of your next turn, enemies on the ground can only reach you with ranged attacks, and your free move can cross one extra zone through open air. The first round is free. Each round after that costs 1 Stress." },
         { "name": "Lift", "text": "Carry one person your size when you float. The first time each scene, that costs 1 Stress." }
       ],
-      "sim": null }
+      "sim": null },
+    {"id": "blast", "name": "Blast", "tier": "strange", "trial": true, "slots": 2, "note": "Pick one energy: fire, force, light, sound, lightning", "abilities": [{"name": "Start", "text": "A ranged attack with Focus at Near or Far, with no Far penalty. +1 Harm on Impact 2 or better, and it ignores Toughness. Like a gun, it is at Disadvantage when you're engaged in melee. Nobody can take it from you, but it is loud and bright: +1 Heat for each fight where you use it in public."}, {"name": "Wide beam", "text": "Take 1 Stress: one attack roll against every enemy in one zone you can see. Allies in that zone are caught too."}, {"name": "Overcharge", "text": "Take 2 Stress before you roll: on a hit, +2 Harm instead of +1, and the target is knocked into an adjacent zone."}], "sim": null},
+    {"id": "custom-strange-power", "name": "Custom Strange Power", "tier": "strange", "trial": true, "slots": 2, "note": "Write in name and source", "abilities": [{"name": "Start", "text": "Edge on rolls your power helps, in or out of a fight. It pays the usual 1 Stress and takes a flaw, like any strange power."}, {"name": "Second ability", "text": "Write your own with the GM, matching the second ability of a listed strange power."}, {"name": "Third ability", "text": "Write your own with the GM, matching the third."}], "sim": null}
   ],
   "villain_only": [
     { "id": "biokinesis", "name": "Biokinesis", "text": "Reshape your body, slip away as a puddle." },

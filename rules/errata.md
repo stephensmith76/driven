@@ -693,3 +693,59 @@ Fixes and small trial additions. Rules version 2026-11-16.28.
 **Sample heroes.** The table has a Flair column (Bulwark: Bodyguard, Rook: Hard to Kill, Nightjar: Opportunist, Patchwork: Fast Hands, the Ledger: Plugs). Bulwark's Guard is 13 with the riot shield. Sample loadouts: Bulwark has a free crowbar and Patchwork a free baton.
 
 **Test fight: The Cannery.** Both heroes start with 2 Drive, not 1.
+
+## 26. Sample hero weapons (Nov 16)
+
+Rules version 2026-11-16.29.
+
+**Gear and Powers, Sample loadouts.** Bulwark's free crowbar is now a free baseball bat, and Patchwork's free baton is now a free sidearm.
+
+## 27. Fixes, the Lair, Advancement and a gear merge (Nov 16)
+
+Rules version 2026-11-16.30. New rules are trial.
+
+**Fixes.**
+
+- **Sample villains.** Augustine Voss has 8 Harm, not 5.
+- **Zones and range.** The Far row reads "Guns at Disadvantage (long guns and bows ignore this)". Specialists never ignored it. New line: "Next to someone means in the same zone as them."
+- **Cracking the case.** Going in with half the clues is 36% only at Complexity 6. It is 28% at Complexity 8 and 21% at 10.
+- **Flairs.** Bodyguard is once per scene, not once per round.
+- **Weapons.** Heavy melee: "+1 Harm on any hit, but only on a Strike with Force (never a Jab, never Flow)".
+- **Drive.** The earning table lists protecting a connection (1, once per scene). The spending table lists Second Wind (3). No rule changed.
+
+**Fights, Enemies.** New: **Morale (trial)**. A gang runs when half of its mooks are down, unless a named enemy is in sight. Fanatics, the mind-controlled, animals and swarms never run, and cops hold until the next group arrives.
+
+**The Night.** New: **Between cases (trial)**, after The clocks. Harm clears, Stress above 3 drops to 3, Drive goes back to its starting number, Heat drops by 2, Home doesn't move, a task force ends, and each hero takes an Advancement pick.
+
+**Archetypes, Advancement.** Now a table, with limits (trial): stats never total more than +10, four Flairs, six slots. A slot can be banked toward a strange power. Gear can be swapped when a case closes. A new hero starts with as many picks as the teammate who has the fewest.
+
+**Gear and Powers, Assets.** An Asset belongs to the team. New: **The Lair (trial)**. One hero can spend a starting slot on a bare Lair. Advancement picks add rooms: Crime lab, Med bay, Garage, Workshop, Monitor room, Holding cell. The GM finds it with a move, never a roll. When it is found, every hero who uses it ticks Home by 2, and the villain can strike there: a Confrontation on the heroes' ground. Lose it and it is gone for the rest of the case.
+
+**Gear, Tools.** The tools are sorted into four tables by job, and duplicates are merged, 37 tools down to 27.
+
+- Taser gun is now part of the Taser (its dart).
+- Stun grenade is gone. Flashbangs stay.
+- Hazmat suit is gone. The Rebreather also stops the Harm of a gas Hazard.
+- Climbing gear is now part of the Glider cape and climbing gloves.
+- Tracker and Parabolic mic are now the Surveillance kit. A tag gives a new lead, not a clue.
+- Mask and voice changer is now part of the Disguise kit and voice changer.
+- Caltrops are now part of Trip mines and caltrops (two uses per fight between them).
+- Signal jammer is now part of the EMP charge and jammer (one use per fight).
+- Foam grenades no longer glue an enemy in place. Bolas do that.
+- Pepper spray and the Adrenaline injector are cut.
+
+**Gear, Prototype gear.** New: Arc projector and Barrier projector (2 slots each, Unreliable).
+
+**Powers.** New trial powers: Reputation (street, Presence), Blast (strange) and Custom Strange Power.
+
+**Villains.** A case villain who fights alone, with no mooks and no other named enemy, has 2 more Harm: 12, or 10 for a smaller one (trial).
+
+## 28. Team pick, Lair styles and vehicles in a fight (Nov 17)
+
+Rules version 2026-11-17.31. All trial.
+
+**Gear and Powers, The Lair.** "Starting with one" (a hero spends a slot) is replaced by **Team pick (optional, trial)**: at character creation the team gets one free shared pick, a Lair or any one Asset. New: **What every Lair does**. Rest (the Dawn bonus it already had), lie low (a hero who picks Lay Low there can't be found until the next Night), and meet. New: **Style**. Pick one when the Lair is founded: Gym (a new Dawn pick, Train: start the next Night with 1 more Drive), Hideout (the first time it would be found, it isn't), Front (once per case, one Home tick doesn't happen), Watchtower (once per Night, Edge on one lead roll in its neighborhood).
+
+**Archetypes, Character creation checklist.** New step 9: the Team pick, chosen by the team together once every hero is built, if the table uses that rule.
+
+**Fights.** New: **Vehicles in a fight (trial)**, after Chases. A moving vehicle is a zone and the road around it is a traffic Hazard. The driver spends a Quick Action each turn. Crossing between moving vehicles is a Flow roll against -1, +1 or +3. Ramming is a Full Action: the vehicle's rating in place of Force (+1 bike, +3 car or truck) against Guard, counting as heavy melee, with a shove at Impact 2 or 3. A vehicle is wrecked by a hard move or an Impact 3 attack aimed at it.
