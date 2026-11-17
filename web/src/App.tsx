@@ -16,6 +16,7 @@ import { Fight } from './screens/gm/Fight'
 import { EncounterLab } from './screens/gm/EncounterLab'
 import { Bank } from './screens/gm/Bank'
 import { Villains } from './screens/gm/Villains'
+import { Team } from './screens/gm/Team'
 import { VillainBuilder } from './screens/gm/VillainBuilder'
 import { Display } from './screens/Display'
 import { Errata } from './screens/Errata'
@@ -70,6 +71,7 @@ function Routes() {
   if (a === 'gm' && b && c === 'bank') return <Bank campaignId={b} />
   if (a === 'gm' && b && c === 'villains' && d) return <VillainBuilder campaignId={b} id={d} />
   if (a === 'gm' && b && c === 'villains') return <Villains campaignId={b} />
+  if (a === 'gm' && b && c === 'team') return <Team campaignId={b} />
   if (a === 'gm' && b && c === 'admin') return <Admin campaignId={b} />
   if (a === 'gm' && b) return <GmTable campaignId={b} />
   if (a === 'gm') return <GmEnter />

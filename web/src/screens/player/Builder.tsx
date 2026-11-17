@@ -7,9 +7,10 @@ import { loadBank, saveBankEntry } from '../../data/bank'
 import { deletePortrait, uploadPortrait, viaRun } from '../../data/portraits'
 import { PortraitPicker } from '../../components/Portrait'
 import { useRunner } from '../../components/Toast'
+import { TeamCard } from '../../components/TeamCard'
 import type { Character, Connections, LoadoutItem, Stats } from '../../data/types'
 import {
-  ARCHETYPES, CORE, CUSTOM_TRAIT_ID, FLAIRS, GEAR, POWERS, TRAITS, type CustomTrait,
+  ARCHETYPES, CORE, CUSTOM_TRAIT_ID, FLAIRS, GEAR, POWERS, TEAM, TRAITS, teamHasAnything, type CustomTrait, type TeamSheet,
   buildWarnings, gearItem, power, slotsUsed, startingDrive, type Sheet as SheetData,
 } from '../../engine'
 
@@ -70,7 +71,7 @@ export function Builder({ campaignId, characterId }: { campaignId: string; chara
     return <main className="page"><p className="error">That hero wasn't found.</p><a href={`#/c/${campaignId}/sheet`}>Back</a></main>
   }
   return <BuilderForm key={existing?.id ?? 'new'} campaignId={campaignId} existing={existing}
-    isGm={role === 'gm'} canBuild={campaign.settings.players_can_build} />
+    isGm={role === 'gm'} canBuild={campaign.settings.players_can_build} team={campaign.settings.team} />
 }
 
 /** Where a hero built straight in the bank is saved. */
@@ -101,8 +102,8 @@ export function BankHeroBuilder({ campaignId, entryId }: { campaignId: string; e
   return <BuilderForm key={loaded.target.entryId} campaignId={campaignId} isGm canBuild bankTarget={loaded.target} initial={loaded.initial} />
 }
 
-function BuilderForm({ campaignId, existing, isGm, canBuild, bankTarget, initial }: {
-  campaignId: string; existing?: Character; isGm: boolean; canBuild: boolean
+function BuilderForm({ campaignId, existing, isGm, canBuild, bankTarget, initial, team }: {
+  campaignId: string; existing?: Character; isGm: boolean; canBuild: boolean; team?: TeamSheet | null
   bankTarget?: BankTarget; initial?: Draft
 }) {
   const [draft, setDraft] = useState<Draft>(initial ?? (existing ? fromCharacter(existing) : blank()))
@@ -396,6 +397,15 @@ function BuilderForm({ campaignId, existing, isGm, canBuild, bankTarget, initial
           )}
         </section>
       </fieldset>
+
+      {!bankTarget && (
+        <section className="card stack">
+          <h2>Team pick (optional)</h2>
+          <p className="small">{TEAM.team_pick}</p>
+          <p className="small muted">The team chooses this together once every hero is built, if your table uses the rule. The GM records it on the Team sheet.</p>
+          {teamHasAnything(team) && <TeamCard team={team} brief />}
+        </section>
+      )}
 
       {warnings.length > 0 && (
         <section className="card stack" aria-live="polite">

@@ -86,6 +86,18 @@ function FightBody({ campaignId }: GmContext & { campaignId: string }) {
           ))}. </>}
           Gang size to start: <strong>{gangGroups(heroes.length, named)}</strong> group{gangGroups(heroes.length, named) === 1 ? '' : 's'} of {CORE.villain_scaling.mook_group_size} mooks{named ? ' (a named villain is present)' : ''}. Then adjust for how hard it should be.
         </p>
+        {alone && (enemies[0].details?.lone_bonus
+          ? <p className="small muted">{enemies[0].name} is fighting alone: the {CORE.villain_scaling.lone_harm_bonus} extra Harm boxes are added.</p>
+          : (
+            <p className="small">
+              {enemies[0].name} is fighting alone. A case villain with no mooks and no other named enemy has {CORE.villain_scaling.lone_harm_bonus} more Harm (trial).{' '}
+              <button className="mini secondary" onClick={() => run(async () => {
+                const e = enemies[0]
+                await setEnemyField(campaignId, e.id, 'harm_max', e.harm_max + CORE.villain_scaling.lone_harm_bonus)
+                await setEnemyField(campaignId, e.id, 'details', { ...(e.details ?? {}), lone_bonus: true })
+              })}>Add {CORE.villain_scaling.lone_harm_bonus} Harm boxes</button>
+            </p>
+          ))}
         <p className="small muted">End of round ticks goal clocks last. End fight stands Down heroes who aren't Dying back up at Wounded and clears per-fight flags.</p>
       </section>
 

@@ -1,0 +1,41 @@
+{
+  "team_pick": "Optional, trial. At character creation the team gets one free shared pick: a Lair, or any one Asset. Nobody spends a slot on it. After that, the Lair and Assets grow through Advancement.",
+  "lair": {
+    "rest": { "stress": 1, "harm": 1 },
+    "basics": [
+      { "name": "Rest", "text": "At Dawn there, Sleep It Off clears 1 more Stress and Patch Up clears 1 more Harm." },
+      { "name": "Lie low", "text": "A hero who picks Lay Low there can't be found until the next Night: no Dawn move, ambush or arrest lands on them." },
+      { "name": "Meet", "text": "The team can plan, hold a prisoner for a scene, and keep evidence there, out of sight." }
+    ],
+    "styles": [
+      { "id": "gym", "name": "Gym", "what": "A boxing gym, a dojo, a basement full of weights",
+        "text": "It adds a Dawn pick, Train: spend one of your two picks there and start the next Night with 1 more Drive.",
+        "dawn_pick": { "id": "train", "name": "Train", "text": "Start the next Night with 1 more Drive.", "drive": 1 } },
+      { "id": "hideout", "name": "Hideout", "what": "A sewer junction, a dead subway station, a boarded-up cellar",
+        "text": "Hard to find. The first time the Lair would be found, it isn't: the threat comes to nothing." },
+      { "id": "front", "name": "Front", "what": "A bar, a repair shop, a clinic with a back room",
+        "text": "A public face that covers for you. Once per case, when one hero's Home clock would tick, it doesn't." },
+      { "id": "watchtower", "name": "Watchtower", "what": "A clock tower, a water tank, a penthouse nobody rents",
+        "text": "It looks out over a neighborhood. Once per Night, Edge on one lead roll there." }
+    ],
+    "rooms": [
+      { "id": "crime-lab", "name": "Crime lab", "text": "Once per Night, spend a scene on physical evidence and take 1 clue, no roll. It counts as the team's one no-roll clue. Gear that was taken from you is replaced by the next Night." },
+      { "id": "med-bay", "name": "Med bay", "text": "It clears a Dying mark at Dawn. A hero who was Dying and stabilized clears Down here with Patch Up alone." },
+      { "id": "garage", "name": "Garage", "text": "Needs a Vehicle. A wrecked Vehicle is fixed by the next Night, with no Dawn spent. Once per case, the Vehicle starts a chase with one hit already scored." },
+      { "id": "workshop", "name": "Workshop", "text": "At each Dawn there, one hero swaps one piece of gear for another of the same cost, and one smashed piece of gear is repaired." },
+      { "id": "monitor-room", "name": "Monitor room", "text": "Once per Night, the GM tells the team where the next Scheme beat will land. Nobody ambushes the team in the Lair." },
+      { "id": "holding-cell", "name": "Holding cell", "text": "Hold one captured named enemy between Nights. Interrogating them there has Edge. Someone will come looking for them." }
+    ],
+    "found": "When it is found, every hero who uses the Lair ticks Home by 2. From then on the villain can strike there, as a Scheme beat or a Patrol move. It stays found until the team moves it, which costs each hero one Dawn pick.",
+    "burned": "Burned: gone for the rest of the case, rooms and all. When the case closes, the team sets up somewhere new and keeps its rooms."
+  },
+  "assets": [
+    { "id": "vehicle", "name": "Vehicle", "text": "One extra Patrol action per Night, Edge in chases, and once per Night it can crash into a fight as an entrance (move your whole group into any zone, and one mook group drops). Wrecking it costs a Dawn to fix." },
+    { "id": "network", "name": "Network", "text": "Once per Night, take a free lead with no cost. Ignore them too long and they start asking for favors." },
+    { "id": "crime-lab", "name": "Crime lab", "trial": true, "text": "Once per Night, spend a scene on physical evidence and take 1 clue, no roll. It counts as the team's one no-roll clue. Gear that was taken from you is replaced by the next Night." },
+    { "id": "back-alley-clinic", "name": "Back-alley clinic", "trial": true, "text": "It clears a Dying mark at Dawn. A hero who was Dying and stabilized clears Down here with Patch Up alone." },
+    { "id": "safe-house", "name": "Safe house", "trial": true, "text": "Lay Low clears 2 Heat instead of 1. Once per case, burn an identity to ignore 1 Heat you would take." },
+    { "id": "inside-man", "name": "Inside man", "trial": true, "text": "Once per Night, Edge on a lead that runs through police or city records, and using those records adds no Heat. When Heat fills, the team picks the Crackdown instead of the GM." },
+    { "id": "home-turf", "name": "Home turf", "trial": true, "text": "In your neighborhood, enemies can't ambush the team, and you can Vanish in a Crowd there with Edge. Once per Night there, the cops arrive a round late." }
+  ]
+}

@@ -20,6 +20,8 @@ export type VillainDetails = {
   /** Power ids from powers.json. */
   powers?: string[]
   notes?: string
+  /** The lone-villain Harm bonus has been added to harm_max (rules.md, What a villain has). */
+  lone_bonus?: boolean
   /** Mook groups: one of them carries a gun. */
   gunner?: boolean
 }

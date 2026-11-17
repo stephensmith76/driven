@@ -31,4 +31,6 @@ Fields the engine uses to work out numbers:
 - `null`: it matters in a fight, but the simulator can't model it. It shows under "Not simulated".
 - `{}`: it has no effect in a fight (Patrol or Dawn only), so there's nothing to model.
 
-`npm test` fails if a gear, power, Flair, archetype or Trait name here is missing from `rules.md`.
+`team.json` holds the team sheet: the Team pick, the Lair (basics, styles, rooms) and the Assets. The app saves a team's choices in the campaign settings.
+
+`npm test` fails if a gear, power, Flair, archetype, Trait, Lair style, Lair room or Asset name here is missing from `rules.md`.

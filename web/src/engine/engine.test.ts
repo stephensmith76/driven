@@ -472,3 +472,40 @@ describe('Armor vs guns (Stephen, Nov 11): harm() subtracts the Toughness it is 
     expect(t([{ kind: 'power', id: 'toughness' }], 0)).toEqual([1, 0, 0, 0])
   })
 })
+
+import { TEAM, harm as harmOf, lairAtDawn } from './index'
+
+describe('Team sheet and rules .31', () => {
+  const md = readFileSync(resolve(import.meta.dirname, '../../../rules/rules.md'), 'utf8').toLowerCase()
+  const tr = { harm: 0, stress: 0, drive: 2, home_clock: 0 }
+
+  it('every Lair style, room and Asset in team.json appears in rules.md', () => {
+    const names = [...TEAM.lair.styles, ...TEAM.lair.rooms, ...TEAM.assets].map((x) => x.name)
+    expect(names.filter((n) => !md.includes(n.toLowerCase()))).toEqual([])
+  })
+
+  it('heavy melee gives its +1 Harm only with Force', () => {
+    expect(harmOf({ impact: 2, weapon: 'heavy', targetToughness: 0, stat: 'force' }).harm).toBe(3)
+    expect(harmOf({ impact: 2, weapon: 'heavy', targetToughness: 0, stat: 'flow' }).harm).toBe(2)
+    expect(harmOf({ impact: 2, weapon: 'heavy', targetToughness: 0, stat: 'attack' }).harm).toBe(3)
+    expect(harmOf({ impact: 2, weapon: 'heavy', targetToughness: 0 }).harm).toBe(3)
+  })
+
+  it('a Lair clears 1 more Stress and Harm at Dawn, and a burned one gives nothing', () => {
+    const lair = lairAtDawn({ lair: { style: 'hideout' } })
+    expect(lair).toEqual({ usable: true, pick: null })
+    expect(dawn(hero('Rook'), { ...tr, stress: 6, harm: 3 }, ['sleep_it_off', 'patch_up'], lair).patch).toMatchObject({ stress: 2, harm: 0 })
+    const burned = lairAtDawn({ lair: { style: 'gym', burned: true } })
+    expect(burned).toEqual({ usable: false, pick: null })
+    expect(dawn(hero('Rook'), { ...tr, stress: 6, harm: 3 }, ['sleep_it_off', 'patch_up'], burned).patch).toMatchObject({ stress: 3, harm: 1 })
+    expect(lairAtDawn(null).usable).toBe(false)
+  })
+
+  it('the Gym adds Train: 1 more Drive than the hero would start the next Night with', () => {
+    const gym = lairAtDawn({ lair: { style: 'gym' } })
+    expect(gym.pick?.id).toBe('train')
+    expect(dawn(hero('Rook'), { ...tr, drive: 0 }, ['train', 'show_up'], gym).patch.drive).toBe(3)
+    expect(dawn(hero('Rook'), { ...tr, drive: 5 }, ['train', 'show_up'], gym).patch.drive).toBe(4)
+    expect(dawn(hero('Rook'), { ...tr, drive: 5 }, ['sleep_it_off', 'show_up'], gym).patch.drive).toBe(3)
+  })
+})

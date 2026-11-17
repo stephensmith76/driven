@@ -3,6 +3,7 @@
 // blocks anything; a broken rule comes back as a warning string.
 import { CORE, CUSTOM_TRAIT_ID, CUSTOM_TRAIT_PARTS, flair } from './rules'
 import { harmBoxes, slotsUsed, type Sheet } from './sheet'
+import { TEAM, type LairAtDawn } from './team'
 
 /** Drive at the start of a Night: 2, or 4 with Already Broken. */
 export function startingDrive(sheet: Sheet): number {
@@ -29,21 +30,24 @@ export type DawnResult = {
  * Home) and lists the ones the GM has to apply (Heat, a clue). Then Drive above
  * 3 drops to 3.
  */
-export function dawn(sheet: Sheet, t: Trackers, picks: string[]): DawnResult {
+export function dawn(sheet: Sheet, t: Trackers, picks: string[], lair?: LairAtDawn): DawnResult {
   const patch: Partial<Trackers> = {}
   const notes: string[] = []
   const gmTasks: string[] = []
   const has = (id: string) => picks.includes(id)
-  const name = (id: string) => CORE.dawn.options.find((o) => o.id === id)?.name ?? id
+  const name = (id: string) => CORE.dawn.options.find((o) => o.id === id)?.name ?? (lair?.pick?.id === id ? lair.pick.name : id)
+  const atLair = Boolean(lair?.usable)
 
   // Sleep It Off clears 3 Stress and Show Up clears 1 (rules.md, Dawn). Stress never drops below the hero's floor.
   const floor = stressFloor(sheet)
   let stress = t.stress
   for (const id of ['sleep_it_off', 'show_up']) {
-    const clear = (CORE.dawn.options.find((o) => o.id === id) as { stress_clear?: number } | undefined)?.stress_clear ?? 0
+    const base = (CORE.dawn.options.find((o) => o.id === id) as { stress_clear?: number } | undefined)?.stress_clear ?? 0
+    const rest = atLair && id === 'sleep_it_off' ? TEAM.lair.rest.stress : 0
+    const clear = base + rest
     if (!has(id) || clear === 0 || stress <= floor) continue
     const next = Math.max(floor, stress - clear)
-    notes.push(`${name(id)}: Stress ${stress} to ${next}${next === floor && floor > 0 ? ' (it never drops lower)' : ''}.`)
+    notes.push(`${name(id)}: Stress ${stress} to ${next}${rest ? ` (${rest} more at the Lair)` : ''}${next === floor && floor > 0 ? ' (it never drops lower)' : ''}.`)
     stress = next
   }
   if (stress !== t.stress) patch.stress = stress
@@ -54,9 +58,9 @@ export function dawn(sheet: Sheet, t: Trackers, picks: string[]): DawnResult {
     if (down && !has('sleep_it_off')) {
       notes.push(`${name('patch_up')}: still Down. Clearing Down needs ${name('patch_up')} and ${name('sleep_it_off')} together.`)
     } else {
-      patch.harm = Math.min(t.harm, 1)
+      patch.harm = Math.min(t.harm, Math.max(0, 1 - (atLair ? TEAM.lair.rest.harm : 0)))
       if (down) patch.dying = false
-      notes.push(`${name('patch_up')}: ${down ? 'Down, Wounded and Hurt' : 'Hurt and Wounded'} cleared. A Bruise can stay until a breather.`)
+      notes.push(`${name('patch_up')}: ${down ? 'Down, Wounded and Hurt' : 'Hurt and Wounded'} cleared. ${atLair ? 'The Lair clears the Bruise too.' : 'A Bruise can stay until a breather.'}`)
     }
   }
 
@@ -67,14 +71,23 @@ export function dawn(sheet: Sheet, t: Trackers, picks: string[]): DawnResult {
     notes.push(`${name('show_up')}: Home stays at ${t.home_clock}.`)
   }
 
-  if (has('lay_low')) gmTasks.push(`${name('lay_low')}: GM clears 1 Heat.`)
+  if (has('lay_low')) gmTasks.push(`${name('lay_low')}: GM clears 1 Heat.${atLair ? ' At the Lair, nobody can find you until the next Night.' : ''}`)
   if (has('work_the_case')) gmTasks.push(`${name('work_the_case')}: GM gives 1 clue.`)
 
   const cap = CORE.drive.dawn_cap
-  if (t.drive > cap) {
-    patch.drive = cap
+  let drive = t.drive
+  if (drive > cap) {
+    drive = cap
     notes.push(`Drive ${t.drive} drops to ${cap}.`)
   }
+  // The Gym's Train: 1 more Drive than the hero would otherwise start the next Night with.
+  const extra = lair?.pick && has(lair.pick.id) ? lair.pick.drive : 0
+  if (extra) {
+    const to = Math.min(CORE.drive.max, Math.max(drive, startingDrive(sheet)) + extra)
+    notes.push(`${lair!.pick!.name}: you start the next Night with ${to} Drive.`)
+    drive = to
+  }
+  if (drive !== t.drive) patch.drive = drive
   return { patch, notes, gmTasks }
 }
 

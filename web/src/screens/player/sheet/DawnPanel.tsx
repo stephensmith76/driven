@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { CORE, dawn } from '../../../engine'
+import { CORE, dawn, lairAtDawn } from '../../../engine'
 import { setFlag, updateColumns } from '../../../data/writes'
 import type { Campaign, Character } from '../../../data/types'
 import type { Report } from './Actions'
@@ -15,9 +15,14 @@ export function DawnPanel({ hero, campaign, report, run, onClose }: {
   const [picks, setPicks] = useState<string[]>([])
   const need = CORE.dawn.picks
 
+  const team = campaign.settings.team
+  const lair = useMemo(() => lairAtDawn(team), [team])
+  // The Lair's style can add a pick (the Gym's Train).
+  const options = useMemo(() => [...CORE.dawn.options.map((o) => ({ id: o.id, name: o.name, text: o.text })), ...(lair.pick ? [lair.pick] : [])], [lair])
+
   const result = useMemo(
-    () => dawn(hero, { harm: hero.harm, stress: hero.stress, drive: hero.drive, home_clock: hero.home_clock, dying: hero.dying }, picks),
-    [hero, picks],
+    () => dawn(hero, { harm: hero.harm, stress: hero.stress, drive: hero.drive, home_clock: hero.home_clock, dying: hero.dying }, picks, lair),
+    [hero, picks, lair],
   )
 
   const toggle = (id: string) =>
@@ -33,15 +38,16 @@ export function DawnPanel({ hero, campaign, report, run, onClose }: {
   return (
     <div className="item stack" role="group" aria-label="Dawn">
       <p><strong>Dawn: pick {need}.</strong> <span className="muted small">You can never do everything. That's the point.</span></p>
+      {lair.usable && <p className="muted small">Dawn at the Lair{team?.lair?.name ? ` (${team.lair.name})` : ''}: Sleep It Off and Patch Up each clear 1 more.</p>}
       <div className="chips">
-        {CORE.dawn.options.map((o) => (
+        {options.map((o) => (
           <button key={o.id} className={`chip ${picks.includes(o.id) ? 'on' : ''}`} aria-pressed={picks.includes(o.id)} onClick={() => toggle(o.id)} title={o.text}>
             {o.name}
           </button>
         ))}
       </div>
       <ul className="plain small">
-        {CORE.dawn.options.filter((o) => picks.includes(o.id)).map((o) => <li key={o.id}><strong>{o.name}.</strong> {o.text}</li>)}
+        {options.filter((o) => picks.includes(o.id)).map((o) => <li key={o.id}><strong>{o.name}.</strong> {o.text}</li>)}
       </ul>
       {picks.length === need && (
         <div className="small">

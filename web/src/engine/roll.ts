@@ -79,6 +79,8 @@ export type HarmInput = {
   gun?: boolean
   fromMook?: boolean
   jab?: boolean
+  /** The stat the attacker rolled. Heavy melee only gives its bonus with Force. */
+  stat?: string | null
   /** Mighty Force attack: +1 Harm on Impact 2+ and ignores Toughness. */
   mighty?: boolean
   /** Ignores Toughness for another reason (a Read on the weakness, electricity, Prepared's trap). */
@@ -111,7 +113,10 @@ export function harm(input: HarmInput): HarmResult {
   }
 
   if (weapon === 'light' && impact >= 2) bump('Light weapon (+1 on Impact 2+)', 1)
-  if (weapon === 'heavy' && !input.jab) bump('Heavy weapon (+1 on a Strike)', 1)
+  // Heavy melee is a Strike with Force. Mook groups roll one attack bonus, so they keep it.
+  const noForce = weapon === 'heavy' && input.stat != null && ['flow', 'focus', 'presence'].includes(input.stat)
+  if (noForce) steps.push({ label: 'Heavy weapon needs Force: no bonus', change: 0, running: h })
+  else if (weapon === 'heavy' && !input.jab) bump('Heavy weapon (+1 on a Strike with Force)', 1)
   if (weapon === 'knife' && impact >= 2 && input.targetToughness === 0) bump('Blade vs no Toughness (+1 on Impact 2+)', 1)
   if (gun && impact >= 2) bump('Gun (+1 on Impact 2+)', 1)
   if (input.mighty && impact >= 2) bump('Mighty (+1 on Impact 2+)', 1)

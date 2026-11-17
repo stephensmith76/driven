@@ -232,6 +232,7 @@
     "turns_text": "A named villain gets one turn per round for every two heroes, rounded up. A villain fighting alone, with no mooks or lieutenants, gets one turn per hero instead, and 2 more Harm.",
     "gang_text": "With no named villain, one group of 3 mooks per hero. With a named villain present, one group per two heroes (rounded down, minimum 1). Then adjust for how hard the fight should be.",
     "mook_group_size": 3,
+    "lone_harm_bonus": 2,
     "named_enemy_text": "A named enemy can lose at most one turn per fight, from all sources combined. After that, any effect that would cost them a turn gives them Disadvantage on their next roll instead. Losing their next Quick Action means Disadvantage on their next roll. Disadvantage on their next roll applies to their next roll that isn't their free Presence attack."
   },
   "advancement": [

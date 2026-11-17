@@ -1,4 +1,5 @@
 import type { CustomTrait } from '../engine/rules'
+import type { TeamSheet } from '../engine/team'
 
 export type Stats = { force: number; flow: number; focus: number; presence: number }
 
@@ -19,7 +20,8 @@ export type Campaign = {
   rules_version: string | null
   night: number
   phase: 'patrol' | 'crack' | 'confrontation' | 'dawn'
-  settings: { players_can_build: boolean; players_see_sheets: boolean }
+  /** `team` is the team sheet: the Lair and Assets. It lives here so it needs no table of its own. */
+  settings: { players_can_build: boolean; players_see_sheets: boolean; team?: TeamSheet | null }
 }
 
 export type Member = {

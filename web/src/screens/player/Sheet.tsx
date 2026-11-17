@@ -11,10 +11,11 @@ import { ScenePanel } from '../../components/ScenePanel'
 import { RollLog } from '../../components/RollLog'
 import type { Scene } from '../../data/types'
 import { RulesNotice } from '../../components/RulesNotice'
-import { CORE, archetype, defenses, heroTrait, slotsUsed, toughness, type AttackKind } from '../../engine'
+import { CORE, TEAM, archetype, defenses, heroTrait, slotsUsed, teamHasAnything, toughness, type AttackKind } from '../../engine'
 import { Actions } from './sheet/Actions'
 import { Loadout } from './sheet/Loadout'
 import { DawnPanel } from './sheet/DawnPanel'
+import { TeamCard } from '../../components/TeamCard'
 
 const STATS = ['force', 'flow', 'focus', 'presence'] as const
 const SHOWN_KINDS: AttackKind[] = ['blunt', 'blade', 'gun']
@@ -167,6 +168,14 @@ export function Sheet({ campaignId, characterId }: { campaignId: string; charact
         <p className="muted small">When one is lost, resolved or betrayed, write a new one at the next Dawn. Protecting one earns 1 Drive, once per scene.</p>
       </section>
 
+      {teamHasAnything(campaign.settings.team) && (
+        <section className="card stack">
+          <h2>Team</h2>
+          <TeamCard team={campaign.settings.team} />
+          {isGm && <p className="small"><a href={`#/gm/${campaignId}/team`}>Edit the team sheet</a></p>}
+        </section>
+      )}
+
       <section className="card stack">
         <h2>Notes</h2>
         <NotesField value={hero.notes} onSave={(v) => run(() => setField('characters', hero.id, 'notes', v))} />
@@ -183,7 +192,7 @@ export function Sheet({ campaignId, characterId }: { campaignId: string; charact
         {typeof hero.fight_state.dawn === 'object' && hero.fight_state.dawn && (
           <p className="muted small">
             Last Dawn (Night {(hero.fight_state.dawn as { night: number }).night}):{' '}
-            {(hero.fight_state.dawn as { picks: string[] }).picks.map((p) => CORE.dawn.options.find((o) => o.id === p)?.name ?? p).join(', ')}
+            {(hero.fight_state.dawn as { picks: string[] }).picks.map((p) => CORE.dawn.options.find((o) => o.id === p)?.name ?? TEAM.lair.styles.find((s) => s.dawn_pick?.id === p)?.dawn_pick?.name ?? p).join(', ')}
           </p>
         )}
       </section>

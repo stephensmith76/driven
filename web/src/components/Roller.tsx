@@ -45,7 +45,7 @@ type Done = {
   actor: Actor
   impact: number
   upgraded: boolean
-  attack: { type: 'harm' | 'stress'; weapon: WeaponId; toughness: number; extra: number; fromMook: boolean } | null
+  attack: { type: 'harm' | 'stress'; weapon: WeaponId; toughness: number; extra: number; fromMook: boolean; stat: string | null } | null
   target: { kind: 'hero' | 'enemy'; id: string } | null
   applied: string[] | null
   working: ReturnType<typeof evaluate>
@@ -169,7 +169,7 @@ export function Roller({ campaignId, heroes, enemies = [], myHeroId, isGm, initi
     await logRoll(campaignId, row)
     setDone({
       row, setup, actor, impact: working.impact, upgraded: false, working,
-      attack: attack ? { type: attackType, weapon: weaponId, toughness: toughNow, extra: extraHarm, fromMook: actor.enemy?.kind === 'mooks' } : null,
+      attack: attack ? { type: attackType, weapon: weaponId, toughness: toughNow, extra: extraHarm, fromMook: actor.enemy?.kind === 'mooks', stat: statName } : null,
       target: targetEnemy ? { kind: 'enemy', id: targetEnemy.id } : targetHeroForHit ? { kind: 'hero', id: targetHeroForHit.id } : null,
       applied: null,
     })
@@ -287,6 +287,9 @@ export function Roller({ campaignId, heroes, enemies = [], myHeroId, isGm, initi
               )}
             </div>
             {attackType === 'harm' && weaponDef && <p className="small muted">{weaponDef.text}</p>}
+            {attackType === 'harm' && weaponId === 'heavy' && statName != null && statName !== 'force' && statName !== 'attack' && (
+              <p className="small warn">⚠ Heavy melee is a Strike with Force. Rolled with {statName}, it gets no +1 Harm.</p>
+            )}
           </div>
         )}
       </details>
@@ -328,7 +331,7 @@ function ResultCard({ done, setDone, campaignId, heroes, enemies, isGm, run, rep
 
   const harmRes = attack?.type === 'harm' && hit
     ? harm({
-      impact: done.impact, weapon: attack.weapon, targetToughness: attack.toughness, jab: setup.jab,
+      impact: done.impact, weapon: attack.weapon, targetToughness: attack.toughness, jab: setup.jab, stat: attack.stat,
       fromMook: attack.fromMook, extra: attack.extra ? [{ source: 'Extra Harm', value: attack.extra }] : undefined,
     })
     : null
