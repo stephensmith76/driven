@@ -15,6 +15,7 @@ import { CORE, TEAM, archetype, defenses, heroTrait, slotsUsed, teamHasAnything,
 import { Actions } from './sheet/Actions'
 import { Loadout } from './sheet/Loadout'
 import { DawnPanel } from './sheet/DawnPanel'
+import { TraitCard } from '../../components/TraitCard'
 import { TeamCard } from '../../components/TeamCard'
 
 const STATS = ['force', 'flow', 'focus', 'presence'] as const
@@ -119,6 +120,11 @@ export function Sheet({ campaignId, characterId }: { campaignId: string; charact
           })}
         </p>
         <p className="muted small">Hazards ignore Toughness unless a power or armor says otherwise. Toughness doesn't stack: the highest source counts.</p>
+      </section>
+
+      <section className="card stack">
+        <h2>Trait and Flairs</h2>
+        <TraitCard hero={hero} />
       </section>
 
       <section className="card stack">

@@ -116,6 +116,17 @@ export function heroTrait(s: { trait_id?: string | null; custom_trait?: CustomTr
     drive_trigger: c.drive_trigger ?? '', steady: c.steady ?? '', fraying: c.fraying ?? '', hook: c.hook ?? '', breaking: c.breaking ?? '',
   }
 }
+/**
+ * The perk a hero's Trait gives at a Stress stage, written out in full. Six Traits say only
+ * "That Edge becomes Advantage." for Fraying, so that line becomes the Steady perk with Advantage in place of Edge.
+ * At Breaking the line is the Breaking fallout (the Fraying perk is off).
+ */
+export function traitLine(t: Pick<TraitEntry, 'steady' | 'fraying' | 'breaking'>, stage: string): string {
+  if (stage === 'steady') return t.steady
+  if (stage === 'breaking') return t.breaking
+  if (/^\s*that edge becomes advantage\.?\s*$/i.test(t.fraying) && t.steady) return t.steady.replace(/\bEdge\b/g, 'Advantage')
+  return t.fraying
+}
 export const flair = (id: string) => byId.flair.get(id)
 export const gearItem = (id: string) => byId.gear.get(id)
 /** Belt picks are saved with kind 'kit' (the old name). Old picks used the old Kit ids; these map to the gear that replaced them. */

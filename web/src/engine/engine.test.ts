@@ -314,7 +314,7 @@ describe('Rules data stays in step with rules.md', () => {
   })
 })
 
-import { CUSTOM_TRAIT_ID, VILLAIN_TRAITS, buildWarnings, dawn, heroTrait, priceOf, secondWind, startingDrive, stressFloor, usesLeft } from './index'
+import { CUSTOM_TRAIT_ID, VILLAIN_TRAITS, buildWarnings, dawn, heroTrait, priceOf, traitLine, secondWind, startingDrive, stressFloor, usesLeft } from './index'
 
 describe('Sheet bookkeeping', () => {
   const t = (o: Partial<{ harm: number; stress: number; drive: number; home_clock: number; dying: boolean }> = {}) =>
@@ -507,5 +507,21 @@ describe('Team sheet and rules .31', () => {
     expect(dawn(hero('Rook'), { ...tr, drive: 0 }, ['train', 'show_up'], gym).patch.drive).toBe(3)
     expect(dawn(hero('Rook'), { ...tr, drive: 5 }, ['train', 'show_up'], gym).patch.drive).toBe(4)
     expect(dawn(hero('Rook'), { ...tr, drive: 5 }, ['sleep_it_off', 'show_up'], gym).patch.drive).toBe(3)
+  })
+})
+
+describe('traitLine', () => {
+  it('writes out "That Edge becomes Advantage" as the full perk', () => {
+    const justice = TRAITS.find((t) => t.id === 'justice')!
+    expect(traitLine(justice, 'fraying')).toBe('Advantage on rolls to stop someone hurting an innocent.')
+    expect(traitLine(justice, 'steady')).toBe(justice.steady)
+    expect(traitLine(justice, 'breaking')).toBe(justice.breaking)
+  })
+  it('never shows a bare "That Edge" line for any Trait', () => {
+    for (const t of TRAITS) expect(traitLine(t, 'fraying')).not.toMatch(/^that edge/i)
+  })
+  it('leaves a Fraying perk of its own alone', () => {
+    const spite = TRAITS.find((t) => t.id === 'spite')!
+    expect(traitLine(spite, 'fraying')).toBe(spite.fraying)
   })
 })

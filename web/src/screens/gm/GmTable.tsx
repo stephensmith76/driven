@@ -12,7 +12,8 @@ import { RulesNotice } from '../../components/RulesNotice'
 import { ClocksPanel } from '../../components/gm/ClocksPanel'
 import { CluesPanel } from '../../components/gm/CluesPanel'
 import { useRunner } from '../../components/Toast'
-import { PHASE_NAMES, archetype, defenses, phases, type Phase } from '../../engine'
+import { PHASE_NAMES, archetype, defenses, heroTrait, phases, type Phase } from '../../engine'
+import { TraitCard } from '../../components/TraitCard'
 import { GmShell, type GmContext } from './GmShell'
 
 /** GM home: Night and phase, the team clocks, a card per hero, found clues, and the join link. */
@@ -80,10 +81,14 @@ function TableBody({ campaignId, campaign, members }: GmContext & { campaignId: 
                 onRemove={viaRun(run, async () => { await deletePortrait(h.portrait); await setField('characters', h.id, 'portrait', null) })} />
               <h2>{h.name}{h.is_npc && <span className="tag">NPC</span>}{h.locked && <span className="tag">locked</span>}</h2>
               <p className="muted small">
-                {archetype(h.archetype_id)?.name ?? '—'} · Guard {d.guard.total} / Wits {d.wits.total} / Poise {d.poise.total}
+                {archetype(h.archetype_id)?.name ?? '—'} · {heroTrait(h)?.name ?? 'no Trait'} · Guard {d.guard.total} / Wits {d.wits.total} / Poise {d.poise.total}
                 {' · '}{holders.length ? `${holders.length} device${holders.length > 1 ? 's' : ''}` : 'unclaimed'}
               </p>
               <HeroTrackers hero={h} onChange={(f, v) => run(() => bump(h.id, f, v - h[f]))} />
+              <details className="small">
+                <summary>Trait and Flairs</summary>
+                <TraitCard hero={h} />
+              </details>
               <div className="button-row small">
                 <span>Home {h.home_clock}/6</span>
                 <button className="mini secondary" onClick={() => run(() => bump(h.id, 'home_clock', 1))}>+1</button>
