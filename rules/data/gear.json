@@ -48,7 +48,7 @@
     "text": "Quick Action: move to any zone you can see, including High Ground.",
     "sim": null },
   { "id": "med-kit", "name": "Med kit", "slots": 1,
-    "text": "Once per fight, Full Action: an ally next to you clears one Harm box (Down becomes Wounded).",
+    "text": "Once per fight, Full Action: you or an ally next to you clears one Harm box (Down becomes Wounded).",
     "uses_per_fight": 1,
     "sim": { "medkit": 1 } },
   { "id": "night-vision-goggles", "name": "Night-vision goggles", "slots": 1,

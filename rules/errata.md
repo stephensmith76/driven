@@ -761,3 +761,19 @@ Rules version 2026-11-17.32. All trial.
 **Arcs.** The "to design later" note is replaced by **Arcs without a Mastermind (trial)**, at the end of the chapter. A Threat stands in for the Mastermind, Symptoms for Pawns, a Sign for the calling card, and Understanding for Unmasking (same roll, its own results table). The finale is won by an Objective of 4 to 6 steps. Three examples: the Flood, the Rift, the War.
 
 **Villains, Sample villains.** New mook types: Gunmen (Attack +3, Guard 13, all armed), Fanatics (never run, can't be scared), Guards (give up at the first one down, raise an alarm), Guard dogs (Guard 14, bite and hold, Vanish at Disadvantage near them).
+
+## 30. Solo playtest changes (Nov 17)
+
+Rules version 2026-11-17.33. From the solo playtest with Carl Grinson (Brawler, Justice, Mighty) in Port Calder.
+
+**Villains, Scaling to the party.** New: **Solo hero (trial).** Against a single hero, a named villain's free Presence attack comes every other round, starting in round 1. The Stress chapter's note on free Presence attacks points to it.
+
+**Gear, Tools.** The med kit can heal its user: "you or an ally next to you clears one Harm box".
+
+**The Night, Following a lead.** After the results table: the Impact 3 Edge against the villain works on any roll that can fairly be called against them, such as wrestling them for a wheel, not only attacks.
+
+**Powers, Mighty.** Start adds: throw a person as a Strike against their Guard. On a hit they take the Harm and land in an adjacent zone, and a mook they land on drops. Your weapon's bonus doesn't apply.
+
+**Harm, Grit your teeth.** You can't grit your teeth at 8 Stress. A Breaking hero's Fraying perk is off until they drop back to Fraying.
+
+**Clocks, Heat.** New source: **Killing (trial).** The GM decides whether a killing adds Heat, based on who it was and whether anyone will miss or find them.

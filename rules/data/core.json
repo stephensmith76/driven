@@ -1,5 +1,5 @@
 {
-  "rules_version": "2026-11-17.32",
+  "rules_version": "2026-11-17.33",
   "defense_base": 12,
   "dice": { "sides": 10, "count": 2, "advantage_count": 3 },
   "edge_bonus": 2,
@@ -55,7 +55,7 @@
     },
     "dying_text": "If a Downed hero takes more Harm, they're Dying. A single hit stops at Down. An ally can spend a Full Action next to them to stabilize them. Death is decided at the table: if a Dying hero isn't stabilized by the end of the scene, their player decides. Either the hero's story ends here, or they are left for dead: they survive, stay Down until Dawn, and tick their Home clock twice, because you're too fucked up to manage your life at all.",
     "left_for_dead": { "home_ticks": 2 },
-    "grit_your_teeth": { "stress": 1, "text": "At the start of your turn, a Wounded hero can take 1 Stress to ignore the Wounded Disadvantage until their next turn." },
+    "grit_your_teeth": { "stress": 1, "text": "At the start of your turn, a Wounded hero can take 1 Stress to ignore the Wounded Disadvantage until their next turn. You can't grit your teeth at 8 Stress. A Breaking hero's Fraying perk is off until they drop back to Fraying." },
     "mook_boxes": 1,
     "bruiser_boxes": 2,
     "bruiser_text": "Bruisers (trial). Some mooks are tougher: enforcers, bouncers, riot cops. A bruiser has 2 Harm boxes and no Toughness. Bruisers take Harm the way a named enemy does, so weapon bonuses count. Every 2 Harm drops one, and Harm left over carries to the next bruiser in the group. An Impact 3 doesn't drop a second bruiser by itself: its Harm drops one and staggers the next. Anything that takes a mook out with no Harm (a tranquilizer dart, a taser gun) deals 1 Harm to a bruiser instead. In every other way they are mooks: they act as a group, their attacks cap at 2 Harm, and they lose turns as written.",

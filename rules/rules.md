@@ -1,6 +1,6 @@
 # Driven - Street Level Heroic RPG
 
-Rules version 2026-11-17.32 · Nov 17, 2026 · @Stephen
+Rules version 2026-11-17.33 · Nov 17, 2026 · @Stephen
 
 ## Overview
 
@@ -114,7 +114,7 @@ Harm is damage to your body. Each point of Impact fills one Harm box, top to bot
 
 **Enemies too.** An enemy who drops is out of the fight, not dead. Whether anyone actually dies is the table's call: the hero who dropped them says what they meant to do, and the table agrees what that means for the story.
 
-**Grit your teeth (trial).** At the start of your turn, a Wounded hero can take 1 Stress to ignore the Wounded Disadvantage until their next turn.
+**Grit your teeth (trial).** At the start of your turn, a Wounded hero can take 1 Stress to ignore the Wounded Disadvantage until their next turn. You can't grit your teeth at 8 Stress. A Breaking hero's Fraying perk is off until they drop back to Fraying.
 
 ### Mooks: 1 box
 
@@ -171,7 +171,7 @@ Harm is your body. Stress is your nerves, your temper, your life falling apart. 
 
 1. **Scheme ticks wear everyone down.** Each time the Scheme clock ticks, someone takes 1 Stress. If a hero's roll made it tick (a Miss or a cost on a lead), only that hero takes it. If it ticks at Dawn or from a missed Crack the Case, every hero takes 1.
 2. **Going Down hurts more than your body.** A hero who goes Down takes 2 Stress. Every hero who sees an ally go Down takes 1, but only the first time in each fight. **Down and Stress (trial):** after that, a Downed hero takes no Stress from outside sources until they're back on their feet, including the Dawn Scheme tick. Stress the hero chooses to pay (Strain, Push, power costs) is still paid.
-3. **Villains get in your head.** Every named villain has a Presence attack in their stat block (vs Poise, deals Stress). Once per round they can use it as a free extra action, on top of their normal turn, so threats never cost them an attack.
+3. **Villains get in your head.** Every named villain has a Presence attack in their stat block (vs Poise, deals Stress). Once per round they can use it as a free extra action, on top of their normal turn, so threats never cost them an attack (every other round against a solo hero; see Villains, Scaling to the party).
 4. **Stress as a cost.** When a roll that isn't an attack lands at Impact 1, the GM can make 1 Stress one of the two costs on offer, when it fits the fiction. At 8 Stress, the GM leaves Stress off and offers two other costs.
 
 With these in play, Sleep It Off at Dawn becomes a real choice.
@@ -471,6 +471,8 @@ A campaign can start Floating and move to Fixed Culprit once recurring villains 
 | Impact 2 | The clue, clean |
 | Impact 3 | The clue, plus one: a second clue, Edge on one roll against the villain in the showdown, or a hint at their Weakness |
 
+The Edge against the villain works on any roll that can fairly be called against them, such as wrestling them for a wheel, not only attacks.
+
 **Patrol pool (trial).** Each Night the team shares a pool of Patrol actions equal to the number of heroes, minimum 2. Following a lead costs one action, and it buys everything that comes of that lead: any fight, search or interrogation in that thread costs no further action.
 
 **Clues and leads (trial).** Each lead gives one clue, plus the Impact 3 bonus as written. Anything else the heroes find in a scene is a new lead, not a clue. The team keeps it, and it becomes a clue when someone spends a Patrol action on it, that Night or a later one.
@@ -554,6 +556,8 @@ You can never do everything. That's the point.
 | **Scheme** (team) | 6 | Every Dawn, and as a cost when following leads | Beats at 1, 3 and 5 (trial): three events the heroes can see, written in case prep (a witness disappears, a building burns) | The villain pulls it off. The investigation stops, and the showdown happens on their ground, after the damage is done. |
 | **Heat** (team) | 6 | Guns (and being seen with a long gun or a shotgun), public fights, collateral damage, Vanity, Vengeance, sloppy feeding (Vampirism on Impact 1 or a miss), a Marked hero seen by civilians | Cops show up to fights on round 3 and try to arrest everyone, heroes included (see Cops and Crackdowns) | Crackdown: a task force, a smear in the press, or someone gets a description. Play it out, then drop Heat to 2. |
 | **Home** (each hero) | 6 | You skip Show Up, you Break, you use a personal clue, you use Resources to buy past a problem, or a villain finds your Lair (+2) | Someone close starts asking questions | Home crisis: lose the job, the relationship ends, someone learns who you are, or a loved one becomes a target. It always costs or changes one of that hero's Connections (trial). Play it out, then reset to 0. |
+
+**Killing (trial).** The GM decides whether a killing adds Heat, based on who it was and whether anyone will miss them or find them. A vanished criminal may draw none, and a Sunday school teacher will.
 
 **Heroes with no civilian life.** A pure vigilante has no day job or alter ego. Their civilian life, and so Show Up and the Home clock, just stands for whatever anchors them to their humanity, even if it's only feeding a goldfish. Name it when you build the hero. When Home ticks, that anchor is what's slipping, and a Home crisis is that anchor being lost, found or threatened.
 
@@ -910,7 +914,7 @@ Grapple line, med kit, night-vision goggles, police scanner and earpiece comms h
 
 | Tool | Effect |
 | --- | --- |
-| Med kit | Once per fight, Full Action: an ally next to you clears one Harm box (Down becomes Wounded). |
+| Med kit | Once per fight, Full Action: you or an ally next to you clears one Harm box (Down becomes Wounded). |
 | Riot shield | +1 Guard. Take Cover works anywhere. Disadvantage on Vanish, and you can't use a long gun. |
 | Rebreather | Gas, smoke and fumes don't affect you, a gas Hazard costs you no Harm, and you ignore flashbangs (built-in ear and eye protection). |
 
@@ -1125,7 +1129,7 @@ These six are the core strange powers.
 
 **Mighty** (beyond peak human; the strange version of Peak Strength)
 
-- *Start:* lift and throw cars. Force attacks get +1 Harm on Impact 2+ and ignore Toughness, and you can throw heavy objects at Near range.
+- *Start:* lift and throw cars. Force attacks get +1 Harm on Impact 2+ and ignore Toughness, and you can throw heavy objects at Near range. You can throw a person as a Strike against their Guard. On a hit, they take the Harm and land in an adjacent zone, and a mook they land on drops. Your weapon's bonus doesn't apply.
 - *Wrecking (locked):* Full Action: smash a wall, floor or vehicle to remove Cover from a zone, open a path between zones, or make a zone Hazard.
 - *Big leap (locked):* your free move can cross two zones or reach High Ground.
 
@@ -1331,6 +1335,7 @@ A villain fits in a short stat block. They use the same stats, defenses, and Dri
 
 - **Villain turns:** a named villain gets one turn per round for every two heroes, rounded up. One turn against 1 or 2 heroes, two against 3 or 4. Spread the turns through the round. A villain fighting alone, with no mooks or lieutenants, gets one turn per hero instead, and 2 more Harm (trial).
 - **Lieutenants and several named enemies:** a lieutenant gets one turn and one free Presence attack per round, however many heroes there are, even fighting alone. When a fight has more than one named enemy, each villain takes its own turns by the rule above and each lieutenant takes one; no villain counts as alone while another named enemy is in the fight. Spread all their turns through the round.
+- **Solo hero (trial).** Against a single hero, a named villain's free Presence attack comes every other round, starting in round 1.
 - **Gang size:** in a fight with no named villain, start with one group of 3 mooks per hero. With a named villain present, one group per two heroes (rounded down, minimum 1). Then adjust for how hard the fight should be. For a harder fight, make one mook group bruisers, or all of them (trial). Don't add extra groups on top when a named villain is in the fight: that is a much bigger jump.
 
 **Accomplices.** A named underling who isn't a lieutenant (a corrupt inspector, a fixer) is an **accomplice**. In Arcs, Pawn keeps its own meaning: the villain of a case, working for the Mastermind.

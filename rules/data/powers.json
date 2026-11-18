@@ -247,7 +247,7 @@
       "sim": null },
     { "id": "mighty", "name": "Mighty", "tier": "strange", "core": true, "slots": 2, "note": "Beyond peak human; the strange version of Peak Strength",
       "abilities": [
-        { "name": "Start", "text": "Lift and throw cars. Force attacks get +1 Harm on Impact 2+ and ignore Toughness, and you can throw heavy objects at Near range." },
+        { "name": "Start", "text": "Lift and throw cars. Force attacks get +1 Harm on Impact 2+ and ignore Toughness, and you can throw heavy objects at Near range. You can throw a person as a Strike against their Guard. On a hit, they take the Harm and land in an adjacent zone, and a mook they land on drops. Your weapon's bonus doesn't apply." },
         { "name": "Wrecking", "text": "Full Action: smash a wall, floor or vehicle to remove Cover from a zone, open a path between zones, or make a zone Hazard." },
         { "name": "Big leap", "text": "Your free move can cross two zones or reach High Ground." }
       ],

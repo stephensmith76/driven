@@ -15,3 +15,6 @@ rules/older/
 # PDF build kit (local tool + its zip; builds from rules/rules.md)
 rules/driven_pdf_builder/
 rules/driven_pdf_builder.zip
+
+# Playtest notes from sessions, kept by hand
+rules/playtest_docs/

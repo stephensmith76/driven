@@ -104,6 +104,8 @@ Split out of rules.md on Nov 15, 2026. Playtest findings, change log, and sessio
 
 - **Neighborhoods, Threat arcs, mooks (Nov 17, rules 2026-11-17.32, Stephen):** Stephen means the game to be mostly improvised, with the GM choosing the villain behind a case and little else. Added (trial): Your neighborhood as a session zero step that gives the GM people and places to improvise from, a Low prep paragraph under Case prep, Arcs without a Mastermind (Threat, Symptoms, Sign, Understanding, an Objective finale, three examples), and four mook types (Gunmen, Fanatics, Guards, Guard dogs). Not written: the starter case, lieutenants for each role and a Trick menu, which matter less for improvised play. Not played or simulated.
 
+- **Solo playtest (Nov 17, rules 2026-11-17.33, Stephen):** Stephen ran a solo hero, Carl Grinson (Brawler, Justice, Mighty), in Port Calder. Changes from his notes (kept by hand in rules/playtest_docs/, not in the repo): a named villain's free Presence attack comes every other round against a solo hero, the med kit can heal its user, the lead Impact 3 Edge works on any roll against the villain, Mighty can throw a person, no gritting your teeth at 8 Stress and no Fraying perk while Breaking, and the GM rules on Heat from a killing. All trial except the med kit and Mighty wording.
+
 ## Playtest log: Session 1
 
 Every roll from the first playtest, in order. Stephen played The Ledger (Ruth); the GM ran Rook and Nightjar. Dice came from the true-random dice bank. Defense = the number to beat; margin = total minus defense.
