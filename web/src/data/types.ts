@@ -1,5 +1,6 @@
 import type { CustomTrait } from '../engine/rules'
 import type { TeamSheet } from '../engine/team'
+import type { AdvancementPick } from '../engine/advancement'
 
 export type Stats = { force: number; flow: number; focus: number; presence: number }
 
@@ -59,6 +60,8 @@ export type Character = {
   connections: Connections
   /** Storage path of the hero's picture, with ?v=... (see data/portraits.ts). */
   portrait?: string | null
+  /** Advancement picks, oldest first (migration 20261120120000; missing before it). */
+  advancements?: AdvancementPick[] | null
   is_npc: boolean
   locked: boolean
 }

@@ -15,6 +15,7 @@ import { CORE, TEAM, archetype, defenses, heroTrait, slotsUsed, teamHasAnything,
 import { Actions } from './sheet/Actions'
 import { Loadout } from './sheet/Loadout'
 import { DawnPanel } from './sheet/DawnPanel'
+import { AdvancementPanel } from './sheet/AdvancementPanel'
 import { TraitCard } from '../../components/TraitCard'
 import { TeamCard } from '../../components/TeamCard'
 
@@ -174,6 +175,11 @@ export function Sheet({ campaignId, characterId }: { campaignId: string; charact
         <p className="muted small">When one is lost, resolved or betrayed, write a new one at the next Dawn. Protecting one earns 1 Drive, once per scene.</p>
       </section>
 
+      <section className="card stack">
+        <h2>Advancement</h2>
+        <AdvancementPanel hero={hero} campaign={campaign} isGm={isGm} report={report} run={run} />
+      </section>
+
       {teamHasAnything(campaign.settings.team) && (
         <section className="card stack">
           <h2>Team</h2>
@@ -209,6 +215,8 @@ export function Sheet({ campaignId, characterId }: { campaignId: string; charact
           {hero.locked && !isGm
             ? <span className="muted">The GM has locked this sheet's build.</span>
             : <a href={`#/c/${campaignId}/build/${hero.id}`}>Edit build and Advancement</a>}
+          {' · '}
+          <a href={`#/c/${campaignId}/print/${hero.id}`}>Download PDF sheet</a>
           {' · '}
           {isGm ? <a href="#/gm">GM table</a> : <a href={`#/join/${campaign.join_code}`}>Switch hero</a>}
         </p>

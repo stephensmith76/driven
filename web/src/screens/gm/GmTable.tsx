@@ -97,7 +97,8 @@ function TableBody({ campaignId, campaign, members }: GmContext & { campaignId: 
               </div>
               <p className="small">
                 <a href={`#/c/${campaignId}/sheet/${h.id}`}>Open sheet</a>{' · '}
-                <a href={`#/c/${campaignId}/build/${h.id}`}>Edit build</a>
+                <a href={`#/c/${campaignId}/build/${h.id}`}>Edit build</a>{' · '}
+                <a href={`#/c/${campaignId}/print/${h.id}`}>PDF</a>
               </p>
             </article>
           )

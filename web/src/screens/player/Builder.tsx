@@ -196,7 +196,7 @@ function BuilderForm({ campaignId, existing, isGm, canBuild, bankTarget, initial
     <main className="page">
       <h1>{bankTarget ? (bankTarget.isNew ? 'New hero for the bank' : `Edit ${draft.name || 'hero'} in the bank`) : existing ? `Edit ${existing.name}` : 'New character'}</h1>
       {bankTarget && <p className="muted small">This hero is saved in the bank, not in a campaign. Add it to a campaign from the Bank tab.</p>}
-      {existing && <p className="muted small">Advancement: when a case closes, each hero picks one: +1 to a stat, a new Flair, the next ability on a power, a new slot, or an Asset.</p>}
+      {existing && <p className="muted small">Advancement: take each case's pick from the Advancement box on the sheet, which checks the limits and keeps the history. Edit here to fill a new slot or fix a mistake.</p>}
       {lockedOut && <p className="warn">The GM has locked this sheet's build.</p>}
       {noBuild && <p className="warn">This campaign doesn't let players build characters.</p>}
 

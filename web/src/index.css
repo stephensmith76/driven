@@ -190,3 +190,69 @@ button.token.on { background: var(--filled); color: var(--bg); border-color: var
 .portrait-picker { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .with-portrait { display: flex; align-items: flex-start; gap: 14px; flex-wrap: wrap; }
 .token .portrait, .token .portrait-link { display: inline-block; vertical-align: middle; margin-right: 5px; }
+
+/* Printable character sheet (#/c/<campaign>/print/<hero>): always paper colors, letter or A4. */
+.print-wrap { padding: 16px; }
+.print-bar { max-width: 8.5in; margin: 0 auto 12px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+.print-bar p { flex-basis: 100%; margin: 0; }
+.paper { --ink: #1d1d1b; --soft: #5c5a55; --rule: #b9b4aa; --band: #2f3b45;
+  background: #fff; color: var(--ink); max-width: 8.5in; margin: 0 auto; padding: 0.4in;
+  font-family: "Segoe UI", Arial, sans-serif; font-size: 8.4pt; line-height: 1.28; box-shadow: 0 1px 6px rgba(0,0,0,.2); }
+.paper p { margin: 0 0 3pt; }
+.paper h1 { font-size: 18pt; margin: 0; color: var(--band); }
+.paper h2 { font-size: 8.6pt; margin: 0 0 3pt; padding: 1.5pt 5pt; background: var(--band); color: #fff; text-transform: uppercase; letter-spacing: .03em; break-after: avoid; }
+.p-h2note { font-weight: 400; text-transform: none; opacity: .8; }
+.p-head { display: flex; gap: 10pt; align-items: center; border-bottom: 1.5pt solid var(--band); padding-bottom: 5pt; margin-bottom: 7pt; }
+.p-title { flex: 1; }
+.p-title p { color: var(--soft); font-size: 10pt; margin: 0; }
+.p-meta { text-align: right; font-size: 7pt; color: var(--soft); margin: 0; }
+.p-portrait { width: 0.8in; height: 0.8in; object-fit: cover; border-radius: 4pt; border: .7pt solid var(--rule); }
+.p-cols { column-count: 2; column-gap: 0.25in; }
+.p-cols section { break-inside: avoid; margin: 0 0 7pt; }
+.p-cols section.p-flow { break-inside: auto; }
+.p-power { break-inside: avoid; }
+.p-muted { color: var(--soft); }
+.p-stats { width: 100%; border-collapse: collapse; margin-bottom: 3pt; }
+.p-stats th, .p-stats td { border: .6pt solid var(--rule); text-align: center; padding: 1.5pt; }
+.p-stats th { background: #eeebe5; font-size: 7.5pt; }
+.p-big { font-size: 14pt; font-weight: 700; }
+.p-track { display: flex; align-items: flex-start; gap: 6pt; margin-bottom: 4pt; }
+.p-label { width: 34pt; font-weight: 700; padding-top: 2pt; }
+.p-boxes { display: flex; flex-wrap: wrap; gap: 3pt; }
+.p-box { width: 14pt; height: 14pt; border: 1pt solid var(--ink); position: relative; display: inline-block; }
+.p-box.on { background: var(--ink); }
+.p-boxes:has(.p-boxname) .p-box { width: 40pt; margin-bottom: 8pt; }
+.p-boxname { position: absolute; top: 100%; left: 0; font-size: 6pt; color: var(--soft); white-space: nowrap; }
+.p-scale { margin-top: -2pt; padding-left: 40pt; font-size: 7pt; }
+.paper ol { margin: 0 0 3pt; padding-left: 13pt; }
+.paper ol li { margin-bottom: 1.5pt; }
+.p-locked { color: var(--soft); }
+.p-line { border-bottom: .6pt solid var(--rule); min-height: 14pt; padding-top: 2pt; }
+.p-page + .p-page { break-before: page; margin-top: 0.4in; padding-top: 0.4in; border-top: 1pt dashed var(--rule); }
+.p-head2 { padding-bottom: 3pt; }
+.p-head2 h1 { font-size: 13pt; flex: 1; }
+.p-uses, .p-impact { width: 100%; border-collapse: collapse; margin-bottom: 3pt; }
+.p-uses td, .p-impact td, .p-impact th { border: .6pt solid var(--rule); padding: 1.5pt 3pt; vertical-align: middle; text-align: left; }
+.p-impact th { background: #eeebe5; font-size: 7.5pt; }
+.p-impact td { font-size: 7.6pt; vertical-align: top; }
+.p-per { white-space: nowrap; color: var(--soft); }
+.p-nowrap { white-space: nowrap; }
+.p-tick { width: 1%; white-space: nowrap; }
+.p-tick .p-boxes { flex-wrap: nowrap; }
+.p-tick .p-box { width: 10pt; height: 10pt; }
+.p-inline { font-size: 7pt; padding-top: 2pt; }
+.p-list { margin: 0 0 3pt; padding-left: 11pt; }
+.p-list li { margin-bottom: 1.5pt; }
+.p-adv { width: 100%; border-collapse: collapse; }
+.p-adv th, .p-adv td { border: .6pt solid var(--rule); padding: 1.5pt 3pt; text-align: left; height: 15pt; }
+.p-adv th { background: #eeebe5; font-size: 7.5pt; height: auto; }
+.p-adv .p-case { width: 34pt; }
+.p-notes { white-space: pre-wrap; min-height: 1.2in; border: .6pt solid var(--rule); padding: 3pt; }
+@media print {
+  @page { size: auto; margin: 0.4in; }
+  body { background: #fff; }
+  .no-print, .conn-badge { display: none !important; }
+  .print-wrap { padding: 0; }
+  .p-page + .p-page { margin-top: 0; padding-top: 0; border-top: 0; }
+  .paper { box-shadow: none; padding: 0; max-width: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}

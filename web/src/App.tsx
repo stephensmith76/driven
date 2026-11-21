@@ -4,6 +4,7 @@ import { useHashPath } from './router'
 import { Home } from './screens/Home'
 import { Join } from './screens/player/Join'
 import { Sheet } from './screens/player/Sheet'
+import { PrintSheet } from './screens/player/PrintSheet'
 import { BankHeroBuilder, Builder } from './screens/player/Builder'
 import { Rolls } from './screens/player/Rolls'
 import { GmEnter } from './screens/gm/GmEnter'
@@ -26,7 +27,7 @@ export default function App() {
   return (
     <>
       <Routes />
-      <footer className="site-links small muted">
+      <footer className="site-links small muted no-print">
         <a href="./rules/rules.md" target="_blank" rel="noreferrer">Rules</a> ·{' '}
         <a href={`./rules/${encodeURIComponent('Driven - Street Level Heroic RPG.pdf')}`} target="_blank" rel="noreferrer">Rules (PDF)</a> ·{' '}
         <a href="#/errata">Errata</a>
@@ -57,6 +58,7 @@ function Routes() {
   const [a, b, c, d, e] = path
   if (a === 'errata') return <Errata />
   if (a === 'join' && b) return <Join code={b} />
+  if (a === 'c' && b && c === 'print' && d) return <PrintSheet campaignId={b} characterId={d} />
   if (a === 'c' && b && c === 'sheet') return <Sheet campaignId={b} characterId={d} />
   if (a === 'c' && b && c === 'display') return <Display campaignId={b} />
   if (a === 'c' && b && c === 'rolls') return <Rolls campaignId={b} characterId={d} stat={e} />
