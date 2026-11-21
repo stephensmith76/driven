@@ -1,0 +1,28 @@
+@page { size: letter; margin: 0.35in 0.38in 0.4in; }
+* { box-sizing: border-box; }
+:root { --ink: #1d1d1b; --muted: #5c5a55; --line: #b9b4aa; --band: #2f3b45; --shade: #eeebe5; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin: 0; font-family: "Segoe UI", Arial, sans-serif; font-size: 7.15pt; line-height: 1.22; color: var(--ink); background: #fff; }
+.page { height: 10.25in; display: flex; flex-direction: column; break-after: page; overflow: hidden; }
+.page:last-child { break-after: auto; }
+header { display: flex; align-items: baseline; justify-content: space-between; border-bottom: 1.4pt solid var(--band); padding-bottom: 2pt; margin-bottom: 4pt; }
+header h1 { font-size: 13pt; margin: 0; letter-spacing: .02em; color: var(--band); }
+header h1 span { font-weight: 400; color: var(--muted); font-size: 10pt; }
+header .ver { font-size: 6.5pt; color: var(--muted); }
+.cols { column-count: 3; column-gap: 0.17in; column-fill: auto; height: 9.72in; }
+section { break-inside: avoid; margin: 0 0 4.5pt; }
+section.flow { break-inside: auto; }
+h2 { font-size: 8.4pt; margin: 0 0 2pt; padding: 1.2pt 4pt; background: var(--band); color: #fff; letter-spacing: .03em; text-transform: uppercase; break-after: avoid; }
+h3 { font-size: 7.5pt; margin: 3pt 0 1pt; color: var(--band); break-after: avoid; }
+p { margin: 0 0 2pt; }
+ul { margin: 0 0 2pt; padding-left: 9pt; }
+li { margin: 0 0 .8pt; }
+table { width: 100%; border-collapse: collapse; margin: 1pt 0 2.5pt; break-inside: avoid; }
+th, td { border: .5pt solid var(--line); padding: .8pt 2.2pt; vertical-align: top; text-align: left; }
+th { background: var(--shade); font-weight: 700; }
+td.n, th.n { white-space: nowrap; }
+.muted { color: var(--muted); }
+.box { border: .7pt solid var(--band); padding: 2pt 3.5pt; margin: 0 0 3pt; background: #f7f5f1; break-inside: avoid; }
+.big { font-size: 8.6pt; font-weight: 700; }
+footer { font-size: 6pt; color: var(--muted); display: flex; justify-content: space-between; border-top: .5pt solid var(--line); padding-top: 1.5pt; margin-top: 2pt; }
+pre { font-family: Consolas, "Courier New", monospace; font-size: 6.2pt; line-height: 1.15; margin: 0 0 2pt; white-space: pre-wrap; }

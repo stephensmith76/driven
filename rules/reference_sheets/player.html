@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Driven Player Reference</title>
+<link rel="stylesheet" href="sheet.css">
+</head>
+<body>
+
+<div class="page">
+<header><h1>DRIVEN <span>Player Reference · 1 of 2</span></h1><span class="ver">Rules version {{VERSION}}</span></header>
+<div class="cols">
+
+<section>
+<h2>The core roll</h2>
+<p class="big">2d10 + stat vs a defense (12 + a stat)</p>
+<p><strong>Margin</strong> = your total minus the defense.</p>
+<table>
+<tr><th>Margin</th><th>Result</th><th>In a fight</th><th>Outside a fight</th></tr>
+<tr><td class="n">Below 0</td><td class="n">Miss</td><td>GM makes a move</td><td>Fails or goes wrong; GM makes a move</td></tr>
+<tr><td class="n">0 to 3</td><td class="n">Impact 1</td><td>1 Harm or the effect. No cost</td><td>You get it, with a cost: GM offers two, you pick one</td></tr>
+<tr><td class="n">4 to 7</td><td class="n">Impact 2</td><td>2 Harm</td><td>Clean success</td></tr>
+<tr><td class="n">8+</td><td class="n">Impact 3</td><td>3 Harm</td><td>Success plus a bonus (a clue, a position, an opening)</td></tr>
+</table>
+<ul>
+<li><strong>Attacks never carry a cost.</strong> Every other Impact 1 does, in or out of a fight.</li>
+<li><strong>Impact tops out at 3.</strong> Weapon, power and Signature bonuses add Harm, not Impact. Anything that triggers on Impact 3 needs a real Impact 3 or a Drive Upgrade.</li>
+<li><strong>Edge:</strong> +2 to the roll. One Edge per roll, whatever the source.</li>
+<li><strong>Advantage / Disadvantage:</strong> roll 3d10, keep the best (worst) two. Any of each cancels; they never stack. Edge and Advantage can both apply.</li>
+<li>No real opposition and failure isn't interesting? Don't roll.</li>
+</ul>
+<table>
+<tr><th>Your stat vs theirs</th><th>Miss</th><th>Imp 1</th><th>Imp 2</th><th>Imp 3</th></tr>
+<tr><td>3 lower</td><td>79%</td><td>18%</td><td>3%</td><td>0%</td></tr>
+<tr><td>Equal</td><td>55%</td><td>30%</td><td>14%</td><td>1%</td></tr>
+<tr><td>2 higher</td><td>36%</td><td>36%</td><td>22%</td><td>6%</td></tr>
+<tr><td>5 higher</td><td>15%</td><td>30%</td><td>34%</td><td>21%</td></tr>
+</table>
+<p class="muted">Edge is worth about 2 points; Advantage about 2.5.</p>
+</section>
+
+<section>
+<h2>Stats and defenses</h2>
+<table>
+<tr><th>Stat</th><th>Act with it to</th><th>Defense</th><th>Stops</th></tr>
+<tr><td>Force</td><td>Hit hard, break, lift, hold on</td><td>Toughness</td><td>Cuts Harm taken</td></tr>
+<tr><td>Flow</td><td>Move, dodge, sneak, shoot, improvise</td><td>Guard = 12 + Flow</td><td>Punches, bullets, thrown things</td></tr>
+<tr><td>Focus</td><td>Investigate, hack, gadgets, read people</td><td>Wits = 12 + Focus</td><td>Ambushes, tricks, illusions, lies</td></tr>
+<tr><td>Presence</td><td>Intimidate, inspire, persuade, taunt</td><td>Poise = 12 + Presence</td><td>Fear, threats, manipulation</td></tr>
+</table>
+<p><strong>Toughness</strong> cuts each hit's Harm by 1 (after weapon bonuses), but a hit always does at least 1. Use your single highest source, never two added. Only "+1 Toughness" effects add on top. Never above 2. Hazards, gas, fire and electricity ignore it unless gear or a power says otherwise.</p>
+<table>
+<tr><th>Source</th><th>Blunt</th><th>Blades</th><th>Guns</th></tr>
+<tr><td>Force +3 or higher</td><td>1</td><td>1</td><td>0</td></tr>
+<tr><td>Kevlar vest</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>Tactical armor, Armored</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td>Powered armor</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td>Resilience</td><td>1</td><td>0</td><td>0</td></tr>
+</table>
+<p><strong>Presence attacks deal Stress, not Harm</strong> (Presence vs your Poise).</p>
+</section>
+
+<section>
+<h2>Harm: 4 boxes</h2>
+<table>
+<tr><th>Box</th><th>What it means</th></tr>
+<tr><td>Bruised</td><td>No effect. Clears at the end of every scene.</td></tr>
+<tr><td>Hurt</td><td>No effect yet. One box from real trouble.</td></tr>
+<tr><td>Wounded</td><td>Disadvantage on Force and Flow rolls.</td></tr>
+<tr><td>Down</td><td>Out of the fight. Talk, crawl, or one desperate Quick Action a round at Disadvantage. Or spend the whole turn on Second Wind.</td></tr>
+</table>
+<ul>
+<li><strong>Dying:</strong> hit again while Down (one hit always stops at Down). An ally's Full Action in your zone stabilizes you.</li>
+<li><strong>Death is the table's call.</strong> Unstabilized at the scene's end, the player decides: the story ends, or you're <strong>left for dead</strong> (Down until Dawn, tick Home twice).</li>
+<li><strong>Grit your teeth:</strong> at the start of your turn, a Wounded hero takes 1 Stress to ignore the Wounded Disadvantage until their next turn. Not at 8 Stress.</li>
+<li><strong>Enemies who drop</strong> are out of the fight, not dead, unless the table agrees otherwise.</li>
+</ul>
+<h3>Recovery</h3>
+<ul>
+<li><strong>Breather:</strong> Bruised clears at the end of every scene.</li>
+<li><strong>Down after a fight:</strong> back up at Wounded when it ends. A stabilized Dying hero stays Down until Dawn (needs Patch Up and Sleep It Off).</li>
+<li><strong>Dying leaves a mark:</strong> start the next Night with a Harm box Patch Up can't clear (a med kit, healing power, Lair or clinic can).</li>
+<li>Second Wind or a med kit gets a Downed hero up at Wounded mid-fight.</li>
+</ul>
+</section>
+
+<section>
+<h2>Connections</h2>
+<p>Four, one line each: <strong>someone you protect</strong>, <strong>someone with leverage over you</strong>, <strong>a place you're tied to</strong>, <strong>a mistake that could come back</strong>. Link at least one to another hero. The first time each scene you take Harm or Stress, or real risk, to protect one: +1 Drive. Lost one? Write a new one at the next Dawn.</p>
+</section>
+
+<section>
+<h2>Building a hero</h2>
+<ol style="margin:0 0 2pt;padding-left:11pt">
+<li><strong>Stats:</strong> Specialist (+4, +2, +1, -1) or Balanced (+3, +2, +1, 0).</li>
+<li><strong>Trait</strong> (one of twelve, or your own with the GM).</li>
+<li><strong>Archetype.</strong></li>
+<li><strong>One Flair.</strong></li>
+<li><strong>Four connections.</strong></li>
+<li><strong>Free weapon</strong>, plus a knife.</li>
+<li><strong>Three slots:</strong> gear, a street power or a strange power.</li>
+<li><strong>Anchor for Home:</strong> your civilian life.</li>
+<li><strong>Neighborhood:</strong> where, who runs it, what's wrong there.</li>
+<li><strong>Team pick</strong> (optional): a Lair or one Asset, chosen together.</li>
+</ol>
+</section>
+
+<section>
+<h2>Weapons</h2>
+<p class="muted">Everyone carries a knife and one free weapon.</p>
+<table>
+<tr><th>Weapon</th><th>Effect</th></tr>
+<tr><td>Fists, kicks, junk</td><td>No change</td></tr>
+<tr><td>Light melee</td><td>+1 Harm on a Strike at Impact 2+. Jabs have no -2</td></tr>
+<tr><td>Heavy melee</td><td>+1 Harm on any hit, but only a Strike with Force (never a Jab, never Flow)</td></tr>
+<tr><td>Blades</td><td>+1 Harm at Impact 2+ vs anyone with no Toughness</td></tr>
+<tr><td>Guns</td><td>+1 Harm at Impact 2+, ignore natural Toughness (armor works). Disadvantage while engaged. +1 Heat each fight you fire one</td></tr>
+<tr><td>Bow</td><td>Flow, no Far penalty, +1 Harm at Impact 2+. Silent. Toughness applies</td></tr>
+</table>
+</section>
+
+<section>
+<h2>Stress: 8 boxes</h2>
+<table>
+<tr><th>Stress</th><th>Stage</th><th>What happens</th></tr>
+<tr><td class="n">0 to 3</td><td>Steady</td><td>Your Trait's Steady perk is on.</td></tr>
+<tr><td class="n">4 to 7</td><td>Fraying</td><td>The Fraying perk replaces Steady. The GM gets your hook.</td></tr>
+<tr><td class="n">8</td><td>Breaking</td><td>Your Breaking fallout takes over for the rest of the scene. The Fraying perk is off.</td></tr>
+</table>
+<p><strong>You gain Stress when:</strong></p>
+<ul>
+<li>you Strain for an extra Quick Action (1)</li>
+<li>a Presence attack hits you (1 per Impact)</li>
+<li>someone you're protecting is hurt or dies on your watch (1 to 2)</li>
+<li>the GM makes a hard move against you (1, on top of the move)</li>
+<li>you act against your Trait (1)</li>
+<li>the Scheme clock ticks: on your roll, you take 1; at Dawn or a missed Crack, everyone does</li>
+<li>you go Down (2); you see an ally go Down (1, first time each fight)</li>
+<li>an Impact 1 cost, when it fits (never at 8 Stress)</li>
+</ul>
+<p>While Down, you take no Stress from outside sources.</p>
+<p><strong>The hook:</strong> while you're Fraying, the GM can push a complication through your hook. Go along with it: +1 Drive. Refuse: 1 Stress.</p>
+<p><strong>After Breaking:</strong> at the scene's end, drop to 4 Stress, gain 2 Drive, tick Home once.</p>
+<p><strong>Strain:</strong> once per turn, 1 Stress for an extra Quick Action.</p>
+</section>
+
+<section>
+<h2>Drive</h2>
+<p>Hold up to <strong>6</strong>. Start your first Night with <strong>2</strong>. At Dawn, above 3 drops to 3 and below 2 comes up to 2.</p>
+<table>
+<tr><th>Earn</th><th>Gain</th><th>Limit</th></tr>
+<tr><td>Your archetype trigger</td><td>1</td><td>Once per round</td></tr>
+<tr><td>Your Trait's Drive trigger</td><td>1</td><td>Once per scene</td></tr>
+<tr><td>Going along with your hook</td><td>1</td><td>Each time</td></tr>
+<tr><td>Protecting a connection</td><td>1</td><td>Once per scene</td></tr>
+<tr><td>Breaking (at the scene's end)</td><td>2</td><td>Each time</td></tr>
+</table>
+<p class="muted">Finishing an Objective step counts as your archetype trigger that round.</p>
+<table>
+<tr><th>Cost</th><th>Spend</th><th>When</th></tr>
+<tr><td>1</td><td><strong>Edge</strong> (+2)</td><td>Before you roll</td></tr>
+<tr><td>2</td><td><strong>Upgrade:</strong> +1 Impact level (max 3)</td><td>After any roll that hits, once per roll</td></tr>
+<tr><td>3</td><td><strong>Signature Move</strong></td><td>On your turn, its own action</td></tr>
+<tr><td>3</td><td><strong>Second Wind:</strong> clear one Harm box, no roll</td><td>Full Action, once per fight. Downed: whole turn, up at Wounded</td></tr>
+</table>
+<p>Spend Drive for Edge on an ally's roll if you're in their zone and say how you help.</p>
+<p><strong>On Patrol, 1 Drive each:</strong> call a contact for a new lead, ask the GM one yes-or-no question about a clue, or flash back to something you set up earlier.</p>
+</section>
+
+</div>
+<footer><span>Driven - Street Level Heroic RPG · Player Reference</span><span>Page 1 of 2</span></footer>
+</div>
+
+<div class="page">
+<header><h1>DRIVEN <span>Player Reference · 2 of 2</span></h1><span class="ver">Rules version {{VERSION}}</span></header>
+<div class="cols">
+
+<section>
+<h2>Fights: your turn</h2>
+<p><strong>Turn order:</strong> sides alternate, one hero then one enemy (villain or mook group). Players pick which hero goes next. Heroes go first each round, unless ambushed (then the enemy takes round 1's first turn). The ambusher's first roll has Edge.</p>
+<p class="big">One free move + one Full Action or two Quick Actions</p>
+<p class="muted">Free move: to an adjacent zone (you can engage one enemy there), or into or out of engagement in your zone.</p>
+<h3>Full Actions</h3>
+<ul>
+<li><strong>Strike:</strong> attack with Force, Flow or Presence. Normal Impact. Heavy melee is a Strike with Force.</li>
+<li><strong>Signature Move:</strong> 3 Drive.</li>
+<li><strong>Stabilize:</strong> save a Dying ally in your zone.</li>
+<li><strong>Objective step:</strong> a roll against a rating, where the step is.</li>
+</ul>
+<h3>Quick Actions</h3>
+<ul>
+<li><strong>Jab:</strong> attack at -2 (none with light melee). A hit is always Impact 1, so Impact 2+ bonuses never apply. Once per turn.</li>
+<li><strong>Move:</strong> go one more zone.</li>
+<li><strong>Help:</strong> an ally in your zone gets Edge on their next roll.</li>
+<li><strong>Take Cover:</strong> in a Cover zone, +2 Guard until your next turn.</li>
+<li><strong>Interact:</strong> pick up, open, throw a switch, kick a gun away.</li>
+<li><strong>Vanish</strong> (Stalker): in Dark, Cover or Crowd, Flow vs the best watching Wits to go Hidden.</li>
+<li><strong>Archetype Quick Actions</strong> (on your sheet).</li>
+</ul>
+<p><strong>Strain:</strong> 1 Stress, one extra Quick Action, once per turn.</p>
+<p><strong>Breaking away:</strong> leave engagement and that enemy gets a free Jab at you.</p>
+<p><strong>Leaving a fight:</strong> from a zone with an exit, not engaged, spend your turn.</p>
+</section>
+
+<section>
+<h2>Zones and range</h2>
+<table>
+<tr><th>Range</th><th>Means</th><th>Who can hit you</th></tr>
+<tr><td>Engaged</td><td>Toe to toe, your zone</td><td>Melee, point-blank shots</td></tr>
+<tr><td>Near</td><td>Your zone, not engaged</td><td>Guns, thrown things, Presence</td></tr>
+<tr><td>Far</td><td>An adjacent zone</td><td>Guns at Disadvantage (long guns and bows ignore this)</td></tr>
+<tr><td>Out of reach</td><td>Two+ zones away</td><td>Nobody, unless a power says so</td></tr>
+</table>
+<p class="muted">"Next to" someone means in the same zone.</p>
+<table>
+<tr><th>Tag</th><th>Effect</th></tr>
+<tr><td>Cover</td><td>Take Cover gives +2 Guard. You can Vanish.</td></tr>
+<tr><td>Dark</td><td>Ranged attacks in or into it at Disadvantage. You can Vanish.</td></tr>
+<tr><td>Crowd</td><td>You can Vanish. Guns risk hitting bystanders.</td></tr>
+<tr><td>High Ground</td><td>Ranged attacks from it get Edge. Melee must climb up first.</td></tr>
+<tr><td>Cramped</td><td>Heavy melee and long guns at Disadvantage. Max two engaged with anyone.</td></tr>
+<tr><td>Hazard</td><td>Any missed roll here costs a flat 1 Harm (Toughness doesn't help). Fire spreads after round 2; gas counts as Dark; a drop costs 1 Harm when you're knocked off; traffic makes leaving take your move and a Quick Action.</td></tr>
+</table>
+</section>
+
+<section>
+<h2>Maneuvers</h2>
+<p>Grab, disarm, shove or trip someone you're engaged with. Full Action, or a Quick Action at -2 like a Jab (a hit counts as Impact 1). Force to grab or shove, Flow to trip or disarm, vs their Guard. No Harm. A hit takes a mook out.</p>
+<table>
+<tr><th></th><th>Impact 1</th><th>Impact 2 or 3</th></tr>
+<tr><td>Grab</td><td>Neither of you can move or leave the zone</td><td>And allies' melee vs them has Edge</td></tr>
+<tr><td>Disarm</td><td>Weapon bonus off until they spend a Quick Action</td><td>Weapon lands in the zone or your hand</td></tr>
+<tr><td>Shove or trip</td><td>They lose their next free move</td><td>Push to an adjacent zone or off High Ground</td></tr>
+</table>
+<p><strong>Breaking a grab:</strong> Quick Action, Force or Flow vs 12 + grabber's Force.</p>
+</section>
+
+<section>
+<h2>Conditions</h2>
+<table>
+<tr><th>Condition</th><th>Effect</th><th>Ends</th></tr>
+<tr><td>Hidden</td><td>Can't be targeted. First attack from Hidden has Advantage.</td><td>You attack, leave the tags, or a search (Focus vs 12 + your Flow) beats you</td></tr>
+<tr><td>Grabbed</td><td>No free move, can't leave the zone</td><td>Quick Action, Force or Flow vs 12 + grabber's Force</td></tr>
+<tr><td>Cuffed</td><td>Can't act except to slip them</td><td>Full Action, Force or Flow vs 13, or an ally's Full Action</td></tr>
+<tr><td>Wounded</td><td>Disadvantage on Force and Flow</td><td>Patch Up, med kit, Second Wind</td></tr>
+<tr><td>Down</td><td>Out of the fight</td><td>Up at Wounded after the fight, or Second Wind or a med kit</td></tr>
+<tr><td>Dying</td><td>Hit while Down</td><td>An ally stabilizes you</td></tr>
+</table>
+<p><strong>Objectives:</strong> any hero can take any step (Full Action, a roll vs -1, +1 or +3). Impact 2+ finishes it (Impact 3: Edge on the next step); Impact 1 finishes it with a cost. Not while engaged, unless the step is about that enemy. Finishing the Objective wins the fight.</p>
+<p><strong>Defeat:</strong> all heroes Down or fled. Scheme ticks twice, each hero ticks Home or Heat.</p>
+</section>
+
+<section>
+<h2>Chases and vehicles</h2>
+<p><strong>Chase:</strong> each round the chasers pick one hero to roll Flow vs the quarry's Guard (or a rating). Three hits catch them (Impact 3 counts as two); three Misses and they're gone. Running away works the same, vs the pursuers' Wits. Tailing someone is a chase.</p>
+<p><strong>Vehicles:</strong> a moving vehicle is a zone, the road a traffic Hazard. The driver spends a Quick Action each turn. Jumping between vehicles: Flow vs -1, +1 or +3. Ramming: Full Action, vehicle rating (+1 bike, +3 car) vs Guard, counts as heavy melee, Impact 2+ shoves them a zone.</p>
+</section>
+
+<section>
+<h2>Between cases</h2>
+<p>Harm clears. Stress above 3 drops to 3. Drive resets to 2. Heat drops by 2. Home stays. Each hero takes one <strong>Advancement</strong>: +1 to a stat, a Flair, the next power ability, a new slot, or a Lair room or Asset.</p>
+</section>
+
+<section>
+<h2>The Night</h2>
+<p class="big">Patrol → Confrontation → Dawn</p>
+<h3>Following a lead</h3>
+<p>Describe your approach, roll the stat that fits vs the lead's rating. <strong>You get the clue no matter what.</strong></p>
+<table>
+<tr><th>Result</th><th>You get</th></tr>
+<tr><td class="n">Miss</td><td>The clue; GM picks a cost (Scheme tick, +1 Heat, 1 Stress, or an ambush)</td></tr>
+<tr><td class="n">Impact 1</td><td>The clue; GM offers two costs, you pick one</td></tr>
+<tr><td class="n">Impact 2</td><td>The clue, clean</td></tr>
+<tr><td class="n">Impact 3</td><td>The clue plus one: a second clue, Edge on one roll against the villain (any roll that fairly counts), or a hint at their Weakness</td></tr>
+</table>
+<p class="muted">The team gets one no-roll clue per Night from all sources (Work the Case, Plugs, a hacking rig...). Extra ones give Edge on a lead instead.</p>
+<h3>Cracking the case</h3>
+<p>With clues at least half the Complexity and a theory answering <strong>who, what, where</strong>: roll <strong>2d10 + clues used vs 10 + Complexity</strong>. Personal clues count as 2 (and tick your Home).</p>
+<table>
+<tr><td class="n">Miss</td><td>Wrong. Regroup (Scheme ticks twice) or Go in anyway (ticks once, into a trap)</td></tr>
+<tr><td class="n">Impact 1</td><td>Right, with a snag</td></tr>
+<tr><td class="n">Impact 2</td><td>Right</td></tr>
+<tr><td class="n">Impact 3</td><td>Right, plus the villain's Weakness or an arc clue</td></tr>
+</table>
+<p><strong>Whose ground?</strong> Crack at Impact 2+: you pick (ambush, or add a zone tag). Impact 1: no ambush, villain +1 Drive. A trap or full Scheme: the villain picks and ambushes.</p>
+</section>
+
+<section>
+<h2>Dawn: pick two</h2>
+<p class="muted">First the Scheme ticks, and every hero not Down takes 1 Stress.</p>
+<ul>
+<li><strong>Sleep It Off:</strong> clear 3 Stress.</li>
+<li><strong>Patch Up:</strong> clear Hurt and Wounded. With Sleep It Off, clears Down.</li>
+<li><strong>Show Up:</strong> a scene with a connection, clear 1 Stress. <strong>Skip it and tick Home.</strong></li>
+<li><strong>Lay Low:</strong> clear 1 Heat.</li>
+<li><strong>Work the Case:</strong> 1 clue, no roll (the team's no-roll clue; if used, Edge on a lead next Night).</li>
+<li><strong>Train</strong> (Gym Lair only): start the next Night with 1 more Drive.</li>
+</ul>
+</section>
+
+<section>
+<h2>Clocks (6 each)</h2>
+<table>
+<tr><th>Clock</th><th>Ticks when</th><th>Fills</th></tr>
+<tr><td>Scheme</td><td>Every Dawn; lead costs</td><td>Villain pulls it off; showdown on their ground</td></tr>
+<tr><td>Heat</td><td>Guns, public fights, collateral, some Traits, killings (GM's call). At 3+, cops come to fights</td><td>Crackdown: task force, smear, or a description</td></tr>
+<tr><td>Home (yours)</td><td>Skip Show Up, Break, personal clue, Resources, Lair found (+2)</td><td>Home crisis: costs or changes a connection</td></tr>
+</table>
+<p><strong>Cops:</strong> a cop hit grabs instead of hurting; a hit on someone grabbed or Down cuffs them. Attack a cop: +1 Heat, and they hurt you after that. Still cuffed when the team leaves: arrested, no Dawn picks.</p>
+</section>
+
+</div>
+<footer><span>Driven - Street Level Heroic RPG · Player Reference</span><span>Page 2 of 2</span></footer>
+</div>
+
+</body>
+</html>
